@@ -25,10 +25,10 @@ public class TeamActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager= (ViewPager) findViewById(R.id.pager);
         ArrayList<TeamItem> list=new ArrayList<>();
-        list.add(new TeamItem("C-Helix","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/chelix.png"));
-        list.add(new TeamItem(".EXE","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/exe.png"));
-        list.add(new TeamItem("Hermatica","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/hermatica.png"));
-        list.add(new TeamItem("C-Helix","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/chelix.png"));
+        list.add(new TeamItem("","C-Helix","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/chelix.png"));
+        list.add(new TeamItem("",".EXE","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/exe.png"));
+        list.add(new TeamItem("","Hermatica","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/hermatica.png"));
+        list.add(new TeamItem("","C-Helix","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/teams/chelix.png"));
         adapter=new TeamFragmentPagerAdapter(getSupportFragmentManager(),2f,list);
         viewPager.setAdapter(adapter);
         ShadowTransformer shadowTransformer=new ShadowTransformer(viewPager,adapter);

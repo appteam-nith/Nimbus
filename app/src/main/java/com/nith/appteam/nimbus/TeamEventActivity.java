@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.florent37.materialleanback.MaterialLeanBack;
+import com.nith.appteam.nimbus.Fragment.TeamFragment;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,7 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
     private Toolbar mToolbar;
     private MaterialLeanBack materialLeanBack;
     private ArrayList<Bitmap> images;
+    private String id; // Team id for the Extracting team detail,event and projects
 
 
 
@@ -43,6 +46,12 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         setTheme(R.style.EventAct);
         setContentView(R.layout.activity_teamevent);
         bindActivity();
+        Intent i=getIntent();
+        if(i!=null){
+            if(i.hasExtra(TeamFragment.TEAM_ID)){
+                id=i.getStringExtra(TeamFragment.TEAM_ID);
+            }
+        }
 
         mAppBarLayout.addOnOffsetChangedListener(this);
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
@@ -60,10 +69,10 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
                 materialLeanBack.smoothScrollTo(5, 6);
             }
         });
-        materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
+        materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<EventViewHolder>() {
             @Override
             public int getLineCount() {
-                return 5;
+                return 3;
             }
 
             @Override
@@ -72,13 +81,13 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
             }
 
             @Override
-            public TestViewHolder onCreateViewHolder(ViewGroup viewGroup, int line) {
+            public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int line) {
                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_event, viewGroup, false);
-                return new TestViewHolder(view);
+                return new EventViewHolder(view);
             }
 
             @Override
-            public void onBindViewHolder(TestViewHolder viewHolder, int i) {
+            public void onBindViewHolder(EventViewHolder viewHolder, int i) {
                 viewHolder.textView.setText("Pic" + i);
                 viewHolder.imageView.setImageBitmap(images.get(i%6));
             }
