@@ -5,12 +5,12 @@ import android.widget.TextView;
 
 import com.github.florent37.materialleanback.MaterialLeanBack;
 
-public class TestViewHolder extends MaterialLeanBack.ViewHolder {
+public class EventViewHolder extends MaterialLeanBack.ViewHolder {
 
     protected TextView textView;
     protected ImageView imageView;
 
-    public TestViewHolder(View itemView) {
+    public EventViewHolder(View itemView) {
         super(itemView);
         textView = (TextView) itemView.findViewById(R.id.textView);
         imageView = (ImageView) itemView.findViewById(R.id.imageView);

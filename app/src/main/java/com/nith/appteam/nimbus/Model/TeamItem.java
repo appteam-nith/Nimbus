@@ -6,11 +6,14 @@ package com.nith.appteam.nimbus.Model;
 
 public class TeamItem {
 
+    private  String id;
+
     private String name;
 
     private String url;
 
-    public TeamItem(String name, String url) {
+    public TeamItem(String id, String name, String url) {
+        this.id = id;
         this.name = name;
         this.url = url;
     }
@@ -29,5 +32,13 @@ public class TeamItem {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
