@@ -1,15 +1,20 @@
 package com.nith.appteam.nimbus.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by sahil on 7/2/17.
  */
 
 public class TeamItem {
 
+    @SerializedName("_id")
     private  String id;
 
+    @SerializedName("name")
     private String name;
 
+    @SerializedName("logo")
     private String url;
 
     public TeamItem(String id, String name, String url) {
