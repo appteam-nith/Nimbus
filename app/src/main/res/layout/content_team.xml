@@ -18,12 +18,13 @@
             android:id="@+id/logoTeam"
             android:layout_marginTop="20dp"
             android:src="@drawable/team"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             />
 
         <android.support.v4.view.ViewPager
+            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:layout_below="@+id/logoTeam"
             android:id="@+id/pager"
@@ -38,10 +39,23 @@
             android:paddingLeft="60dp"
             android:paddingStart="60dp"/>
         <ProgressBar
+            android:layout_below="@+id/logoTeam"
+            android:layout_marginTop="50dp"
+            android:id="@+id/progressbar"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
+        <TextView
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_below="@+id/logoTeam"
+            android:layout_marginTop="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/message_textView"
+            />
 
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
