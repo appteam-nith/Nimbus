@@ -62,6 +62,7 @@ public class TeamActivity extends AppCompatActivity {
                         message.setVisibility(View.GONE);
                     }
                     else {
+                        message.setVisibility(View.VISIBLE);
                         message.setText("Please Check Your Internet Connection");
                         progressBar.setVisibility(View.GONE);
                     }
@@ -70,10 +71,16 @@ public class TeamActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<TeamListResponse> call, Throwable t) {
                     t.printStackTrace();
+                    message.setVisibility(View.VISIBLE);
                     message.setText("Please Check Your Internet Connection");
                     progressBar.setVisibility(View.GONE);
                 }
             });
+        }
+        else{
+            message.setVisibility(View.VISIBLE);
+            message.setText("Please Check Your Internet Connection");
+            progressBar.setVisibility(View.GONE);
         }
     }
 }
