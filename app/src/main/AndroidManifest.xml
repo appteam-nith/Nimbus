@@ -18,7 +18,8 @@
             android:name=".Activity.TeamActivity"
             android:label="@string/title_activity_team"
             android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.nith.appteam.nimbus.Activity.Workshops">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +28,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+        </activity>
+        <activity android:name="com.nith.appteam.nimbus.Activity.WorkshopDetail">
+
         </activity>
         <activity android:name=".TeamEventActivity"/>
        
