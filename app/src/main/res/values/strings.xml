@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Nimbus</string>
-    <string name="title_activity_team">TeamActivity</string>
+    <string name="title_activity_appintro">appintro</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="Got_it">Got it!</string>
+    <string name="slide1">Nimbus</string>
+    <string name="slide2">appintro</string>
+    <string name="slide3">udgam</string>
+    <string name="slide4">innovation</string>
+    <string name="done">Done</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
