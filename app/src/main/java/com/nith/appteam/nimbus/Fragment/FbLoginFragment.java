@@ -109,7 +109,7 @@ public class FbLoginFragment extends Fragment {
                         }
 
                         btnLogin.setVisibility(View.GONE);
-                        saveFbUserData(name, email, picUrl);
+                       // saveFbUserData(name, email, picUrl);
                         pbLogin.setVisibility(View.VISIBLE);
                     }
                 });
@@ -147,7 +147,7 @@ public class FbLoginFragment extends Fragment {
                 {
                     Log.v("ID", userSentResponse.userId);
                     sharedPref.setLoginStatus(true);
-                    sharedPref.setSkipStatus(false);
+                    sharedPref.setSkipStatus(true);// as user has login succesfully and we make sure  that screen does not come again
                     sharedPref.setUserId(userSentResponse.userId);
 
                     pbLogin.setVisibility(View.GONE);

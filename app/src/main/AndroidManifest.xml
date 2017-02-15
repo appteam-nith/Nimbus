@@ -37,14 +37,14 @@
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
       </activity>
         <activity
-            android:name=".Activity.TeamActivity"
-            android:label="@string/title_activity_team"
-            android:parentActivityName=".Activity.MainActivity"
+            android:name=".Appintro"
+            android:label="@string/title_activity_appintro"
             android:theme="@style/AppTheme.NoActionBar">
+
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+                android:value="com.nith.appteam.nimbus.Activity.MainActivity"/>
         </activity>
 
 

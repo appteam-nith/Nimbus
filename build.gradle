@@ -28,6 +28,7 @@ allprojects {
             url "http://jcenter.bintray.com/"
         }
     }
+
 }
 
 task clean(type: Delete) {
