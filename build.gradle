@@ -3,13 +3,13 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven {
+        maven{
             url 'http://repo1.maven.org/maven2'
         }
-        jcenter {
+        jcenter{
             url "http://jcenter.bintray.com/"
-        }
-}
+       }
+    }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
 
@@ -21,15 +21,14 @@ buildscript {
 allprojects {
     repositories {
         mavenCentral()
-        maven {
+        maven{
             url 'http://repo1.maven.org/maven2'
         }
-        jcenter {
+        jcenter{
             url "http://jcenter.bintray.com/"
         }
+    }
 
-
-}
 }
 
 task clean(type: Delete) {
