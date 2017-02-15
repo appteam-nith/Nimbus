@@ -41,7 +41,10 @@ public class Util {
             }
         });
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nimbus2k17api.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).client(oBuilder.build()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nimbus2k17api.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).
+                client(oBuilder.build()).
+                build();
+
         ApiInterface service = retrofit.create(ApiInterface.class);
         return service;
     }
