@@ -19,6 +19,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nith.appteam.nimbus.Activity.MainActivity;
+import com.nith.appteam.nimbus.Utils.SharedPref;
+
 public class Appintro extends AppCompatActivity {
 
     private ViewPager viewPager;
@@ -27,7 +30,7 @@ public class Appintro extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnskip, btnnext;
-    private PrefManager prefManager;
+    private SharedPref prefManager;
 
 
     @Override
@@ -35,8 +38,8 @@ public class Appintro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        prefManager = new PrefManager(this);
-        if (!prefManager.isFirstTimeLaunch()) {
+        prefManager=new SharedPref(this);
+        if (prefManager.showIsFirstTime()) {
             launchHomeScreen();
             finish();
         }
@@ -104,8 +107,8 @@ public class Appintro extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-        prefManager.setIsFirstTimeLaunch(false);
-        startActivity(new Intent(Appintro.this, MainActivity.class));
+        prefManager.setIsFirstTime();
+        startActivity(new Intent(Appintro.this,MainActivity.class));
         finish();
     }
 

@@ -50,7 +50,6 @@
 
         <activity android:name=".TeamEventActivity" />
         <activity android:name=".Activity.LoginActivity"/>
-        <activity android:name=".TeamEventActivity" />
         <activity android:name=".Activity.Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

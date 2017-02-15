@@ -15,22 +15,14 @@ import com.nith.appteam.nimbus.Utils.SharedPref;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView tvSkip;
-    SharedPref sharedPref;
+    private SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         sharedPref = new SharedPref(this);
-        Log.v("login Status:", "" + sharedPref.getLoginStatus());
-        Log.v("Skip Status:", "" + sharedPref.getSkipStatus());
 
-        if(sharedPref.getLoginStatus())
-        {
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -42,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sharedPref.setSkipStatus(true);
-                Log.v("login Status:", "" + sharedPref.getLoginStatus());
-                Log.v("Skip Status:", "" + sharedPref.getSkipStatus());
-
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 finish();
             }

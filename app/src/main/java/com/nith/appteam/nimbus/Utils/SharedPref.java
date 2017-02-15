@@ -14,6 +14,7 @@ public class SharedPref {
     private static final String LOGIN_STATUS="loginstatus";
     private static final String SKIP_STATUS="skipstatus";
     private static final String USER_ID="apikey";
+    private static final String IS_FIRST_TIME="isfirstTime";
 
 
     public SharedPref(Context context){
@@ -47,5 +48,15 @@ public class SharedPref {
     public String getUserId(){
         return sharedPreferences.getString(USER_ID,"");
     }
+
+    public void setIsFirstTime(){
+        editor.putBoolean(IS_FIRST_TIME,true);
+        editor.commit();
+    }
+
+    public boolean showIsFirstTime(){
+        return sharedPreferences.getBoolean(IS_FIRST_TIME,false);
+    }
+
 
 }
