@@ -11,11 +11,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.MainActivity">
-      </activity>
+        <activity android:name=".Activity.MainActivity"/>
         <activity
             android:name=".CoreTeamActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+        </activity>
+
         <activity
             android:name=".Activity.TeamActivity"
             android:label="@string/title_activity_team"
@@ -35,11 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
-        </activity>
-        <activity android:name=".TeamEventActivity"/>
-    </application>
+            </application>
 
 </manifest>
