@@ -3,13 +3,19 @@ package com.nith.appteam.nimbus.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
  private SharedPref sharedPref;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +26,16 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
 
+
+
     }
+
+
+    public void openProfile(View view){
+
+        startActivity(new Intent(this,ProfileActivity.class));
+
+    }
+
+
 }
