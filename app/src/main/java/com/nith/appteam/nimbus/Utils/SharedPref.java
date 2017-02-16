@@ -27,6 +27,10 @@ public class SharedPref {
         editor.commit();
     }
 
+    public boolean getInstructionsReadStatus(){
+        return sharedPreferences.getBoolean("quizinstruct",false);
+    }
+
     public boolean getLoginStatus(){
         return sharedPreferences.getBoolean(LOGIN_STATUS,false);
     }
