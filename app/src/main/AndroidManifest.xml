@@ -57,7 +57,9 @@
 
         <activity android:name=".TeamEventActivity" />
 
-        <activity android:name=".Activity.LoginActivity" />
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".Activity.Splash"
