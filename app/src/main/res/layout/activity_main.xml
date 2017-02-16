@@ -14,4 +14,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open Profile Activity"
+        android:onClick="openProfile"
+        android:layout_marginTop="80dp"/>
 </RelativeLayout>

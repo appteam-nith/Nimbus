@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_height="wrap_content"
+android:layout_width="match_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:card_view="http://schemas.android.com/tools"
+card_view:cardElevation="8dp"
+android:layout_marginLeft="10dp"
+android:layout_marginRight="10dp"
+android:layout_marginTop="7.5dp"
+android:layout_marginBottom="7.5dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:id="@+id/core_team_image_view"
+        android:src="@drawable/person_icon"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/core_team_name"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Designation"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"
+        android:id="@+id/core_team_designation"/>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>
