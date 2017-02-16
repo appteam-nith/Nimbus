@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/question_number_text"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:text="Question 1."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="#505050"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+     />
+
+    <TextView
+        android:padding="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        android:textSize="20sp"
+        android:text="@string/sample_question"
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:id="@+id/checkbox_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:textColor="#505050"
+            android:id="@+id/checkA"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="A. 14 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:textColor="#505050"
+            android:id="@+id/checkB"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="B. 16 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:textColor="#505050"
+            android:id="@+id/checkC"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="C. 4 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:textColor="#505050"
+            android:id="@+id/checkD"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="D. 6 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:id="@+id/radio_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <RadioButton
+            android:textColor="#505050"
+            android:id="@+id/radioA"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="A. 14 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:textColor="#505050"
+            android:id="@+id/radioB"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="B. 16 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:textColor="#505050"
+            android:id="@+id/radioC"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="C. 4 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:textColor="#505050"
+            android:id="@+id/radioD"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="D. 6 Members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:text="*Swipe for next question"
+        android:id="@+id/next_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:visibility="gone"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:text="FINISH QUIZ"
+        android:id="@+id/finish_button"
+        android:padding="14dp"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+<ProgressBar
+    android:visibility="gone"
+    android:layout_centerInParent="true"
+    android:id="@+id/progress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+</RelativeLayout>
+
+</ScrollView>
