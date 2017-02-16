@@ -37,5 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openTeam(View view){
+        startActivity(new Intent(this,TeamActivity.class));
+    }
+
 
 }

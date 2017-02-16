@@ -6,14 +6,15 @@
     >
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/eventimage"
+        android:src="@drawable/placeholder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/eventname"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#5000"
