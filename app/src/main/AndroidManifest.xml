@@ -34,7 +34,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:theme="@style/HomeTheme"/>
 
         <activity android:name=".Activity.TeamActivity"
                   android:theme="@style/AppTheme.NoActionBar"></activity>

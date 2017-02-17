@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_profile"
+        android:title="Profile"
+        android:icon="@drawable/main_bottom_profile"/>
+
+    <item
+        android:id="@+id/action_leaderboard"
+        android:title="Leaderboard"
+        android:icon="@drawable/main_bottom_leaderboard"/>
+
+    <item
+        android:id="@+id/action_notifications"
+        android:title="Notifications"
+        android:icon="@drawable/main_bottom_notifications"/>
+
+</menu>
