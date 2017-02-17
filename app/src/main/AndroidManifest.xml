@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nith.appteam.nimbus">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".Utils.MyApplication"
@@ -28,6 +30,11 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".TeamEventActivity"/>
+        <activity android:name=".Activity.NewsfeedActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity android:name=".Activity.MainActivity"/>
         <activity
             android:name=".CoreTeamActivity"
@@ -41,14 +48,16 @@
             android:label="@string/title_activity_appintro"
             android:theme="@style/AppTheme.NoActionBar">
 
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity"/>
         </activity>
 
 
-        <activity android:name=".TeamEventActivity" />
+        <activity android:name=".Activity.UploadNewsFeedActivity"></activity>
+
+
+
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.Splash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -58,6 +67,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
           </activity>
-            
+
+       <activity android:name=".Activity.TeamActivity"
+        android:label="@string/title_activity_team"
+        android:parentActivityName=".Activity.MainActivity"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+        </activity>
           </application>
 </manifest>

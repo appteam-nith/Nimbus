@@ -3,9 +3,6 @@ package com.nith.appteam.nimbus.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by jaykay12 on 12/2/17.
- */
 public class SharedPref {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;

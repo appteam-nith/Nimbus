@@ -51,6 +51,6 @@ dependencies {
     compile 'com.github.florent37:materialleanback:1.0.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.android.support:support-v4:24.2.1'
-    testCompile 'junit:junit:4.12'
 
+    compile 'com.github.jd-alexander:LikeButton:0.2.0'
 }
