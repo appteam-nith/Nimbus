@@ -1,7 +1,9 @@
 package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,11 +20,14 @@ import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
 
+
+
 public class MainActivity extends AppCompatActivity {
 
 
     private SharedPref sharedPref;
     private RecyclerView mRecyclerView;
+    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -43,18 +49,28 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setAdapter(new MainRecyclerAdapter());
+        bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.action_leaderboard:
+                        return true;
+                    case R.id.action_profile:
+                        startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                        return  true;
+                    case R.id.action_notifications:
+                        return true;
+
+                }
+                return false;
+            }
+        });
     }
 
 
-    public void openProfile(View view) {
 
-        startActivity(new Intent(this, ProfileActivity.class));
-
-    }
-
-    public void openTeam(View view) {
-        startActivity(new Intent(this, TeamActivity.class));
-    }
 
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =

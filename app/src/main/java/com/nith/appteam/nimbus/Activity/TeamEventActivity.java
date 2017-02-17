@@ -1,4 +1,4 @@
-package com.nith.appteam.nimbus;
+package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,8 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.florent37.materialleanback.MaterialLeanBack;
+import com.nith.appteam.nimbus.EventViewHolder;
 import com.nith.appteam.nimbus.Fragment.TeamFragment;
 import com.nith.appteam.nimbus.Model.TeamEventList;
+import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.Connection;
 import com.nith.appteam.nimbus.Utils.Util;
 

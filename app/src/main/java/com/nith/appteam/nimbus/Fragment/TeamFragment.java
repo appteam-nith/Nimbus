@@ -14,9 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.nith.appteam.nimbus.Activity.MainActivity;
 import com.nith.appteam.nimbus.R;
-import com.nith.appteam.nimbus.TeamEventActivity;
+import com.nith.appteam.nimbus.Activity.TeamEventActivity;
 import com.nith.appteam.nimbus.Utils.TeamInterface;
 import com.nith.appteam.nimbus.Model.TeamItem;
 

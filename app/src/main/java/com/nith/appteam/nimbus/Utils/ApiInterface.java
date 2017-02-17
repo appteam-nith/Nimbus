@@ -1,5 +1,14 @@
 package com.nith.appteam.nimbus.Utils;
 
+import retrofit2.http.POST;
+
+
+import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
+
+import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
+import com.nith.appteam.nimbus.Model.Likecount;
+import com.nith.appteam.nimbus.Model.NewsFeedModel;
+
 import retrofit2.http.GET;
 
 import com.nith.appteam.nimbus.Model.TeamEventList;
@@ -16,6 +25,9 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+
+import retrofit2.http.Query;
+
 
 /**
  * Created by sahil on 9/2/17.
@@ -41,5 +53,15 @@ public interface ApiInterface {
     @POST("quiz/score")
     Call<UpdateScoreModel> updateScore(@Field("id") String id, @Field("score") int score);
 
+    @FormUrlEncoded
+    @POST("newsfeed/post")
+    Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Field("uId") String userId, @Field("uName") String userName);
 
+
+    @GET("newsfeed/all")
+    Call<NewsFeedModel> getAllNews(@Query("from") String from, @Query("uId") String userId);
+
+    @FormUrlEncoded
+    @POST("newsfeed/like")
+    Call<Likecount>likecount(@Field("id") String id, @Field("uId") String userId);
 }

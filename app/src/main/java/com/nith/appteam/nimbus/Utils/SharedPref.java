@@ -3,9 +3,6 @@ package com.nith.appteam.nimbus.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by jaykay12 on 12/2/17.
- */
 public class SharedPref {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -15,6 +12,7 @@ public class SharedPref {
     private static final String SKIP_STATUS="skipstatus";
     private static final String USER_ID="apikey";
     private static final String IS_FIRST_TIME="isfirstTime";
+    private static final  String USER_NAME="name";
 
 
     public SharedPref(Context context){
@@ -62,5 +60,13 @@ public class SharedPref {
         return sharedPreferences.getBoolean(IS_FIRST_TIME,false);
     }
 
+    public void setUserName(String name){
+        editor.putString(USER_NAME,name);
+        editor.commit();
+    }
+
+    public String getUserName(){
+        return sharedPreferences.getString(USER_NAME,"");
+    }
 
 }

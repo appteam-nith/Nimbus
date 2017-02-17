@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nith.appteam.nimbus">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".Utils.MyApplication"
@@ -33,15 +35,18 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.TeamEventActivity"/>
+        <activity android:name=".Activity.NewsfeedActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
 
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/HomeTheme"/>
 
-        <activity android:name=".Activity.TeamActivity"
-                  android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".CoreTeamActivity"
+            android:name=".Activity.CoreTeamActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -49,15 +54,20 @@
         </activity>
 
         <activity
-            android:name=".Appintro"
+            android:name=".Activity.Appintro"
             android:label="@string/title_activity_appintro"
             android:theme="@style/AppTheme.NoActionBar">
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
 
-        <activity android:name=".TeamEventActivity" />
+
+
+        <activity android:name=".Activity.UploadNewsFeedActivity"></activity>
+
+
 
         <activity
             android:name=".Activity.LoginActivity"
@@ -65,12 +75,24 @@
 
         <activity
             android:name=".Activity.Splash"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+          </activity>
+
+       <activity android:name=".Activity.TeamActivity"
+        android:label="@string/title_activity_team"
+        android:parentActivityName=".Activity.MainActivity"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+
         </activity>
 
 
@@ -79,7 +101,5 @@
             android:theme="@style/ProfileTheme"
             android:parentActivityName=".Activity.MainActivity">
         </activity>
-
-    </application>
-
-</manifest>
+</application>
+    </manifest>
