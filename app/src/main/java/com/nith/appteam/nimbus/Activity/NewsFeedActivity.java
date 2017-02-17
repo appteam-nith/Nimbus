@@ -15,8 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.nith.appteam.nimbus.Adapter.CardAdapter;
-import com.nith.appteam.nimbus.Model.NewsFeedModel;
-import com.nith.appteam.nimbus.Model.NewsFeedModel2;
+import com.nith.appteam.nimbus.Model.NewsFeedResponse;
+import com.nith.appteam.nimbus.Model.NewsFeed;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
@@ -31,7 +31,7 @@ import retrofit2.Response;
  * Created by sahil on 9/2/17.
  */
 
-public class NewsfeedActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final String FEED_LIST ="list" ;
     private RecyclerView recyclerView;
@@ -40,7 +40,7 @@ public class NewsfeedActivity extends AppCompatActivity implements SwipeRefreshL
     private SwipeRefreshLayout swipeRefreshLayout;
     private boolean loading = true;
     private int  pastVisiblesItems, visibleItemCount, totalItemCount, previousTotal = 0, visibleThreshold = 0,feedNo=1;
-    private ArrayList<NewsFeedModel2> list=new ArrayList<>();
+    private ArrayList<NewsFeed> list=new ArrayList<>();
     private SharedPref pref;
 
     @Override
@@ -112,7 +112,7 @@ public class NewsfeedActivity extends AppCompatActivity implements SwipeRefreshL
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(NewsfeedActivity.this,UploadNewsFeedActivity.class));
+                startActivity(new Intent(NewsFeedActivity.this,UploadNewsFeedActivity.class));
             }
         });
 
@@ -126,10 +126,10 @@ public class NewsfeedActivity extends AppCompatActivity implements SwipeRefreshL
             recyclerView.setVisibility(View.GONE);
         }
 
-        Call<NewsFeedModel> newsfeedResponse= Util.getRetrofitService().getAllNews(""+from,pref.getUserId());
-        newsfeedResponse.enqueue(new Callback<NewsFeedModel>() {
+        Call<NewsFeedResponse> newsfeedResponse= Util.getRetrofitService().getAllNews(""+from,pref.getUserId());
+        newsfeedResponse.enqueue(new Callback<NewsFeedResponse>() {
             @Override
-            public void onResponse(Call<NewsFeedModel> call, Response<NewsFeedModel> response) {
+            public void onResponse(Call<NewsFeedResponse> call, Response<NewsFeedResponse> response) {
                 if(swipeRefreshLayout.isRefreshing()){
                     swipeRefreshLayout.setRefreshing(false);
                 }
@@ -172,12 +172,12 @@ public class NewsfeedActivity extends AppCompatActivity implements SwipeRefreshL
                     }
 
 
-                    Toast.makeText(NewsfeedActivity.this,"Unable to fetch Data",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewsFeedActivity.this,"Unable to fetch Data",Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<NewsFeedModel> call, Throwable t) {
+            public void onFailure(Call<NewsFeedResponse> call, Throwable t) {
                 if(swipeRefreshLayout.isRefreshing()){
                     swipeRefreshLayout.setRefreshing(false);
                 }
@@ -189,7 +189,7 @@ public class NewsfeedActivity extends AppCompatActivity implements SwipeRefreshL
 
                 t.printStackTrace();
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(NewsfeedActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+                Toast.makeText(NewsFeedActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
             }
         });
     }

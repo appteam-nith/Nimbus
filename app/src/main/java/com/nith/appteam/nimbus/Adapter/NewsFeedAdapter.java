@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.nith.appteam.nimbus.Model.Likecount;
-import com.nith.appteam.nimbus.Model.NewsFeedModel2;
+import com.nith.appteam.nimbus.Model.NewsFeed;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
 import com.nith.appteam.nimbus.Utils.MyApplication;
@@ -35,10 +35,10 @@ import retrofit2.Response;
  * Created by sahil on 9/2/17.
  */
 
-public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     private Context mContext;
-    private ArrayList<NewsFeedModel2> list_card=new ArrayList<>();
+    private ArrayList<NewsFeed> list_card=new ArrayList<>();
     public static final int FOOTER_VIEW = 1;
     public static final int NORMAL_VIEW = 2;
     private View view;
@@ -47,13 +47,13 @@ public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
 
 
-    public CardAdapter(Context mContext) {
+    public NewsFeedAdapter(Context mContext) {
 
         this.mContext = mContext;
     }
 
 
-    public  void  refresh(ArrayList<NewsFeedModel2> list){
+    public  void  refresh(ArrayList<NewsFeed> list){
         list_card=list;
         notifyDataSetChanged();
     }
@@ -77,7 +77,7 @@ public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         {
             l=position;
             final MyViewHolder h=(MyViewHolder) holder;
-            final NewsFeedModel2 card = list_card.get(position);
+            final NewsFeed card = list_card.get(position);
             if(card!=null){
                 if(card.getUsername()!=null&&!card.getUsername().isEmpty())
                     h.user_name.setText(card.getUsername());

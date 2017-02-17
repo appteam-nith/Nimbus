@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by sahil on 9/2/17.
  */
 
-public class NewsFeedModel2 implements Parcelable {
+public class NewsFeed implements Parcelable {
     @SerializedName("_id")
     private String _id;
     @SerializedName("title")
@@ -35,7 +35,7 @@ public class NewsFeedModel2 implements Parcelable {
     private String date;
 
 
-    public NewsFeedModel2(String _id, String title, String photo, String description, String userid, String username, String date,int likes,boolean status) {
+    public NewsFeed(String _id, String title, String photo, String description, String userid, String username, String date, int likes, boolean status) {
         this._id = _id;
         this.title = title;
         this.photo = photo;
@@ -46,7 +46,7 @@ public class NewsFeedModel2 implements Parcelable {
         this.date = date;
     }
 
-    protected NewsFeedModel2(Parcel in) {
+    protected NewsFeed(Parcel in) {
         _id = in.readString();
         title = in.readString();
         photo = in.readString();
@@ -56,15 +56,15 @@ public class NewsFeedModel2 implements Parcelable {
         date = in.readString();
     }
 
-    public static final Creator<NewsFeedModel2> CREATOR = new Creator<NewsFeedModel2>() {
+    public static final Creator<NewsFeed> CREATOR = new Creator<NewsFeed>() {
         @Override
-        public NewsFeedModel2 createFromParcel(Parcel in) {
-            return new NewsFeedModel2(in);
+        public NewsFeed createFromParcel(Parcel in) {
+            return new NewsFeed(in);
         }
 
         @Override
-        public NewsFeedModel2[] newArray(int size) {
-            return new NewsFeedModel2[size];
+        public NewsFeed[] newArray(int size) {
+            return new NewsFeed[size];
         }
     };
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by sahil on 9/2/17.
  */
 
-public class NewsFeedModel {
+public class NewsFeedResponse {
     @SerializedName("feed")
     private ArrayList<NewsFeedModel2> feed;
     @SerializedName("success")
@@ -16,7 +16,7 @@ public class NewsFeedModel {
     @SerializedName("msg")
     private String msg;
 
-    public NewsFeedModel(ArrayList<NewsFeedModel2> feed, boolean success, String msg) {
+    public NewsFeedResponse(ArrayList<NewsFeedModel2> feed, boolean success, String msg) {
         this.feed = feed;
         this.success = success;
         this.msg = msg;
