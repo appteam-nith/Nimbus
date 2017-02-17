@@ -13,20 +13,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
@@ -36,13 +41,17 @@
 
         </activity>
         <activity android:name=".Activity.MainActivity"/>
+
+
+
         <activity
             android:name=".CoreTeamActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
-      </activity>
+        </activity>
+
         <activity
             android:name=".Appintro"
             android:label="@string/title_activity_appintro"
@@ -50,22 +59,33 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nith.appteam.nimbus.Activity.MainActivity"/>
+                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
 
 
         <activity android:name=".Activity.UploadNewsFeedActivity"></activity>
 
 
 
-        <activity android:name=".Activity.LoginActivity"/>
-        <activity android:name=".Activity.Splash"
+
+
+
+
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".Activity.Splash"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
           </activity>
 
        <activity android:name=".Activity.TeamActivity"
@@ -75,6 +95,14 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+
         </activity>
-          </application>
-</manifest>
+
+
+        <activity
+            android:name=".Activity.ProfileActivity"
+            android:theme="@style/ProfileTheme"
+            android:parentActivityName=".Activity.MainActivity">
+        </activity>
+</application>
+    </manifest>
