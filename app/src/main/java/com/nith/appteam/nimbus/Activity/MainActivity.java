@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.R;
@@ -32,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
 
+
         initCollapsingToolbar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Log.v("Checking UserId:",""+sharedPref.getUserId());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
