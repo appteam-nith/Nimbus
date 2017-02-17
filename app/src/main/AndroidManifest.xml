@@ -28,7 +28,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-        <activity android:name=".TeamEventActivity"/>
+        <activity android:name=".TeamEventActivity"></activity>
        
     </application>
 
