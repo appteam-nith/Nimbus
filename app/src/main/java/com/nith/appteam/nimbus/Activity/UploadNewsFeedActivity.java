@@ -2,8 +2,6 @@ package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -36,7 +34,10 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
     private EditorView editorView;
     private ImageView camera_image, upload_image;
     private ProgressBar progressBar;
-    private SharedPref sharedPref;
+    private static final String UPLOAD_SERVICE="Upload";
+    private static final String TITLE="title";
+    private static  final String DESCRIPTION="description";
+    private static final String  URL_IMAGE="imageUrl";
 
 
     @Override
@@ -44,7 +45,6 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_upload_news_feed);
-        sharedPref=new SharedPref(this);
 
         editorView = (EditorView) findViewById(R.id.editor);
         camera_image = (ImageView) findViewById(R.id.select_image);
@@ -53,7 +53,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
         camera_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createchooser();
+                createChooser();
             }
         });
 
@@ -62,15 +62,26 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 EditorView.AddTopic add = editorView.buildEditData();
+                StringBuilder imageUrl =new StringBuilder();
                 if (add.title != null && add.detail != null)
                     if (!add.title.isEmpty() && !add.detail.isEmpty()) {
+
                         upload_image.setVisibility(GONE);
                         progressBar.setVisibility(View.VISIBLE);
-                        upload(add.title, add.detail);
+                       for(int i=0;i<add.imageUrl.size();i++)
+                            imageUrl.append(add.imageUrl.get(i)+" ");
+                        Intent i=new Intent();
+                        i.putExtra(UPLOAD_SERVICE,true);
+                        i.putExtra(TITLE,add.title);
+                        i.putExtra(DESCRIPTION,add.detail);
+                        i.putExtra(URL_IMAGE,imageUrl.toString());
+                        startService(i);
+
+                        Log.d(TAG, add.title + " " + add.detail+" "+imageUrl);
                     } else {
                         Toast.makeText(UploadNewsFeedActivity.this, "Some Fields are still empty", Toast.LENGTH_SHORT).show();
                     }
-                Log.d(TAG, add.title + " " + add.detail);
+
 
             }
         });
@@ -79,7 +90,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
 
     }
 
-    private void createchooser() {
+    private void createChooser() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "CHOOSE PHOTO"), PICK_IMAGE_REQUEST);
@@ -96,15 +107,13 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
             c.moveToFirst();
             String imgDecodableString = c.getString(c.getColumnIndex(filePathColumn[0]));
             c.close();
-            Bitmap bitmap = BitmapFactory.decodeFile(imgDecodableString);
-            Bitmap bitmap1 = Bitmap.createScaledBitmap(bitmap, getWindow().getWindowManager().getDefaultDisplay().getWidth() / 2, getWindow().getWindowManager().getDefaultDisplay().getHeight() / 2, true);
-            editorView.addImage(bitmap1);
+            editorView.addImage(imgDecodableString);
         }
     }
 
 
 
-    // class for the Uploading News Respons
+    // class for the Uploading News Response
 
     public class UploadResponse {
 
@@ -149,41 +158,6 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
     }
 
 
-    private void upload(String title, String description) {
 
-        Call<UploadResponse> uploadResponseCall = Util.getRetrofitService().uploadNews(title, description, sharedPref.getUserId(), sharedPref.getUserName());
-        uploadResponseCall.enqueue(new Callback<UploadResponse>() {
-            @Override
-            public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
-                progressBar.setVisibility(GONE);
-                UploadResponse result = response.body();
-                int status_code = response.code();
-                if (result != null) {
-                    if (result.getSuccess()) {
-                        Toast.makeText(UploadNewsFeedActivity.this, "Post Successfully Uploaded", Toast.LENGTH_LONG).show();
-                        finish();
-                    } else {
-                        upload_image.setVisibility(View.VISIBLE);
-                        Toast.makeText(UploadNewsFeedActivity.this, "Error While Uploading Please Retry", Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    upload_image.setVisibility(View.VISIBLE);
-                    if (status_code == 503) {
-                        Toast.makeText(UploadNewsFeedActivity.this, "Server Done", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(UploadNewsFeedActivity.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<UploadResponse> call, Throwable t) {
-                upload_image.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(GONE);
-                t.printStackTrace();
-            }
-        });
-    }
 }
 

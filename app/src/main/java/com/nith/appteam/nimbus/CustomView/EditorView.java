@@ -2,6 +2,7 @@ package com.nith.appteam.nimbus.CustomView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -15,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.nith.appteam.nimbus.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by sahil on 9/2/17.
@@ -43,6 +46,7 @@ public class EditorView extends ScrollView {
 
     public EditorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
 
         inflater = LayoutInflater.from(context);
 
@@ -100,9 +104,10 @@ public class EditorView extends ScrollView {
         return editText;
     }
 
-    private void createImageViewAtIndex(Bitmap bmp, int index) {
-        ImageView imageView = (ImageView) inflater.inflate(R.layout.item_image, null);
+    private void createImageViewAtIndex(Bitmap bmp, int index,String imageUrl) {
+        EditorImageView imageView= (EditorImageView) inflater.inflate(R.layout.item_image,null);
         imageView.setImageBitmap(bmp);
+        imageView.setAbsoluteUrl(imageUrl);
         int imageHeight = getWidth() * bmp.getHeight() / bmp.getWidth();
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT, imageHeight);
@@ -144,21 +149,25 @@ public class EditorView extends ScrollView {
 
     }
 
-    public void addImage(Bitmap b) {
+    public void addImage(String filePath){
+        addImage(getScaledBitmap(filePath,getWidth()),filePath);
+    }
+
+    private void addImage(Bitmap b,String imageUrl) {
         String text1 = lastEditText.getText().toString();
         int pos = lastEditText.getSelectionStart();
         String text2 = text1.substring(0, pos).trim();
         int index = allLayout.indexOfChild(lastEditText);
 
         if (text1.isEmpty() && (int) lastEditText.getTag() != 1) {
-            createImageViewAtIndex(b, index);
+            createImageViewAtIndex(b, index,imageUrl);
         } else {
             lastEditText.setText(text2);
             String t = text1.substring(pos).trim();
             if (allLayout.getChildCount() - 1 == index || !t.isEmpty()) {
                 createEditTextAtIndex(t, index + 1);
             }
-            createImageViewAtIndex(b, index + 1);
+            createImageViewAtIndex(b, index + 1,imageUrl);
             lastEditText.requestFocus();
             lastEditText.setSelection(text2.length(), text2.length());
         }
@@ -178,6 +187,7 @@ public class EditorView extends ScrollView {
 
     public AddTopic buildEditData() {
         String topic="",detail="";
+        ArrayList<String> imageUrl=new ArrayList<>();
 
         int num = allLayout.getChildCount();
         for (int index = 0; index < num; index++) {
@@ -195,28 +205,36 @@ public class EditorView extends ScrollView {
                     detail=item.getText().toString();
                 }
             }
-            /*
-            else if (itemView instanceof ImageView) {
-                ImageView item = (ImageView) itemView;
-            }*/
+
+            else if (itemView instanceof EditorImageView) {
+                EditorImageView i= (EditorImageView) itemView;
+                imageUrl.add(i.getAbsoluteUrl());
+            }
         }
-        AddTopic itemData = new AddTopic(topic,detail);
+        AddTopic itemData = new AddTopic(topic,detail,imageUrl);
         return itemData;
     }
 
     public class AddTopic{
-        public String title,detail,imageUrl;
+        public String title,detail;
+        public ArrayList<String> imageUrl;
 
-        public AddTopic(String title, String detail) {
-            this.title = title;
-            this.detail = detail;
-        }
-
-        public AddTopic(String title, String detail, String imageUrl) {
+        public AddTopic(String title, String detail, ArrayList<String> imageUrl) {
             this.title = title;
             this.detail = detail;
             this.imageUrl = imageUrl;
         }
+    }
+
+    private Bitmap getScaledBitmap(String filePath, int width) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath, options);
+        int sampleSize = options.outWidth > width ? options.outWidth / width
+                + 1 : 1;
+        options.inJustDecodeBounds = false;
+        options.inSampleSize = sampleSize;
+        return BitmapFactory.decodeFile(filePath, options);
     }
 }
 

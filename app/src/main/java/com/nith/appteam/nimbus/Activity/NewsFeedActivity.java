@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.nith.appteam.nimbus.Adapter.CardAdapter;
+import com.nith.appteam.nimbus.Adapter.NewsFeedAdapter;
 import com.nith.appteam.nimbus.Model.NewsFeedResponse;
 import com.nith.appteam.nimbus.Model.NewsFeed;
 import com.nith.appteam.nimbus.R;
@@ -35,7 +35,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
     private static final String FEED_LIST ="list" ;
     private RecyclerView recyclerView;
-    private CardAdapter adapter;
+    private NewsFeedAdapter adapter;
     private ProgressBar progressBar;
     private SwipeRefreshLayout swipeRefreshLayout;
     private boolean loading = true;
@@ -60,7 +60,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         ab.setDisplayHomeAsUpEnabled(true);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        adapter = new CardAdapter(this);
+        adapter = new NewsFeedAdapter(this);
 
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);

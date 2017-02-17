@@ -10,23 +10,23 @@ import java.util.ArrayList;
 
 public class NewsFeedResponse {
     @SerializedName("feed")
-    private ArrayList<NewsFeedModel2> feed;
+    private ArrayList<NewsFeed> feed;
     @SerializedName("success")
     private boolean success;
     @SerializedName("msg")
     private String msg;
 
-    public NewsFeedResponse(ArrayList<NewsFeedModel2> feed, boolean success, String msg) {
+    public NewsFeedResponse(ArrayList<NewsFeed> feed, boolean success, String msg) {
         this.feed = feed;
         this.success = success;
         this.msg = msg;
     }
 
-    public ArrayList<NewsFeedModel2> getFeed() {
+    public ArrayList<NewsFeed> getFeed() {
         return feed;
     }
 
-    public void setFeed(ArrayList<NewsFeedModel2> feed) {
+    public void setFeed(ArrayList<NewsFeed> feed) {
         this.feed = feed;
     }
 
