@@ -13,7 +13,13 @@ public class SharedPref {
     private static final String USER_ID="apikey";
     private static final String IS_FIRST_TIME="isfirstTime";
     private static final  String USER_NAME="name";
+    private static  final String USER_EMAIL="email";
+    private static  final String USER_ROLLNO="rollno";
+    private static  final String USER_PIC_URL="picUrl";
 
+    public SharedPref(){
+        this(MyApplication.getAppContext());
+    }
 
     public SharedPref(Context context){
         sharedPreferences = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
@@ -69,4 +75,28 @@ public class SharedPref {
         return sharedPreferences.getString(USER_NAME,"");
     }
 
+    public void setUserRollno(String rollno){
+        editor.putString(USER_ROLLNO,rollno);
+        editor.commit();
+    }
+    public String getUserRollno(){
+        return sharedPreferences.getString(USER_ROLLNO,"");
+    }
+
+
+    public void setUserEmail(String email){
+        editor.putString(USER_EMAIL,email);
+        editor.commit();
+    }
+    public String getUserEmail(){
+        return sharedPreferences.getString(USER_EMAIL,"");
+    }
+
+    public void setUserPicUrl(String picUrl){
+        editor.putString(USER_PIC_URL,picUrl);
+        editor.commit();
+    }
+    public String getUserPicUrl(){
+        return sharedPreferences.getString(USER_PIC_URL,"");
+    }
 }

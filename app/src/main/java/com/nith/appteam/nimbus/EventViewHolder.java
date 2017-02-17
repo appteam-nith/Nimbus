@@ -7,9 +7,9 @@ import com.github.florent37.materialleanback.MaterialLeanBack;
 
 public class EventViewHolder extends MaterialLeanBack.ViewHolder {
 
-    protected TextView textView;
-    protected ImageView imageView;
-    protected int line;
+    public TextView textView;
+    public ImageView imageView;
+    public int line;
     public EventViewHolder(View itemView,int line) {
         super(itemView);
         this.line=line;

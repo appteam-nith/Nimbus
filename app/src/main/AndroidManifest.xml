@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.TeamEventActivity"/>
-        <activity android:name=".Activity.NewsfeedActivity"
+        <activity android:name=".Activity.NewsFeedActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -65,7 +65,14 @@
 
 
 
-        <activity android:name=".Activity.UploadNewsFeedActivity"></activity>
+        <activity android:name=".Activity.UploadNewsFeedActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
 
 
@@ -77,11 +84,7 @@
             android:name=".Activity.Splash"
 
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
           </activity>
 
@@ -101,5 +104,17 @@
             android:theme="@style/ProfileTheme"
             android:parentActivityName=".Activity.MainActivity">
         </activity>
+
+        <service android:name=".Service.UploadService"
+            android:exported="false"></service>
+        <receiver android:name=".Service.UploadBroadCastReceiver"
+            >
+            <intent-filter>
+                <action android:name="start"></action>
+                <action android:name="finish"></action>
+                <action android:name="error"></action>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="CLOUDINARY_URL" android:value="cloudinary://571557678118328:MsgN3CyxISL_b-fM2TtCs62Zox0@sahilphoto"/>
 </application>
     </manifest>

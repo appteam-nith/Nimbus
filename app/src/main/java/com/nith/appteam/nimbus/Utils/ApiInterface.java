@@ -7,23 +7,18 @@ import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
 import com.nith.appteam.nimbus.Model.Likecount;
-import com.nith.appteam.nimbus.Model.NewsFeedModel;
+import com.nith.appteam.nimbus.Model.NewsFeedResponse;
 
 import retrofit2.http.GET;
 
 import com.nith.appteam.nimbus.Model.TeamEventList;
 
-import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 import com.nith.appteam.nimbus.Model.QuizQuestionsModel;
 import com.nith.appteam.nimbus.Model.TeamListResponse;
-
-import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 import retrofit2.http.Query;
@@ -55,11 +50,11 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("newsfeed/post")
-    Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Field("uId") String userId, @Field("uName") String userName);
+    Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Field("uId") String userId, @Field("uName") String userName,@Field("imageUrl") String imageUrl);
 
 
     @GET("newsfeed/all")
-    Call<NewsFeedModel> getAllNews(@Query("from") String from, @Query("uId") String userId);
+    Call<NewsFeedResponse> getAllNews(@Query("from") String from, @Query("uId") String userId);
 
     @FormUrlEncoded
     @POST("newsfeed/like")
