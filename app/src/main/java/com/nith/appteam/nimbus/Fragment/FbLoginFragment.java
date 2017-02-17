@@ -109,7 +109,7 @@ public class FbLoginFragment extends Fragment {
                         }
 
                         btnLogin.setVisibility(View.GONE);
-                       // saveFbUserData(name, email, picUrl);
+                        saveFbUserData(name, email, picUrl);
                         pbLogin.setVisibility(View.VISIBLE);
                     }
                 });
@@ -145,10 +145,10 @@ public class FbLoginFragment extends Fragment {
                 UserSentResponse userSentResponse = response.body();
                 if(userSentResponse!=null && response.isSuccess())
                 {
-                    Log.v("ID", userSentResponse.userId);
+                    Log.v("ID", userSentResponse.getUserId());
                     sharedPref.setLoginStatus(true);
                     sharedPref.setSkipStatus(true);// as user has login succesfully and we make sure  that screen does not come again
-                    sharedPref.setUserId(userSentResponse.userId);
+                    sharedPref.setUserId(userSentResponse.getUserId());
 
                     pbLogin.setVisibility(View.GONE);
 
@@ -172,10 +172,10 @@ public class FbLoginFragment extends Fragment {
     }
 
     public class UserSentResponse{
-        @SerializedName("message")
+        @SerializedName("msg")
         private String message;
 
-        @SerializedName("userId")
+        @SerializedName("student_id")
         private String userId;
 
         public UserSentResponse(String message, String userId){

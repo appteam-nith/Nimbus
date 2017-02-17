@@ -29,10 +29,9 @@ public interface ApiInterface {
     @GET("team/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);
 
-
-    @POST("/EndPointOfProfile")
+    @POST("register")
     @FormUrlEncoded
-    Call<FbLoginFragment.UserSentResponse> sendFbUserData(@Field("name") String name,@Field("email") String email,@Field("picUrl")String picUrl);
+    Call<FbLoginFragment.UserSentResponse> sendFbUserData(@Field("name") String name,@Field("email") String email,@Field("pic_url")String picUrl);
 
     @FormUrlEncoded
     @POST("quiz/questions")
