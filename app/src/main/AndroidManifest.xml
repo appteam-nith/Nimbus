@@ -35,17 +35,18 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".TeamEventActivity"/>
+        <activity android:name=".Activity.TeamEventActivity"/>
         <activity android:name=".Activity.NewsfeedActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".Activity.MainActivity"/>
-
-
 
         <activity
-            android:name=".CoreTeamActivity"
+            android:name=".Activity.MainActivity"
+            android:theme="@style/HomeTheme"/>
+
+        <activity
+            android:name=".Activity.CoreTeamActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -53,7 +54,7 @@
         </activity>
 
         <activity
-            android:name=".Appintro"
+            android:name=".Activity.Appintro"
             android:label="@string/title_activity_appintro"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -65,10 +66,6 @@
 
 
         <activity android:name=".Activity.UploadNewsFeedActivity"></activity>
-
-
-
-
 
 
 

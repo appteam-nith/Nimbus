@@ -1,4 +1,4 @@
-package com.nith.appteam.nimbus;
+package com.nith.appteam.nimbus.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
+import com.nith.appteam.nimbus.Model.CoreTeamItem;
+import com.nith.appteam.nimbus.R;
 
 import java.util.ArrayList;
 

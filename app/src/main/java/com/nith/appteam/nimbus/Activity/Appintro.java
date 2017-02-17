@@ -1,4 +1,4 @@
-package com.nith.appteam.nimbus;
+package com.nith.appteam.nimbus.Activity;
 
 
 import android.content.Context;
@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nith.appteam.nimbus.Activity.MainActivity;
+import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
 public class Appintro extends AppCompatActivity {
