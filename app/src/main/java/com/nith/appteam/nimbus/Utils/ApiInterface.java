@@ -6,6 +6,7 @@ import retrofit2.http.POST;
 import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
+import com.nith.appteam.nimbus.Model.LeaderBoardModel;
 import com.nith.appteam.nimbus.Model.Likecount;
 import com.nith.appteam.nimbus.Model.NewsFeedResponse;
 
@@ -52,11 +53,13 @@ public interface ApiInterface {
     @POST("newsfeed/post")
     Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Field("uId") String userId, @Field("uName") String userName,@Field("imageUrl") String imageUrl);
 
-
     @GET("newsfeed/all")
     Call<NewsFeedResponse> getAllNews(@Query("from") String from, @Query("uId") String userId);
 
     @FormUrlEncoded
     @POST("newsfeed/like")
     Call<Likecount>likecount(@Field("id") String id, @Field("uId") String userId);
+
+    @GET("quiz/leaderboard")
+    Call<LeaderBoardModel> getLeaderBoard(@Query("from") String from);
 }
