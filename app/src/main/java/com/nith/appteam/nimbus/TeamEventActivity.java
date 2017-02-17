@@ -43,10 +43,11 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolbar;
     private MaterialLeanBack materialLeanBack;
-    private ArrayList<Bitmap> images;
+    private ArrayList<Bitmap> eventImages;
+    private ArrayList<Bitmap> projectImages;
     private String id; // Team id for the Extracting team detail,event and projects
 
-
+    int tempsize=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,7 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
             }
         }
 
-        getRespose(id);
+        getResponse(id);
 
         mAppBarLayout.addOnOffsetChangedListener(this);
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
@@ -86,24 +87,34 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
 
             @Override
             public int getCellsCount(int line) {
-                return 10;
+                if(line==1)return eventImages.size();
+                else return projectImages.size();
             }
 
             @Override
             public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int line) {
                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_event, viewGroup, false);
-                return new EventViewHolder(view);
+                return new EventViewHolder(view,line);
             }
 
             @Override
             public void onBindViewHolder(EventViewHolder viewHolder, int i) {
-                viewHolder.textView.setText("Pic" + i);
-                viewHolder.imageView.setImageBitmap(images.get(i % 6));
+                if(viewHolder.line==1) {
+                    if(i>=eventImages.size())return;
+                    viewHolder.textView.setText("Event " + (i+1));//// TODO: 17/2/17 put names here
+                    viewHolder.imageView.setImageBitmap(eventImages.get(i));
+                }else {
+                    if (i >= projectImages.size()) return;
+                    viewHolder.textView.setText("Project " + (i + 1));//todo put names here
+                    viewHolder.imageView.setImageBitmap(projectImages.get(i));
+                }
+                Log.v("TEMP SIZE of the",""+tempsize+" "+i);
             }
 
             @Override
             public String getTitleForRow(int row) {
-                return "Event " + row;
+
+                return row==1?"Events":"Projects";
             }
 
             //region customView
@@ -124,7 +135,7 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
 
             @Override
             public boolean hasRowTitle(int row) {
-                return row != 6;
+                return row != 3;
             }
 
 
@@ -133,8 +144,6 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
             public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {
                 super.onBindCustomView(viewHolder, row);
             }
-
-            //endregion
 
         });
 // TODO: 9/2/17 set on click listener to the event activity
@@ -161,13 +170,12 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
     }
 
     private void addImages() {
-        images = new ArrayList<>();
-        images.add(BitmapFactory.decodeResource(getResources(), R.drawable.forest_2));
-        images.add(BitmapFactory.decodeResource(getResources(), R.drawable.forest_1));
-        images.add(BitmapFactory.decodeResource(getResources(), R.drawable.forest_3));
-        images.add(BitmapFactory.decodeResource(getResources(), R.drawable.forest_4));
-        images.add(BitmapFactory.decodeResource(getResources(), R.drawable.forest_5));
-        images.add(BitmapFactory.decodeResource(getResources(), R.drawable.forest_6));
+        eventImages=new ArrayList<>();
+        projectImages=new ArrayList<>();
+        for (int i=0;i<3;i++)eventImages.add(BitmapFactory.decodeResource(this.getResources(),
+                R.drawable.forest_1));
+        for (int i=0;i<5;i++)projectImages.add(BitmapFactory.decodeResource(this.getResources(),
+                R.drawable.forest_2));
     }
 
     @Override
@@ -229,8 +237,8 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
 
 
 
-    void getRespose(String id) {
-        // TODO: 14/2/17   add progress bar to the act
+    void getResponse(String id) {
+
 
         // progressBar.setVisibility(View.VISIBLE);
         if (new Connection(this).isInternet()) {
@@ -244,7 +252,7 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
 
                    if(!teamEvent.isSucess()){Log.v("TESTTEAMEVENTRESPONSE","NOT Working!");return;}
 
-                 
+
 
 
 

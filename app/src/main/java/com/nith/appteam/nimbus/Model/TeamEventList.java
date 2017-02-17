@@ -13,11 +13,8 @@ public class TeamEventList {
     @SerializedName("success")
     private boolean sucess;
 
-
-
     @SerializedName("name")
     private String name;//team name
-
 
     @SerializedName("dept")
     private String department;
