@@ -11,6 +11,7 @@ import com.nith.appteam.nimbus.Model.NewsFeedResponse;
 
 import retrofit2.http.GET;
 
+import com.nith.appteam.nimbus.Model.ProfileDataModel;
 import com.nith.appteam.nimbus.Model.TeamEventList;
 
 import com.nith.appteam.nimbus.Model.QuizQuestionsModel;
@@ -59,4 +60,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("newsfeed/like")
     Call<Likecount>likecount(@Field("id") String id, @Field("uId") String userId);
+
+    @GET("profile/{id}")
+    Call<ProfileDataModel> profileBasicInfo(@Path("id") String id);
 }
