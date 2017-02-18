@@ -13,14 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -42,16 +42,25 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
 
-
         initCollapsingToolbar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Log.v("Checking UserId:",""+sharedPref.getUserId());
+
+        //Here all the urls of the images are entered.
+        String[] urls = new String[5];
+        for(int i=0;i<5;i++)urls[i]="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/HH_Polizeihauptmeister_MZ.jpg/233px-HH_Polizeihauptmeister_MZ.jpg";
+        ArrayList<String> urlList = new ArrayList<>();
+        Collections.addAll(urlList, urls);
+
+        //Code to deal with the ViewPager.
         viewPager = (ViewPager)findViewById(R.id.main_view_pager);
-        viewPager.setAdapter(new SlidingImageAdapter(this));
+        viewPager.setAdapter(new SlidingImageAdapter(this,urlList));
         viewPager.setClipToPadding(false);
         viewPager.setPadding(100,120,100,120);
         viewPager.setPageMargin(60);
+        //Ends Here
+
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setAdapter(new MainRecyclerAdapter());
@@ -68,15 +77,11 @@ public class MainActivity extends AppCompatActivity {
                         return  true;
                     case R.id.action_notifications:
                         return true;
-
                 }
                 return false;
             }
         });
     }
-
-
-
 
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
