@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context=".CoreTeamActivity">
+tools:context=".Activity.CoreTeamActivity">
 
 <android.support.v7.widget.Toolbar
     android:layout_width="match_parent"

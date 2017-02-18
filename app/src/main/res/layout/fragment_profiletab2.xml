@@ -10,11 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <android.support.v7.widget.CardView
+                android:visibility="gone"
+                android:id="@+id/cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardElevation="8dp"
@@ -36,7 +39,7 @@
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Aditya Arora"
+                        android:text=""
                         android:textSize="22dp"
                         android:layout_marginBottom="15dp"/>
 
@@ -46,26 +49,37 @@
                         android:background="#d2caca"
                         android:layout_marginBottom="15dp"/>
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Roll No."
-                        android:textColor="#c7c2c2"/>
-
-                    <TextView
-                        android:id="@+id/rollno"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="15570"
-                        android:textSize="22dp"
-                        android:layout_marginBottom="15dp"/>
-
-                    <View
+                    <LinearLayout
+                        android:id="@+id/rollnoLayout"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#d2caca"
-                        android:layout_marginBottom="15dp"/>
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:id="@+id/rollnoLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Roll No."
+                            android:textColor="#c7c2c2"/>
+
+                        <TextView
+                            android:id="@+id/rollno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="22dp"
+                            android:layout_marginBottom="15dp"/>
+
+                        <View
+                            android:id="@+id/rollnoDivider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#d2caca"
+                            android:layout_marginBottom="15dp"/>
+
+
+                    </LinearLayout>
 
 
                     <TextView
@@ -78,36 +92,45 @@
                         android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="aditya@gmail.com"
+                        android:text=""
                         android:textSize="22dp"
                         android:layout_marginBottom="15dp"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#d2caca"
-                        android:layout_marginBottom="15dp"/>
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:background="#d2caca"-->
+                        <!--android:layout_marginBottom="15dp"/>-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Contact No."
-                        android:textColor="#c7c2c2"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Contact No."-->
+                        <!--android:textColor="#c7c2c2"/>-->
 
-                    <TextView
-                        android:id="@+id/contact"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="9008007001"
-                        android:textSize="22dp"
-                        android:layout_marginBottom="8dp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/contact"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="9008007001"-->
+                        <!--android:textSize="22dp"-->
+                        <!--android:layout_marginBottom="8dp"/>-->
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
 
 
-        </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:layout_gravity="center"/>
+
+
+        </RelativeLayout>
 
 
     </android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_quiz_score"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="appteam.nith.hillffair.activities.QuizScoreActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/quiz_title"
+            android:textSize="35sp"
+            android:layout_centerInParent="true"
+            android:text="YOU SCORED"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/quiz_title"
+            android:id="@+id/score_obtained"
+            android:layout_margin="10dp"
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:textSize="55sp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/quiz_title"
+            android:text="/ 10"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:paddingLeft="80dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:layout_marginLeft="25dp"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:layout_marginRight="25dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/quiz_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/temp_id1"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_margin="5dp"
+                android:text="BACK TO HOME"
+                android:layout_width="230dp"
+                android:id="@+id/quiz_home_link"
+                android:padding="28dp"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
