@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,9 +17,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
+import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
-
 
 
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPref sharedPref;
     private RecyclerView mRecyclerView;
     private BottomNavigationView bottomNavigationView;
+    private ViewPager viewPager;
 
 
     @Override
@@ -45,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Log.v("Checking UserId:",""+sharedPref.getUserId());
-
+        viewPager = (ViewPager)findViewById(R.id.main_view_pager);
+        viewPager.setAdapter(new SlidingImageAdapter(this));
+        viewPager.setClipToPadding(false);
+        viewPager.setPadding(100,120,100,120);
+        viewPager.setPageMargin(60);
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setAdapter(new MainRecyclerAdapter());
