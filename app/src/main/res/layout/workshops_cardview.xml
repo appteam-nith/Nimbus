@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardview_workshops"
-        android:background="#fff"
-        android:layout_margin="10dp">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_workshops"
+    android:background="#fff"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -13,7 +14,7 @@
             android:layout_margin="10dp">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="500px"
+                android:layout_height="400px"
                 android:src="@drawable/w1"
                 android:id="@+id/workshop_image"
                 android:scaleType="centerCrop" />
@@ -24,10 +25,10 @@
                 android:paddingTop="20px"
                 android:paddingBottom="20px"
                 android:layout_height="wrap_content"
-                android:fontFamily="cursive"
+                android:fontFamily="sans-serif-smallcaps"
                 android:background="#66000000"
                 android:text="HACKATHON"
-                android:textSize="90px"
+                android:textSize="50px"
                 android:textColor="#ffffff"
                 android:id="@+id/workshop_name"
                 android:layout_alignBottom="@+id/workshop_image"

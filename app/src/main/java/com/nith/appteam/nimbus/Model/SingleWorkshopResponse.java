@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 
 public class SingleWorkshopResponse {
+    @SerializedName("success")
+    Boolean successStatus;
     @SerializedName("name")
     String name;
     @SerializedName("photo")
@@ -17,6 +19,14 @@ public class SingleWorkshopResponse {
     String desc;
     @SerializedName("register_status")
     Boolean regStatus;
+
+    public Boolean getSuccessStatus() {
+        return successStatus;
+    }
+
+    public void setSuccessStatus(Boolean successStatus) {
+        this.successStatus = successStatus;
+    }
 
     public String getName() {
         return name;
