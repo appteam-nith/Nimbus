@@ -141,7 +141,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
                             if(list.size()!=0){
                                 list.remove(list.size()-1);
-                                adapter.refresh(list);
+                                adapter.refresh (list);
                             }
 
                             list.addAll(response.body().getFeed());
