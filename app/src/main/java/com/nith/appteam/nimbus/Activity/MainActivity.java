@@ -6,18 +6,30 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
+
+import android.support.v4.view.ViewPager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
+import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
+import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
+import com.nith.appteam.nimbus.Utils.Util;
 
+import java.util.ArrayList;
+import java.util.Collections;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private SharedPref sharedPref;
     private RecyclerView mRecyclerView;
     private BottomNavigationView bottomNavigationView;
-
+    private ViewPager viewPager;
+    private SlidingImageAdapter imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +51,29 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
 
-
         initCollapsingToolbar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Log.v("Checking UserId:",""+sharedPref.getUserId());
 
+
+
+        //Code to deal with the ViewPager.
+        viewPager = (ViewPager)findViewById(R.id.main_view_pager);
+        imageAdapter=new SlidingImageAdapter(MainActivity.this);
+        getPagerData();
+        viewPager.setAdapter(imageAdapter);
+        viewPager.setClipToPadding(false);
+        viewPager.setPadding(100,120,100,120);
+        viewPager.setPageMargin(60);
+        //Ends Here
+
+        //Handling the Recycler View
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setAdapter(new MainRecyclerAdapter());
+        //Ends Here
+
         bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -61,15 +88,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_notifications:
                         startActivity(new Intent(MainActivity.this,MapActivity.class));
                         return true;
-
                 }
                 return false;
             }
         });
     }
-
-
-
 
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
@@ -95,6 +118,31 @@ public class MainActivity extends AppCompatActivity {
                     collapsingToolbar.setTitle(" ");
                     isShow = false;
                 }
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void getPagerData(){
+        Call<MainPagerResponse> response= Util.getRetrofitService().getMainResponse();
+        response.enqueue(new Callback<MainPagerResponse>() {
+            @Override
+            public void onResponse(Call<MainPagerResponse> call, Response<MainPagerResponse> response) {
+                MainPagerResponse mainPagerResponse=response.body();
+                if(response!=null&&response.isSuccess()){
+                    ArrayList<String> list=mainPagerResponse.getImageList();
+                    imageAdapter.refresh(list);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MainPagerResponse> call, Throwable t) {
+
             }
         });
     }
