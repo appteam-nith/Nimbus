@@ -19,6 +19,7 @@
     <string name="sample_question">What was the question?</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_name">Workshop Name</string>
 
     <string name="facebook_app_id">1834013936864907</string>
     <string name="fb_login_protocol_scheme">fb1834013936864907</string>
