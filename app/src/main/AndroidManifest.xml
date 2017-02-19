@@ -66,6 +66,7 @@
 
 
         <activity android:name=".Activity.UploadNewsFeedActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -80,12 +81,12 @@
             android:name=".Activity.Splash"
 
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
           </activity>
 
@@ -116,6 +117,6 @@
                 <action android:name="error"></action>
             </intent-filter>
         </receiver>
-        <meta-data android:name="CLOUDINARY_URL" android:value="cloudinary://571557678118328:MsgN3CyxISL_b-fM2TtCs62Zox0@sahilphoto"/>
+        <meta-data android:name="CLOUDINARY_URL" android:value="cloudinary://862148829278388:hJQPvA-kYbt8TRsp0bMSdqH65NE@appteamnith"/>
 </application>
     </manifest>

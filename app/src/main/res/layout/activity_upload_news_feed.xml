@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:paddingTop="4dp"
+    android:layout_height="match_parent">
+    <com.nith.appteam.nimbus.CustomView.EditorView
+        android:id="@+id/editor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context="appteam.nith.hillffair.activities.UploadNewsFeedActivity">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingRight="16dp"
-            android:layout_alignParentTop="true">
-
-            <ImageView
-                android:id="@+id/select_image"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:src="@drawable/team" />
-
-            <ImageView
-                android:id="@+id/upload_news"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/team" />
-        </LinearLayout>
+        android:padding="3dp"
+        >
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/black"/>
-        <com.nith.appteam.nimbus.CustomView.EditorView
-            android:paddingTop="5dp"
-            android:id="@+id/editor"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-    <ProgressBar
-        android:layout_centerInParent="true"
-        android:visibility="gone"
+            android:background="#000"
+            />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="3dp">
+    <ImageView
+        android:id="@+id/select_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progress"
-        />
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:src="@drawable/camera" />
+    <ImageView
+        android:id="@+id/upload_news"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:src="@drawable/sentmail" />
+</LinearLayout>
+
+    </LinearLayout>
+
+
+
+
     </RelativeLayout>
