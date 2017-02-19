@@ -6,13 +6,13 @@ android {
     defaultConfig {
         applicationId "com.appteam.nith.nimbus"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 7
         versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders = [manifestApplicationId: "${applicationId}",
-                                onesignal_app_id: "94a38ed3-22d3-4067-bf72-83ab26cea1ab",
+        manifestPlaceholders = [manifestApplicationId          : "${applicationId}",
+                                onesignal_app_id               : "94a38ed3-22d3-4067-bf72-83ab26cea1ab",
                                 onesignal_google_project_number: "28303056497"]
     }
     buildTypes {
