@@ -1,7 +1,7 @@
 package com.nith.appteam.nimbus.Activity;
 
 /**
- * Created by Physicists on 2/19/2017.
+ * Created by joshafest on 2/19/2017.
  */
 import java.util.ArrayList;
 import android.os.Bundle;
