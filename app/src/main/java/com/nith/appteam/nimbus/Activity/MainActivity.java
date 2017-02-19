@@ -12,15 +12,22 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
+import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
+import com.nith.appteam.nimbus.Utils.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
+    private SlidingImageAdapter imageAdapter;
 
 
     @Override
@@ -47,15 +55,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Log.v("Checking UserId:",""+sharedPref.getUserId());
 
-        //Here all the urls of the images are entered.
-        String[] urls = new String[5];
-        for(int i=0;i<5;i++)urls[i]="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/HH_Polizeihauptmeister_MZ.jpg/233px-HH_Polizeihauptmeister_MZ.jpg";
-        ArrayList<String> urlList = new ArrayList<>();
-        Collections.addAll(urlList, urls);
+
 
         //Code to deal with the ViewPager.
         viewPager = (ViewPager)findViewById(R.id.main_view_pager);
-        viewPager.setAdapter(new SlidingImageAdapter(this,urlList));
+        imageAdapter=new SlidingImageAdapter(MainActivity.this);
+        getPagerData();
+        viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
         viewPager.setPadding(100,120,100,120);
         viewPager.setPageMargin(60);
@@ -107,6 +113,31 @@ public class MainActivity extends AppCompatActivity {
                     collapsingToolbar.setTitle(" ");
                     isShow = false;
                 }
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void getPagerData(){
+        Call<MainPagerResponse> response= Util.getRetrofitService().getMainResponse();
+        response.enqueue(new Callback<MainPagerResponse>() {
+            @Override
+            public void onResponse(Call<MainPagerResponse> call, Response<MainPagerResponse> response) {
+                MainPagerResponse mainPagerResponse=response.body();
+                if(response!=null&&response.isSuccess()){
+                    ArrayList<String> list=mainPagerResponse.getImageList();
+                    imageAdapter.refresh(list);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MainPagerResponse> call, Throwable t) {
+
             }
         });
     }

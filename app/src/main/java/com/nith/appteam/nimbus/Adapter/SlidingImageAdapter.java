@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nith.appteam.nimbus.R;
 
 import java.util.ArrayList;
@@ -22,16 +23,19 @@ public class SlidingImageAdapter extends PagerAdapter {
     //As discussed before the first two pics will not loaded from internet reason so that during poor connection. The page doesn't looks empty.
     private int[] IMAGES = new int[]{R.drawable.slide_3, R.drawable.slide_4};
     private LayoutInflater inflater;
-    private ArrayList<String> urlList;
+    private ArrayList<String> urlList=new ArrayList<>();
     private Context context;
     private final String LOG_TAG = getClass().getSimpleName();
 
-    public SlidingImageAdapter(Context context, ArrayList<String> urlList) {
+    public SlidingImageAdapter(Context context) {
         this.context = context;
-        this.urlList = urlList;
         inflater = LayoutInflater.from(context);
     }
 
+    public void refresh(ArrayList<String> list){
+        urlList=list;
+        notifyDataSetChanged();
+    }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
@@ -40,7 +44,7 @@ public class SlidingImageAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return IMAGES.length;
+        return IMAGES.length+urlList.size();
     }
 
     @Override
@@ -52,8 +56,7 @@ public class SlidingImageAdapter extends PagerAdapter {
         if(position==0 || position==1)
         imageView.setImageResource(IMAGES[position]);
         else {
-            Log.d(LOG_TAG, String.valueOf(position));
-            Glide.with(context).load(urlList.get(position)).into(imageView);
+            Glide.with(context).load(urlList.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.slide_4).into(imageView);
         }
         view.addView(imageLayout, 0);
         return imageLayout;
