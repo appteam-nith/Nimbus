@@ -42,7 +42,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.leader_recycler);
         toolbar = (Toolbar) findViewById(R.id.leader_toolbar);
 
-        toolbar.setTitle("LeaderBoghghard");
+        toolbar.setTitle("LeaderBoard");
         toolbar.setTitleTextColor(Color.WHITE);
 
         setSupportActionBar(toolbar);
@@ -62,10 +62,16 @@ public class LeaderBoardActivity extends AppCompatActivity {
         mService.enqueue(new Callback<LeaderBoardModel>() {
             @Override
             public void onResponse(Call<LeaderBoardModel> call, Response<LeaderBoardModel> response) {
-                users = response.body().getUsers();
-                adapter = new LeaderBoardAdapter(users, getApplicationContext());
-                recyclerView.setAdapter(adapter);
-                progressBar.setVisibility(View.GONE);
+                if(response!=null&&response.isSuccess()){
+                    users = response.body().getUsers();
+                    adapter = new LeaderBoardAdapter(users, getApplicationContext());
+                    recyclerView.setAdapter(adapter);
+                    progressBar.setVisibility(View.GONE);
+                }
+                else {
+                    progressBar.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
