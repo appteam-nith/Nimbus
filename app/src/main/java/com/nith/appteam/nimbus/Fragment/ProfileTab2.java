@@ -81,8 +81,8 @@ public class ProfileTab2 extends Fragment {
         if(savedInstanceState==null){
 
             progress.setVisibility(view.VISIBLE);
-//            profileBasicDataModel.profileBasicInfo(sharedPref.getUserId());
-            profileBasicDataModel.profileBasicInfo("58a4a4700c15b900116694a4");
+
+            profileBasicDataModel.profileBasicInfo(sharedPref.getUserId());
 
         }
         else{
@@ -224,7 +224,7 @@ public class ProfileTab2 extends Fragment {
                             if(model!=null){
 
                                 sharedPref.setUserName(model.getName());
-                                sharedPref.setUserName(model.getEmail());
+                                sharedPref.setUserEmail(model.getEmail());
                                 sharedPref.setUserRollno(model.getRollno());
                                 sharedPref.setUserPicUrl(model.getPhoto());
 

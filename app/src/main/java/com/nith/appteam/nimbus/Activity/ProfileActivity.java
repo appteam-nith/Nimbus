@@ -41,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private ImageView coverImage;
     private ImageView profilePic;
+    private SharedPref sharedPref;
 
 
     private void findViews(){
@@ -62,18 +63,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         findViews();
 
+        sharedPref = new SharedPref();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        collapsingToolbarLayout.setTitle("Aditya Arora");
-        toolbar.setTitle("Aditya Arora");
+        collapsingToolbarLayout.setTitle(sharedPref.getUserName());
+        toolbar.setTitle(sharedPref.getUserName());
 
-
-//        Resources res = getResources();
-//        Bitmap src = BitmapFactory.decodeResource(res, R.drawable.dummy);
-//
-//        RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(),src);
-//        drawable.setCircular(true);
-//        profilePic.setImageDrawable(drawable);
 
 
             SharedPref sharedPref = new SharedPref();
@@ -91,10 +86,6 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-//        profilePic.setImageResource(R.drawable.dummy);
-//        coverImage.setImageResource(R.drawable.cover);
-
-
         ArrayList<Fragment> fragmentArrayList=new ArrayList<>();
         fragmentArrayList.add(new ProfileTab1());
         fragmentArrayList.add(new ProfileTab2());
@@ -105,8 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
         titleArrayList.add("Events");
         titleArrayList.add("Basic info");
         titleArrayList.add("News Feed");
-
-        //Start of Tab Layout in Profile Activity
+        
 
         ProfilePagerAdapter adapter = new ProfilePagerAdapter(getSupportFragmentManager(),fragmentArrayList,titleArrayList);
         viewPager.setAdapter(adapter);
