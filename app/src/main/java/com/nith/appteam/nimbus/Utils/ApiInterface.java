@@ -7,6 +7,7 @@ import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
 import com.nith.appteam.nimbus.Model.Likecount;
+import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.Model.NewsFeedResponse;
 
 import retrofit2.http.GET;
@@ -64,7 +65,8 @@ public interface ApiInterface {
 
     @GET("profile/{id}")
     Call<ProfileDataModel> profileBasicInfo(@Path("id") String id);
-
     @GET("profile/event/{id}")
     Call<ProfileEventModel> profileEventList(@Path("id") String id);
+    @GET("main")
+    Call<MainPagerResponse> getMainResponse();
 }
