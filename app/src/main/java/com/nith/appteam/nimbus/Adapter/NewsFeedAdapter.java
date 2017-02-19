@@ -11,25 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.like.LikeButton;
-import com.like.OnLikeListener;
-import com.nith.appteam.nimbus.Model.Likecount;
 import com.nith.appteam.nimbus.Model.NewsFeed;
 import com.nith.appteam.nimbus.R;
-import com.nith.appteam.nimbus.Utils.ApiInterface;
 import com.nith.appteam.nimbus.Utils.MyApplication;
-import com.nith.appteam.nimbus.Utils.SharedPref;
-import com.nith.appteam.nimbus.Utils.Util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by sahil on 9/2/17.
@@ -111,7 +101,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 else
                     h.post_img.setImageResource(R.drawable.team);
                 Log.v("stwtus",""+card.isStatus());
-                if(card.isStatus())
+               /* if(card.isStatus())
                     h.lyk_status.setLiked(true);
                 else {
                     h.lyk_status.setLiked(false);
@@ -178,7 +168,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             }
                         });
                     }
-                });
+                });*/
 
        /* holder.lyk_status.setLiked(card.getLyk_status());*/
 
@@ -201,7 +191,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final   public TextView user_name, no_of_likes, user_msg, post_date ,title;
         final public ImageView post_img;
 
-        final public com.like.LikeButton lyk_status;
+        //final public com.like.LikeButton lyk_status;
 
 
 
@@ -213,7 +203,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             post_date = (TextView) view.findViewById(R.id.post_date);
             user_msg = (TextView) view.findViewById(R.id.user_msg);
 
-            lyk_status = (com.like.LikeButton) view.findViewById(R.id.lyk_status);
+//            lyk_status = (com.like.LikeButton) view.findViewById(lyk_status);
             title = (TextView)view.findViewById(R.id.post_title);
 
 
