@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private SlidingImageAdapter imageAdapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setPageMargin(60);
         //Ends Here
 
+        //Handling the Recycler View
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setAdapter(new MainRecyclerAdapter());
+        //Ends Here
+
         bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
