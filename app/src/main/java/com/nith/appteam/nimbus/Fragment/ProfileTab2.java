@@ -49,7 +49,6 @@ public class ProfileTab2 extends Fragment {
     private TextView textName;
     private TextView textRollno;
     private TextView textEmail;
-    private ProgressBar progress;
     private SharedPref sharedPref;
     private CardView cardView;
     private LinearLayout rollnoLayout;
@@ -62,7 +61,6 @@ public class ProfileTab2 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profiletab2, container, false);
 
-        ProfileBasicDataModel profileBasicDataModel;
 
         sharedPref = new SharedPref(getContext());
 
@@ -70,19 +68,26 @@ public class ProfileTab2 extends Fragment {
         textName = (TextView) view.findViewById(R.id.name);
         textRollno = (TextView) view.findViewById(R.id.rollno);
         textEmail = (TextView) view.findViewById(R.id.email);
-
-        progress = (ProgressBar) view.findViewById(R.id.progress);
-
         rollnoLayout = (LinearLayout) view.findViewById(R.id.rollnoLayout);
-
-
-        profileBasicDataModel=new ProfileBasicDataModel("","","","");
 
         if(savedInstanceState==null){
 
-            progress.setVisibility(view.VISIBLE);
+           String name="",email="",rollNo="";
+            name=sharedPref.getUserName();
+            email=sharedPref.getUserEmail();
+            rollNo=sharedPref.getUserRollno();
+            if(!name.isEmpty()&&!email.isEmpty()){
+                cardView.setVisibility(View.VISIBLE);
+                textName.setText(name);
+                textEmail.setText(email);
+                if(!rollNo.isEmpty()){
+                    textRollno.setText(rollNo);
+                }
+                else {
+                    rollnoLayout.setVisibility(View.GONE);
+                }
+            }
 
-            profileBasicDataModel.profileBasicInfo(sharedPref.getUserId());
 
         }
         else{
@@ -117,170 +122,6 @@ public class ProfileTab2 extends Fragment {
 
 
 
-    public class ProfileBasicDataModel implements Parcelable{
-        @SerializedName("name")
-        private String name;
-
-        @SerializedName("roll_no")
-        private String rollno;
-
-        @SerializedName("email")
-        private String email;
-
-        @SerializedName("photo")
-        private String photo;
-
-        public ProfileBasicDataModel(String name, String rollno, String email, String photo) {
-            this.name = name;
-            this.rollno = rollno;
-            this.email = email;
-            this.photo = photo;
-        }
-
-
-        protected ProfileBasicDataModel(Parcel in){
-            name = in.readString();
-            rollno = in.readString();
-            email = in.readString();
-            photo = in.readString();
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-
-            dest.writeString(name);
-            dest.writeString(rollno);
-            dest.writeString(email);
-            dest.writeString(photo);
-        }
-
-
-        private final Creator<ProfileBasicDataModel> CREATOR = new Creator<ProfileBasicDataModel>() {
-            @Override
-            public ProfileBasicDataModel createFromParcel(Parcel source) {
-                return new ProfileBasicDataModel(source);
-            }
-
-            @Override
-            public ProfileBasicDataModel[] newArray(int size) {
-                return new ProfileBasicDataModel[size];
-            }
-        };
-
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getRollno() {
-            return rollno;
-        }
-
-        public void setRollno(String rollno) {
-            this.rollno = rollno;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPhoto() {
-            return photo;
-        }
-
-        public void setPhoto(String photo) {
-            this.photo = photo;
-        }
-
-
-        private void profileBasicInfo(String id){
-
-            ApiInterface mAPI = Util.getRetrofitService();
-            Call<ProfileDataModel> mService = mAPI.profileBasicInfo(id);
-
-            mService.enqueue(new Callback<ProfileDataModel>() {
-                @Override
-                public void onResponse(Call<ProfileDataModel> call, Response<ProfileDataModel> response) {
-                    if(response!=null && response.isSuccess()){
-                        if(response.body().isSuccess()){
-                            ProfileDataModel model = response.body();
-
-                            //For Testing
-                            Log.v("RESPONSE SUCCESS"," "+model.getRollno()+" "+model.getName()+" "+model.getEmail()+ " "+model.getPhoto());
-
-                            if(model!=null){
-
-                                sharedPref.setUserName(model.getName());
-                                sharedPref.setUserEmail(model.getEmail());
-                                sharedPref.setUserRollno(model.getRollno());
-                                sharedPref.setUserPicUrl(model.getPhoto());
-
-                                progress.setVisibility(View.GONE);
-                                cardView.setVisibility(View.VISIBLE);
-
-                                if(model.getRollno()==null || model.getRollno().isEmpty()){
-
-                                    rollnoLayout.setVisibility(View.GONE);
-
-                                }
-
-                                textName.setText(model.getName());
-                                textEmail.setText(model.getEmail());
-                                textRollno.setText(model.getRollno());
-
-                            }
-
-                            else {
-
-                                progress.setVisibility(View.GONE);
-                                Toast.makeText(getActivity(), "Please check your Network Connection and Internet Permissions", Toast.LENGTH_LONG).show();
-                            }
-                        }
-
-                        else {
-
-                            progress.setVisibility(View.GONE);
-                            Toast.makeText(getActivity(), "Please check your Network Connection and Internet Permissions", Toast.LENGTH_LONG).show();
-
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ProfileDataModel> call, Throwable t) {
-
-                    progress.setVisibility(View.GONE);
-                    t.printStackTrace();
-                    if(getActivity()!=null) {
-                        Toast.makeText(getActivity(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-
-        }
-
-
-
-
-
-
-
-    }
 
 
     @Override

@@ -16,11 +16,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
+import com.nith.appteam.nimbus.Model.ProfileDataModel;
 import com.nith.appteam.nimbus.R;
+import com.nith.appteam.nimbus.Utils.ApiInterface;
+import com.nith.appteam.nimbus.Utils.Connection;
+import com.nith.appteam.nimbus.Utils.RecyclerItemClickListener;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
 
@@ -61,7 +66,11 @@ public class MainActivity extends AppCompatActivity {
         //Code to deal with the ViewPager.
         viewPager = (ViewPager)findViewById(R.id.main_view_pager);
         imageAdapter=new SlidingImageAdapter(MainActivity.this);
-        getPagerData();
+        if(new Connection(this).isInternet()){
+            getPagerData();
+            profileBasicInfo(sharedPref.getUserId());
+        }
+
         viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
         viewPager.setPadding(100,120,100,120);
@@ -81,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.action_leaderboard:
+                        startActivity(new Intent(MainActivity.this,LeaderBoardActivity.class));
                         return true;
                     case R.id.action_profile:
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
@@ -92,6 +102,33 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                switch (position){
+                    case 0:
+                        startActivity(new Intent(MainActivity.this,QuizActivity.class));
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        startActivity(new Intent(MainActivity.this,CoreTeamActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(MainActivity.this,TeamActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(MainActivity.this,MapActivity.class));
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        startActivity(new Intent(MainActivity.this,Workshops.class));
+
+                }
+            }
+        }));
     }
 
     private void initCollapsingToolbar() {
@@ -146,4 +183,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void profileBasicInfo(String id){
+
+        ApiInterface mAPI = Util.getRetrofitService();
+        Call<ProfileDataModel> mService = mAPI.profileBasicInfo(id);
+
+        mService.enqueue(new Callback<ProfileDataModel>() {
+            @Override
+            public void onResponse(Call<ProfileDataModel> call, Response<ProfileDataModel> response) {
+                if(response!=null && response.isSuccess()){
+                    if(response.body().isSuccess()){
+                        ProfileDataModel model = response.body();
+                        //For Testing
+                        Log.v("RESPONSE SUCCESS"," "+model.getRollno()+" "+model.getName()+" "+model.getEmail()+ " "+model.getPhoto());
+
+                        if(model!=null){
+
+                            sharedPref.setUserName(model.getName());
+                            sharedPref.setUserEmail(model.getEmail());
+                            sharedPref.setUserRollno(model.getRollno());
+                            sharedPref.setUserPicUrl(model.getPhoto());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileDataModel> call, Throwable t) {
+                t.printStackTrace();
+
+            }
+        });
+
+
+    }
+
 }
