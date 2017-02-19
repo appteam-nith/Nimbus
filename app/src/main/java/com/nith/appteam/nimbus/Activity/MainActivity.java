@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.action_leaderboard:
                         startActivity(new Intent(MainActivity.this,LeaderBoardActivity.class));
+						//For testing
+						//startActivity(new Intent(MainActivity.this,SponsorActivity.class));
                         return true;
                     case R.id.action_profile:
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));

@@ -72,6 +72,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+		
+		<activity
+             android:name=".Activity.SponsorActivity"
+             android:theme="@style/ProfileTheme"
+             android:parentActivityName=".Activity.MainActivity">
+         </activity>
 
         <activity
             android:name=".Activity.Appintro"
