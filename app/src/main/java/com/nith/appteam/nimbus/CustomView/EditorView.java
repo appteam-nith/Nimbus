@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.nith.appteam.nimbus.R;
@@ -86,7 +87,7 @@ public class EditorView extends ScrollView {
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         allLayout.addView(e, p);
 
-        EditText content = createEditText("Enter Description", dip2px(10));
+        EditText content = createEditText("Enter Description or Insert Any Image", dip2px(10));
         LinearLayout.LayoutParams contentp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         allLayout.addView(content, contentp
         );
@@ -105,15 +106,16 @@ public class EditorView extends ScrollView {
     }
 
     private void createImageViewAtIndex(Bitmap bmp, int index,String imageUrl) {
-        EditorImageView imageView= (EditorImageView) inflater.inflate(R.layout.item_image,null);
+        RelativeLayout view= (RelativeLayout) inflater.inflate(R.layout.item_image,null);
+        EditorImageView imageView= (EditorImageView) view.findViewById(R.id.editorImageView);
         imageView.setImageBitmap(bmp);
         imageView.setAbsoluteUrl(imageUrl);
         int imageHeight = getWidth() * bmp.getHeight() / bmp.getWidth();
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT, imageHeight);
         imageView.setLayoutParams(lp);
-        imageView.setOnClickListener(onClickListener);
-        allLayout.addView(imageView, index);
+        view.setOnClickListener(onClickListener);
+        allLayout.addView(view, index);
     }
 
     private void createEditTextAtIndex(String text, int index) {
@@ -160,7 +162,7 @@ public class EditorView extends ScrollView {
         int index = allLayout.indexOfChild(lastEditText);
 
         if (text1.isEmpty() && (int) lastEditText.getTag() != 1) {
-            createImageViewAtIndex(b, index,imageUrl);
+            createImageViewAtIndex(b, index+1,imageUrl);
         } else {
             lastEditText.setText(text2);
             String t = text1.substring(pos).trim();
@@ -206,8 +208,8 @@ public class EditorView extends ScrollView {
                 }
             }
 
-            else if (itemView instanceof EditorImageView) {
-                EditorImageView i= (EditorImageView) itemView;
+            else if (itemView instanceof RelativeLayout) {
+                EditorImageView i= (EditorImageView) itemView.findViewById(R.id.editorImageView);
                 imageUrl.add(i.getAbsoluteUrl());
             }
         }

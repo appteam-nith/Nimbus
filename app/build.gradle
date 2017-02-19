@@ -44,12 +44,15 @@ dependencies {
     compile 'com.onesignal:OneSignal:3.+@aar'
     compile 'com.google.android.gms:play-services-gcm:+'
     compile 'com.google.android.gms:play-services-location:+'
+    compile 'com.google.android.gms:play-services:10.0.1'
     compile 'de.hdodenhof:circleimageview:1.3.0'
     compile 'com.github.florent37:materialleanback:1.0.2'
     compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.android.support:support-v4:24.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:palette-v7:24.2.0'
     compile 'com.android.support:support-v4:25.1.0'
-    //compile 'com.github.jd-alexander:LikeButton:0.2.0'
-    compile files('/home/sahil/Documents/Nimbus/libs/cloudinary-android-1.2.2.jar')
-    compile files('/home/sahil/Documents/Nimbus/libs/cloudinary-core-1.2.2.jar')
 
+   // compile 'com.github.jd-alexander:LikeButton:0.2.0'
+    compile 'com.cloudinary:cloudinary-android:1.2.2'
 }

@@ -2,6 +2,7 @@ package com.nith.appteam.nimbus.Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -47,6 +48,11 @@ public class Util {
 
         ApiInterface service = retrofit.create(ApiInterface.class);
         return service;
+    }
+
+    public static  int random(){
+        Random r=new Random();
+        return  r.nextInt(10000000);
     }
 
 }

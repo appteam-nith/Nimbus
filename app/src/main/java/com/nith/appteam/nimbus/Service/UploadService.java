@@ -16,6 +16,7 @@ import com.nith.appteam.nimbus.Utils.Util;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,14 +44,17 @@ public class UploadService extends IntentService {
     private SharedPref sharedPref;
 
 
-
+public UploadService(){
+    super("UploadService");
+}
     public UploadService(String name) {
         super(name);
-        sharedPref = new SharedPref();
+
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        sharedPref = new SharedPref();
         if (intent != null) {
             if (intent.hasExtra(UPLOAD_SERVICE)) {
                 String title = "", description = "", imageUrl = "";
@@ -69,11 +73,12 @@ public class UploadService extends IntentService {
                 try {
                     Intent i=new Intent(UPLOADING_START);
                     sendBroadcast(i);
-                    Map map = cloudinary.uploader().upload(imageUrl, ObjectUtils.asMap("public_id", uri.getLastPathSegment()));
+                    Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName()+""+ Util.random()));
                     upload(title, description, (String) map.get("url"));
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                    Intent i=new Intent(UPLOADING_ERROR);
+                    Intent i=new Intent();
+                    i.setAction(UPLOADING_ERROR);
                     sendBroadcast(i);
                 }
 

@@ -35,6 +35,8 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
+                android:src="@drawable/person_icon"
+                android:scaleType="centerCrop"
                 />
 
             <android.support.v7.widget.Toolbar
