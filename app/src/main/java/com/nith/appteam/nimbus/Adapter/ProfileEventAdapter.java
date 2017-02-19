@@ -8,9 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nith.appteam.nimbus.Model.ProfileEventModel;
+
+import com.nith.appteam.nimbus.Fragment.ProfileTab1;
+import com.nith.appteam.nimbus.Fragment.ProfileTab1.ProfileEventDataModel;
 import com.nith.appteam.nimbus.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,13 +23,14 @@ import java.util.List;
 public class ProfileEventAdapter extends RecyclerView.Adapter<ProfileEventAdapter.viewHolder> {
 
 
-    private List<ProfileEventModel> arrayList;
+    private List<ProfileTab1.ProfileEventDataModel> arrayList;
     private Context context;
 
-    public ProfileEventAdapter(List<ProfileEventModel> arrayList, Context context) {
+    public ProfileEventAdapter(List<ProfileTab1.ProfileEventDataModel> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
+
 
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,9 +41,10 @@ public class ProfileEventAdapter extends RecyclerView.Adapter<ProfileEventAdapte
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
 
-        ProfileEventModel model = arrayList.get(position);
-        String str1 = model.getEventName();
-        String str2 = "By " + model.getClubName();
+
+        ProfileTab1.ProfileEventDataModel model =  arrayList.get(position);
+        String str1 = model.getName();
+        String str2 = "By " + model.getTeam();
         holder.eventText.setText(str1);
         holder.clubText.setText(str2);
 

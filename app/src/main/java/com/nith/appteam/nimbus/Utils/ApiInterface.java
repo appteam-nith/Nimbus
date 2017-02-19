@@ -13,6 +13,7 @@ import com.nith.appteam.nimbus.Model.NewsFeedResponse;
 import retrofit2.http.GET;
 
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
+import com.nith.appteam.nimbus.Model.ProfileEventModel;
 import com.nith.appteam.nimbus.Model.TeamEventList;
 
 import com.nith.appteam.nimbus.Model.QuizQuestionsModel;
@@ -64,7 +65,8 @@ public interface ApiInterface {
 
     @GET("profile/{id}")
     Call<ProfileDataModel> profileBasicInfo(@Path("id") String id);
-
+    @GET("profile/event/{id}")
+    Call<ProfileEventModel> profileEventList(@Path("id") String id);
     @GET("main")
     Call<MainPagerResponse> getMainResponse();
 }
