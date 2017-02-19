@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.gson.annotations.SerializedName;
 import com.nith.appteam.nimbus.CustomView.EditorView;
 import com.nith.appteam.nimbus.R;
+import com.nith.appteam.nimbus.Service.UploadService;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
 
@@ -33,7 +34,6 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
     private static final String TAG = "Upload News Feed";
     private EditorView editorView;
     private ImageView camera_image, upload_image;
-    private ProgressBar progressBar;
     private static final String UPLOAD_SERVICE="Upload";
     private static final String TITLE="title";
     private static  final String DESCRIPTION="description";
@@ -49,7 +49,6 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
         editorView = (EditorView) findViewById(R.id.editor);
         camera_image = (ImageView) findViewById(R.id.select_image);
         upload_image = (ImageView) findViewById(R.id.upload_news);
-        progressBar = (ProgressBar) findViewById(R.id.progress);
         camera_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,12 +64,9 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                 StringBuilder imageUrl =new StringBuilder();
                 if (add.title != null && add.detail != null)
                     if (!add.title.isEmpty() && !add.detail.isEmpty()) {
-
-                        upload_image.setVisibility(GONE);
-                        progressBar.setVisibility(View.VISIBLE);
                        for(int i=0;i<add.imageUrl.size();i++)
                             imageUrl.append(add.imageUrl.get(i)+" ");
-                        Intent i=new Intent();
+                        Intent i=new Intent(UploadNewsFeedActivity.this, UploadService.class);
                         i.putExtra(UPLOAD_SERVICE,true);
                         i.putExtra(TITLE,add.title);
                         i.putExtra(DESCRIPTION,add.detail);
@@ -78,6 +74,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                         startService(i);
 
                         Log.d(TAG, add.title + " " + add.detail+" "+imageUrl);
+                        finish();
                     } else {
                         Toast.makeText(UploadNewsFeedActivity.this, "Some Fields are still empty", Toast.LENGTH_SHORT).show();
                     }
@@ -108,6 +105,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
             String imgDecodableString = c.getString(c.getColumnIndex(filePathColumn[0]));
             c.close();
             editorView.addImage(imgDecodableString);
+
         }
     }
 
