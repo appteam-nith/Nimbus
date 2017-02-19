@@ -1,34 +1,42 @@
 package com.nith.appteam.nimbus.Model;
 
+import com.google.gson.annotations.SerializedName;
+import com.nith.appteam.nimbus.Fragment.ProfileTab1;
+
+import java.util.ArrayList;
+
 /**
  * Created by aditya on 14/2/17.
  */
 
 public class ProfileEventModel {
 
-    private String eventName;
-    private String clubName;
+    @SerializedName("success")
+    private String success;
 
-    public ProfileEventModel(String eventName, String clubName) {
-        this.eventName = eventName;
-        this.clubName = clubName;
-    }
+    @SerializedName("event")
+    private ArrayList<ProfileTab1.ProfileEventDataModel> event;
 
-    public String getEventName() {
-        return eventName;
-    }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
-
-    public String getClubName() {
-        return clubName;
-    }
-
-    public void setClubName(String clubName) {
-        this.clubName = clubName;
+    public ProfileEventModel(String success, ArrayList<ProfileTab1.ProfileEventDataModel> event) {
+        this.success = success;
+        this.event = event;
     }
 
 
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
+    }
+
+    public ArrayList<ProfileTab1.ProfileEventDataModel> getEvent() {
+        return event;
+    }
+
+    public void setEvent(ArrayList<ProfileTab1.ProfileEventDataModel> event) {
+        this.event = event;
+    }
 }

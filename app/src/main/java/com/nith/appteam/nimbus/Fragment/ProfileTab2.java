@@ -1,9 +1,12 @@
 package com.nith.appteam.nimbus.Fragment;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +18,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.google.gson.annotations.SerializedName;
+import com.nith.appteam.nimbus.Activity.ProfileActivity;
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
@@ -74,8 +81,8 @@ public class ProfileTab2 extends Fragment {
         if(savedInstanceState==null){
 
             progress.setVisibility(view.VISIBLE);
-//            profileBasicDataModel.profileBasicInfo(sharedPref.getUserId());
-            profileBasicDataModel.profileBasicInfo("58a4a4700c15b900116694a4");
+
+            profileBasicDataModel.profileBasicInfo(sharedPref.getUserId());
 
         }
         else{
@@ -217,7 +224,7 @@ public class ProfileTab2 extends Fragment {
                             if(model!=null){
 
                                 sharedPref.setUserName(model.getName());
-                                sharedPref.setUserName(model.getEmail());
+                                sharedPref.setUserEmail(model.getEmail());
                                 sharedPref.setUserRollno(model.getRollno());
                                 sharedPref.setUserPicUrl(model.getPhoto());
 
