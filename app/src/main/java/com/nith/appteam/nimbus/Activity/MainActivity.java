@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
-    private SlidingImageAdapter imageAdapter;
+    private SlidingImageAdapter imageAdapter; //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
