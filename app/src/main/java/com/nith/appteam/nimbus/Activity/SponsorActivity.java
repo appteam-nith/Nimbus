@@ -5,20 +5,17 @@ package com.nith.appteam.nimbus.Activity;
  */
 import java.util.ArrayList;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
 import android.widget.TextView;
-import com.nith.appteam.nimbus.Activity.Team;
-import com.nith.appteam.nimbus.Adapter.SponsorAdapter;
-import com.nith.appteam.nimbus.R;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+import com.nith.appteam.nimbus.Adapter.SponsorAdapter;
+import com.nith.appteam.nimbus.Model.Team;
+import com.nith.appteam.nimbus.R;
 
 public class SponsorActivity extends AppCompatActivity {
     @Override
@@ -28,13 +25,13 @@ public class SponsorActivity extends AppCompatActivity {
         Toolbar toolbarTop = (Toolbar) findViewById(R.id.sponsor_toolbar);
         TextView mTitle = (TextView) toolbarTop.findViewById(R.id.toolbar_title);
         mTitle.setText("Sponsors");
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbarTop);
         //THE EXPANDABLE
         ExpandableListView elv=(ExpandableListView) findViewById(R.id.expandableListView1);
         final ArrayList<Team> team=getData();
         //CREATE AND BIND TO ADAPTER
-        SponsorAdapter adapter=new SponsorAdapter(this, team);
-        elv.setAdapter(adapter);
+       SponsorAdapter adapter=new SponsorAdapter(this, team);
+       elv.setAdapter(adapter);
         //SET ONCLICK LISTENER
         elv.setOnChildClickListener(new OnChildClickListener() {
             @Override

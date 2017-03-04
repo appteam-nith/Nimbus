@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -22,15 +21,12 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyByIUspPrtzSN1TGWXi2zXn7zaeTGr6850" />
-
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -48,11 +44,10 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".Activity.TeamEventActivity"/>
-        <activity android:name=".Activity.NewsFeedActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activity.TeamEventActivity" />
+        <activity
+            android:name=".Activity.NewsFeedActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/HomeTheme" />
@@ -63,52 +58,39 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
-
-
-        <activity android:name="com.nith.appteam.nimbus.Activity.Workshops"
-                   android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".Activity.Workshops"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-		
-		<activity
-             android:name=".Activity.SponsorActivity"
-             android:theme="@style/ProfileTheme"
-             android:parentActivityName=".Activity.MainActivity">
-         </activity>
-
+        <activity
+            android:name=".Activity.SponsorActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:theme="@style/ProfileTheme"></activity>
         <activity
             android:name=".Activity.Appintro"
             android:label="@string/title_activity_appintro"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
-
-
-
-           <activity
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.UploadNewsFeedActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateVisible|adjustResize"/>
-             
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".Activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Splash"
             android:theme="@style/AppTheme.NoActionBar">
-<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-       <activity android:name=".Activity.TeamActivity"
+        <activity
+            android:name=".Activity.TeamActivity"
             android:label="@string/title_activity_team"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -116,18 +98,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
         <activity
             android:name=".Activity.ProfileActivity"
             android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/ProfileTheme"/>
-
-        <activity android:name=".Activity.LeaderBoardActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activity.QuizActivity"/>
-        <activity android:name="com.nith.appteam.nimbus.Activity.WorkshopDetail">
-        </activity>
-          
+            android:theme="@style/ProfileTheme" />
+        <activity
+            android:name=".Activity.LeaderBoardActivity"
+            android:parentActivityName=".Activity.QuizActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.WorkshopDetail"></activity>
 
         <service
             android:name=".Service.UploadService"
@@ -141,16 +120,15 @@
             </intent-filter>
         </receiver>
 
-
         <meta-data
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://862148829278388:hJQPvA-kYbt8TRsp0bMSdqH65NE@appteamnith" />
 
-        <activity android:name=".Activity.MapActivity">
+        <activity android:name=".Activity.MapActivity"></activity>
+        <activity
+            android:name=".Activity.QuizActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.GalleryActivity"></activity>
+    </application>
 
-        </activity>
-        <activity android:name=".Activity.QuizActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-   
-             </application>
 </manifest>

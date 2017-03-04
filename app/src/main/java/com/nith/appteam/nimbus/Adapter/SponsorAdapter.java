@@ -14,7 +14,7 @@ import android.content.Context;
         import android.widget.ImageView;
         import android.widget.TextView;
 
-import com.nith.appteam.nimbus.Activity.Team;
+import com.nith.appteam.nimbus.Model.Team;
 import com.nith.appteam.nimbus.R;
 
 public class SponsorAdapter extends BaseExpandableListAdapter {

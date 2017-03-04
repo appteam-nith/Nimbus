@@ -4,6 +4,7 @@ import retrofit2.http.POST;
 import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
+import com.nith.appteam.nimbus.Model.GalleryResponse;
 import com.nith.appteam.nimbus.Model.LeaderBoardModel;
 import com.nith.appteam.nimbus.Model.Likecount;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
@@ -69,8 +70,8 @@ public interface ApiInterface {
     Call<UpdateScoreModel> updateScore(@Field("id") String id, @Field("score") int score);
 
     @FormUrlEncoded
-    @POST("newsfeed/post")
-    Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Field("uId") String userId, @Field("uName") String userName,@Field("imageUrl") String imageUrl);
+    @POST("newsfeed/post/{student_id}")
+    Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Path("student_id") String userId, @Field("uName") String userName,@Field("imageUrl") String imageUrl);
 
     @GET("newsfeed/all")
     Call<NewsFeedResponse> getAllNews(@Query("from") String from, @Query("uId") String userId);
@@ -87,4 +88,7 @@ public interface ApiInterface {
     Call<ProfileEventModel> profileEventList(@Path("id") String id);
     @GET("main")
     Call<MainPagerResponse> getMainResponse();
+
+    @GET("gallery/{id}")
+    Call<GalleryResponse> getGalleryResponse(@Path("id") int id);
 }
