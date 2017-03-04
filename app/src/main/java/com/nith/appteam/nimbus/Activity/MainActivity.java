@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,QuizActivity.class));
                         break;
                     case 1:
+                        startActivity(new Intent(MainActivity.this,SponsorActivity.class));
                         break;
                     case 2:
                         startActivity(new Intent(MainActivity.this,CoreTeamActivity.class));

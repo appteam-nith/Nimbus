@@ -17,9 +17,7 @@ import android.content.Context;
 import com.nith.appteam.nimbus.Model.Team;
 import com.nith.appteam.nimbus.R;
 
-public class SponsorAdapter{}
-    /*
-    // extends BaseExpandableListAdapter {
+public class SponsorAdapter extends BaseExpandableListAdapter {
     private Context c;
     private ArrayList<Team> team;
     private LayoutInflater inflater;
@@ -42,7 +40,6 @@ public class SponsorAdapter{}
         return 0;
     }
     //GET PLAYER ROW
-    /*
     @Override
     public View getChildView(int groupPos, int childPos, boolean isLastChild, View convertView,
                              ViewGroup parent) {
@@ -172,5 +169,4 @@ public class SponsorAdapter{}
         // TODO Auto-generated method stub
         return true;
     }
-    */
-//}
+}
