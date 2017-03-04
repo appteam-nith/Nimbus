@@ -33,15 +33,15 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     @Override
     public void onBindViewHolder(MainViewHolder holder, int position) {
-        String[] recvText = new String[]{"Quiz", "Sponsors", "Core Team", "Teams", "Map", "About Nimbus","Workshop"};
-        int[] recvImages = {R.drawable.main_quiz,R.drawable.main_sponsor,R.drawable.main_core_team,R.drawable.main_teams,R.drawable.main_map,R.drawable.main_about,R.drawable.main_workshop};
+        String[] recvText = new String[]{"Quiz", "Sponsors", "Core Team", "Teams", "Map", "About Nimbus","Workshop","NewsFeed","Gallery"};
+        int[] recvImages = {R.drawable.main_quiz,R.drawable.main_sponsor,R.drawable.main_core_team,R.drawable.main_teams,R.drawable.main_map,R.drawable.main_about,R.drawable.main_workshop,R.drawable.main_workshop,R.drawable.main_about};
         recvTv.setText(recvText[position]);
         imageView.setImageResource(recvImages[position]);
     }
 
     @Override
     public int getItemCount() {
-        return 7;
+        return 9;
     }
 
     public class MainViewHolder extends RecyclerView.ViewHolder{

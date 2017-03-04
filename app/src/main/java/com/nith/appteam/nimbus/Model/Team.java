@@ -1,4 +1,4 @@
-package com.nith.appteam.nimbus.Activity;
+package com.nith.appteam.nimbus.Model;
 
 /**
  * Created by acer on 2/19/2017.

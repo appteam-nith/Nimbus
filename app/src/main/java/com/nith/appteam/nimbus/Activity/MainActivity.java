@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         return  true;
                     case R.id.action_notifications:
-                        startActivity(new Intent(MainActivity.this,MapActivity.class));
+                       // startActivity(new Intent(MainActivity.this,MapActivity.class));
                         return true;
                 }
                 return false;
@@ -127,6 +127,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 6:
                         startActivity(new Intent(MainActivity.this,Workshops.class));
+                        break;
+                    case 7:
+                        startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
+                        break;
+                    case 8:
+                        startActivity(new Intent(MainActivity.this,GalleryActivity.class));
+                        break;
 
                 }
             }
