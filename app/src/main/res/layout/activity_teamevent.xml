@@ -78,7 +78,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/cardview_dark_background"
             android:orientation="vertical">
 
             <com.github.florent37.materialleanback.MaterialLeanBack
@@ -86,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:mlb_animateCards="true"
-                app:mlb_background="@color/cardview_dark_background"
                 app:mlb_lineSpacing="30dp"
                 android:layout_marginTop="5dp"
                 app:mlb_overlapCards="true"
@@ -134,6 +132,7 @@
     </android.support.v7.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/teamlogo"
         android:layout_width="@dimen/image_width"
         android:layout_height="@dimen/image_width"
         android:layout_gravity="center_horizontal"
@@ -142,7 +141,7 @@
         app:border_width="2dp"
         app:finalHeight="@dimen/image_final_width"
         app:finalYPosition="2dp"
-        app:layout_behavior="com.nith.appteam.nimbus.TeamLogoBehavior"
+        app:layout_behavior="com.nith.appteam.nimbus.Utils.TeamLogoBehavior"
         app:startHeight="2dp"
         app:startToolbarPosition="2dp"
         app:startXPosition="2dp"

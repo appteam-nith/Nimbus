@@ -10,6 +10,7 @@
     android:innerRadius="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
         <TextView
+            android:id="@+id/teamdesc"
             android:padding="5dp"
             android:layout_margin="8dp"
             android:layout_width="match_parent"

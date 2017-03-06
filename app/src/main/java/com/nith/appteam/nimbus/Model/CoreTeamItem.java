@@ -1,4 +1,4 @@
-package com.nith.appteam.nimbus;
+package com.nith.appteam.nimbus.Model;
 
 /**
  * Created by Aman Pratap on 08-Feb-17.

@@ -2,6 +2,7 @@ package com.nith.appteam.nimbus.Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -41,9 +42,17 @@ public class Util {
             }
         });
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nimbus2k17api.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).client(oBuilder.build()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nimbus2k17api.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).
+                client(oBuilder.build()).
+                build();
+
         ApiInterface service = retrofit.create(ApiInterface.class);
         return service;
+    }
+
+    public static  int random(){
+        Random r=new Random();
+        return  r.nextInt(10000000);
     }
 
 }
