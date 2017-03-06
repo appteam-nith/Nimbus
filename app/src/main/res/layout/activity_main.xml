@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
@@ -57,7 +58,9 @@
         app:layout_anchorGravity="bottom"
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="#FFF"
+        app:layout_behavior="com.nith.appteam.nimbus.Utils.BottomNavigationBehavior"
         app:itemTextColor="#FFF"
-        app:menu="@menu/bottom_main_navigation" />
+        app:menu="@menu/bottom_main_navigation"
+         />
 
 </android.support.design.widget.CoordinatorLayout>
