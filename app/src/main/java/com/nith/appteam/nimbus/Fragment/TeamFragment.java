@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.nith.appteam.nimbus.Activity.MainActivity;
 import com.nith.appteam.nimbus.R;
+import com.nith.appteam.nimbus.Activity.TeamEventActivity;
 import com.nith.appteam.nimbus.Utils.TeamInterface;
 import com.nith.appteam.nimbus.Model.TeamItem;
 
@@ -40,13 +40,14 @@ public class TeamFragment extends Fragment {
     private ImageView teamImageView;
     private TextView teamNameTextView;
     private CardView cardview;
-
+    private String teamId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         teamName = getArguments().getString(TEAM_NAME);
         teamPicUrl = getArguments().getString(TEAM_URL);
+        teamId=getArguments().getString(TEAM_ID);
     }
 
     @Override
@@ -63,8 +64,8 @@ public class TeamFragment extends Fragment {
          cardview.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 Intent i=new Intent(getActivity(),MainActivity.class);
-                 i.putExtra(TEAM_ID,0);
+                 Intent i=new Intent(getActivity(),TeamEventActivity.class);
+                 i.putExtra(TEAM_ID,teamId);
                  startActivity(i);
              }
          });
@@ -76,6 +77,7 @@ public class TeamFragment extends Fragment {
         Bundle b = new Bundle();
         b.putString(TEAM_NAME, teamItem.getName());
         b.putString(TEAM_URL, teamItem.getUrl());
+        b.putString(TEAM_ID,teamItem.getId());
         teamFragment.setArguments(b);
         return teamFragment;
     }

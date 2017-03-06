@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nith.appteam.nimbus.Activity.LeaderBoardActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/leader_toolbar"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:background="?attr/colorPrimary"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/leader_toolbar"
+        android:id="@+id/leader_recycler"/>
+
+    <ProgressBar
+        android:layout_below="@+id/recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/leader_progress"
+        />
+
+</RelativeLayout>

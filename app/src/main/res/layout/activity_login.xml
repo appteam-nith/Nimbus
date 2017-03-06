@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.nith.appteam.nimbus.Activity.LoginActivity">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragmentLogin"
+        android:name="com.nith.appteam.nimbus.Fragment.FbLoginFragment"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="SKIP"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#fff"
+        android:id="@+id/tvSkip"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginBottom="12dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:background="#4e000000"
+        />
+
+</FrameLayout>
