@@ -68,7 +68,7 @@
         <activity
             android:name=".Activity.SponsorActivity"
             android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/ProfileTheme"></activity>
+            android:theme="@style/ProfileTheme" />
         <activity
             android:name=".Activity.Appintro"
             android:label="@string/title_activity_appintro"
@@ -106,7 +106,7 @@
             android:name=".Activity.LeaderBoardActivity"
             android:parentActivityName=".Activity.QuizActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.WorkshopDetail"></activity>
+        <activity android:name=".Activity.WorkshopDetail" />
 
         <service
             android:name=".Service.UploadService"
@@ -124,11 +124,12 @@
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://862148829278388:hJQPvA-kYbt8TRsp0bMSdqH65NE@appteamnith" />
 
-        <activity android:name=".Activity.MapActivity"></activity>
+        <activity android:name=".Activity.MapActivity" />
         <activity
             android:name=".Activity.QuizActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.GalleryActivity"></activity>
+        <activity android:name=".Activity.GalleryActivity" />
+        <activity android:name=".Notification.NotificationActivity"></activity>
     </application>
 
 </manifest>
