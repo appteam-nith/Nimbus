@@ -8,7 +8,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
 
 import android.support.v4.view.ViewPager;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +29,6 @@ import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;

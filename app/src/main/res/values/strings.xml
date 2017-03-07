@@ -23,4 +23,5 @@
 
     <string name="facebook_app_id">1834013936864907</string>
     <string name="fb_login_protocol_scheme">fb1834013936864907</string>
+    <string name="title_activity_2">Activity2</string>
 </resources>

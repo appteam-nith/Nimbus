@@ -4,6 +4,7 @@ import retrofit2.http.POST;
 import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
+import com.nith.appteam.nimbus.Model.GalleryDetailResponse;
 import com.nith.appteam.nimbus.Model.GalleryResponse;
 import com.nith.appteam.nimbus.Model.LeaderBoardModel;
 import com.nith.appteam.nimbus.Model.Likecount;
@@ -24,12 +25,7 @@ import com.nith.appteam.nimbus.Model.WorkshopListResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-import retrofit2.http.Path;
-
 import retrofit2.http.Query;
 
 /**
@@ -90,5 +86,8 @@ public interface ApiInterface {
     Call<MainPagerResponse> getMainResponse();
 
     @GET("gallery/{id}")
-    Call<GalleryResponse> getGalleryResponse(@Path("id") int id);
+    Call<GalleryDetailResponse> getGalleryResponse(@Path("id") String id);
+
+    @GET("galleryAll")
+    Call<GalleryResponse> getGalleryAll();
 }
