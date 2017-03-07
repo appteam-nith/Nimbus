@@ -8,6 +8,7 @@ import com.nith.appteam.nimbus.Model.GalleryResponse;
 import com.nith.appteam.nimbus.Model.LeaderBoardModel;
 import com.nith.appteam.nimbus.Model.Likecount;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
+import com.nith.appteam.nimbus.Model.NewsFeed;
 import com.nith.appteam.nimbus.Model.NewsFeedResponse;
 
 import retrofit2.http.GET;
@@ -82,10 +83,16 @@ public interface ApiInterface {
 
     @GET("quiz/leaderboard")
     Call<LeaderBoardModel> getLeaderBoard(@Query("from") String from);
+
     @GET("profile/{id}")
     Call<ProfileDataModel> profileBasicInfo(@Path("id") String id);
+
     @GET("profile/event/{id}")
     Call<ProfileEventModel> profileEventList(@Path("id") String id);
+
+    @GET("profile/newsfeed")
+    Call<NewsFeedResponse> getUserNews(@Query("from") String from, @Query("uId") String userId);
+
     @GET("main")
     Call<MainPagerResponse> getMainResponse();
 
