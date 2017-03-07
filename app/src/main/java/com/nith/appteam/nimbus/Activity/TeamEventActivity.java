@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,16 +16,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.github.florent37.materialleanback.MaterialLeanBack;
+import com.nith.appteam.nimbus.Adapter.EventAdapter;
 import com.nith.appteam.nimbus.EventViewHolder;
 import com.nith.appteam.nimbus.Fragment.TeamFragment;
 import com.nith.appteam.nimbus.Model.TeamEventList;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.Connection;
+import com.nith.appteam.nimbus.Utils.RecyclerItemClickListener;
 import com.nith.appteam.nimbus.Utils.Util;
 
 import java.util.ArrayList;
@@ -41,144 +47,67 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
     private boolean mIsTheTitleVisible = false;
     private boolean mIsTheTitleContainerVisible = true;
     private LinearLayout mTitleContainer;
-    private TextView mTitle;
+    private TextView mTitle,teamDescription,headerTitle;
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolbar;
-    private MaterialLeanBack materialLeanBack;
-    private ArrayList<Bitmap> eventImages;
-    private ArrayList<Bitmap> projectImages;
+    private ImageView bannerImage,logoImage;
+    private RecyclerView eventList;
+    private EventAdapter adapter;
+    private ArrayList<TeamEventList.Event> eventArrayList=new ArrayList<>();
+    public static final String ACTIVITY="activity", ID="id", WORKSHOP_NAME="wname", EVENT_NAME="ename";
+    public static final String WORKSHOP="workshop", EVENT="event";
+
+
     private String id; // Team id for the Extracting team detail,event and projects
 
-    int tempsize=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.EventAct);
         setContentView(R.layout.activity_teamevent);
-        bindActivity();
+
         Intent i = getIntent();
         if (i != null) {
             if (i.hasExtra(TeamFragment.TEAM_ID)) {
                 id = i.getStringExtra(TeamFragment.TEAM_ID);
+                if(new Connection(this).isInternet()){
+                    getTeamData(id);
+                }
             }
         }
 
-        getResponse(id);
+        mAppBarLayout= (AppBarLayout) findViewById(R.id.main_appbar);
+        mToolbar= (Toolbar) findViewById(R.id.main_toolbar);
+        mTitle= (TextView) findViewById(R.id.main_textview_title);
+        mTitleContainer= (LinearLayout) findViewById(R.id.main_linearlayout_title);
+        teamDescription= (TextView) findViewById(R.id.teamDescription);
+        headerTitle= (TextView) findViewById(R.id.header_title_team);
+        bannerImage= (ImageView) findViewById(R.id.main_imageview_placeholder);
+        logoImage= (ImageView) findViewById(R.id.teamlogo);
+        eventList= (RecyclerView) findViewById(R.id.eventList);
+        eventList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+        adapter=new EventAdapter(this);
+        eventList.setAdapter(adapter);
+        eventList.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent i=new Intent(TeamEventActivity.this,WorkshopDetail.class);
+                i.putExtra(ACTIVITY,EVENT);
+                i.putExtra(EVENT_NAME,eventArrayList.get(position).getName());
+                i.putExtra(ID,eventArrayList.get(position).getId());
+                startActivity(i);
+            }
+        }));
+
+
 
         mAppBarLayout.addOnOffsetChangedListener(this);
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
-        addImages();
-        materialLeanBack.setCustomizer(new MaterialLeanBack.Customizer() {
-            @Override
-            public void customizeTitle(TextView textView) {
-                textView.setTypeface(null, Typeface.BOLD);
-            }
-        });
 
-        mToolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                materialLeanBack.smoothScrollTo(5, 6);
-            }
-        });
-        materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<EventViewHolder>() {
-            @Override
-            public int getLineCount() {
-                return 3;
-            }
-
-            @Override
-            public int getCellsCount(int line) {
-                if(line==1)return eventImages.size();
-                else return projectImages.size();
-            }
-
-            @Override
-            public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int line) {
-                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_event, viewGroup, false);
-                return new EventViewHolder(view,line);
-            }
-
-            @Override
-            public void onBindViewHolder(EventViewHolder viewHolder, int i) {
-                if(viewHolder.line==1) {
-                    if(i>=eventImages.size())return;
-                    viewHolder.textView.setText("Event " + (i+1));//// TODO: 17/2/17 put names here
-                    viewHolder.imageView.setImageBitmap(eventImages.get(i));
-                }else {
-                    if (i >= projectImages.size()) return;
-                    viewHolder.textView.setText("Project " + (i + 1));//todo put names here
-                    viewHolder.imageView.setImageBitmap(projectImages.get(i));
-                }
-                Log.v("TEMP SIZE of the",""+tempsize+" "+i);
-            }
-
-            @Override
-            public String getTitleForRow(int row) {
-
-                return row==1?"Events":"Projects";
-            }
-
-            //region customView
-            @Override
-            public RecyclerView.ViewHolder getCustomViewForRow(ViewGroup viewgroup, int row) {
-                if (row == 0) {
-                    View view = LayoutInflater.from(viewgroup.getContext()).inflate(R.layout.view_teamdetails, viewgroup, false);
-                    return new RecyclerView.ViewHolder(view) {
-                    };
-                } else
-                    return null;
-            }
-
-            @Override
-            public boolean isCustomView(int row) {
-                return row == 0;
-            }
-
-            @Override
-            public boolean hasRowTitle(int row) {
-                return row != 3;
-            }
-
-
-            //
-            @Override
-            public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {
-                super.onBindCustomView(viewHolder, row);
-            }
-
-        });
-// TODO: 9/2/17 set on click listener to the event activity
-        materialLeanBack.setOnItemClickListener(new MaterialLeanBack.OnItemClickListener() {
-            @Override
-            public void onTitleClicked(int row, String text) {
-                Toast.makeText(getApplicationContext(), "onTitleClicked " + row + " " + text, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onItemClicked(int row, int column) {
-                Toast.makeText(getApplicationContext(), "onItemClicked " + row + " " + column, Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
-    private void bindActivity() {
-        mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        mTitle = (TextView) findViewById(R.id.main_textview_title);
-        mTitleContainer = (LinearLayout) findViewById(R.id.main_linearlayout_title);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.main_appbar);
-        materialLeanBack = (MaterialLeanBack) findViewById(R.id.materialLeanBack);
-    }
 
-    private void addImages() {
-        eventImages=new ArrayList<>();
-        projectImages=new ArrayList<>();
-        for (int i=0;i<3;i++)eventImages.add(BitmapFactory.decodeResource(this.getResources(),
-                R.drawable.forest_1));
-        for (int i=0;i<5;i++)projectImages.add(BitmapFactory.decodeResource(this.getResources(),
-                R.drawable.forest_2));
-    }
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
@@ -236,42 +165,32 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         v.startAnimation(alphaAnimation);
     }
 
+private void getTeamData(String  id){
+    Call<TeamEventList> call=Util.getRetrofitService().getTeamEvents(id);
+    call.enqueue(new Callback<TeamEventList>() {
+        @Override
+        public void onResponse(Call<TeamEventList> call, Response<TeamEventList> response) {
+            TeamEventList t=response.body();
+            if(response.isSuccess()&&t!=null){
+                eventArrayList.addAll(t.getEvents());
+                adapter.refresh(eventArrayList);
+                mTitle.setText(t.getName());
+                headerTitle.setText(t.getName());
+                teamDescription.setText(t.getDesc());
+                Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(bannerImage);
+                Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(logoImage);
 
-
-
-    void getResponse(String id) {
-
-
-        // progressBar.setVisibility(View.VISIBLE);
-        if (new Connection(this).isInternet()) {
-            Call<TeamEventList> call = Util.getRetrofitService().getTeamEvents(id);
-           call.enqueue(new Callback<TeamEventList>() {
-               @Override
-               public void onResponse(Call<TeamEventList> call, Response<TeamEventList> response) {
-
-                   if(!response.isSuccess()){Log.v("TESTTEAMEVENTRESPONSE","NOT Working!");return;}
-                   TeamEventList teamEvent=response.body();
-
-                   if(!teamEvent.isSucess()){Log.v("TESTTEAMEVENTRESPONSE","NOT Working!");return;}
-
-
-
-
-
-               }
-
-               @Override
-               public void onFailure(Call<TeamEventList> call, Throwable t) {
-                   Toast.makeText(getApplicationContext(), "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
-                   //progressBar.setVisibility(View.GONE);
-               }
-           });
-
-        } else {
-//            message.setVisibility(View.VISIBLE);
-//            message.setText("Please Check Your Internet Connection");
-//            progressBar.setVisibility(View.GONE);
+            }
         }
 
-    }
+        @Override
+        public void onFailure(Call<TeamEventList> call, Throwable t) {
+          t.printStackTrace();
+        }
+    });
+}
+
+
+
+
 }
