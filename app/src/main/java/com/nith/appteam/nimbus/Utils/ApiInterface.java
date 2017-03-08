@@ -73,12 +73,12 @@ public interface ApiInterface {
     @GET("newsfeed/getall/{id}")
     Call<NewsFeedResponse> getAllNews(@Path("id") String userId);
 
-    @FormUrlEncoded
+
     @POST("newsfeed/like/{id}")
-    Call<Likecount>likecount(@Path("id") String id, @Field("student_id") String userId);
+    Call<Likecount>likecount(@Path("id") String id, @Query("student_id") String userId);
 
     @GET("quiz/leaderboard")
-    Call<LeaderBoardModel> getLeaderBoard(@Query("from") String from);
+    Call<LeaderBoardModel> getLeaderBoard();
 
     @GET("profile/{id}")
     Call<ProfileDataModel> profileBasicInfo(@Path("id") String id);
@@ -89,7 +89,7 @@ public interface ApiInterface {
     @GET("profile/newsfeed")
     Call<NewsFeedResponse> getUserNews(@Query("from") String from, @Query("uId") String userId);
 
-    @GET("main")
+    @GET("main/images/get")
     Call<MainPagerResponse> getMainResponse();
 
     @GET("gallery/{id}")
