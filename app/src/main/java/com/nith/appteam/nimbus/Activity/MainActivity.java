@@ -28,6 +28,7 @@ import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
+import com.nith.appteam.nimbus.Notification.NotificationActivity;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
 import com.nith.appteam.nimbus.Utils.Connection;
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         return  true;
                     case R.id.action_notifications:
-                       // startActivity(new Intent(MainActivity.this,MapActivity.class));
+                      startActivity(new Intent(MainActivity.this,NotificationActivity.class));
                         return true;
                 }
                 return false;
