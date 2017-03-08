@@ -5,23 +5,23 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
- * Created by sahil on 4/3/17.
+ * Created by sahil on 5/3/17.
  */
 
 public class GalleryResponse {
 
-    @SerializedName("gallery")
-    private ArrayList<Gallery> galleryArrayList;
+    @SerializedName("albums")
+    private ArrayList<Gallery> galleryList;
 
-    public GalleryResponse(ArrayList<Gallery> galleryArrayList) {
-        this.galleryArrayList = galleryArrayList;
+    public ArrayList<Gallery> getGalleryList() {
+        return galleryList;
     }
 
-    public ArrayList<Gallery> getGalleryArrayList() {
-        return galleryArrayList;
+    public void setGalleryList(ArrayList<Gallery> galleryList) {
+        this.galleryList = galleryList;
     }
 
-    public void setGalleryArrayList(ArrayList<Gallery> galleryArrayList) {
-        this.galleryArrayList = galleryArrayList;
+    public GalleryResponse(ArrayList<Gallery> galleryList) {
+        this.galleryList = galleryList;
     }
 }

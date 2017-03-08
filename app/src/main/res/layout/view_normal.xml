@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:elevation="10dp"
+
+    xmlns:custom="http://schemas.android.com/apk/res-auto/com.nith.appteam.nimbus.CustomView.AspectRatioImageView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
+        android:scaleType="fitXY"
+        android:id="@+id/image_head_normal"
+        android:src="@drawable/slide_3"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        custom:dominantMeasurement="width"/>
+    <TextView
+        android:id="@+id/text_normal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_alignBottom="@+id/image_head_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="#fff"
+        android:text="Normal View"/>
+
+
+</RelativeLayout>
+</android.support.v7.widget.CardView>
