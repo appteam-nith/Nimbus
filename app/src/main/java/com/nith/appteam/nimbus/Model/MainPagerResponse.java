@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class MainPagerResponse implements Parcelable {
 
-    @SerializedName("image")
+    @SerializedName("images")
     private ArrayList<String> imageList;
 
     protected MainPagerResponse(Parcel in) {
