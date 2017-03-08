@@ -9,6 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
+
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,6 @@ import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         //Code to deal with the NavigationDrawer
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nvView);
+
+
 
         navHeader = navigationView.getHeaderView(0);
         txtName = (TextView) navHeader.findViewById(R.id.name);
@@ -263,22 +265,23 @@ public class MainActivity extends AppCompatActivity {
                 menuItem.setChecked(true);
 
                 //loadHomeFragment();
-                ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
-                    @Override
-                    public void onDrawerClosed(View drawerView) {
-                        super.onDrawerClosed(drawerView);
-                    }
-                    @Override
-                    public void onDrawerOpened(View drawerView) {
-                        super.onDrawerOpened(drawerView);
-                    }
-                };
-                drawer.setDrawerListener(actionBarDrawerToggle);
-                actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-                actionBarDrawerToggle.syncState();
+
                 return true;
             }
         });
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        drawer.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        actionBarDrawerToggle.syncState();
     }
 
 

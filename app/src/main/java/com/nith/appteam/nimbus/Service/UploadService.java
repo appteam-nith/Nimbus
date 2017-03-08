@@ -3,6 +3,7 @@ package com.nith.appteam.nimbus.Service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -75,6 +76,7 @@ public UploadService(){
                     sendBroadcast(i);
                     Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName()+""+ Util.random()));
                     upload(title, description, (String) map.get("url"));
+                    Log.d("image",(String) map.get("url"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     Intent i=new Intent();

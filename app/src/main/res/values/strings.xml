@@ -24,6 +24,7 @@
     <string name="facebook_app_id">1834013936864907</string>
     <string name="fb_login_protocol_scheme">fb1834013936864907</string>
 
+
     <!-- Navigation Drawer menu labels -->
     <string name="nav_aboutapp">About App</string>
     <string name="nav_feedback">Feedback</string>

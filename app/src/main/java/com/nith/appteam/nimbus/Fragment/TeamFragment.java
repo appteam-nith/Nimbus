@@ -59,7 +59,7 @@ public class TeamFragment extends Fragment {
         teamImageView = (ImageView) v.findViewById(R.id.image_team);
         teamNameTextView = (TextView) v.findViewById(R.id.text_name_team);
         teamNameTextView.setText(teamName);
-        Glide.with(this).load(teamPicUrl).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.team).error(R.drawable.team).into(teamImageView);
+        Glide.with(this).load(teamPicUrl).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).error(R.drawable.nimbuslogo).into(teamImageView);
          cardview.setMaxCardElevation(cardview.getCardElevation()* TeamInterface.MAX_ELEVATION_FACTOR);
          cardview.setOnClickListener(new View.OnClickListener() {
              @Override
