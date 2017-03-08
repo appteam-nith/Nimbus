@@ -38,8 +38,8 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
 
         holder.username.setText(user.getName().toString());
         holder.rollno.setText(user.getRollNo().toString());
-        holder.score.setText("Score: "+Integer.toString(user.getScore()));
-        holder.sets.setText("Sets: "+Integer.toString(user.getSets()));
+        holder.score.setText("Score: "+Integer.toString(user.getSets().getScore()));
+        holder.sets.setText("Sets: "+Integer.toString(user.getSets().getSets()));
     }
 
     @Override
