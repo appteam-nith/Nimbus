@@ -28,6 +28,7 @@ public class GalleryView extends LinearLayout {
     private static  final float PADDING_BELOW=10f;
     private boolean expand=true,collapse;
     private OnClickListener clickListener;
+    private ImageView imgVw;
 
     public GalleryView(Context context) {
         this(context,null);
@@ -51,11 +52,13 @@ public class GalleryView extends LinearLayout {
                     setCollapse(true);
                     setExpanded(false);
                     expand(expandedView);
+                    imgVw.setImageResource(R.drawable.up);
                 }
                 else if (isCollapse()&&!isExpand()){
                     setCollapse(false);
                     setExpanded(true);
                     collapse(expandedView);
+                    imgVw.setImageResource(R.drawable.down);
                 }
             }
         };
@@ -66,6 +69,8 @@ public class GalleryView extends LinearLayout {
          expandedView.setVisibility(GONE);
 
         normalView.setOnClickListener(clickListener);
+
+        imgVw = (ImageView) normalView.findViewById(R.id.expand);
 
     }
 
