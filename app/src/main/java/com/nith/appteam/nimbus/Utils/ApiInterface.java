@@ -74,12 +74,12 @@ public interface ApiInterface {
     @POST("newsfeed/post/{student_id}")
     Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Path("student_id") String userId, @Field("uName") String userName,@Field("imageUrl") String imageUrl);
 
-    @GET("newsfeed/all")
+    @GET("newsfeed/getall/{student_id}")
     Call<NewsFeedResponse> getAllNews(@Query("from") String from, @Query("uId") String userId);
 
-    @FormUrlEncoded
+
     @POST("newsfeed/like")
-    Call<Likecount>likecount(@Field("id") String id, @Field("uId") String userId);
+    Call<Likecount>likecount(@Field("id") String id, @Query("student_id") String userId);
 
     @GET("quiz/leaderboard")
     Call<LeaderBoardModel> getLeaderBoard(@Query("from") String from);

@@ -51,7 +51,7 @@ public class Notification extends RecyclerView.Adapter<Notification.viewHolder> 
         if (home_post.getSmall_icon() == null || home_post.getSmall_icon().isEmpty() || home_post.getSmall_icon().length() == 0) {
             Glide.with(context).load(android.R.drawable.ic_dialog_alert).into(holder.small_icon);
         } else {
-            Glide.with(context).load(R.drawable.new_logo).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).error(android.R.drawable.ic_dialog_alert).into(new ImageViewTarget<Bitmap>(holder.small_icon) {
+            Glide.with(context).load(R.drawable.logo_b_t).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).error(android.R.drawable.ic_dialog_alert).into(new ImageViewTarget<Bitmap>(holder.small_icon) {
                 @Override
                 protected void setResource(Bitmap resource) {
                     RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);

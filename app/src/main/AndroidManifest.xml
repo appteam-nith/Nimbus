@@ -130,6 +130,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.GalleryActivity" />
         <activity android:name=".Notification.NotificationActivity"></activity>
+        <activity android:name=".Notification.Notification2"
+            android:parentActivityName=".Notification.NotificationActivity"/>
     </application>
 
 </manifest>
