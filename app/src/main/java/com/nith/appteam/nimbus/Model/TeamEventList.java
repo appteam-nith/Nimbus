@@ -98,25 +98,85 @@ public class TeamEventList {
         this.projects = projects;
     }
 
-    private class Event{
+    public class Event{
         @SerializedName("_id")
-         String id;
+         private String id;
 
          @SerializedName("photo")
-         String photo;
+          private String photo;
 
          @SerializedName("name")
-         String name;
+         private String name;
+
+        public Event(String id, String photo, String name) {
+            this.id = id;
+            this.photo = photo;
+            this.name = name;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getPhoto() {
+            return photo;
+        }
+
+        public void setPhoto(String photo) {
+            this.photo = photo;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
-    private class Projects{
+    public class Projects{
         @SerializedName("_id")
-        String id;
+       private String id;
 
         @SerializedName("photo")
-        String photo;
+        private String photo;
 
         @SerializedName("name")
-        String name;
+        private String name;
+
+        public Projects(String id, String photo, String name) {
+            this.id = id;
+            this.photo = photo;
+            this.name = name;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getPhoto() {
+            return photo;
+        }
+
+        public void setPhoto(String photo) {
+            this.photo = photo;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 
 }

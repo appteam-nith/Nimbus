@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 public class NewsFeedResponse {
-    @SerializedName("feed")
+    @SerializedName("newsfeed")
     private ArrayList<NewsFeed> feed;
     @SerializedName("success")
     private boolean success;
