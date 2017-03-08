@@ -64,6 +64,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
             public void onResponse(Call<LeaderBoardModel> call, Response<LeaderBoardModel> response) {
                 if(response!=null&&response.isSuccess()){
                     users = response.body().getUsers();
+                    if(users.size()>0)
                     adapter = new LeaderBoardAdapter(users, getApplicationContext());
                     recyclerView.setAdapter(adapter);
                     progressBar.setVisibility(View.GONE);

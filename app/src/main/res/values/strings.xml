@@ -27,4 +27,18 @@
     <string name="AboutNimbus">NIMBUS is the annual technical festival of National Institute of Technology, Hamirpur, Himachal Pradesh, India. It is
                                 touted to be an amalgamation of ideas, expressions, innovations, prototypes, knowledge channels, taken to the most
                                 premier levels. Nimbus has become the biggest technical fest of Northern India</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_aboutapp">About App</string>
+    <string name="nav_feedback">Feedback</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_team">The Team</string>
+    <string name="nav_contactus">Contact Us</string>
+    <string name="nav_reportbug">Report Bug</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
 </resources>

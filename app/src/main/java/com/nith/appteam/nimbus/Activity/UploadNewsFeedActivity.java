@@ -66,6 +66,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                     if (!add.title.isEmpty() && !add.detail.isEmpty()) {
                        for(int i=0;i<add.imageUrl.size();i++)
                             imageUrl.append(add.imageUrl.get(i)+" ");
+                        Log.d("image",imageUrl.toString());
                         Intent i=new Intent(UploadNewsFeedActivity.this, UploadService.class);
                         i.putExtra(UPLOAD_SERVICE,true);
                         i.putExtra(TITLE,add.title);

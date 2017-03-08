@@ -7,21 +7,28 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
+
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
+import com.nith.appteam.nimbus.Notification.NotificationActivity;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
 import com.nith.appteam.nimbus.Utils.Connection;
@@ -30,7 +37,6 @@ import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +50,15 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
-    private SlidingImageAdapter imageAdapter; //
+    private SlidingImageAdapter imageAdapter;
+    private NavigationView navigationView;
+    private DrawerLayout drawer;
+    private View navHeader;
+    private ImageView imgNavHeaderBg, imgProfile;
+    private TextView txtName, txtSubName;
+    Toolbar toolbar;
+
+    //public static int navItemIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +71,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initCollapsingToolbar();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Log.v("Checking UserId:",""+sharedPref.getUserId());
+        Log.v("Checking UserId:", "" + sharedPref.getUserId());
+
+        //Code to deal with the NavigationDrawer
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nvView);
 
 
+
+        navHeader = navigationView.getHeaderView(0);
+        txtName = (TextView) navHeader.findViewById(R.id.name);
+        txtSubName = (TextView) navHeader.findViewById(R.id.subname);
+        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
+        imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
+
+        loadNavHeader();
+        setUpNavigationView();
+        /*if (savedInstanceState == null) {
+            navItemIndex = 0;
+            loadHomeFragment();
+        }*/
+        //Ends here
 
         //Code to deal with the ViewPager.
         viewPager = (ViewPager)findViewById(R.id.main_view_pager);
@@ -98,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         return  true;
                     case R.id.action_notifications:
-                       // startActivity(new Intent(MainActivity.this,MapActivity.class));
+                      startActivity(new Intent(MainActivity.this,NotificationActivity.class));
                         return true;
                 }
                 return false;
@@ -171,9 +203,87 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    private void loadNavHeader() {
+        txtName.setText("Nimbus 2k17");
+        txtSubName.setText("NIT Hamirpur");
+        imgNavHeaderBg.setImageResource(R.drawable.cover);
+        imgProfile.setImageResource(R.drawable.nimbuslogo);
+
+    }
+
+    private void setUpNavigationView() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_aboutapp:
+                        //navItemIndex = 0;
+                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_feedback:
+                        //navItemIndex = 1;
+                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_settings:
+                        //navItemIndex = 2;
+                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_team:
+                        //navItemIndex = 3;
+                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_contactus:
+                        //navItemIndex = 4;
+                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_reportbug:
+                        //navItemIndex = 5;
+                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        drawer.closeDrawers();
+                        return true;
+                    default:
+                        //navItemIndex = 0;
+                }
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if (menuItem.isChecked()) {
+                    menuItem.setChecked(false);
+                } else {
+                    menuItem.setChecked(true);
+                }
+                menuItem.setChecked(true);
+
+                //loadHomeFragment();
+
+                return true;
+            }
+        });
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        drawer.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        actionBarDrawerToggle.syncState();
+    }
+
 
     private void getPagerData(){
         Call<MainPagerResponse> response= Util.getRetrofitService().getMainResponse();

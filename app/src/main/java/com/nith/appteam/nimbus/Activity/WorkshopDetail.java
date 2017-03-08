@@ -259,30 +259,26 @@ public class WorkshopDetail extends AppCompatActivity {
 
     public void registerRetrofit(){
         ApiInterface apiservice= Util.getRetrofitService();
-
+          Log.d("id",student_id);
         Call<EventRegisterResponse> call=apiservice.getEventRegisterResponse(id,student_id);
 
         call.enqueue(new Callback<EventRegisterResponse>() {
             @Override
             public void onResponse(Call<EventRegisterResponse> call, Response<EventRegisterResponse> response) {
-                EventRegisterResponse model=response.body();
-                int status=response.code();
-                //Log.d("reponse : ",""+response.isSuccess()+" model : "+model);
-                if(model!=null && response.isSuccess()){
-                    successStatus=model.getSuccessStatus();
-                    if(successStatus==true){
-                        msg=model.getMsg();
-                        registerButtton.setVisibility(View.GONE);
-                        reg_msg.setVisibility(View.VISIBLE);
-                        reg_msg.setText(msg);
+                EventRegisterResponse model = response.body();
+                if (model != null && response.isSuccess()) {
+                    successStatus = model.getSuccessStatus();
 
-                    }else{
-                        Toast.makeText(WorkshopDetail.this,"Success Status is not true!!",Toast.LENGTH_SHORT).show();
-                    }
+                    msg = model.getMsg();
+                    registerButtton.setVisibility(View.GONE);
+                    reg_msg.setVisibility(View.VISIBLE);
+                    reg_msg.setText(msg);
 
-                }else{
-                    Toast.makeText(WorkshopDetail.this,"response model is null",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(WorkshopDetail.this, "Success Status is not true!!", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
 
             @Override

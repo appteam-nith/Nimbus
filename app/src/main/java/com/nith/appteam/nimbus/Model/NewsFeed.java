@@ -19,7 +19,7 @@ public class NewsFeed implements Parcelable {
     @SerializedName("description")
     private String description;
 
-    @SerializedName("uId")
+    @SerializedName("user_id")
     private String userid;
 
     @SerializedName("uName")
