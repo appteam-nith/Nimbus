@@ -72,11 +72,11 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         setTheme(R.style.EventAct);
         setContentView(R.layout.activity_teamevent);
 
-        CardView card=(CardView)findViewById(R.id.card_desc);
-        TextView eventlabel=(TextView)findViewById(R.id.eventslabel);
-        TextView projectslabel=(TextView)findViewById(R.id.eventslabel);
 
 
+//        card.setVisibility(View.GONE);
+//        eventlabel.setVisibility(View.GONE);
+//        projectslabel.setVisibility(View.GONE);
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
         Intent i = getIntent();
@@ -85,12 +85,8 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
                 id = i.getStringExtra(TeamFragment.TEAM_ID);
                 if(new Connection(this).isInternet()){
                     getTeamData(id);
-
-                    if(projectArrayList.size()!=0)
-                        projectslabel.setVisibility(View.VISIBLE);
-                    card.setVisibility(View.VISIBLE);
-                    eventlabel.setVisibility(View.VISIBLE);
                 }
+
             }
         }
         mAppBarLayout= (AppBarLayout) findViewById(R.id.main_appbar);
@@ -214,8 +210,18 @@ private void getTeamData(String  id){
                 teamDescription.setText(t.getDesc());
                 Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(bannerImage);
                 Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(logoImage);
+                CardView card=(CardView)findViewById(R.id.card_desc);
+                TextView eventlabel=(TextView)findViewById(R.id.eventslabel);
+                TextView projectslabel=(TextView)findViewById(R.id.eventslabel);
 
+
+                if(projectArrayList.size()!=0)
+                    projectslabel.setVisibility(View.VISIBLE);
+                card.setVisibility(View.VISIBLE);
+                eventlabel.setVisibility(View.VISIBLE);
             }
+
+
             progressBar.setVisibility(View.INVISIBLE);
         }
 
