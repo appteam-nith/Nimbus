@@ -56,7 +56,8 @@ public class SlidingImageAdapter extends PagerAdapter {
         if(position==0 || position==1)
         imageView.setImageResource(IMAGES[position]);
         else {
-            Glide.with(context).load(urlList.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.slide_4).into(imageView);
+            Log.d("k",urlList.get(position-IMAGES.length));
+            Glide.with(context).load(urlList.get(position-IMAGES.length)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(imageView);
         }
         view.addView(imageLayout, 0);
         return imageLayout;
