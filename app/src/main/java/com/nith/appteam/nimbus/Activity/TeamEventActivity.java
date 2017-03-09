@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.github.florent37.materialleanback.MaterialLeanBack;
 import com.nith.appteam.nimbus.Adapter.EventAdapter;
+import com.nith.appteam.nimbus.Adapter.ProjectAdapter;
 import com.nith.appteam.nimbus.EventViewHolder;
 import com.nith.appteam.nimbus.Fragment.TeamFragment;
 import com.nith.appteam.nimbus.Model.TeamEventList;
@@ -53,11 +55,14 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
     private ImageView bannerImage,logoImage;
     private RecyclerView eventList;
     private EventAdapter adapter;
+    private RecyclerView projectList;
+    private ProjectAdapter projectAdapter;
     private ArrayList<TeamEventList.Event> eventArrayList=new ArrayList<>();
+    private ArrayList<TeamEventList.Projects> projectArrayList=new ArrayList<>();
     public static final String ACTIVITY="activity", ID="id", WORKSHOP_NAME="wname", EVENT_NAME="ename";
     public static final String WORKSHOP="workshop", EVENT="event";
 
-
+    private ProgressBar progressBar;
     private String id; // Team id for the Extracting team detail,event and projects
 
     @Override
@@ -66,6 +71,9 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         setTheme(R.style.EventAct);
         setContentView(R.layout.activity_teamevent);
 
+
+        progressBar=(ProgressBar)findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
         Intent i = getIntent();
         if (i != null) {
             if (i.hasExtra(TeamFragment.TEAM_ID)) {
@@ -75,7 +83,6 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
                 }
             }
         }
-
         mAppBarLayout= (AppBarLayout) findViewById(R.id.main_appbar);
         mToolbar= (Toolbar) findViewById(R.id.main_toolbar);
         mTitle= (TextView) findViewById(R.id.main_textview_title);
@@ -84,6 +91,7 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         headerTitle= (TextView) findViewById(R.id.header_title_team);
         bannerImage= (ImageView) findViewById(R.id.main_imageview_placeholder);
         logoImage= (ImageView) findViewById(R.id.teamlogo);
+
         eventList= (RecyclerView) findViewById(R.id.eventList);
         eventList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
         adapter=new EventAdapter(this);
@@ -99,7 +107,21 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
             }
         }));
 
+    projectList=(RecyclerView)findViewById(R.id.projectList);
+projectList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+        projectAdapter=new ProjectAdapter(this);
+        projectList.setAdapter(projectAdapter);
 
+        projectList.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent i=new Intent(TeamEventActivity.this,WorkshopDetail.class);
+//                i.putExtra(ACTIVITY,EVENT);
+//                i.putExtra(EVENT_NAME,eventArrayList.get(position).getName());
+//                i.putExtra(ID,eventArrayList.get(position).getId());
+//                startActivity(i);
+            }
+        }));
 
         mAppBarLayout.addOnOffsetChangedListener(this);
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
@@ -173,7 +195,13 @@ private void getTeamData(String  id){
             TeamEventList t=response.body();
             if(response.isSuccess()&&t!=null){
                 eventArrayList.addAll(t.getEvents());
+                projectArrayList.addAll(t.getProjects());
+                if(projectArrayList.size()!=0){
+                    TextView temp=(TextView)findViewById(R.id.projectlabel);
+                    temp.setVisibility(View.VISIBLE);
+                }
                 adapter.refresh(eventArrayList);
+                projectAdapter.refresh(projectArrayList);
                 mTitle.setText(t.getName());
                 headerTitle.setText(t.getName());
                 teamDescription.setText(t.getDesc());
@@ -181,6 +209,7 @@ private void getTeamData(String  id){
                 Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(logoImage);
 
             }
+            progressBar.setVisibility(View.INVISIBLE);
         }
 
         @Override
