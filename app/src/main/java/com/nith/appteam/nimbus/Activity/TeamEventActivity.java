@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -71,6 +72,10 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         setTheme(R.style.EventAct);
         setContentView(R.layout.activity_teamevent);
 
+        CardView card=(CardView)findViewById(R.id.card_desc);
+        TextView eventlabel=(TextView)findViewById(R.id.eventslabel);
+        TextView projectslabel=(TextView)findViewById(R.id.eventslabel);
+
 
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
@@ -80,6 +85,11 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
                 id = i.getStringExtra(TeamFragment.TEAM_ID);
                 if(new Connection(this).isInternet()){
                     getTeamData(id);
+
+                    if(projectArrayList.size()!=0)
+                        projectslabel.setVisibility(View.VISIBLE);
+                    card.setVisibility(View.VISIBLE);
+                    eventlabel.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -196,10 +206,7 @@ private void getTeamData(String  id){
             if(response.isSuccess()&&t!=null){
                 eventArrayList.addAll(t.getEvents());
                 projectArrayList.addAll(t.getProjects());
-                if(projectArrayList.size()!=0){
-                    TextView temp=(TextView)findViewById(R.id.projectlabel);
-                    temp.setVisibility(View.VISIBLE);
-                }
+
                 adapter.refresh(eventArrayList);
                 projectAdapter.refresh(projectArrayList);
                 mTitle.setText(t.getName());
