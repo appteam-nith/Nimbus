@@ -123,6 +123,7 @@ public class FbLoginFragment extends Fragment {
             @Override
             public void onCancel() {
                 sharedPref.setSkipStatus(true);
+                sharedPref.setLoginStatus(false);
                 getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
                 getActivity().finish();
             }
@@ -147,7 +148,7 @@ public class FbLoginFragment extends Fragment {
                 {
                     Log.v("ID", userSentResponse.getUserId());
                     sharedPref.setLoginStatus(true);
-                    sharedPref.setSkipStatus(true);// as user has login succesfully and we make sure  that screen does not come again
+                    sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
                     sharedPref.setUserId(userSentResponse.getUserId());
 
                     pbLogin.setVisibility(View.GONE);

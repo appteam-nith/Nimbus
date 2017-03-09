@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPref = new SharedPref(this);
-        if (!sharedPref.getSkipStatus()) {
+        if (!sharedPref.getLoginStatus() && !sharedPref.getSkipStatus()) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
         }
@@ -80,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nvView);
 
-
-
         navHeader = navigationView.getHeaderView(0);
         txtName = (TextView) navHeader.findViewById(R.id.name);
         txtSubName = (TextView) navHeader.findViewById(R.id.subname);
@@ -90,10 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         loadNavHeader();
         setUpNavigationView();
-        /*if (savedInstanceState == null) {
-            navItemIndex = 0;
-            loadHomeFragment();
-        }*/
         //Ends here
 
         //Code to deal with the ViewPager.
@@ -124,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.action_leaderboard:
                         startActivity(new Intent(MainActivity.this,LeaderBoardActivity.class));
-						//For testing
-						//startActivity(new Intent(MainActivity.this,SponsorActivity.class));
                         return true;
                     case R.id.action_profile:
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
@@ -204,7 +197,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        if(sharedPref.getSkipStatus())
+            getMenuInflater().inflate(R.menu.main_skipmenu,menu);
+        else
+            getMenuInflater().inflate(R.menu.main_rightmenu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -213,12 +209,27 @@ public class MainActivity extends AppCompatActivity {
         txtSubName.setText("NIT Hamirpur");
         imgNavHeaderBg.setImageResource(R.drawable.cover);
         imgProfile.setImageResource(R.drawable.nimbuslogo);
-
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            sharedPref.setUserId("");
+            sharedPref.setLoginStatus(false);
+            LoginManager.getInstance().logOut();
+            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void setUpNavigationView() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
