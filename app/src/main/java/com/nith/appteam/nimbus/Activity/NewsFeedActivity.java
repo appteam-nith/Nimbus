@@ -36,6 +36,8 @@ import retrofit2.Response;
 public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final String FEED_LIST ="list" ;
+    private TextView tv;
+    private TextView des;
     private RecyclerView recyclerView;
     private NewsFeedAdapter adapter;
     private ProgressBar progressBar;
@@ -57,7 +59,8 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         progressBar= (ProgressBar) findViewById(R.id.progress);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-
+        tv = (TextView)findViewById(R.id.user_name);
+        des = (TextView) findViewById(R.id.user_msg);
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -150,6 +153,8 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                             list.add(null);
 
                             adapter.refresh(list);
+
+
                         }
 
                         Log.d("rr","check");

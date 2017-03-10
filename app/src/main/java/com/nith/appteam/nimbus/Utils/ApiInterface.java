@@ -70,6 +70,7 @@ public interface ApiInterface {
     @POST("newsfeed/post/{student_id}")
     Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("desc") String description, @Path("student_id") String userId, @Field("name") String userName,@Field("photo") String imageUrl);
 
+
     @GET("newsfeed/getall/{id}")
     Call<NewsFeedResponse> getAllNews(@Path("id") String userId);
 

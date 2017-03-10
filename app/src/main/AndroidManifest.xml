@@ -142,6 +142,9 @@
         </activity>
 
         <activity android:name=".Notification.NotificationActivity"></activity>
+        <activity android:name=".Notification.Notification2"
+            android:parentActivityName=".Notification.NotificationActivity"/>
+
 
 
         <activity
