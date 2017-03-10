@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sharedPref.setSkipStatus(true);
+                sharedPref.setLoginStatus(false);
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 finish();
             }

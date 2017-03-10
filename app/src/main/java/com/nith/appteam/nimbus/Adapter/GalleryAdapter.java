@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nith.appteam.nimbus.Activity.GalleryActivity;
@@ -46,7 +47,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.viewHold
     }
 
     @Override
-    public void onBindViewHolder(viewHolder holder, final int position) {
+    public void onBindViewHolder(final viewHolder holder, final int position) {
         final Gallery g=list.get(position);
         if(g.getTitle()!=null&&!g.getTitle().isEmpty()){
             holder.galleryView.setTextNormalView(g.getTitle());
@@ -65,6 +66,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.viewHold
                 Intent i=new Intent(context,GalleryDetailActivity.class);
                 i.putExtra(ID,g.getId());
                 context.startActivity(i);
+
             }
         });
     }
@@ -75,7 +77,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.viewHold
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder{
-       private GalleryView galleryView;
+        private GalleryView galleryView;
+        private ImageView expand;
+
         public viewHolder(View itemView) {
             super(itemView);
             galleryView= (GalleryView) itemView.findViewById(R.id.galleryView);

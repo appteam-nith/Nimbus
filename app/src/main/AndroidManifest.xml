@@ -143,6 +143,12 @@
 
         <activity android:name=".Notification.NotificationActivity"></activity>
 
+
+        <activity
+            android:name=".Activity.ContributorsActivity"
+            android:parentActivityName=".Activity.MainActivity">
+        </activity>
+
     </application>
 
 </manifest>
