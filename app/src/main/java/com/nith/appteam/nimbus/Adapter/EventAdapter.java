@@ -24,12 +24,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.viewHolder>
 {
     private Context context;
     private ArrayList<TeamEventList.Event> list=new ArrayList<>();
-
     public EventAdapter(Context context) {
         this.context = context;
     }
-
-
     public  void refresh(ArrayList<TeamEventList.Event> list){
         this.list=list;
         notifyDataSetChanged();
@@ -43,7 +40,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.viewHolder>
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
-
         TeamEventList.Event e=list.get(position);
         holder.title.setText(e.getName());
         Glide.with(context).load(e.getPhoto()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(holder.imageView);
