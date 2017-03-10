@@ -1,6 +1,8 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -9,9 +11,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
-
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPref = new SharedPref(this);
-        if (!sharedPref.getSkipStatus()) {
+        if (!sharedPref.getLoginStatus() && !sharedPref.getSkipStatus()) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
         }
@@ -79,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nvView);
 
-
-
         navHeader = navigationView.getHeaderView(0);
         txtName = (TextView) navHeader.findViewById(R.id.name);
         txtSubName = (TextView) navHeader.findViewById(R.id.subname);
@@ -89,10 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         loadNavHeader();
         setUpNavigationView();
-        /*if (savedInstanceState == null) {
-            navItemIndex = 0;
-            loadHomeFragment();
-        }*/
         //Ends here
 
         //Code to deal with the ViewPager.
@@ -123,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.action_leaderboard:
                         startActivity(new Intent(MainActivity.this,LeaderBoardActivity.class));
-						//For testing
-						//startActivity(new Intent(MainActivity.this,SponsorActivity.class));
                         return true;
                     case R.id.action_profile:
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
@@ -203,7 +197,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        if(sharedPref.getSkipStatus())
+            getMenuInflater().inflate(R.menu.main_skipmenu,menu);
+        else
+            getMenuInflater().inflate(R.menu.main_rightmenu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -212,24 +209,37 @@ public class MainActivity extends AppCompatActivity {
         txtSubName.setText("NIT Hamirpur");
         imgNavHeaderBg.setImageResource(R.drawable.cover);
         imgProfile.setImageResource(R.drawable.nimbuslogo);
-
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            sharedPref.setUserId("");
+            sharedPref.setLoginStatus(false);
+            LoginManager.getInstance().logOut();
+            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void setUpNavigationView() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_aboutapp:
-                        //navItemIndex = 0;
-                        //startActivity(new Intent(MainActivity.this, XYZ.class));
-                        drawer.closeDrawers();
-                        return true;
-                    case R.id.nav_feedback:
-                        //navItemIndex = 1;
-                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                        alertDialog.setTitle("About App");
+                        alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k17', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
+                        alertDialog.setIcon(R.drawable.nimbuslogo);
+                        alertDialog.show();
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_settings:
@@ -238,18 +248,23 @@ public class MainActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_team:
-                        //navItemIndex = 3;
-                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        startActivity(new Intent(MainActivity.this, ContributorsActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_contactus:
-                        //navItemIndex = 4;
-                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(MainActivity.this);
+                        alertDialog2.setTitle("Contact : App Team-NITH");
+                        alertDialog2.setMessage("\nReach us at : appteam.nith@gmail.com\n\n Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n\n GitHub Organisation : appteam-nith");
+                        alertDialog2.setIcon(R.drawable.appteam);
+                        alertDialog2.show();
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_reportbug:
-                        //navItemIndex = 5;
-                        //startActivity(new Intent(MainActivity.this, XYZ.class));
+                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                        String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app FileCrypt App.\n.....\n\n-Your name");
+                        Uri uri = Uri.parse(uriText);
+                        intent.setData(uri);
+                        startActivity(Intent.createChooser(intent, "Send Email"));
                         drawer.closeDrawers();
                         return true;
                     default:
