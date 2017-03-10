@@ -129,6 +129,11 @@
             android:name=".Activity.QuizActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".Activity.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme"></activity>
+
         <activity android:name=".Activity.GalleryDetailActivity" />
         <activity android:name=".Activity.GalleryActivity" >
             <meta-data
@@ -137,6 +142,7 @@
         </activity>
 
         <activity android:name=".Notification.NotificationActivity"></activity>
+
 
         <activity
             android:name=".Activity.ContributorsActivity"
