@@ -6,9 +6,6 @@
             android:id="@+id/nav_aboutapp"
             android:title="@string/nav_aboutapp" />
         <item
-            android:id="@+id/nav_feedback"
-            android:title="@string/nav_feedback" />
-        <item
             android:id="@+id/nav_settings"
             android:title="@string/nav_settings" />
 

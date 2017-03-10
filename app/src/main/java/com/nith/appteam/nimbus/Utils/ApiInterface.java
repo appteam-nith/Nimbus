@@ -4,6 +4,7 @@ import retrofit2.http.POST;
 import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
+import com.nith.appteam.nimbus.Model.GalleryDetailResponse;
 import com.nith.appteam.nimbus.Model.GalleryResponse;
 import com.nith.appteam.nimbus.Model.LeaderBoardModel;
 import com.nith.appteam.nimbus.Model.Likecount;
@@ -25,12 +26,7 @@ import com.nith.appteam.nimbus.Model.WorkshopListResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-import retrofit2.http.Path;
-
 import retrofit2.http.Query;
 
 /**
@@ -72,17 +68,18 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("newsfeed/post/{student_id}")
-    Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("description") String description, @Path("student_id") String userId, @Field("uName") String userName,@Field("imageUrl") String imageUrl);
-
-    @GET("newsfeed/getall/{student_id}")
-    Call<NewsFeedResponse> getAllNews(@Query("from") String from, @Query("uId") String userId);
+    Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("desc") String description, @Path("student_id") String userId, @Field("name") String userName,@Field("photo") String imageUrl);
 
 
-    @POST("newsfeed/like")
-    Call<Likecount>likecount(@Field("id") String id, @Query("student_id") String userId);
+    @GET("newsfeed/getall/{id}")
+    Call<NewsFeedResponse> getAllNews(@Path("id") String userId);
+
+
+    @POST("newsfeed/like/{id}")
+    Call<Likecount>likecount(@Path("id") String id, @Query("student_id") String userId);
 
     @GET("quiz/leaderboard")
-    Call<LeaderBoardModel> getLeaderBoard(@Query("from") String from);
+    Call<LeaderBoardModel> getLeaderBoard();
 
     @GET("profile/{id}")
     Call<ProfileDataModel> profileBasicInfo(@Path("id") String id);
@@ -93,9 +90,12 @@ public interface ApiInterface {
     @GET("profile/newsfeed")
     Call<NewsFeedResponse> getUserNews(@Query("from") String from, @Query("uId") String userId);
 
-    @GET("main")
+    @GET("main/images/get")
     Call<MainPagerResponse> getMainResponse();
 
     @GET("gallery/{id}")
-    Call<GalleryResponse> getGalleryResponse(@Path("id") int id);
+    Call<GalleryDetailResponse> getGalleryResponse(@Path("id") String id);
+
+    @GET("galleryAll")
+    Call<GalleryResponse> getGalleryAll();
 }

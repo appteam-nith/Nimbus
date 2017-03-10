@@ -16,13 +16,13 @@ public class NewsFeed implements Parcelable {
     private String title;
     @SerializedName("photo")
     private String photo;
-    @SerializedName("description")
+    @SerializedName("desc")
     private String description;
 
-    @SerializedName("uId")
+    @SerializedName("user_id")
     private String userid;
 
-    @SerializedName("uName")
+    @SerializedName("name")
     private String username;
 
     @SerializedName("status")
@@ -31,7 +31,7 @@ public class NewsFeed implements Parcelable {
     @SerializedName("likes")
     private int likes;
 
-    @SerializedName("date")
+    @SerializedName("created_on")
     private String date;
 
 

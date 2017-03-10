@@ -6,7 +6,13 @@
     android:layout_height="match_parent"
     tools:ignore="RtlHardcoded"
     >
-
+<ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:elevation="10dp"
+    android:id="@+id/progressbar"
+    />
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main.appbar"
         android:layout_width="match_parent"
@@ -50,12 +56,13 @@
                     >
 
                     <TextView
+                        android:id="@+id/header_title_team"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="bottom|center"
                         android:text="App Team"
-                        android:textColor="@android:color/white"
+                        android:textColor="@android:color/black"
                         android:textSize="30sp"
                         />
 
@@ -70,30 +77,67 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        app:behavior_overlapTop="30dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
-
-        <LinearLayout
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <com.github.florent37.materialleanback.MaterialLeanBack
-                android:id="@+id/materialLeanBack"
+            android:layout_margin="10dp"
+            android:id="@+id/card_desc"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:mlb_animateCards="true"
-                app:mlb_lineSpacing="30dp"
-                android:layout_marginTop="5dp"
-                app:mlb_overlapCards="true"
-                app:mlb_paddingBottom="30dp"
-                app:mlb_paddingLeft="30dp"
-                app:mlb_paddingRight="30dp"
-                app:mlb_paddingTop="40dp"
-                app:mlb_titleColor="@android:color/white" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:padding="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:id="@+id/teamDescription"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+<TextView
+    android:id="@+id/eventslabel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="EVENTS"
+    android:visibility="gone"
+    android:textSize="25dp"
+    android:textStyle="bold"
+    android:layout_marginLeft="10dp"/>
+        <android.support.v7.widget.RecyclerView
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/eventList"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PROJECTS"
+            android:id="@+id/projectlabel"
+            android:textSize="25dp"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/projectList"/>
+    </LinearLayout>
+</RelativeLayout>
+
 
     </android.support.v4.widget.NestedScrollView>
 

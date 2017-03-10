@@ -8,10 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
+import com.nith.appteam.nimbus.Utils.Connection;
 import com.nith.appteam.nimbus.Utils.Util;
 import com.nith.appteam.nimbus.Model.WorkshopItem;
 import com.nith.appteam.nimbus.Model.WorkshopListResponse;
@@ -30,31 +32,30 @@ public class Workshops extends AppCompatActivity {
     Toolbar workshopstb;
     ArrayList<WorkshopItem> workshop_item;
     private int i=0;
+    private TextView errorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workshops);
-       // String BASE_URL = "https://github.com/";
          workshopsRv = (RecyclerView) findViewById(R.id.workshops_view);
-
         workshopsAdapter = new WorkshopsAdapter(Workshops.this);
         workshopsRv.setAdapter(workshopsAdapter);
-
-
-        //workshopsRv.setAdapter(WorkshopsAdapter);
-
-        //retrofit................
         bar=(ProgressBar)findViewById(R.id.progress);
-
-        bar.setVisibility(View.VISIBLE);
-        retrofit();
-
+        errorView= (TextView) findViewById(R.id.errorView);
+        if(new Connection(this).isInternet()){
+            retrofit();
+        }
+        else {
+            errorView.setVisibility(View.VISIBLE);
+            errorView.setText("Please Check Your Internet Connection");
+            bar.setVisibility(View.GONE);
+        }
 
         workshopstb = (Toolbar) findViewById(R.id.workshops_toolbar);
         workshopstb.setTitle("Workshops");
-//        setSupportActionBar(workshopstb);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+     setSupportActionBar(workshopstb);
+     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
     }
@@ -70,11 +71,11 @@ public class Workshops extends AppCompatActivity {
                 bar.setVisibility(View.GONE);
 
                 WorkshopListResponse model=response.body();
-                int status=response.code();
+
 
                 if(model!=null && response.isSuccess()){
                     workshopsRv.setVisibility(View.VISIBLE);
-                    //Log.v("Connection " ,"response : "+response.body());
+
 
                     ArrayList<WorkshopItem> workshop_item=model.getWorkshops();
 
@@ -87,18 +88,18 @@ public class Workshops extends AppCompatActivity {
                     workshopsAdapter.refresh(workshop_item);
                     }
                     else{
-                        Toast.makeText(Workshops.this,"Unable to fetch data!!",Toast.LENGTH_SHORT).show();
+                        errorView.setText("Sorry No Workshop Available Right Now");
                     }
 
                 }else{
-                    Toast.makeText(Workshops.this,"Some error occurred!!",Toast.LENGTH_SHORT).show();
+                    errorView.setText("Error Occur");
                 }
             }
 
             @Override
             public void onFailure(Call<WorkshopListResponse> call, Throwable t) {
                 bar.setVisibility(View.GONE);
-                Toast.makeText(Workshops.this,"Some error occurred!!",Toast.LENGTH_SHORT).show();
+                errorView.setText("Error Occur");
             }
         });
     }

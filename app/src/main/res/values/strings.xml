@@ -23,12 +23,16 @@
 
     <string name="facebook_app_id">1834013936864907</string>
     <string name="fb_login_protocol_scheme">fb1834013936864907</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="AboutNimbus">NIMBUS is the annual technical festival of National Institute of Technology, Hamirpur, Himachal Pradesh, India. It is
+                                touted to be an amalgamation of ideas, expressions, innovations, prototypes, knowledge channels, taken to the most
+                                premier levels. Nimbus has become the biggest technical fest of Northern India</string>
 
     <!-- Navigation Drawer menu labels -->
     <string name="nav_aboutapp">About App</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_settings">Settings</string>
-    <string name="nav_team">The Team</string>
+    <string name="nav_team">Contributors</string>
     <string name="nav_contactus">Contact Us</string>
     <string name="nav_reportbug">Report Bug</string>
 

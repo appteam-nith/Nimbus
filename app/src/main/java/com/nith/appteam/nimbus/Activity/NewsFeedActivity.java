@@ -131,7 +131,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
             recyclerView.setVisibility(View.GONE);
         }
 
-        Call<NewsFeedResponse> newsfeedResponse= Util.getRetrofitService().getAllNews(""+from,pref.getUserId());
+        Call<NewsFeedResponse> newsfeedResponse= Util.getRetrofitService().getAllNews(pref.getUserId());
         newsfeedResponse.enqueue(new Callback<NewsFeedResponse>() {
             @Override
             public void onResponse(Call<NewsFeedResponse> call, Response<NewsFeedResponse> response) {
