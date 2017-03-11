@@ -80,34 +80,36 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             l=position;
             final MyViewHolder h=(MyViewHolder) holder;
             final NewsFeed card = list_card.get(position);
-            if(card.getDescription().length()>30){
 
-                h.see_more.setVisibility(View.VISIBLE);
-                String original = card.getDescription().toString();
-                truncated = original.substring(0,29);
-                non_truncated = original.substring(30,original.length()-1);
-                h.user_msg.setText(truncated);
-                h.see_more.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        h.user_msg.append(" " + non_truncated);
-                        h.see_less.setVisibility(View.VISIBLE);
-                        h.see_more.setVisibility(View.GONE);
-                    }
-                });
-
-                h.see_less.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        h.user_msg.setText(truncated);
-                        h.see_less.setVisibility(View.GONE);
-                        h.see_more.setVisibility(View.VISIBLE);
-                    }
-                });
-
-            }
             if(card!=null){
+                if(card.getDescription()!=null)
+                if(card.getDescription().length()>30){
+
+                    h.see_more.setVisibility(View.VISIBLE);
+                    String original = card.getDescription().toString();
+                    truncated = original.substring(0,29);
+                    non_truncated = original.substring(30,original.length()-1);
+                    h.user_msg.setText(truncated);
+                    h.see_more.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            h.user_msg.append(" " + non_truncated);
+                            h.see_less.setVisibility(View.VISIBLE);
+                            h.see_more.setVisibility(View.GONE);
+                        }
+                    });
+
+                    h.see_less.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            h.user_msg.setText(truncated);
+                            h.see_less.setVisibility(View.GONE);
+                            h.see_more.setVisibility(View.VISIBLE);
+                        }
+                    });
+
+                }
                 if(card.getUsername()!=null&&!card.getUsername().isEmpty())
                     h.user_name.setText(card.getUsername());
                 if(card.getDescription()!=null&&!card.getDescription().isEmpty())

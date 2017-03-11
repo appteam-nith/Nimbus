@@ -1,6 +1,5 @@
 package com.nith.appteam.nimbus.Activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,8 +13,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
-import com.nith.appteam.nimbus.Adapter.MainRecyclerAdapter;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
@@ -34,7 +30,6 @@ import com.nith.appteam.nimbus.Notification.NotificationActivity;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
 import com.nith.appteam.nimbus.Utils.Connection;
-import com.nith.appteam.nimbus.Utils.RecyclerItemClickListener;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
 
@@ -49,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private SharedPref sharedPref;
-    private RecyclerView mRecyclerView;
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
     private SlidingImageAdapter imageAdapter;
@@ -106,9 +100,7 @@ public class MainActivity extends AppCompatActivity {
         //Ends Here
 
         //Handling the Recycler View
-        mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        mRecyclerView.setAdapter(new MainRecyclerAdapter());
+
         //Ends Here
 
         bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -131,40 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                switch (position){
-                    case 0:
-                        startActivity(new Intent(MainActivity.this,QuizActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(MainActivity.this,SponsorActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(MainActivity.this,CoreTeamActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(MainActivity.this,TeamActivity.class));
-                        break;
-                    case 4:
-                        startActivity(new Intent(MainActivity.this,MapActivity.class));
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        startActivity(new Intent(MainActivity.this,Workshops.class));
-                        break;
-                    case 7:
-                        startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
-                        break;
-                    case 8:
-                        startActivity(new Intent(MainActivity.this,GalleryActivity.class));
-                        break;
 
-                }
-            }
-        }));
     }
 
     private void initCollapsingToolbar() {
