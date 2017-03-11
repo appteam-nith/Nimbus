@@ -74,7 +74,6 @@
                     android:textColor="#ffffff"
                     android:textAllCaps="false"
                     android:layout_margin="10dp"
-                    android:background="@color/color_success"
                     android:padding="5dp" />
                 <TextView
                     android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+
 import com.cloudinary.Cloudinary;
 import com.cloudinary.android.Utils;
 import com.cloudinary.utils.ObjectUtils;
@@ -70,13 +71,13 @@ public UploadService(){
                     imageUrl = intent.getStringExtra(URL_IMAGE);
                     uri = Uri.parse(imageUrl);
                 }
-                Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(MyApplication.getAppContext()));
+               Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(MyApplication.getAppContext()));
                 try {
                     Intent i=new Intent(UPLOADING_START);
                     sendBroadcast(i);
-                    Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName()+""+ Util.random()));
+                   Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName()+""+ Util.random()));
                     upload(title, description, (String) map.get("url"));
-                    Log.d("image",(String) map.get("url"));
+                   Log.d("image",(String) map.get("url"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     Intent i=new Intent();

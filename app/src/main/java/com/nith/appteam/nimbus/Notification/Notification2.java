@@ -23,14 +23,12 @@ import com.nith.appteam.nimbus.Notification.DbHelper;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
-import net.steamcrafted.loadtoast.LoadToast;
 
 /**
  * Created by jatin on 7/3/17.
  */
 
 public class Notification2 extends AppCompatActivity {
-    LoadToast loadToast;
     TextView title,body,launch_url;
     ImageView big_picture;
     CardView sec_card,thrd_card;
@@ -45,10 +43,7 @@ public class Notification2 extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Notifications");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        loadToast= new LoadToast(this);
 
-        loadToast.setText("loading...");
-        loadToast.show();
 
 
         DbHelper dbHelper = new DbHelper(this);
@@ -63,7 +58,6 @@ public class Notification2 extends AppCompatActivity {
 
 
         Cursor cursor = dbHelper.homeposteinnerdata(id);
-        loadToast.success();
         cursor.moveToFirst();
         String ftitle =cursor.getString(cursor.getColumnIndex("title"));
         String fbody =cursor.getString(cursor.getColumnIndex("body"));
