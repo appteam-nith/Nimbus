@@ -147,6 +147,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/newsFeed_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -208,6 +209,52 @@
                                 android:textAppearance="@android:style/TextAppearance.Large"
                                 android:textAlignment="center"
                                 android:text="About Nimbus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/teamLayout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/boss"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="Team"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/person_icon"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="FeedBack"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>

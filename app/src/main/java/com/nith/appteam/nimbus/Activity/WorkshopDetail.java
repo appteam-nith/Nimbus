@@ -8,6 +8,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -89,6 +90,13 @@ public class WorkshopDetail extends AppCompatActivity {
         registerButtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!sharedPref.getNitianStatus()&&sharedPref.getUserRollno().isEmpty()){
+                    if(sharedPref.getUserRollno().isEmpty()){
+                        AlertDialog d=Util.promptRollNo(WorkshopDetail.this);
+                        d.show();
+                    }
+                }
+                else
                 registerRetrofit();
             }
         });
@@ -220,6 +228,7 @@ public class WorkshopDetail extends AppCompatActivity {
                         name=model.getName();
                         imgUrl=model.getImgUrl();
                         description=model.getDesc();
+                        Log.d("h",description);
                         registerStatus = model.getRegStatus();
                         if(!(imgUrl==null)){
                             Glide.with(WorkshopDetail.this).load(imgUrl).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.w1).into(new ImageViewTarget<Bitmap>(img_view) {
@@ -231,7 +240,7 @@ public class WorkshopDetail extends AppCompatActivity {
                                 }
                             });
                         }
-                        detail_text.setText(description);
+                        detail_text.setText(description.replaceAll("(\\\\n\\\\n)|(\\\\n)","\n"));
                         if(registerStatus==true){
                             registerButtton.setVisibility(View.GONE);
                             reg_msg.setVisibility(View.VISIBLE);

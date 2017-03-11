@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,8 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
     private static final String TITLE="title";
     private static  final String DESCRIPTION="description";
     private static final String  URL_IMAGE="imageUrl";
+    private static final  String WORK="work";
+    private SharedPref sharedPref;
 
 
     @Override
@@ -45,7 +48,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_upload_news_feed);
-
+        sharedPref=new SharedPref(this);
         editorView = (EditorView) findViewById(R.id.editor);
         camera_image = (ImageView) findViewById(R.id.select_image);
         upload_image = (ImageView) findViewById(R.id.upload_news);
@@ -64,6 +67,16 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                 StringBuilder imageUrl =new StringBuilder();
                 if (add.title != null && add.detail != null)
                     if (!add.title.isEmpty() && !add.detail.isEmpty()) {
+                        if(!sharedPref.getNitianStatus()&&sharedPref.getUserRollno().isEmpty()){
+                            Log.d("b","b");
+                            Log.d("b",sharedPref.getUserRollno());
+                            if(sharedPref.getUserRollno().isEmpty()){
+                              AlertDialog t= Util.promptRollNo(UploadNewsFeedActivity.this);
+                                t.show();
+
+                            }
+                        }
+                        else {
                        for(int i=0;i<add.imageUrl.size();i++)
                             imageUrl.append(add.imageUrl.get(i)+" ");
                         Log.d("image",imageUrl.toString());
@@ -71,11 +84,12 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                         i.putExtra(UPLOAD_SERVICE,true);
                         i.putExtra(TITLE,add.title);
                         i.putExtra(DESCRIPTION,add.detail);
+
                         i.putExtra(URL_IMAGE,imageUrl.toString());
                         startService(i);
 
                         Log.d(TAG, add.title + " " + add.detail+" "+imageUrl);
-                        finish();
+                        finish();}
                     } else {
                         Toast.makeText(UploadNewsFeedActivity.this, "Some Fields are still empty", Toast.LENGTH_SHORT).show();
                     }

@@ -12,6 +12,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.android.Utils;
 import com.cloudinary.utils.ObjectUtils;
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
+import com.nith.appteam.nimbus.Model.RegisterResponse;
 import com.nith.appteam.nimbus.Utils.MyApplication;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
@@ -44,6 +45,9 @@ public class UploadService extends IntentService {
     private static final  String UPLOADING_FINISH="finish";
     private static final String UPLOADING_ERROR="error";
     private SharedPref sharedPref;
+    private static final String REGISTER_ROLL_NO="rollNoRegister";
+    private static  final String ROLL_NO="rollNo";
+    private static final  String WORK="work";
 
 
 public UploadService(){
@@ -60,7 +64,6 @@ public UploadService(){
         if (intent != null) {
             if (intent.hasExtra(UPLOAD_SERVICE)) {
                 String title = "", description = "", imageUrl = "";
-                Uri uri = null;
                 if (intent.hasExtra(TITLE)) {
                     title = intent.getStringExtra(TITLE);
                 }
@@ -69,23 +72,34 @@ public UploadService(){
                 }
                 if (intent.hasExtra(URL_IMAGE)) {
                     imageUrl = intent.getStringExtra(URL_IMAGE);
-                    uri = Uri.parse(imageUrl);
+                    Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(MyApplication.getAppContext()));
+                    try {
+                        Intent i = new Intent(UPLOADING_START);
+                        i.putExtra(WORK,"NewsFeed");
+                        sendBroadcast(i);
+                        Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName() + "" + Util.random()));
+                        upload(title, description, (String) map.get("url"));
+                        Log.d("image", (String) map.get("url"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Intent i = new Intent();
+                        i.setAction(UPLOADING_ERROR);
+                        i.putExtra(WORK, "NewsFeed");
+                        sendBroadcast(i);
+                    }
                 }
-               Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(MyApplication.getAppContext()));
-                try {
-                    Intent i=new Intent(UPLOADING_START);
+                else {
+                    Intent i = new Intent(UPLOADING_START);
+                    i.putExtra(WORK,"NewsFeed");
                     sendBroadcast(i);
-                   Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName()+""+ Util.random()));
-                    upload(title, description, (String) map.get("url"));
-                   Log.d("image",(String) map.get("url"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Intent i=new Intent();
-                    i.setAction(UPLOADING_ERROR);
-                    sendBroadcast(i);
+                    upload(title, description,"");
                 }
 
-
+            }
+            else if(intent.hasExtra(REGISTER_ROLL_NO)){
+                 if(intent.hasExtra(ROLL_NO)){
+                     registerRollNo(intent.getStringExtra(ROLL_NO),sharedPref.getUserId());
+                 }
             }
         }
     }
@@ -101,6 +115,7 @@ public UploadService(){
                 if (result != null && response.isSuccess()) {
                     if (result.getSuccess()) {
                         Intent i=new Intent(UPLOADING_FINISH);
+                        i.putExtra(WORK,"NewsFeed");
                         sendBroadcast(i);
                     } else {
 
@@ -108,9 +123,11 @@ public UploadService(){
                 } else {
                     if (status_code == 404) {
                         Intent i=new Intent(UPLOADING_ERROR);
+                        i.putExtra(WORK,"NewsFeed");
                         sendBroadcast(i);
                     } else if (status_code == 503) {
                         Intent i=new Intent(UPLOADING_ERROR);
+                        i.putExtra(WORK,"NewsFeed");
                         sendBroadcast(i);
                     }
 
@@ -121,6 +138,46 @@ public UploadService(){
             @Override
             public void onFailure(Call<UploadNewsFeedActivity.UploadResponse> call, Throwable t) {
                 Intent i=new Intent(UPLOADING_ERROR);
+                i.putExtra(WORK,"NewsFeed");
+                sendBroadcast(i);
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void  registerRollNo(String rollNo,String studentId){
+        Call<RegisterResponse> call=Util.getRetrofitService().updateRollNo(rollNo,studentId);
+        call.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                RegisterResponse result=response.body();
+                int status_code = response.code();
+                if (result != null && response.isSuccess()) {
+                    if (result.isSuccess()) {
+                        Intent i=new Intent(UPLOADING_FINISH);
+                        i.putExtra(WORK,"Register");
+                        sendBroadcast(i);
+                    } else {
+
+                    }
+                } else {
+                    if (status_code == 404) {
+                        Intent i=new Intent(UPLOADING_ERROR);
+                        i.putExtra(WORK,"Register");
+                        sendBroadcast(i);
+                    } else if (status_code == 503) {
+                        Intent i=new Intent(UPLOADING_ERROR);
+                        i.putExtra(WORK,"Register");
+                        sendBroadcast(i);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                Intent i=new Intent(UPLOADING_ERROR);
+                i.putExtra(WORK,"Register");
                 sendBroadcast(i);
                 t.printStackTrace();
             }
