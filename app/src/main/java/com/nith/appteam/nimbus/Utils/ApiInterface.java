@@ -16,6 +16,7 @@ import retrofit2.http.GET;
 
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
 import com.nith.appteam.nimbus.Model.ProfileEventModel;
+import com.nith.appteam.nimbus.Model.RegisterResponse;
 import com.nith.appteam.nimbus.Model.TeamEventList;
 
 import com.nith.appteam.nimbus.Model.QuizQuestionsModel;
@@ -98,4 +99,7 @@ public interface ApiInterface {
 
     @GET("galleryAll")
     Call<GalleryResponse> getGalleryAll();
+
+    @POST("update/rollno/{id}")
+    Call<RegisterResponse> updateRollNo(@Path("id") String id,@Query("roll_no") String rollNo);
 }

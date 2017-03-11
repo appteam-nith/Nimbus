@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtSubName;
     Toolbar toolbar;
+    private LinearLayout NewsFeedLayout,TeamLayout;
 
     //public static int navItemIndex = 0;
 
@@ -97,6 +99,23 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setClipToPadding(false);
         viewPager.setPadding(100,120,100,120);
         viewPager.setPageMargin(60);
+
+
+        NewsFeedLayout= (LinearLayout) findViewById(R.id.newsFeed_layout);
+        NewsFeedLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
+            }
+        });
+
+        TeamLayout= (LinearLayout) findViewById(R.id.teamLayout);
+        TeamLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,TeamActivity.class));
+            }
+        });
         //Ends Here
 
         //Handling the Recycler View
@@ -220,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_reportbug:
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
-                        String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app FileCrypt App.\n.....\n\n-Your name");
+                        String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
                         Uri uri = Uri.parse(uriText);
                         intent.setData(uri);
                         startActivity(Intent.createChooser(intent, "Send Email"));
