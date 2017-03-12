@@ -142,14 +142,25 @@
         </activity>
 
         <activity android:name=".Notification.NotificationActivity"></activity>
+
         <activity android:name=".Notification.Notification2"
             android:parentActivityName=".Notification.NotificationActivity"/>
-
-
 
         <activity
             android:name=".Activity.ContributorsActivity"
             android:parentActivityName=".Activity.MainActivity">
+        </activity>
+
+        <activity android:name=".Activity.QuizQuestionActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
+        </activity>
+
+        <activity android:name=".Activity.InformationActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
 
     </application>

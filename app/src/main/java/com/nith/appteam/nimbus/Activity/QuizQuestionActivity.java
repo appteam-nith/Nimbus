@@ -194,7 +194,6 @@ public class QuizQuestionActivity extends AppCompatActivity {
                     if (status == 503) {
                         Toast.makeText(QuizQuestionActivity.this, "Server Down", Toast.LENGTH_SHORT).show();
                     }
-
                 }
 
             }
