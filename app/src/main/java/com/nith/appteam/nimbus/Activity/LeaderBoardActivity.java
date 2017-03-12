@@ -90,17 +90,28 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         @SerializedName("name")
         private String name;
-
+        //@SerializedName("pic_url")
+        //private String picUrl;
         @SerializedName("roll_no")
         private String rollNo;
         @SerializedName("quiz")
         private Quiz sets;
 
-        public LeaderBoardUserModel(String name, String rollNo, Quiz sets) {
+        public LeaderBoardUserModel(String name,/*String picUrl,*/ String rollNo, Quiz sets) {
+            //this.picUrl = picUrl;
             this.name = name;
             this.rollNo = rollNo;
             this.sets = sets;
         }
+
+        /*public String getpicUrl() {
+            return picUrl;
+        }
+
+        public void setpicUrl(String picUrl) {
+            this.picUrl = picUrl;
+        }
+        */
 
         public String getName() {
             return name;
