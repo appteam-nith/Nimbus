@@ -30,31 +30,21 @@ public class QuizActivity extends AppCompatActivity {
 
         enter_quiz=(Button)findViewById(R.id.enter_quiz);
         instructions_button=(Button)findViewById(R.id.quiz_instructions_link);
-        leaderboard=(Button)findViewById(R.id.leaderboard_link);
 
         enter_quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sp.getInstructionsReadStatus()){
                     startActivity(new Intent(QuizActivity.this,QuizQuestionActivity.class));
-                }else{
-                    Toast.makeText(QuizActivity.this,"Read Quiz Instructions first",Toast.LENGTH_LONG).show();
-                }
             }
         });
 
         instructions_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(QuizActivity.this,InformationActivity.class));
+                startActivity(new Intent(QuizActivity.this,InformationActivity.class));
             }
         });
-        leaderboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //startActivity(new Intent(QuizActivity.this,LeaderBoardActivity.class));
-            }
-        });
+
     }
 
 }

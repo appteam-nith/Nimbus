@@ -82,6 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
+                            android:id="@+id/quiz_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -102,6 +103,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/gallery_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -127,6 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
+                            android:id="@+id/map_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -147,7 +150,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <LinearLayout
-                            android:id="@+id/newsFeed_layout"
+                            android:id="@+id/newsfeed_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -163,7 +166,7 @@
                             <TextView
                                 android:textAppearance="@android:style/TextAppearance.Large"
                                 android:textAlignment="center"
-                                android:text="Wall"
+                                android:text="NewsFeed"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -173,6 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
+                            android:id="@+id/coreteam_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -193,6 +197,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/aboutnimbus_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -218,7 +223,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
-                            android:id="@+id/teamLayout"
+                            android:id="@+id/teams_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -239,6 +244,7 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/feedback_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
