@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtSubName;
     Toolbar toolbar;
-    private LinearLayout NewsFeedLayout,TeamLayout;
+    private LinearLayout quiz_layout, gallery_layout, 
+            map_layout,  newsfeed_layout, coreteam_layout , 
+            aboutnimbus_layout , teams_layout, feedback_layout;
 
     //public static int navItemIndex = 0;
 
@@ -69,27 +71,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initCollapsingToolbar();
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        init();
+
         Log.v("Checking UserId:", "" + sharedPref.getUserId());
-
-        //Code to deal with the NavigationDrawer
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nvView);
-
-        navHeader = navigationView.getHeaderView(0);
-        txtName = (TextView) navHeader.findViewById(R.id.name);
-        txtSubName = (TextView) navHeader.findViewById(R.id.subname);
-        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
-        imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 
         loadNavHeader();
         setUpNavigationView();
         //Ends here
 
         //Code to deal with the ViewPager.
-        viewPager = (ViewPager)findViewById(R.id.main_view_pager);
         imageAdapter=new SlidingImageAdapter(MainActivity.this);
+
         if(new Connection(this).isInternet()){
             getPagerData();
             profileBasicInfo(sharedPref.getUserId());
@@ -100,29 +92,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setPadding(100,120,100,120);
         viewPager.setPageMargin(60);
 
+        clickListenersMainMenu();
 
-        NewsFeedLayout= (LinearLayout) findViewById(R.id.newsFeed_layout);
-        NewsFeedLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
-            }
-        });
-
-        TeamLayout= (LinearLayout) findViewById(R.id.teamLayout);
-        TeamLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TeamActivity.class));
-            }
-        });
-        //Ends Here
-
-        //Handling the Recycler View
-
-        //Ends Here
-
-        bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -142,6 +113,93 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void init(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nvView);
+
+        navHeader = navigationView.getHeaderView(0);
+        txtName = (TextView) navHeader.findViewById(R.id.name);
+        txtSubName = (TextView) navHeader.findViewById(R.id.subname);
+        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
+        imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
+
+        viewPager = (ViewPager)findViewById(R.id.main_view_pager);
+
+        quiz_layout= (LinearLayout) findViewById(R.id.quiz_layout);
+        gallery_layout= (LinearLayout) findViewById(R.id.gallery_layout);
+        map_layout= (LinearLayout) findViewById(R.id.map_layout);
+        newsfeed_layout= (LinearLayout) findViewById(R.id.newsfeed_layout);
+        coreteam_layout= (LinearLayout) findViewById(R.id.coreteam_layout);
+        aboutnimbus_layout= (LinearLayout) findViewById(R.id.aboutnimbus_layout);
+        teams_layout= (LinearLayout) findViewById(R.id.teams_layout);
+        feedback_layout= (LinearLayout) findViewById(R.id.feedback_layout);
+
+        bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+    }
+
+    public void clickListenersMainMenu(){
+        quiz_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        gallery_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        map_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        newsfeed_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
+            }
+        });
+
+        coreteam_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,TeamActivity.class));
+            }
+        });
+
+        aboutnimbus_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        teams_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        feedback_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
