@@ -12,9 +12,10 @@ import android.widget.TextView;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
+import static com.nith.appteam.nimbus.R.id.tvSkip;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView tvSkip;
     private SharedPref sharedPref;
 
     @Override
@@ -26,17 +27,6 @@ public class LoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
-
-        tvSkip = (TextView)findViewById(R.id.tvSkip);
-
-        tvSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharedPref.setSkipStatus(true);
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                finish();
-            }
-        });
 
     }
 }
