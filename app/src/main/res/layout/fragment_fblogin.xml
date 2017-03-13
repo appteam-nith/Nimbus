@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/nimbuslogo"
-        android:id="@+id/ivAppLogo"
-        />
+        <ImageView
+            android:id="@+id/ivAppLogo"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="54dp"
+            android:src="@drawable/nimbuslogo" />
 
-    <com.facebook.login.widget.LoginButton
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ivAppLogo"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
-        android:textSize="15dp"
-        android:id="@+id/btnLogin"
-        android:layout_marginTop="50dp"/>
+        <ProgressBar
+            android:id="@+id/pbLogin"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="54dp" />
 
-    <ProgressBar
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/btnLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:visibility="gone"
-        android:id="@+id/pbLogin"/>
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/tvSkip"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/ic_skip"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:text="SKIP"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"/>
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="100dp" />
+
+    </RelativeLayout>

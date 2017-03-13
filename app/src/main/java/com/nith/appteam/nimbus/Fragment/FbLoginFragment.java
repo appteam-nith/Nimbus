@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -20,6 +21,7 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.gson.annotations.SerializedName;
+import com.nith.appteam.nimbus.Activity.LoginActivity;
 import com.nith.appteam.nimbus.Activity.MainActivity;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
@@ -41,6 +43,7 @@ import retrofit2.Response;
 public class FbLoginFragment extends Fragment {
 
     private LoginButton btnLogin;
+    private TextView tvSkip;
     private SharedPref sharedPref;
     private ArrayList<String> permissions;
     private CallbackManager callbackManager;
@@ -70,6 +73,16 @@ public class FbLoginFragment extends Fragment {
         btnLogin = (LoginButton)view.findViewById(R.id.btnLogin);
         pbLogin = (ProgressBar)view.findViewById(R.id.pbLogin);
         btnLogin.setFragment(this);
+
+        tvSkip = (TextView)view.findViewById(R.id.tvSkip);
+
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPref.setSkipStatus(true);
+                startActivity(new Intent(getContext(), MainActivity.class));
+            }
+        });
 
         permissions = new ArrayList<>();
         permissions.add("email");
