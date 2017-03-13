@@ -9,7 +9,7 @@
             android:layout_height="320dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="54dp"
-            android:src="@drawable/nimbuslogo" />
+            android:src="@drawable/logo_b_t" />
 
         <ProgressBar
             android:id="@+id/pbLogin"
@@ -46,6 +46,6 @@
                 android:textSize="16dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="100dp" />
+                android:layout_marginBottom="200dp" />
 
     </RelativeLayout>
