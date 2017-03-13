@@ -1,14 +1,18 @@
 package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
@@ -19,6 +23,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.nith.appteam.nimbus.Adapter.EventAdapter;
 import com.nith.appteam.nimbus.Adapter.ProjectAdapter;
 import com.nith.appteam.nimbus.Fragment.TeamFragment;
@@ -34,6 +40,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.R.attr.resource;
+
 public class TeamEventActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR = 0.9f;
@@ -45,7 +53,8 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
     private TextView mTitle,teamDescription,headerTitle;
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolbar;
-    private ImageView bannerImage,logoImage;
+    private ImageView bannerImage;
+    private ImageView logoView;
     private RecyclerView eventList;
     private EventAdapter adapter;
     private RecyclerView projectList;
@@ -88,7 +97,16 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         teamDescription= (TextView) findViewById(R.id.teamDescription);
         headerTitle= (TextView) findViewById(R.id.header_title_team);
         bannerImage= (ImageView) findViewById(R.id.main_imageview_placeholder);
-        logoImage= (ImageView) findViewById(R.id.teamlogo);
+       logoView= (ImageView) findViewById(R.id.teamlogo);
+        Glide.with(TeamEventActivity.this).load(R.drawable.nimbuslogo).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.w1).into(new ImageViewTarget<Bitmap>(logoView) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable drawable= RoundedBitmapDrawableFactory.create(TeamEventActivity.this.getResources(),resource);
+                drawable.setCircular(true);
+                logoView.setImageDrawable(drawable);
+            }
+        });
+
 
         eventList= (RecyclerView) findViewById(R.id.eventList);
         eventList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
@@ -113,7 +131,7 @@ projectList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HO
         projectList.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent i=new Intent(TeamEventActivity.this,WorkshopDetail.class);
+              //  Intent i=new Intent(TeamEventActivity.this,WorkshopDetail.class);
 //                i.putExtra(ACTIVITY,EVENT);
 //                i.putExtra(EVENT_NAME,eventArrayList.get(position).getName());
 //                i.putExtra(ID,eventArrayList.get(position).getId());
@@ -200,8 +218,16 @@ private void getTeamData(String  id){
                 mTitle.setText(t.getName());
                 headerTitle.setText(t.getName());
                 teamDescription.setText(t.getDesc());
+                Log.d("g",t.getLogo());
                 Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(bannerImage);
-                Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(logoImage);
+                Glide.with(TeamEventActivity.this).load(t.getLogo()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.w1).into(new ImageViewTarget<Bitmap>(logoView) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable drawable= RoundedBitmapDrawableFactory.create(TeamEventActivity.this.getResources(),resource);
+                        drawable.setCircular(true);
+                        logoView.setImageDrawable(drawable);
+                    }
+                });
                 CardView card=(CardView)findViewById(R.id.card_desc);
                 TextView eventlabel=(TextView)findViewById(R.id.eventslabel);
                 TextView projectslabel=(TextView)findViewById(R.id.eventslabel);

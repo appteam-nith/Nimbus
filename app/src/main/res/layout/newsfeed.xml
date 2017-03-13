@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:id="@+id/core_view"
     >
 
     <android.support.design.widget.AppBarLayout
@@ -30,6 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/team" />
+        android:src="@drawable/upload" />
 
 </android.support.design.widget.CoordinatorLayout>

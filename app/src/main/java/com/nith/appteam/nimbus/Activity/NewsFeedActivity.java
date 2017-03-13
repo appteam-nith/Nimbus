@@ -2,7 +2,9 @@ package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.text.TextDirectionHeuristicCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -36,8 +38,6 @@ import retrofit2.Response;
 public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final String FEED_LIST ="list" ;
-    private TextView tv;
-    private TextView des;
     private RecyclerView recyclerView;
     private NewsFeedAdapter adapter;
     private ProgressBar progressBar;
@@ -46,6 +46,7 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
     private int  pastVisiblesItems, visibleItemCount, totalItemCount, previousTotal = 0, visibleThreshold = 0,feedNo=1;
     private ArrayList<NewsFeed> list=new ArrayList<>();
     private SharedPref pref;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +54,14 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.newsfeed);
+        coordinatorLayout= (CoordinatorLayout) findViewById(R.id.core_view);
         swipeRefreshLayout= (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         progressBar= (ProgressBar) findViewById(R.id.progress);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        tv = (TextView)findViewById(R.id.user_name);
-        des = (TextView) findViewById(R.id.user_msg);
+
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -96,8 +97,18 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         });
 
 
-        if(savedInstanceState==null)
-            showData(1);
+        if(savedInstanceState==null){
+            if(pref.getUserId().isEmpty()){
+                progressBar.setVisibility(View.GONE);
+                Snackbar.make(coordinatorLayout,"Please Login To See The Content",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(NewsFeedActivity.this,LoginActivity.class));
+                    }
+                }).show();
+            }
+            else
+            showData(1);}
         else {
 
             list=savedInstanceState.getParcelableArrayList(FEED_LIST);
@@ -179,7 +190,13 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
                     }
 
 
-                    Toast.makeText(NewsFeedActivity.this,"Unable to fetch Data",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(coordinatorLayout,"Unable To load Data",Snackbar.LENGTH_INDEFINITE).setAction("Reload", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            progressBar.setVisibility(View.VISIBLE);
+                            showData(1);
+                        }
+                    }).show();
                 }
             }
 
