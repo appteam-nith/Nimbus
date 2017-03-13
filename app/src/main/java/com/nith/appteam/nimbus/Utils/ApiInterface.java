@@ -49,7 +49,6 @@ public interface ApiInterface {
     Call<SingleWorkshopResponse> getEventDetail(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
     @POST("event/register/{event_id}")
-    @FormUrlEncoded
     Call<EventRegisterResponse> getEventRegisterResponse(@Path("event_id") String event_id, @Field("student_id") String student_id);
 
     @GET("team/{id}")

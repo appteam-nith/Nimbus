@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class SlidingImageAdapter extends PagerAdapter {
     //As discussed before the first two pics will not loaded from internet reason so that during poor connection. The page doesn't looks empty.
-    private int[] IMAGES = new int[]{R.drawable.slide_3, R.drawable.slide_4};
+    private int[] IMAGES = new int[]{R.drawable.logo1, R.drawable.workshop};
     private LayoutInflater inflater;
     private ArrayList<String> urlList=new ArrayList<>();
     private Context context;

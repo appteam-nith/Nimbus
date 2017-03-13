@@ -80,9 +80,14 @@ public class QuizQuestionActivity extends AppCompatActivity {
         SharedPref pref=new SharedPref(this);
         String userId=pref.getUserId();
 
+        if(!userId.isEmpty()){
         loadQuizwithRetrofit(userId);
+        t=new timer(this,time_left);}
+        else {
+            message.setText("Please Login to Play Quiz ");
+        }
 
-        t=new timer(this,time_left);
+
 
     }
 

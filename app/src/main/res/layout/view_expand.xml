@@ -38,7 +38,10 @@
                     android:layout_height="192dp"
                     custom:dominantMeasurement="height"
                     />
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#5000"/>
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"

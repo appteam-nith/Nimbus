@@ -54,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtSubName;
     Toolbar toolbar;
-    private LinearLayout quiz_layout, gallery_layout, 
-            map_layout,  newsfeed_layout, coreteam_layout , 
-            aboutnimbus_layout , teams_layout, feedback_layout;
+    private LinearLayout quiz_layout, gallery_layout, map_layout,  newsfeed_layout, coreteam_layout , aboutnimbus_layout , teams_layout, feedback_layout,sponsor_layout,workshop_layout,contributor_layout;
 
     //public static int navItemIndex = 0;
 
@@ -139,7 +137,9 @@ public class MainActivity extends AppCompatActivity {
         aboutnimbus_layout= (LinearLayout) findViewById(R.id.aboutnimbus_layout);
         teams_layout= (LinearLayout) findViewById(R.id.teams_layout);
         feedback_layout= (LinearLayout) findViewById(R.id.feedback_layout);
-
+        contributor_layout= (LinearLayout) findViewById(R.id.contributor_layout);
+        sponsor_layout= (LinearLayout) findViewById(R.id.sponsor_layout);
+        workshop_layout= (LinearLayout) findViewById(R.id.workshop_layout);
         bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
     }
@@ -155,14 +155,14 @@ public class MainActivity extends AppCompatActivity {
         gallery_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+             startActivity(new Intent(MainActivity.this,GalleryActivity.class));
             }
         });
 
         map_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(MainActivity.this,MapActivity.class));
             }
         });
 
@@ -176,28 +176,53 @@ public class MainActivity extends AppCompatActivity {
         coreteam_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TeamActivity.class));
+                startActivity(new Intent(MainActivity.this,CoreTeamActivity.class));
             }
         });
 
         aboutnimbus_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(MainActivity.this,AboutActivity.class));
             }
         });
 
         teams_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(MainActivity.this,TeamActivity.class));
             }
         });
 
         feedback_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
+                Uri uri = Uri.parse(uriText);
+                intent.setData(uri);
+                startActivity(Intent.createChooser(intent, "Send Email"));
+            }
+        });
 
+        workshop_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Workshops.class));
+            }
+        });
+
+        sponsor_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SponsorActivity.class));
+            }
+        });
+
+        contributor_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ContributorsActivity.class));
             }
         });
 
@@ -276,11 +301,6 @@ public class MainActivity extends AppCompatActivity {
                         alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k17', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
                         alertDialog.setIcon(R.drawable.nimbuslogo);
                         alertDialog.show();
-                        drawer.closeDrawers();
-                        return true;
-                    case R.id.nav_settings:
-                        //navItemIndex = 2;
-                        //startActivity(new Intent(MainActivity.this, XYZ.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_team:

@@ -139,8 +139,6 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 if(card.getPhoto()!=null&&!card.getPhoto().isEmpty())
                     Glide.with(mContext).load(card.getPhoto()).into(h.post_img);
-                else
-                    h.post_img.setImageResource(R.drawable.team);
                 Log.v("stwtus",""+card.isStatus());
                if(card.isStatus())
                     h.lyk_status.setLiked(true);

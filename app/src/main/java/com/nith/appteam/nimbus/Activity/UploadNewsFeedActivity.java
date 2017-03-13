@@ -84,7 +84,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                         i.putExtra(UPLOAD_SERVICE,true);
                         i.putExtra(TITLE,add.title);
                         i.putExtra(DESCRIPTION,add.detail);
-
+                        if(!imageUrl.toString().isEmpty())
                         i.putExtra(URL_IMAGE,imageUrl.toString());
                         startService(i);
 

@@ -96,7 +96,7 @@
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
                                 android:text="Quiz"
                                 android:layout_width="match_parent"
@@ -117,13 +117,34 @@
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
                                 android:text="Gallery"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
-                        </LinearLayout>
 
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/newsfeed_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/post"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Medium"
+                                android:textAlignment="center"
+                                android:text="Wall"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -143,14 +164,14 @@
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
                                 android:text="Map"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <LinearLayout
-                            android:id="@+id/newsfeed_layout"
+                            android:id="@+id/teams_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -158,23 +179,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:src="@drawable/post"
+                                android:src="@drawable/teamwork"
                                 android:scaleType="centerCrop"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
-                                android:text="NewsFeed"
+                                android:text="Teams"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
                         <LinearLayout
                             android:id="@+id/coreteam_layout"
                             android:gravity="center"
@@ -190,9 +206,55 @@
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
                                 android:text="Core Team"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/sponsor_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/sponsor"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Medium"
+                                android:textAlignment="center"
+                                android:text="Sponsors"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/workshop_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/workshop"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Medium"
+                                android:textAlignment="center"
+                                android:text="WorkShop"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -205,25 +267,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:src="@drawable/person_icon"
+                                android:src="@drawable/about"
                                 android:scaleType="centerCrop"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
                                 android:text="About Nimbus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
-
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
-                            android:id="@+id/teams_layout"
+                            android:id="@+id/contributor_layout"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:padding="10dp"
@@ -231,15 +292,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:src="@drawable/boss"
+                                android:src="@drawable/contributor"
                                 android:scaleType="centerCrop"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
-                                android:text="Team"
+                                android:text="Contributor"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -252,13 +313,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:src="@drawable/person_icon"
+                                android:src="@drawable/feedback"
                                 android:scaleType="centerCrop"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
                                 />
                             <TextView
-                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
                                 android:text="FeedBack"
                                 android:layout_width="match_parent"
