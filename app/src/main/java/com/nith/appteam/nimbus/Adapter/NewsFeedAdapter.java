@@ -41,6 +41,8 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList<NewsFeed> list_card=new ArrayList<>();
     public static final int FOOTER_VIEW = 1;
     public static final int NORMAL_VIEW = 2;
+    public String truncated;
+    public String non_truncated;
     private View view;
     private int l,count=0;
 
@@ -78,13 +80,43 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             l=position;
             final MyViewHolder h=(MyViewHolder) holder;
             final NewsFeed card = list_card.get(position);
+
             if(card!=null){
+                if(card.getDescription()!=null)
+                if(card.getDescription().length()>30){
+
+                    h.see_more.setVisibility(View.VISIBLE);
+                    String original = card.getDescription().toString();
+                    truncated = original.substring(0,29);
+                    non_truncated = original.substring(30,original.length()-1);
+                    h.user_msg.setText(truncated);
+                    h.see_more.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            h.user_msg.append(" " + non_truncated);
+                            h.see_less.setVisibility(View.VISIBLE);
+                            h.see_more.setVisibility(View.GONE);
+                        }
+                    });
+
+                    h.see_less.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            h.user_msg.setText(truncated);
+                            h.see_less.setVisibility(View.GONE);
+                            h.see_more.setVisibility(View.VISIBLE);
+                        }
+                    });
+
+                }
                 if(card.getUsername()!=null&&!card.getUsername().isEmpty())
                     h.user_name.setText(card.getUsername());
                 if(card.getDescription()!=null&&!card.getDescription().isEmpty())
                     h.user_msg.setText(card.getDescription());
                 if(card.getTitle()!=null&&!card.getTitle().isEmpty())
                     h.title.setText(card.getTitle());
+
                 if(card.getLikes()>=0)
                     h.no_of_likes.setText(""+card.getLikes());
 
@@ -199,9 +231,10 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public class MyViewHolder extends RecyclerView.ViewHolder {
           public TextView user_name, no_of_likes, user_msg, post_date ,title;
         final public ImageView post_img;
+        public TextView see_more,see_less;
 
         final public com.like.LikeButton lyk_status;
-
+        int count;
 
 
         public MyViewHolder(View view) {
@@ -211,9 +244,10 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             post_img = (ImageView) view.findViewById(R.id.post_img);
             post_date = (TextView) view.findViewById(R.id.post_date);
             user_msg = (TextView) view.findViewById(R.id.user_msg);
-
-         lyk_status = (com.like.LikeButton) view.findViewById(R.id.lyk_status);
+            see_more = (TextView) view.findViewById(R.id.see_more);
+          lyk_status = (com.like.LikeButton) view.findViewById(R.id.lyk_status);
             title = (TextView)view.findViewById(R.id.post_title);
+            see_less = (TextView) view.findViewById(R.id.see_less);
 
 
         }

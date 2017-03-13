@@ -5,8 +5,7 @@
     android:id="@+id/activity_quiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.appteamnith.hillffair.activities.QuizActivity">
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -36,8 +35,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="QUIZ"
-                    android:textSize="65sp" />
+                    android:text="QUIZ 2.0"
+                    android:textSize="80sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,7 +58,7 @@
                 android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="@string/quiz_comment"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -69,37 +68,40 @@
                 android:layout_weight="1">
 
                 <LinearLayout
+                    android:padding="10dp"
                     android:id="@+id/temp_id1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:orientation="vertical">
 
                     <Button
+                        android:elevation="8dp"
+                        android:textColor="#fff"
+                        android:background="#b10d0c0c"
+                        android:id="@+id/enter_quiz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:text="ENTER QUIZ"
+                        android:textSize="18sp" />
+
+
+                    <Button
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:textColor="#414141"
                         android:id="@+id/quiz_instructions_link"
                         android:layout_width="230dp"
                         android:layout_height="wrap_content"
                         android:padding="18dp"
                         android:text="INSTRUCTIONS"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
-                    <Button
-                        android:id="@+id/enter_quiz"
-                        android:layout_width="230dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:padding="18dp"
-                        android:text="ENTER QUIZ"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:id="@+id/leaderboard_link"
-                        android:layout_width="230dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:padding="18dp"
-                        android:text="LEADERBOARD"
-                        android:textSize="14dp" />
                 </LinearLayout>
 
             </RelativeLayout>

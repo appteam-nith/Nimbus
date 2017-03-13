@@ -53,12 +53,12 @@ public class LeaderBoardActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        getLeaderBoard("1");
+        getLeaderBoard();
     }
 
-    public void getLeaderBoard(String from) {
+    public void getLeaderBoard() {
         ApiInterface mAPI = Util.getRetrofitService();
-        Call<LeaderBoardModel> mService = mAPI.getLeaderBoard(from);
+        Call<LeaderBoardModel> mService = mAPI.getLeaderBoard();
         mService.enqueue(new Callback<LeaderBoardModel>() {
             @Override
             public void onResponse(Call<LeaderBoardModel> call, Response<LeaderBoardModel> response) {
@@ -90,19 +90,28 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         @SerializedName("name")
         private String name;
-        @SerializedName("score")
-        private int score;
-        @SerializedName("rollno")
+        //@SerializedName("pic_url")
+        //private String picUrl;
+        @SerializedName("roll_no")
         private String rollNo;
-        @SerializedName("sets")
-        private int sets;
+        @SerializedName("quiz")
+        private Quiz sets;
 
-        public LeaderBoardUserModel(String name, int score, String rollNo, int sets) {
+        public LeaderBoardUserModel(String name,/*String picUrl,*/ String rollNo, Quiz sets) {
+            //this.picUrl = picUrl;
             this.name = name;
-            this.score = score;
             this.rollNo = rollNo;
             this.sets = sets;
         }
+
+        /*public String getpicUrl() {
+            return picUrl;
+        }
+
+        public void setpicUrl(String picUrl) {
+            this.picUrl = picUrl;
+        }
+        */
 
         public String getName() {
             return name;
@@ -110,14 +119,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         public void setName(String name) {
             this.name = name;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
-        public void setScore(int score) {
-            this.score = score;
         }
 
         public String getRollNo() {
@@ -128,6 +129,28 @@ public class LeaderBoardActivity extends AppCompatActivity {
             this.rollNo = rollNo;
         }
 
+        public Quiz getSets() {
+            return sets;
+        }
+
+        public void setSets(Quiz sets) {
+            this.sets = sets;
+        }
+    }
+
+    public class Quiz{
+
+        private int score;
+        private int sets;
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
+        }
+
         public int getSets() {
             return sets;
         }
@@ -135,6 +158,5 @@ public class LeaderBoardActivity extends AppCompatActivity {
         public void setSets(int sets) {
             this.sets = sets;
         }
-
     }
 }

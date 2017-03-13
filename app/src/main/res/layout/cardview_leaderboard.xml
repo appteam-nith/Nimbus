@@ -2,66 +2,99 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
-    android:orientation="vertical">
+    android:layout_height="110dp"
+    android:orientation="vertical"
+    android:elevation="5dp">
 
     <LinearLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:padding="5dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:ellipsize="end"
-            android:id="@+id/leader_username"
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="15dp"
+            android:id="@+id/leader_pic"
+            android:src="@drawable/person_icon"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="username"
-            android:inputType="textPersonName"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="6dp">
 
-        <TextView
-            android:id="@+id/leader_score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="score"
-            android:textSize="20sp" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="3dp"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:padding="5dp"
-        android:orientation="horizontal">
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/leader_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Jalaz Kumar"
+                    android:inputType="textPersonName"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/leader_rollno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="rollno"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/leader_score"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="score:754"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/leader_sets"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="sets"
-            android:textSize="20sp" />
+            <LinearLayout
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:padding="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/leader_rollno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="14MI528"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/leader_sets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="sets:35"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="15dp"
+                android:id="@+id/leader_award"
+                android:src="@drawable/trophy_participation"
+                android:scaleType="fitXY"
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <View

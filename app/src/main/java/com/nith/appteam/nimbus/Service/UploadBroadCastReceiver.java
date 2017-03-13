@@ -17,6 +17,7 @@ public class UploadBroadCastReceiver extends BroadcastReceiver {
     private static final String UPLOADING_START="start";
     private static final  String UPLOADING_FINISH="finish";
     private static final String UPLOADING_ERROR="error";
+    private static final  String WORK="work";
     private static final int UPLOAD_ID=11126741;
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -26,7 +27,7 @@ public class UploadBroadCastReceiver extends BroadcastReceiver {
              case UPLOADING_START:
                  notificationManager.cancel(UPLOAD_ID);
                  Log.d("reciever","start");
-                 builder.setContentTitle("Uploading the NewsFeed");
+                 builder.setContentTitle("Uploading the "+intent.getStringExtra(WORK));
                  builder.setSmallIcon(R.drawable.person_icon);
                  builder.setProgress(0,0,true);
                  notificationManager.notify(UPLOAD_ID,builder.build());
@@ -34,7 +35,7 @@ public class UploadBroadCastReceiver extends BroadcastReceiver {
              case UPLOADING_FINISH:
                  notificationManager.cancel(UPLOAD_ID);
                  Log.d("reciever","finish");
-                 builder.setContentTitle("Finished Uploading the NewsFeed");
+                 builder.setContentTitle("Finished Uploading the "+intent.getStringExtra(WORK));
                  builder.setSmallIcon(R.drawable.person_icon);
                  builder.setProgress(0,0,false);
                  notificationManager.notify(UPLOAD_ID,builder.build());
@@ -44,7 +45,7 @@ public class UploadBroadCastReceiver extends BroadcastReceiver {
                  Log.d("reciever","error");
                  builder.setProgress(0,0,false);
                  builder.setSmallIcon(R.drawable.person_icon);
-                 builder.setContentTitle("Error While Uploading the NewsFeed");
+                 builder.setContentTitle("Error While Uploading the "+intent.getStringExtra(WORK));
                  notificationManager.notify(UPLOAD_ID,builder.build());
                  break;
 

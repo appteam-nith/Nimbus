@@ -28,18 +28,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                android:background="#505050"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:paddingLeft="50dp"
+                        android:text="@string/app_name"
+                        android:textColor="#FFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Large"/>
                     <android.support.v4.view.ViewPager
                         android:layout_width="match_parent"
                         android:id="@+id/main_view_pager"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true" />
+                         />
                 </RelativeLayout>
 
                 <android.support.v7.widget.Toolbar
@@ -53,18 +59,223 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/content_main"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:behavior_overlapTop="50dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="50dp"
-            android:id="@+id/main_recycler_view" />
+            android:layout_height="match_parent">
+            <android.support.v7.widget.CardView
+
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/quiz_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/question"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="Quiz"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/gallery_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/gallery"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="Gallery"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/map_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/map"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="Map"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/newsfeed_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/post"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="NewsFeed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/coreteam_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/boss"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="Core Team"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/aboutnimbus_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/person_icon"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="About Nimbus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:id="@+id/teams_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/boss"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="Team"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/feedback_layout"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/person_icon"
+                                android:scaleType="centerCrop"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                />
+                            <TextView
+                                android:textAppearance="@android:style/TextAppearance.Large"
+                                android:textAlignment="center"
+                                android:text="FeedBack"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </android.support.v4.widget.NestedScrollView>
 
         <android.support.design.widget.BottomNavigationView
+            app:layout_behavior="com.nith.appteam.nimbus.CustomView.BottomSheetBehavior"
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_anchor="@+id/main_recycler_view"
+            app:layout_anchor="@+id/content_main"
             app:layout_anchorGravity="bottom"
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="#FFF"

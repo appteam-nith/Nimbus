@@ -16,6 +16,7 @@ public class SharedPref {
     private static  final String USER_EMAIL="email";
     private static  final String USER_ROLLNO="rollno";
     private static  final String USER_PIC_URL="picUrl";
+    private static final String NITIAN_STATUS="nitian";
 
     public SharedPref(){
         this(MyApplication.getAppContext());
@@ -98,5 +99,14 @@ public class SharedPref {
     }
     public String getUserPicUrl(){
         return sharedPreferences.getString(USER_PIC_URL,"");
+    }
+
+    public void  setNitianStatus(boolean status){
+        editor.putBoolean(USER_PIC_URL,status);
+        editor.commit();
+    }
+
+    public boolean getNitianStatus(){
+        return sharedPreferences.getBoolean(NITIAN_STATUS,false);
     }
 }

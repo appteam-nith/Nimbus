@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nith.appteam.nimbus.Activity.LeaderBoardActivity;
@@ -38,8 +39,16 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
 
         holder.username.setText(user.getName().toString());
         holder.rollno.setText(user.getRollNo().toString());
-        holder.score.setText("Score: "+Integer.toString(user.getScore()));
-        holder.sets.setText("Sets: "+Integer.toString(user.getSets()));
+        holder.score.setText("Score: "+Integer.toString(user.getSets().getScore()));
+        Integer prsnlscore = user.getSets().getScore();
+        if(prsnlscore>=800) holder.useraward.setImageResource(R.drawable.trophy_gold);
+        else if(prsnlscore>=600) holder.useraward.setImageResource(R.drawable.trophy_silver);
+        else if(prsnlscore>=450) holder.useraward.setImageResource(R.drawable.trophy_bronze);
+        else if(prsnlscore>=300) holder.useraward.setImageResource(R.drawable.trophy_goldbadge);
+        else if(prsnlscore>=150) holder.useraward.setImageResource(R.drawable.trophy_silverbadge);
+        else if(prsnlscore>0) holder.useraward.setImageResource(R.drawable.trophy_bronzebadge);
+        else if(prsnlscore==0) holder.useraward.setImageResource(R.drawable.trophy_participation);
+        holder.sets.setText("Sets: "+Integer.toString(user.getSets().getSets()));
     }
 
     @Override
@@ -49,17 +58,21 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
 
     public class LeaderBoardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView username;
+        ImageView userpic;
         TextView rollno;
         TextView score;
         TextView sets;
+        ImageView useraward;
         Context context;
         public LeaderBoardViewHolder(View view, ArrayList<LeaderBoardActivity.LeaderBoardUserModel> users, Context context) {
             super(view);
             view.setOnClickListener(this);
             username=(TextView)view.findViewById(R.id.leader_username);
+            //userpic = (ImageView)view.findViewById(R.id.leader_pic);
             rollno=(TextView)view.findViewById(R.id.leader_rollno);
             score=(TextView)view.findViewById(R.id.leader_score);
             sets=(TextView)view.findViewById(R.id.leader_sets);
+            useraward=(ImageView)view.findViewById(R.id.leader_award);
             this.context=context;
         }
 

@@ -38,9 +38,7 @@ public class TeamActivity extends AppCompatActivity {
         viewPager= (ViewPager) findViewById(R.id.pager);
         progressBar= (ProgressBar) findViewById(R.id.progressbar);
         message= (TextView) findViewById(R.id.message_textView);
-
         getAllTeamList();
-
     }
 
     private void getAllTeamList(){
