@@ -17,6 +17,7 @@ public class SharedPref {
     private static  final String USER_ROLLNO="rollno";
     private static  final String USER_PIC_URL="picUrl";
     private static final String NITIAN_STATUS="nitian";
+    private static  final String FIRST_ROLL_REGISTER="rollRegister";
 
     public SharedPref(){
         this(MyApplication.getAppContext());
@@ -102,11 +103,19 @@ public class SharedPref {
     }
 
     public void  setNitianStatus(boolean status){
-        editor.putBoolean(USER_PIC_URL,status);
+        editor.putBoolean(NITIAN_STATUS,status);
         editor.commit();
     }
 
     public boolean getNitianStatus(){
         return sharedPreferences.getBoolean(NITIAN_STATUS,false);
+    }
+
+    public void  setFirstRollRegister(boolean status){
+        editor.putBoolean(FIRST_ROLL_REGISTER,status);
+        editor.commit();
+    }
+    public boolean getFirstTimeRollregister(){
+        return sharedPreferences.getBoolean(FIRST_ROLL_REGISTER,true);
     }
 }

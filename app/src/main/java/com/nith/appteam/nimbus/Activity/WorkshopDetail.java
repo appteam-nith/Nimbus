@@ -90,14 +90,23 @@ public class WorkshopDetail extends AppCompatActivity {
         registerButtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!sharedPref.getFirstTimeRollregister())
                 if(!sharedPref.getNitianStatus()&&sharedPref.getUserRollno().isEmpty()){
+
                     if(sharedPref.getUserRollno().isEmpty()){
                         AlertDialog d=Util.promptRollNo(WorkshopDetail.this);
                         d.show();
                     }
+                    else{
+                        registerRetrofit();
+                    }
                 }
                 else
                 registerRetrofit();
+                else{
+                    sharedPref.setFirstRollRegister(true);
+                    registerRetrofit();
+                }
             }
         });
 
