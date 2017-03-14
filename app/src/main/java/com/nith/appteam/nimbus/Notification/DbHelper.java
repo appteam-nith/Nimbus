@@ -6,12 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.nith.appteam.nimbus.Activity.Home_posts_gns;
+import com.nith.appteam.nimbus.Model.HomePostsModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.onesignal.OneSignalDbHelper.DATABASE_VERSION;
 
 /**
  * Created by jatin on 7/3/17.
@@ -87,7 +85,7 @@ public class DbHelper extends SQLiteOpenHelper{
     public List gethomedata() {
 
         Log.d("TAGGGGG", "insideeeeeee gethomedata");
-        List<Home_posts_gns> homedetails = new ArrayList<>();
+        List<HomePostsModel> homedetails = new ArrayList<>();
         String query = "select * from " + TABLE_HOMEPOST;
         SQLiteDatabase db = getReadableDatabase();
         mdb = getReadableDatabase();
@@ -97,7 +95,7 @@ public class DbHelper extends SQLiteOpenHelper{
             try {
                 if (cursor.moveToFirst()) {
                     do {
-                        Home_posts_gns homeposts = new Home_posts_gns();
+                        HomePostsModel homeposts = new HomePostsModel();
                         String id = cursor.getString(cursor.getColumnIndex(NOTIFICATION_ID));
                         String title = cursor.getString(cursor.getColumnIndex(NOTIFICATION_TITLE));
                         String small_icon = cursor.getString(cursor.getColumnIndex(NOTIFICATION_small_icon));

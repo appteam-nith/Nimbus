@@ -11,16 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-import com.nith.appteam.nimbus.Activity.Home_posts_gns;
+import com.nith.appteam.nimbus.Model.HomePostsModel;
 import com.nith.appteam.nimbus.Adapter.Notification;
 import com.nith.appteam.nimbus.R;
-import com.nith.appteam.nimbus.Utils.SharedPref;
 
 import java.util.List;
 
 public class NotificationActivity extends AppCompatActivity {
    DbHelper dbHandler;
-     List<Home_posts_gns> arrayList;
+     List<HomePostsModel> arrayList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class NotificationActivity extends AppCompatActivity {
                 //  int  position = db_position+1;
                 int n = arrayList.size();
 
-                Home_posts_gns home_post2 = arrayList.get(db_position);
+                HomePostsModel home_post2 = arrayList.get(db_position);
                 String id = home_post2.getNotification_id();
                 Intent expand = new Intent(getApplicationContext(), Notification2.class);
                 Log.d("afasdf", "intent_putextrats" + id + "g12112ddddd" + db_position);

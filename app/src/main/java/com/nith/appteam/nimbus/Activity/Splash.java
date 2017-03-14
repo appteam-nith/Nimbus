@@ -8,9 +8,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.target.Target;
 import com.nith.appteam.nimbus.R;
 
 public class Splash extends AppCompatActivity {
@@ -29,7 +26,7 @@ public class Splash extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-              startActivity(new Intent(Splash.this,Appintro.class));
+              startActivity(new Intent(Splash.this,AppIntro.class));
                finish();
             }
         },TIME_SPLASH);

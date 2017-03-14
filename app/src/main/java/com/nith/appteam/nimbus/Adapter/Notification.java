@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
-import com.nith.appteam.nimbus.Activity.Home_posts_gns;
+import com.nith.appteam.nimbus.Model.HomePostsModel;
 import com.nith.appteam.nimbus.R;
 
 import java.util.List;
@@ -26,10 +26,10 @@ import java.util.List;
 
 public class Notification extends RecyclerView.Adapter<Notification.viewHolder> {
 
-    private List<Home_posts_gns> arrayList;
+    private List<HomePostsModel> arrayList;
     private Context context;
 
-    public Notification(List<Home_posts_gns> arrayList, Context context) {
+    public Notification(List<HomePostsModel> arrayList, Context context) {
         this.arrayList=arrayList;
         this.context = context;
     }
@@ -43,7 +43,7 @@ public class Notification extends RecyclerView.Adapter<Notification.viewHolder> 
     @Override
     public void onBindViewHolder(final viewHolder holder, int position) {
 
-        Home_posts_gns home_post = arrayList.get(position);
+        HomePostsModel home_post = arrayList.get(position);
         holder.title.setText(home_post.getTitle());
         holder.notification_id.setText(home_post.getNotification_id());
         String ab="android.R.drawable."+home_post.getSmall_icon();

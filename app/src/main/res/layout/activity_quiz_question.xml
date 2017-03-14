@@ -22,26 +22,33 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <LinearLayout
+        <FrameLayout
             android:background="#e4e3e3"
-            android:padding="10dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:gravity="right"
-                android:layout_weight="1"
-                android:text="Time Left: "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/time_left"
-                android:layout_weight="1"
-                android:layout_marginLeft="20dp"
-                android:text="-- mins -- seconds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:layout_height="40dp">
+
+            <LinearLayout
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:text="Time Left: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/time_left"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:text="-- mins -- seconds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </FrameLayout>
 
         <android.support.v4.view.ViewPager
             android:visibility="gone"

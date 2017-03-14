@@ -1,10 +1,10 @@
-package com.nith.appteam.nimbus.Activity;
+package com.nith.appteam.nimbus.Model;
 
 /**
  * Created by jatin on 7/3/17.
  */
 
-public class Home_posts_gns {
+public class HomePostsModel {
 
     private String title;
     private String small_icon;;

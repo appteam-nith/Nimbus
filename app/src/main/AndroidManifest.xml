@@ -74,7 +74,7 @@
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/ProfileTheme" />
         <activity
-            android:name=".Activity.Appintro"
+            android:name=".Activity.AppIntro"
             android:label="@string/title_activity_appintro"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
