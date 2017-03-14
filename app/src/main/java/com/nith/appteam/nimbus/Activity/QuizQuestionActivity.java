@@ -87,14 +87,14 @@ public class QuizQuestionActivity extends AppCompatActivity {
             message.setText("Please Login to Play Quiz ");
         }
 
-
-
     }
 
     public void loadQuizwithRetrofit(String userId){
 
         ApiInterface apiservice= Util.getRetrofitService();
         Call<QuizQuestionsModel> call=apiservice.getQuiz(userId);
+
+        Log.v("ronaldo","quiz get request for "+userId);
 
         call.enqueue(new Callback<QuizQuestionsModel>() {
             @Override
@@ -353,7 +353,7 @@ public class QuizQuestionActivity extends AppCompatActivity {
                         return null;
                     }
 
-                    Log.v("timer",i+" mins "+j+" seconds");
+                    //Log.v("timer",i+" mins "+j+" seconds");
                     publishProgress(new Pair<String, String>(i+"",j+""));
 
                     try {
