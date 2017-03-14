@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
-public class Appintro extends AppCompatActivity {
+public class AppIntro extends AppCompatActivity {
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -108,7 +108,7 @@ public class Appintro extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setIsFirstTime();
-        startActivity(new Intent(Appintro.this,MainActivity.class));
+        startActivity(new Intent(AppIntro.this,MainActivity.class));
         finish();
     }
 
