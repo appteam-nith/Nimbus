@@ -58,10 +58,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<FbLoginFragment.UserSentResponse> sendFbUserData(@Field("name") String name,@Field("email") String email,@Field("pic_url")String picUrl);
 
-    @POST("quiz/get/{id}")
+    @GET("quiz/get/{id}")
     Call<QuizQuestionsModel> getQuiz(@Path("id") String id);
 
-    @POST("quiz/update/{id}")
+    @GET("quiz/update/{id}")
     Call<UpdateScoreModel> updateScore(@Path("id") String id, @Query("score") int score);
 
     @FormUrlEncoded

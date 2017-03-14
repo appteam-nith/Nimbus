@@ -11,15 +11,15 @@ import java.io.Serializable;
 public class SingleQuestionModel implements Serializable {
     /*
 
-      "_id": "57fbc901f36d28111030add9",
-      "qNo": 1,
-      "question": "what is the full form of HTML",
-      "optionsA": "Hyper Text Language",
-      "optionsB": "Markup Language",
-      "optionsC": "Hyper Text Markup Language",
-      "optionsD": "HTM Language",
-      "answer": "optionC",
-      "isSingleChoice": true
+      "_id": "580bc68669436e0011b73e5d",
+      "qNo": 45,
+      "question": "Which is the Most Densly Populated State in India?",
+      "optionsA": "West Bengal",
+      "optionsB": "Bihar",
+      "optionsC": "UP",
+      "optionsD": "Tamil Nadu",
+      "isSingleChoice": true,
+      "answer": "B"
 
     */
 

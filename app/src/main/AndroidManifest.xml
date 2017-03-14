@@ -173,6 +173,12 @@
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
 
+        <activity android:name=".Activity.QuizScoreActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
+        </activity>
+
         <activity android:name=".Activity.InformationActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

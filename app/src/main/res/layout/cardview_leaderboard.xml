@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="120dp"
     android:orientation="vertical"
     android:elevation="5dp">
 
@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="80dp"
+            android:layout_width="65dp"
             android:layout_height="80dp"
             android:layout_margin="15dp"
             android:id="@+id/leader_pic"
@@ -37,23 +37,25 @@
                 <TextView
                     android:ellipsize="end"
                     android:id="@+id/leader_username"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Jalaz Kumar"
-                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:text="User Name"
+                    android:layout_margin="5dp"
+                    android:paddingRight="10dp"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/leader_score"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:gravity="center"
                     android:text="score:754"
                     android:textSize="18sp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -71,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="14MI528"
+                    android:text="Roll No"
                     android:textSize="18sp" />
 
                 <TextView
@@ -86,14 +88,15 @@
 
             <ImageView
                 android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_height="28dp"
                 android:layout_gravity="right"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
                 android:id="@+id/leader_award"
                 android:src="@drawable/trophy_participation"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 />
+
         </LinearLayout>
     </LinearLayout>
 
