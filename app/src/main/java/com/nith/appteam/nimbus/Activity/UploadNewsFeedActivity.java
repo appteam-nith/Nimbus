@@ -67,6 +67,7 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                 StringBuilder imageUrl =new StringBuilder();
                 if (add.title != null && add.detail != null)
                     if (!add.title.isEmpty() && !add.detail.isEmpty()) {
+                        if(!sharedPref.getFirstTimeRollregister())
                         if(!sharedPref.getNitianStatus()&&sharedPref.getUserRollno().isEmpty()){
                             Log.d("b","b");
                             Log.d("b",sharedPref.getUserRollno());
@@ -75,6 +76,9 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
                                 t.show();
 
                             }
+                        }
+                        else {
+                            sharedPref.setFirstRollRegister(true);
                         }
                         else {
                        for(int i=0;i<add.imageUrl.size();i++)

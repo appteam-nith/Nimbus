@@ -25,6 +25,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -34,11 +35,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Util {
     private static  final String ROLL_NO="rollNo";
-    private static final  String WORK="work";
     private static final String REGISTER_ROLL_NO="rollNoRegister";
     public  static ApiInterface getRetrofitService(){
-
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient.Builder oBuilder = new OkHttpClient.Builder();
+        oBuilder.addNetworkInterceptor(loggingInterceptor);
         oBuilder.connectTimeout(15l, TimeUnit.SECONDS);
         oBuilder.readTimeout(15l,TimeUnit.SECONDS);
 // code to add cache in retrofit
@@ -100,12 +102,13 @@ public class Util {
                 if(checkBox.isChecked()){
                     sharedPref.setNitianStatus(true);
                     sharedPref.setUserRollno(rollNoEditText.getText().toString());
+                    context.startService(i);
                 }
                 else{
                     sharedPref.setNitianStatus(false);
                     sharedPref.setUserRollno("");
                 }
-                context.startService(i);
+
 
             }
         });
