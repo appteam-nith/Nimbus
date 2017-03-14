@@ -97,7 +97,6 @@ public class Util {
                 Intent i=new Intent(context, UploadService.class);
                 i.putExtra(REGISTER_ROLL_NO,true);
                 i.putExtra(ROLL_NO,rollNoEditText.getText().toString());
-                i.putExtra(WORK,"Register");
                 if(checkBox.isChecked()){
                     sharedPref.setNitianStatus(true);
                     sharedPref.setUserRollno(rollNoEditText.getText().toString());

@@ -25,7 +25,7 @@ public class NewsFeed implements Parcelable {
     @SerializedName("name")
     private String username;
 
-    @SerializedName("status")
+    @SerializedName("like_status")
     private boolean status;
 
     @SerializedName("likes")
@@ -33,6 +33,8 @@ public class NewsFeed implements Parcelable {
 
     @SerializedName("created_on")
     private String date;
+
+
 
 
     public NewsFeed(String _id, String title, String photo, String description, String userid, String username, String date, int likes, boolean status) {
