@@ -48,8 +48,9 @@ public interface ApiInterface {
     @GET("event/{event_id}")
     Call<SingleWorkshopResponse> getEventDetail(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
+
     @POST("event/register/{event_id}")
-    Call<EventRegisterResponse> getEventRegisterResponse(@Path("event_id") String event_id, @Field("student_id") String student_id);
+    Call<EventRegisterResponse> getEventRegisterResponse(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
     @GET("team/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);

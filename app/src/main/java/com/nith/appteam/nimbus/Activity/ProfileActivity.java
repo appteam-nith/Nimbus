@@ -69,11 +69,6 @@ public class ProfileActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(sharedPref.getUserName());
         toolbar.setTitle(sharedPref.getUserName());
 
-
-
-            SharedPref sharedPref = new SharedPref();
-            Log.v("Success", sharedPref.getUserPicUrl());
-
             Glide.with(this).load(sharedPref.getUserPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.person_icon).error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(profilePic) {
                 @Override
                 protected void setResource(Bitmap resource) {
