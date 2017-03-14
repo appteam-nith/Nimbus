@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <View
-        android:background="#505050"
+        android:background="#bebebe"
         android:layout_width="match_parent"
         android:layout_height="1dp"
      />
@@ -38,50 +38,6 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:visibility="gone"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        android:id="@+id/checkbox_questions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <CheckBox
-            android:textColor="#505050"
-            android:id="@+id/checkA"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="A. 14 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:textColor="#505050"
-            android:id="@+id/checkB"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="B. 16 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:textColor="#505050"
-            android:id="@+id/checkC"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="C. 4 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:textColor="#505050"
-            android:id="@+id/checkD"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="D. 6 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:orientation="vertical"
@@ -89,45 +45,73 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RadioGroup
-            android:id="@+id/radio_group"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            android:layout_margin="5dp"
+            android:id="@+id/card_a"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <RadioButton
-            android:textColor="#505050"
-            android:id="@+id/radioA"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="A. 14 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <RadioButton
-            android:textColor="#505050"
-            android:id="@+id/radioB"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="B. 16 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <RadioButton
-            android:textColor="#505050"
-            android:id="@+id/radioC"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="C. 4 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <RadioButton
-            android:textColor="#505050"
-            android:id="@+id/radioD"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="D. 6 Members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#505050"
+                android:id="@+id/optionA"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:text="A. 14 Members"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        </RadioGroup>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="5dp"
+            android:id="@+id/card_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#505050"
+                android:id="@+id/optionB"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:text="B. 4 Members"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="5dp"
+            android:id="@+id/card_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#505050"
+                android:id="@+id/optionC"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:text="C. 8 Members"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="5dp"
+            android:id="@+id/card_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#505050"
+                android:id="@+id/optionD"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:text="D. 2 Members"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
@@ -143,13 +127,16 @@
 
     <Button
         android:visibility="gone"
+        android:textSize="16sp"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:text="FINISH QUIZ"
         android:id="@+id/finish_button"
-        android:padding="14dp"
-        android:layout_width="180dp"
+        android:padding="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

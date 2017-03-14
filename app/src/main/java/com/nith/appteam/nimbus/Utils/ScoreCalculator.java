@@ -44,19 +44,6 @@ public class ScoreCalculator {
        //Log.v("#######"+qno,"choice is "+choice+", answer is "+answers[qno-1]);
     }
 
-    public void setChoice(int qno,String choice,boolean b){
-        if(selectedChoices==null)return;
-
-        if(b){
-            selectedChoices[qno-1]=selectedChoices[qno-1]+choice;
-        }else{
-            selectedChoices[qno-1]=selectedChoices[qno-1].replaceAll(choice,"Z");
-        }
-
-        Log.v("testing-checkboxes",selectedChoices[qno-1]);
-
-    }
-
     public void setQuestion_type(int question_type[]){  //initialization
         this.question_type=question_type;
     }
@@ -69,15 +56,19 @@ public class ScoreCalculator {
         this.selectedChoices=selectedChoices;
     }
 
+    public String getSelectedChoice(int qno){
+        return selectedChoices[qno-1];
+    }
+
     public int calculateScore(){
         if(answers==null) return 0;
 
         for(int i=0;i<answers.length;i++){
-            Log.i("cal-score","#"+answers[i]+"# ----- #"+selectedChoices[i]+"#");
+            //Log.i("cal-score","#"+answers[i]+"# ----- #"+selectedChoices[i]+"#");
 
             if(question_type[i]==1){
                 if(answers[i].trim().equals(selectedChoices[i].trim())){
-                    Log.v("score1++","for i= "+i);
+                    //Log.v("score1++","for i= "+i);
                     totalScore++;
                 }
 
@@ -94,7 +85,7 @@ public class ScoreCalculator {
                 }
 
                 if(flag==1){
-                    Log.v("score2++","for i= "+i);
+                    //Log.v("score2++","for i= "+i);
                     totalScore++;
                 }
             }
