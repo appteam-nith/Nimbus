@@ -98,6 +98,9 @@ public UploadService(){
             }
             else if(intent.hasExtra(REGISTER_ROLL_NO)){
                  if(intent.hasExtra(ROLL_NO)){
+                     Intent i = new Intent(UPLOADING_START);
+                     i.putExtra(WORK,"Roll Number");
+                     sendBroadcast(i);
                      registerRollNo(intent.getStringExtra(ROLL_NO),sharedPref.getUserId());
                  }
             }
@@ -155,7 +158,7 @@ public UploadService(){
                 if (result != null && response.isSuccess()) {
                     if (result.isSuccess()) {
                         Intent i=new Intent(UPLOADING_FINISH);
-                        i.putExtra(WORK,"Register");
+                        i.putExtra(WORK,"Roll No");
                         sendBroadcast(i);
                     } else {
 
@@ -163,11 +166,11 @@ public UploadService(){
                 } else {
                     if (status_code == 404) {
                         Intent i=new Intent(UPLOADING_ERROR);
-                        i.putExtra(WORK,"Register");
+                        i.putExtra(WORK,"Roll No");
                         sendBroadcast(i);
                     } else if (status_code == 503) {
                         Intent i=new Intent(UPLOADING_ERROR);
-                        i.putExtra(WORK,"Register");
+                        i.putExtra(WORK,"Roll No");
                         sendBroadcast(i);
                     }
 
@@ -177,7 +180,7 @@ public UploadService(){
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 Intent i=new Intent(UPLOADING_ERROR);
-                i.putExtra(WORK,"Register");
+                i.putExtra(WORK,"Roll No");
                 sendBroadcast(i);
                 t.printStackTrace();
             }
