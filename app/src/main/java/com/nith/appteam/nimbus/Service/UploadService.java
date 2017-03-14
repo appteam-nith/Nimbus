@@ -149,7 +149,7 @@ public UploadService(){
     }
 
     private void  registerRollNo(String rollNo,String studentId){
-        Call<RegisterResponse> call=Util.getRetrofitService().updateRollNo(rollNo,studentId);
+        Call<RegisterResponse> call=Util.getRetrofitService().updateRollNo(studentId,rollNo);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
