@@ -15,6 +15,8 @@
     android:layout_height="wrap_content">
 
     <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
+        android:padding="2dp"
+        android:background="@drawable/black_border"
         android:scaleType="fitXY"
         android:id="@+id/image_head_normal"
         android:src="@drawable/slide_3"
