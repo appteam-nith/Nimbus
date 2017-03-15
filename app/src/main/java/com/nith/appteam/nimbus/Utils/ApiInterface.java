@@ -86,8 +86,8 @@ public interface ApiInterface {
     @GET("profile/event/{id}")
     Call<ProfileEventModel> profileEventList(@Path("id") String id);
 
-    @GET("profile/newsfeed")
-    Call<NewsFeedResponse> getUserNews(@Query("from") String from, @Query("uId") String userId);
+    @GET("profile/newsfeed/{student_id}")
+    Call<NewsFeedResponse> getUserNews(@Path("student_id") String userId);
 
     @GET("main/images/get")
     Call<MainPagerResponse> getMainResponse();

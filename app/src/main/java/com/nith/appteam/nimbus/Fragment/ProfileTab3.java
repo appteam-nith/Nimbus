@@ -88,7 +88,7 @@ public class ProfileTab3 extends Fragment {
 
     private void getData(int from, String id){
 
-        Call<NewsFeedResponse> getUserNewsFeed = Util.getRetrofitService().getUserNews(""+from,id);
+        Call<NewsFeedResponse> getUserNewsFeed = Util.getRetrofitService().getUserNews(id);
         getUserNewsFeed.enqueue(new Callback<NewsFeedResponse>() {
             @Override
             public void onResponse(Call<NewsFeedResponse> call, Response<NewsFeedResponse> response) {

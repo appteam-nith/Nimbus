@@ -19,7 +19,7 @@ public class CoreTeamActivity extends AppCompatActivity {
     ArrayList<CoreTeamItem> array_list;
     Toolbar coreTeamToolbar;
     private static final String BASE_URL="https://api-hillfair-2k16.herokuapp.com/";
-    private static final String BASE_URL_JSEC="https://s3.ap-south-1.amazonaws.com/hillffair2016/images/";
+    private static final String BASE_URL_JSEC="http://nimbus2k17api.herokuapp.com/images/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class CoreTeamActivity extends AppCompatActivity {
         array_list=new ArrayList<>();
         array_list.add(new CoreTeamItem("Ajay k. Sharma","Director",BASE_URL+"photos/director.jpg"));
         array_list.add(new CoreTeamItem("Dr. A.S. Singha","Dean Student Welfare",BASE_URL+"photos/as.jpg"));
-        array_list.add(new CoreTeamItem("Dr. Surender Soni","Faculty Coordinator","https://s3-ap-southeast-1.amazonaws.com/nimbus2k16/nimbusteam/surender_soni.png"));
+        array_list.add(new CoreTeamItem("Dr Saroj Thakur","Faculty Coordinator",BASE_URL_JSEC+"saroj.jpg"));
 
         array_list.add(new CoreTeamItem("Abhinav Anand","Nimbus Secretary",BASE_URL_JSEC+"abhinav.jpg"));
         array_list.add(new CoreTeamItem("Pranav Bhardwaj","Clubs Secretary (Core)",BASE_URL_JSEC+"pranav.jpg"));
@@ -44,7 +44,7 @@ public class CoreTeamActivity extends AppCompatActivity {
         array_list.add(new CoreTeamItem("Saloni Bakshi","Web Head",BASE_URL_JSEC+"saloni.jpg"));
         array_list.add(new CoreTeamItem("Chetanya Kaushal","Secretary (Hospitality)",BASE_URL+"chetanya.jpg"));
         array_list.add(new CoreTeamItem("Abhisek Mehra","Jt. Secretary (Registration)",BASE_URL_JSEC+"abhishekm.jpg"));
-        array_list.add(new CoreTeamItem("Abhishek Singh Parihar","Secretary (Accomodation)",BASE_URL_JSEC+"abhisheks.jpg"));
+        array_list.add(new CoreTeamItem("Abhishek Singh Parihar","Secretary (Accomodation)",BASE_URL_JSEC+"abhisheks.JPG"));
         array_list.add(new CoreTeamItem("Shubham Mahajan","Secretary (Transportation)",BASE_URL_JSEC+"shubham.jpg"));
         array_list.add(new CoreTeamItem("Nishant Chaudhary","Secretary (Promotional & Marketing)",BASE_URL_JSEC+"nishant.jpg"));
         array_list.add(new CoreTeamItem("Medisetti Tanuja","App Team Head",BASE_URL_JSEC+"medisetti.jpg"));
