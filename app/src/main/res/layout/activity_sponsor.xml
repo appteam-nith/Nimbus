@@ -1,37 +1,26 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".Activity.SponsorActivity" >
-    <android.support.v7.widget.Toolbar
-        android:title="Sponsors"
+    android:fitsSystemWindows="true"
+    tools:context="com.nith.appteam.nimbus.Activity.SponsorActivity">
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:id="@+id/sponsor_toolbar"
-        android:background="?attr/colorPrimary"
-        android:elevation="64dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <ExpandableListView
-    android:id="@+id/expandableListView1"
-        android:paddingTop="64dp"
-        android:paddingBottom="4dp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    </android.support.design.widget.AppBarLayout>
 
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-    </ExpandableListView>
+    <include layout="@layout/content_sponsor" />
 
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

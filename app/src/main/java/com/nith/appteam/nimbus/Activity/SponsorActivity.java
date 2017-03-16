@@ -1,69 +1,68 @@
 package com.nith.appteam.nimbus.Activity;
 
-/**
- * Created by joshafest on 2/19/2017.
- */
-import java.util.ArrayList;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.Toast;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import com.nith.appteam.nimbus.Adapter.SponsorAdapter;
-import com.nith.appteam.nimbus.Model.Team;
+import com.nith.appteam.nimbus.Model.SponsorResponse;
 import com.nith.appteam.nimbus.R;
+import com.nith.appteam.nimbus.Utils.Util;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class SponsorActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+     private SponsorAdapter adapter;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sponsor);
-        Toolbar toolbarTop = (Toolbar) findViewById(R.id.sponsor_toolbar);
-        TextView mTitle = (TextView) toolbarTop.findViewById(R.id.toolbar_title);
-        mTitle.setText("Sponsors");
-        setSupportActionBar(toolbarTop);
-        //THE EXPANDABLE
-        ExpandableListView elv=(ExpandableListView) findViewById(R.id.expandableListView1);
-        final ArrayList<Team> team=getData();
-        //CREATE AND BIND TO ADAPTER
-       SponsorAdapter adapter=new SponsorAdapter(this, team);
-       elv.setAdapter(adapter);
-        //SET ONCLICK LISTENER
-        elv.setOnChildClickListener(new OnChildClickListener() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        recyclerView= (RecyclerView) findViewById(R.id.list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter=new SponsorAdapter(this);
+        recyclerView.setAdapter(adapter);
+        progressBar= (ProgressBar) findViewById(R.id.progress);
+        getData();
+    }
+
+    private void getData(){
+        Call<SponsorResponse> call= Util.getRetrofitService().getSponsorList();
+        call.enqueue(new Callback<SponsorResponse>() {
             @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPos,
-                                        int childPos, long id) {
-                Toast.makeText(getApplicationContext(), team.get(groupPos).players.get(childPos), Toast.LENGTH_SHORT).show();
-                return false;
+            public void onResponse(Call<SponsorResponse> call, Response<SponsorResponse> response) {
+                SponsorResponse sponsorResponse=response.body();
+                if(sponsorResponse!=null&&response.isSuccess()){
+                    adapter.refresh(sponsorResponse.getSponsors());
+                    recyclerView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }
+                else {
+                    progressBar.setVisibility(View.GONE);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SponsorResponse> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
-    //ADD AND GET DATA
-    private ArrayList<Team> getData()
-    {
-        Team t1=new Team("Educational Partner");
-        t1.players.add("S1");
-        t1.players.add("S2");
-        t1.players.add("S3");
-        t1.players.add("S4");
-        Team t2=new Team("Food Partner");
-        t2.players.add("f1");
-        t2.players.add("f2");
-        t2.players.add("f3");
-        t2.players.add("f4");
-        Team t3=new Team("Other");
-        t3.players.add("o1");
-        t3.players.add("o2");
-        t3.players.add("o3");
-        t3.players.add("o4");
-        ArrayList<Team> allTeams=new ArrayList<Team>();
-        allTeams.add(t1);
-        allTeams.add(t2);
-        allTeams.add(t3);
-        return allTeams;
-    }
+
 }
