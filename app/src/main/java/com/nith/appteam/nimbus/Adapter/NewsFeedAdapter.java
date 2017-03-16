@@ -94,7 +94,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         @Override
                         public void onClick(View v) {
 
-                            h.user_msg.append(" " + non_truncated);
+                            h.user_msg.append( non_truncated);
                             h.see_less.setVisibility(View.VISIBLE);
                             h.see_more.setVisibility(View.GONE);
                         }
@@ -110,10 +110,11 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     });
 
                 }
+                else if(card.getDescription()!=null&&!card.getDescription().isEmpty())
+                    h.user_msg.setText(card.getDescription());
                 if(card.getUsername()!=null&&!card.getUsername().isEmpty())
                     h.user_name.setText(card.getUsername());
-                if(card.getDescription()!=null&&!card.getDescription().isEmpty())
-                    h.user_msg.setText(card.getDescription());
+
                 if(card.getTitle()!=null&&!card.getTitle().isEmpty())
                     h.title.setText(card.getTitle());
 
@@ -223,6 +224,8 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         return list_card.size();
     }
+
+
 
 
 
