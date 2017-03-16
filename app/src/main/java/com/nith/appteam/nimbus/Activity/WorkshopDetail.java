@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.ActionBar;
@@ -51,7 +52,7 @@ public class WorkshopDetail extends AppCompatActivity {
     private ProgressBar progess_single_workshop;
     private String name,imgUrl,description;
     private Boolean registerStatus;
-    private Button registerButtton;
+    private FloatingActionButton registerButtton;
     private LinearLayout details;
     private SharedPref sharedPref;
     private ImageView img_view;
@@ -67,7 +68,7 @@ public class WorkshopDetail extends AppCompatActivity {
 
         sharedPref = new SharedPref(this);
 
-        registerButtton=(Button)findViewById(R.id.register_button);
+        registerButtton=(FloatingActionButton) findViewById(R.id.register_button);
         reg_msg=(TextView)findViewById(R.id.reg_msg);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         rating_text=(TextView) findViewById(R.id.rating_text);

@@ -45,6 +45,7 @@ public class GalleryFragment extends Fragment {
         galleryImageView= (AspectRatioImageView) v.findViewById(R.id.item_image_gallery);
         titleTextView= (TextView) v.findViewById(R.id.item_text_gallery);
         progressBar= (ProgressBar) v.findViewById(R.id.progress);
+        if(title!=null&&!title.isEmpty())
         titleTextView.setText(title);
         Glide.with(this).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<String, GlideDrawable>() {
             @Override

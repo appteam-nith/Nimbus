@@ -278,6 +278,10 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             sharedPref.setUserId("");
             sharedPref.setLoginStatus(false);
+            sharedPref.setUserRollno("");
+            sharedPref.setUserEmail("");
+            sharedPref.setUserPicUrl("");
+            sharedPref.setUserName("");
             LoginManager.getInstance().logOut();
             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

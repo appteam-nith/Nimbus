@@ -36,6 +36,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/content_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffe5e5e5"
@@ -64,17 +65,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/register_button"
-                    android:text="Register"
-                    android:textSize="20sp"
-                    android:textColor="#ffffff"
-                    android:textAllCaps="false"
-                    android:layout_margin="10dp"
-                    android:padding="5dp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,5 +90,12 @@
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
-
+    <android.support.design.widget.FloatingActionButton
+        app:layout_anchor="@id/content_scroll"
+        android:id="@+id/register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchorGravity="right|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/calendar" />
     </android.support.design.widget.CoordinatorLayout>

@@ -47,7 +47,7 @@
         <activity android:name=".Activity.TeamEventActivity" />
         <activity
             android:name=".Activity.NewsFeedActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
@@ -69,10 +69,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-        <activity
-            android:name=".Activity.SponsorActivity"
-            android:parentActivityName=".Activity.MainActivity"
-            android:theme="@style/ProfileTheme" />
         <activity
             android:name=".Activity.AppIntro"
             android:label="@string/title_activity_appintro"
@@ -131,12 +127,11 @@
         <activity android:name=".Activity.MapActivity" />
         <activity
             android:name=".Activity.QuizActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
         <activity
             android:name=".Activity.AboutActivity"
             android:label="@string/title_activity_about"
@@ -145,46 +140,47 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
         <activity android:name=".Activity.GalleryDetailActivity" />
-        <activity android:name=".Activity.GalleryActivity" >
+        <activity android:name=".Activity.GalleryActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
         <activity android:name=".Notification.NotificationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
-        <activity android:name=".Notification.Notification2"
-            android:parentActivityName=".Notification.NotificationActivity"/>
-
+        <activity
+            android:name=".Notification.Notification2"
+            android:parentActivityName=".Notification.NotificationActivity" />
         <activity
             android:name=".Activity.ContributorsActivity"
-            android:parentActivityName=".Activity.MainActivity">
-        </activity>
-
-        <activity android:name=".Activity.QuizQuestionActivity" >
+            android:parentActivityName=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.QuizQuestionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-
-        <activity android:name=".Activity.QuizScoreActivity" >
+        <activity android:name=".Activity.QuizScoreActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-
-        <activity android:name=".Activity.InformationActivity" >
+        <activity android:name=".Activity.InformationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-
+        <activity
+            android:name=".Activity.SponsorActivity"
+            android:label="@string/title_activity_sponsor"
+            android:parentActivityName=".Activity.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
