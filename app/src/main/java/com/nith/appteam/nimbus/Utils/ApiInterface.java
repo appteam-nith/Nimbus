@@ -72,7 +72,7 @@ public interface ApiInterface {
 
 
     @GET("newsfeed/getall/{id}")
-    Call<NewsFeedResponse> getAllNews(@Path("id") String userId);
+    Call<NewsFeedResponse> getAllNews(@Path("id") String userId,@Query("from") int from);
 
 
     @POST("newsfeed/like/{id}")

@@ -45,8 +45,8 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.viewHold
         if(s!=null){
             if(s.getName()!=null&&!s.getName().isEmpty())
                 holder.textView.setText(s.getName());
-            if(s.getLogoUrl()!=null&&!s.getLogoUrl().isEmpty())
-                Glide.with(context).load(s.getLogoUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.person_icon).into(holder.imageView);
+            if(s.getImg_url()!=null&&!s.getImg_url().isEmpty())
+                Glide.with(context).load(s.getImg_url()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.person_icon).into(holder.imageView);
         }
     }
 
