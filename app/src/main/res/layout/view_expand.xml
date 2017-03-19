@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:custom="http://schemas.android.com/apk/res-auto/com.nith.appteam.nimbus.CustomView.AspectRatioImageView"
+<android.support.v7.widget.CardView
+    xmlns:custom="http://schemas.android.com/apk/res-auto/com.nith.appteam.nimbus.CustomView.AspectRatioImageView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
-    app:cardCornerRadius="8dp"
-    >
-    <LinearLayout
+    app:cardCornerRadius="8dp">
 
-        android:orientation="vertical" android:layout_width="match_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
             android:background="@drawable/black_border"
             android:padding="2dp"
@@ -20,21 +22,25 @@
             android:layout_width="match_parent"
             android:layout_height="192dp"
             custom:dominantMeasurement="width"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
                 android:background="@drawable/black_border"
                 android:padding="2dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:id="@+id/image_expanded_2"
                 android:src="@drawable/slide_3"
                 android:layout_width="192dp"
                 android:layout_height="192dp"
                 custom:dominantMeasurement="height"/>
+
             <RelativeLayout
-                android:layout_width="192dp"
+                android:layout_width="match_parent"
                 android:layout_height="192dp">
+
                 <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
                     android:background="@drawable/black_border"
                     android:padding="2dp"
@@ -45,15 +51,17 @@
                     android:layout_height="192dp"
                     custom:dominantMeasurement="height"
                     />
-                <View
+
+                <TextView
+                    android:gravity="center"
+                    android:background="#78000000"
+                    android:textColor="@android:color/white"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#5000"/>
-                <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/plus"/>
+                    android:text="View More"/>
             </RelativeLayout>
 
         </LinearLayout>

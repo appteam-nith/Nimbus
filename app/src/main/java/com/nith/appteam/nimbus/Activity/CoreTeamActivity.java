@@ -36,14 +36,14 @@ public class CoreTeamActivity extends AppCompatActivity {
         array_list.add(new CoreTeamItem("Pranav Bhardwaj","Clubs Secretary (Core)",BASE_URL_JSEC+"pranav.jpg"));
         array_list.add(new CoreTeamItem("Harsh Sharma","Clubs Secretary (Departmental)",BASE_URL_JSEC+"harsh.jpg"));
         array_list.add(new CoreTeamItem("Harshit Nadda","Finance Secretary",BASE_URL_JSEC+"harshit.jpg"));
-        array_list.add(new CoreTeamItem("Rohit Raman","Treasurer",BASE_URL_JSEC+"rohit.jpg"));
+        array_list.add(new CoreTeamItem("Rohit Raman","Finance Secretary",BASE_URL_JSEC+"rohit.jpg"));
         array_list.add(new CoreTeamItem("Pooja Bayana","Secretary (Public Relation)",BASE_URL_JSEC+"pooja.jpg"));
         array_list.add(new CoreTeamItem("Himanshu Khandelwal","Jt. Secretary (Public Relation)",BASE_URL_JSEC+"himanshu.jpg"));
         array_list.add(new CoreTeamItem("Ishan Dhiman","Creative Head",BASE_URL_JSEC+"ishan.jpg"));
         array_list.add(new CoreTeamItem("Shubam Rana","Graphic Head",BASE_URL_JSEC+"shubam.jpg"));
         array_list.add(new CoreTeamItem("Saloni Bakshi","Web Head",BASE_URL_JSEC+"saloni.jpg"));
         array_list.add(new CoreTeamItem("Chetanya Kaushal","Secretary (Hospitality)",BASE_URL+"chetanya.jpg"));
-        array_list.add(new CoreTeamItem("Abhisek Mehra","Jt. Secretary (Registration)",BASE_URL_JSEC+"abhishekm.jpg"));
+        array_list.add(new CoreTeamItem("Abhisek Mehra","Secretary (Registration)",BASE_URL_JSEC+"abhishekm.jpg"));
         array_list.add(new CoreTeamItem("Abhishek Singh Parihar","Secretary (Accomodation)",BASE_URL_JSEC+"abhisheks.JPG"));
         array_list.add(new CoreTeamItem("Shubham Mahajan","Secretary (Transportation)",BASE_URL_JSEC+"shubham.jpg"));
         array_list.add(new CoreTeamItem("Nishant Chaudhary","Secretary (Promotional & Marketing)",BASE_URL_JSEC+"nishant.jpg"));

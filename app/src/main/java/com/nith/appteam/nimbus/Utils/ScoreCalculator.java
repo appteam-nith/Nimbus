@@ -57,7 +57,10 @@ public class ScoreCalculator {
     }
 
     public String getSelectedChoice(int qno){
+        if(selectedChoices!=null)
         return selectedChoices[qno-1];
+        else
+            return null;
     }
 
     public int calculateScore(){

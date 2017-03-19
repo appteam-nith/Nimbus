@@ -105,7 +105,7 @@
         <activity
             android:name=".Activity.LeaderBoardActivity"
             android:parentActivityName=".Activity.QuizActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".Activity.WorkshopDetail" />
 
         <service

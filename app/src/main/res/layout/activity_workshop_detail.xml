@@ -2,7 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/core_view">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -91,11 +92,12 @@
 
 </android.support.v4.widget.NestedScrollView>
     <android.support.design.widget.FloatingActionButton
+        android:visibility="gone"
         app:layout_anchor="@id/content_scroll"
         android:id="@+id/register_button"
         android:layout_width="wrap_content"
+        android:scaleType="centerCrop"
         android:layout_height="wrap_content"
         app:layout_anchorGravity="right|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/calendar" />
+        android:src="@drawable/register" />
     </android.support.design.widget.CoordinatorLayout>

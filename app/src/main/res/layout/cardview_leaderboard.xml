@@ -50,10 +50,13 @@
 
                 <TextView
                     android:id="@+id/leader_score"
-                    android:layout_width="wrap_content"
+                    android:layout_width="85dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right"
+                    android:layout_gravity="right"
                     android:text="score:754"
+                    android:paddingTop="5dp"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -78,10 +81,11 @@
 
                 <TextView
                     android:id="@+id/leader_sets"
-                    android:layout_width="match_parent"
+                    android:layout_width="85dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
+                    android:gravity="right"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
                     android:text="sets:35"
                     android:textSize="20sp" />
             </LinearLayout>

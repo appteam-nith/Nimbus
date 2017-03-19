@@ -316,7 +316,8 @@ public class QuizQuestionActivity extends AppCompatActivity {
             builder.setPositiveButton("Quit", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    t.cancel(true);
+
+                    if(t!=null) t.cancel(true);
                     getActivity().finish();
 
                 }

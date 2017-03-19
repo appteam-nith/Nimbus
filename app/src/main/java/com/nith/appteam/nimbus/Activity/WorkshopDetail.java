@@ -1,10 +1,13 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.ActionBar;
@@ -56,6 +59,7 @@ public class WorkshopDetail extends AppCompatActivity {
     private LinearLayout details;
     private SharedPref sharedPref;
     private ImageView img_view;
+    private CoordinatorLayout coordinatorLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +71,7 @@ public class WorkshopDetail extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         sharedPref = new SharedPref(this);
-
+        coordinatorLayout= (CoordinatorLayout) findViewById(R.id.core_view);
         registerButtton=(FloatingActionButton) findViewById(R.id.register_button);
         reg_msg=(TextView)findViewById(R.id.reg_msg);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -114,34 +118,43 @@ public class WorkshopDetail extends AppCompatActivity {
         student_id=sharedPref.getUserId();
         which_activity=getIntent().getStringExtra(ACTIVITY);
 
-        if(which_activity.equals(WORKSHOP)){
-            workshop_id=getIntent().getStringExtra(ID);
-            id=workshop_id;
-            workshop_name=getIntent().getStringExtra(WORKSHOP_NAME);
-            collapsingToolbarLayout.setTitle(workshop_name);
-            if(workshop_id==null){
-                Toast.makeText(this,"There is no Id for workshop",Toast.LENGTH_SHORT);
-            }
-            else {
-                workshopRetrofit();
-            }
+        if(sharedPref.getUserId().isEmpty()){
+            progess_single_workshop.setVisibility(View.GONE);
+            Snackbar.make(coordinatorLayout,"Please Login To See The Content",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(WorkshopDetail.this,LoginActivity.class));
+                }
+            }).show();
         }
-        else if (which_activity.equals(EVENT)){
-            event_id=getIntent().getStringExtra(ID);
-            id=event_id;
-            event_name=getIntent().getStringExtra(EVENT_NAME);
-            collapsingToolbarLayout.setTitle(event_name);
-            if(event_id==null){
-                Toast.makeText(this,"There is no Id for event",Toast.LENGTH_SHORT);
-            }
-            else {
-                eventRetrofit();
+else {
+            progess_single_workshop.setVisibility(View.VISIBLE);
+            if (which_activity.equals(WORKSHOP)) {
+                workshop_id = getIntent().getStringExtra(ID);
+                id = workshop_id;
+                workshop_name = getIntent().getStringExtra(WORKSHOP_NAME);
+                collapsingToolbarLayout.setTitle(workshop_name);
+                if (workshop_id == null) {
+                    Toast.makeText(this, "There is no Id for workshop", Toast.LENGTH_SHORT);
+                } else {
+                    workshopRetrofit();
+                }
+            } else if (which_activity.equals(EVENT)) {
+                event_id = getIntent().getStringExtra(ID);
+                id = event_id;
+                event_name = getIntent().getStringExtra(EVENT_NAME);
+                collapsingToolbarLayout.setTitle(event_name);
+                if (event_id == null) {
+                    Toast.makeText(this, "There is no Id for event", Toast.LENGTH_SHORT);
+                } else {
+                    eventRetrofit();
+                }
             }
         }
 
         toolbarTextAppernce();
         dynamicToolbarColor();
-        progess_single_workshop.setVisibility(View.VISIBLE);
+
     }
 
     private void dynamicToolbarColor() {
@@ -226,7 +239,6 @@ public class WorkshopDetail extends AppCompatActivity {
             @Override
             public void onResponse(Call<SingleWorkshopResponse> call, Response<SingleWorkshopResponse> response) {
                 progess_single_workshop.setVisibility(View.GONE);
-                details.setVisibility(View.VISIBLE);
                 rating_text.setVisibility(View.GONE);
                 ratingBar.setVisibility(View.GONE);
                 SingleWorkshopResponse model=response.body();
@@ -235,6 +247,7 @@ public class WorkshopDetail extends AppCompatActivity {
                 if(model!=null && response.isSuccess()){
                     successStatus=model.getSuccessStatus();
                     if(successStatus==true){
+                        details.setVisibility(View.VISIBLE);
                         name=model.getName();
                         imgUrl=model.getImgUrl();
                         description=model.getDesc();
@@ -292,6 +305,7 @@ public class WorkshopDetail extends AppCompatActivity {
                     registerButtton.setVisibility(View.GONE);
                     reg_msg.setVisibility(View.VISIBLE);
                     reg_msg.setText(msg);
+                    Snackbar.make(coordinatorLayout,msg,Snackbar.LENGTH_INDEFINITE).show();
 
                 } else {
                     Toast.makeText(WorkshopDetail.this, "Success Status is not true!!", Toast.LENGTH_SHORT).show();

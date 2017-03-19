@@ -25,6 +25,7 @@
         custom:dominantMeasurement="width"/>
 
     <TextView
+        android:background="#5000"
         android:id="@+id/text_normal"
         android:gravity="center"
         android:layout_marginBottom="10dp"

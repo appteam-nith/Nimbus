@@ -1,10 +1,13 @@
 package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.gson.annotations.SerializedName;
 import com.nith.appteam.nimbus.CustomView.EditorView;
+import com.nith.appteam.nimbus.Manifest;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Service.UploadService;
 import com.nith.appteam.nimbus.Utils.SharedPref;
@@ -107,6 +111,16 @@ public class UploadNewsFeedActivity extends AppCompatActivity {
     }
 
     private void createChooser() {
+        if(ContextCompat.checkSelfPermission(UploadNewsFeedActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 121);
+            }
+
+            return;
+
+        }
+
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "CHOOSE PHOTO"), PICK_IMAGE_REQUEST);
