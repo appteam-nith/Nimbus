@@ -21,6 +21,7 @@ import com.nith.appteam.nimbus.Model.ProfileEventModel;
 import com.nith.appteam.nimbus.Fragment.ProfileTab1.ProfileEventDataModel;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
+import com.nith.appteam.nimbus.Utils.MyApplication;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
 
@@ -191,20 +192,20 @@ public class ProfileTab1 extends Fragment {
                             }
                             else{
 
-                                Toast.makeText(getContext(),"No Events Registered",Toast.LENGTH_LONG).show();
+                                Toast.makeText(MyApplication.getAppContext(),"No Events Registered",Toast.LENGTH_LONG).show();
                             }
         
                         }
                         else {
 
-                            Toast.makeText(getContext(),"Unable to fetch Event List",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MyApplication.getAppContext(),"Unable to fetch Event List",Toast.LENGTH_LONG).show();
 
                         }
         
                     }
                     else {
         
-                        Toast.makeText(getContext(),"Unable to fetch Event List",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyApplication.getAppContext(),"Unable to fetch Event List",Toast.LENGTH_SHORT).show();
                     }
                 }
         
@@ -213,7 +214,7 @@ public class ProfileTab1 extends Fragment {
         
                     t.printStackTrace();
                     progress.setVisibility(View.GONE);
-                    Toast.makeText(getContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MyApplication.getAppContext(), "Please check your network connection and internet permission", Toast.LENGTH_LONG).show();
                 }
             });
         }

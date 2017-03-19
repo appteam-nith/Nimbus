@@ -225,7 +225,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:src="@drawable/sponsor"
+                                android:src="@drawable/cash"
                                 android:scaleType="centerCrop"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
@@ -246,7 +246,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:src="@drawable/workshop"
+                                android:src="@drawable/event"
                                 android:scaleType="centerCrop"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
@@ -254,7 +254,7 @@
                             <TextView
                                 android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
-                                android:text="WorkShop"
+                                android:text="Special Event"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>

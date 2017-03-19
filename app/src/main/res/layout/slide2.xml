@@ -6,33 +6,9 @@
     <ImageView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:src="@drawable/slide2"
+        android:src="@drawable/quiz"
         android:scaleType="centerCrop"
         />
-
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:text="@string/slide1"
-            android:id="@+id/text1"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"
-            android:layout_height="60dp"
-            android:layout_width="120dp"
-            android:textStyle="bold"
-            android:textColor="#111111">
-        </TextView>
-
-
-
-
-    </RelativeLayout>
-
-
-
 
 </FrameLayout>
 

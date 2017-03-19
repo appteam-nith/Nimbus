@@ -110,6 +110,7 @@ public class EditorView extends ScrollView {
         EditorImageView imageView= (EditorImageView) view.findViewById(R.id.editorImageView);
         imageView.setImageBitmap(bmp);
         imageView.setAbsoluteUrl(imageUrl);
+
         int imageHeight = getWidth() * bmp.getHeight() / bmp.getWidth();
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT, imageHeight);

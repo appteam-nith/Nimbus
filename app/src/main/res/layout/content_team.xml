@@ -17,9 +17,9 @@
         <ImageView
             android:id="@+id/logoTeam"
             android:layout_marginTop="20dp"
-            android:src="@drawable/team"
+            android:src="@drawable/logo_b_t"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="192dp"
             android:layout_centerHorizontal="true"
             />
 

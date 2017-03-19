@@ -45,6 +45,7 @@ public class Util {
         oBuilder.readTimeout(15l,TimeUnit.SECONDS);
 // code to add cache in retrofit
 
+        /*
         oBuilder.cache(new Cache(new File(MyApplication.getAppContext().getCacheDir(),"cache"),10*1024*1024));
         oBuilder.addInterceptor(new Interceptor() {
             @Override public Response intercept(Chain chain) throws IOException {
@@ -58,6 +59,7 @@ public class Util {
             }
         });
 
+*/
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nimbus2k17api.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).
                 client(oBuilder.build()).
                 build();
