@@ -56,9 +56,9 @@ public class MyApplication extends Application {
                 Log.v("","in receiver");
                 DbHelper dbHelper = new DbHelper(getApplicationContext());
                 if(dbHelper.insert_2_homeposts(id,small_icon,title,description,image,large_icon,launch_url)){
-                    Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                   // Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                   // intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                   // startActivity(intent);
 
                     if (data != null) {
 
@@ -108,7 +108,7 @@ public class MyApplication extends Application {
 
                 // The following can be used to open an Activity of your choice.
                 // Replace - getApplicationContext() - with any Android Context.
-                Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                Intent intent = new Intent(MyApplication.this, NotificationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
