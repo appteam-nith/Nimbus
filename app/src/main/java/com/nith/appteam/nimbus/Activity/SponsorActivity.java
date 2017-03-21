@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -43,14 +44,23 @@ public class SponsorActivity extends AppCompatActivity {
 
     private void getData(){
         Call<SponsorResponse> call= Util.getRetrofitService().getSponsorList();
+
         call.enqueue(new Callback<SponsorResponse>() {
             @Override
             public void onResponse(Call<SponsorResponse> call, Response<SponsorResponse> response) {
                 SponsorResponse sponsorResponse=response.body();
+
                 if(sponsorResponse!=null&&response.isSuccess()){
                     adapter.refresh(sponsorResponse.getSponsors());
                     recyclerView.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
+
+                    if(sponsorResponse.getSponsors().size()==0){
+                        findViewById(R.id.coming_soon).setVisibility(View.VISIBLE);
+                    }else{
+                        findViewById(R.id.coming_soon).setVisibility(View.GONE);
+                    }
+
                 }
                 else {
                     progressBar.setVisibility(View.GONE);
