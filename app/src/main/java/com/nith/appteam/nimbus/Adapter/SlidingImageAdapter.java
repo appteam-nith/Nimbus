@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nith.appteam.nimbus.Activity.SlidingImageDetailActivity;
 import com.nith.appteam.nimbus.R;
 
 import java.util.ArrayList;
@@ -48,18 +50,31 @@ public class SlidingImageAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup view, int position) {
+    public Object instantiateItem(ViewGroup view, final int position) {
         View imageLayout = inflater.inflate(R.layout.sliding_image_layout, view, false);
         assert imageLayout != null;
         final ImageView imageView = (ImageView) imageLayout
                 .findViewById(R.id.image);
         if(position==0 || position==1)
-        imageView.setImageResource(IMAGES[position]);
+            imageView.setImageResource(IMAGES[position]);
         else {
             Log.d("k",urlList.get(position-IMAGES.length));
             Glide.with(context).load(urlList.get(position-IMAGES.length)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(imageView);
         }
         view.addView(imageLayout, 0);
+        imageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(position==0 || position==1) context.startActivity(new Intent(context,SlidingImageDetailActivity.class).putExtra(Intent.EXTRA_TEXT,position));
+                else{
+
+                    if(urlList.get(position-IMAGES.length)==null) v=v;
+
+                    else
+                        context.startActivity(new Intent(context, SlidingImageDetailActivity.class).putExtra(Intent.EXTRA_TEXT,urlList.get(position-IMAGES.length)));
+                }
+            }
+        });
         return imageLayout;
     }
 
