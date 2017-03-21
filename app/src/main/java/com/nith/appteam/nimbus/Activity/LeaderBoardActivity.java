@@ -140,8 +140,15 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
     public class Quiz{
 
+        @SerializedName("score")
         private int score;
+        @SerializedName("sets")
         private int sets;
+
+        public Quiz(int score, int sets) {
+            this.score = score;
+            this.sets = sets;
+        }
 
         public int getScore() {
             return score;
