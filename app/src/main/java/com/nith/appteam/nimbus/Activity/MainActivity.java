@@ -1,7 +1,10 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -9,6 +12,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +29,7 @@ import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
+import com.nith.appteam.nimbus.Manifest;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
 import com.nith.appteam.nimbus.Notification.NotificationActivity;
@@ -55,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtName, txtSubName;
     Toolbar toolbar;
     private LinearLayout quiz_layout, gallery_layout, map_layout,  newsfeed_layout, coreteam_layout , aboutnimbus_layout , teams_layout, feedback_layout,sponsor_layout,workshop_layout,contributor_layout;
-
+    final String number[] = {"816291592", "9882551107"};
     //public static int navItemIndex = 0;
+    private static final int PERMISSIONS_REQUEST_PHONE_CALL = 100;
+    private static String[] PERMISSIONS_PHONECALL = {android.Manifest.permission.CALL_PHONE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -327,6 +334,25 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(Intent.createChooser(intent, "Send Email"));
                         drawer.closeDrawers();
                         return true;
+                    case R.id.nav_emergencycontact:
+                        AlertDialog.Builder alertDialog3 = new AlertDialog.Builder(MainActivity.this);
+
+                        alertDialog3.setTitle("Phone Number\n");
+
+                        CharSequence name[] = {"Abhinav Anand: 816291592\n","Pranav Bhardwaj: 9882551107"};
+
+                        alertDialog3.setItems(name, new DialogInterface.OnClickListener(){
+                            @Override
+                           public void onClick(DialogInterface di,int i){
+
+                               call(i);
+                           }
+                        });
+
+
+                        alertDialog3.show();
+                        return true;
+
                     default:
                         //navItemIndex = 0;
                 }
@@ -409,9 +435,22 @@ public class MainActivity extends AppCompatActivity {
                 t.printStackTrace();
 
             }
-        });
+        });}
 
 
+
+    private void call(int i)
+    {
+        String phone;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, PERMISSIONS_REQUEST_PHONE_CALL);
+        }
+        else{
+        phone = number[i];
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:+91" + phone));
+        startActivity(intent);
     }
 
+}
 }
