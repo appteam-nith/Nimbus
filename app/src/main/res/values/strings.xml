@@ -57,4 +57,11 @@
     14. For any queries/complaints/bugs, contact us at appteam.nith@gmail.com</string>
     <string name="title_activity_sponsor">Sponsor</string>
 
+    <string name="wall_info">
+        * Keep yourself updated with all the happenings of NIMBUS 2k17.\n\n
+        * Add your Nimbus projects along with a description and image of same.\n\n
+        * Add important news and announcement of various events organised during Nimbus.\n\n
+        * Exciting cash prizes for the posts with maximum likes.
+    </string>
+
 </resources>

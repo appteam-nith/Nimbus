@@ -124,13 +124,13 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
 
         // Button to upload the NewsFeed
 
-        FloatingActionButton upload= (FloatingActionButton) findViewById(R.id.upload_btn);
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(NewsFeedActivity.this,UploadNewsFeedActivity.class));
-            }
-        });
+//        FloatingActionButton upload= (FloatingActionButton) findViewById(R.id.upload_btn);
+//        upload.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(NewsFeedActivity.this,UploadNewsFeedActivity.class));
+//            }
+//        });
 
     }
 
