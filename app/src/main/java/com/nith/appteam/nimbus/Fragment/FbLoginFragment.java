@@ -122,6 +122,7 @@ public class FbLoginFragment extends Fragment {
                         }
 
                         btnLogin.setVisibility(View.GONE);
+                        tvSkip.setVisibility(View.GONE);
                         saveFbUserData(name, email, picUrl);
                         pbLogin.setVisibility(View.VISIBLE);
                     }
@@ -165,7 +166,6 @@ public class FbLoginFragment extends Fragment {
                     sharedPref.setUserId(userSentResponse.getUserId());
 
                     pbLogin.setVisibility(View.GONE);
-
                     Intent intent = new Intent(getActivity(),MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
