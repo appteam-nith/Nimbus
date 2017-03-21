@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Nimbus 2k17</string>
+
     <string name="title_activity_appintro">appintro</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
@@ -33,6 +34,7 @@
     <string name="nav_team">Contributors</string>
     <string name="nav_contactus">Contact Us</string>
     <string name="nav_reportbug">Report Bug</string>
+    <string name="nav_emergencycontact">Emergency Contact</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
