@@ -80,18 +80,28 @@ public class Workshops extends AppCompatActivity {
                     ArrayList<WorkshopItem> workshop_item=model.getWorkshops();
 
                     if(workshop_item!=null){
-                    Log.v("Size response ",workshop_item.size()+"");
-                    LinearLayoutManager lvmanager = new LinearLayoutManager(Workshops.this);
-                    lvmanager.setOrientation(LinearLayoutManager.VERTICAL);
-                    workshopsRv.setLayoutManager(lvmanager);
+                        Log.v("Size response ",workshop_item.size()+"");
 
-                    workshopsAdapter.refresh(workshop_item);
+                        if(workshop_item.size()==0){
+                            findViewById(R.id.coming_soon).setVisibility(View.VISIBLE);
+                        }else{
+                            findViewById(R.id.coming_soon).setVisibility(View.GONE);
+                        }
+
+                        LinearLayoutManager lvmanager = new LinearLayoutManager(Workshops.this);
+                        lvmanager.setOrientation(LinearLayoutManager.VERTICAL);
+                        workshopsRv.setLayoutManager(lvmanager);
+
+                        workshopsAdapter.refresh(workshop_item);
                     }
                     else{
+
+                        Log.v("Size response ","dfdf");
                         errorView.setText("Sorry No Workshop Available Right Now");
                     }
 
                 }else{
+                    Log.v("Size response ","error");
                     errorView.setText("Error Occur");
                 }
             }
@@ -100,6 +110,7 @@ public class Workshops extends AppCompatActivity {
             public void onFailure(Call<WorkshopListResponse> call, Throwable t) {
                 bar.setVisibility(View.GONE);
                 errorView.setText("Error Occur");
+                Log.v("Size response ","failure");
             }
         });
     }

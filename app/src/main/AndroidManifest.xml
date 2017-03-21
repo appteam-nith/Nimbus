@@ -186,6 +186,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity
             android:name=".Activity.WallIntroActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -193,6 +194,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
+        <activity android:name=".Activity.SlidingImageDetailActivity"></activity>
+
     </application>
 
 </manifest>

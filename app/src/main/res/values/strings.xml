@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Udgam</string>
+    <string name="app_name">Nimbus 2k17</string>
+
     <string name="title_activity_appintro">appintro</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
@@ -24,7 +25,7 @@
     <string name="facebook_app_id">1834013936864907</string>
     <string name="fb_login_protocol_scheme">fb1834013936864907</string>
     <string name="title_activity_about">About</string>
-    <string name="AboutNimbus">NIMBUS is the annual technical festival of National Institute of Technology, Hamirpur, Himachal Pradesh, India. It istouted to be an amalgamation of ideas, expressions, innovations, prototypes, knowledge channels, taken to the mostpremier levels. Nimbus has become the biggest technical fest of Northern India</string>
+    <string name="AboutNimbus">NIMBUS is the annual technical festival of National Institute of Technology, Hamirpur, Himachal Pradesh, India. It is an amalgamation of ideas, expressions, innovations, prototypes, knowledge channels, taken to the most premier levels. Nimbus has become the biggest technical fest of Northern India</string>
 
     <!-- Navigation Drawer menu labels -->
     <string name="nav_aboutapp">About App</string>
@@ -49,12 +50,11 @@
     6. Their is no negative marking for wrong answer, so it is better to attempt all questions. And for correct answer you will be provided one point.\n\n
     7. <b>Important:</b> Time limit to attempt a set of question is 2 minutes. \nYou have to finish the quiz in 2 minutes to make your score count.\n\n
     8. After attempting all questions press finish button to submit your inputs. After 2 minutes, inputs will automatically gets submitted.\n\n
-    9. <b>Important:</b> Make sure u are connected to internet wile attempting quiz, and while making submission.\n\n
-    10. Do not close app after starting quiz, because you will be given only one attempt to each set of questions.\n\n
-    11. After clicking on submit you will be shown only score corresponding to that set of questions.\n\n
-    12. <b>Advice:</b> Attempt as many sets possible to score more points.\n\n
-    13. Winners will be announced after Hillffair 2016, and will be rewarded.\n\n
-    14. For any queries/complaints/bugs, contact us at appteam.nith@gmail.com</string>
+    9. Do not close app after starting quiz, because you will be given only one attempt to each set of questions.\n\n
+    10. After clicking on submit you will be shown only score corresponding to that set of questions.\n\n
+    11. <b>Advice:</b> Attempt as many sets possible to score more points.\n\n
+    12. Winners will be announced after Nimbus 2017, and will be rewarded.\n\n
+    13. For any queries/complaints/bugs, contact us at <u>appteam.nith@gmail.com</u></string>
     <string name="title_activity_sponsor">Sponsor</string>
 
     <string name="wall_info">

@@ -4,19 +4,22 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
         app:cardUseCompatPadding="true"
         android:background="@color/colorPrimaryDark">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="15dp"
             android:layout_margin="5dp"
             android:background="#FFF">
-            <!--    <com.android.volley.toolbox.NetworkImageView
+
+            <!--<com.android.volley.toolbox.NetworkImageView
                     android:layout_width="95dp"
                     android:layout_height="100dp"
                     android:id="@+id/home_card_img"
@@ -72,9 +75,6 @@
                 android:layout_alignLeft="@+id/not_title"
                 android:layout_alignStart="@+id/not_title"
                 android:layout_marginTop="4dp" />
-
-
-
 
         </RelativeLayout>
 
