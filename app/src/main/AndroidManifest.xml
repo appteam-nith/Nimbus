@@ -51,10 +51,11 @@
         <activity android:name=".Activity.TeamEventActivity" />
         <activity
             android:name=".Activity.NewsFeedActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Newsfeed">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+                android:value="com.nith.appteam.nimbus.Activity.WallIntroActivity" />
         </activity>
         <activity
             android:name=".Activity.MainActivity"
@@ -185,7 +186,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".Activity.WallIntroActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+        </activity>
+
         <activity android:name=".Activity.SlidingImageDetailActivity"></activity>
+
     </application>
 
 </manifest>

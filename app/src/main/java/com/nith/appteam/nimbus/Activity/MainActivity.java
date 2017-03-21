@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         newsfeed_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
+                startActivity(new Intent(MainActivity.this,WallIntroActivity.class));
             }
         });
 
