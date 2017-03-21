@@ -32,7 +32,7 @@ public class CoreTeamActivity extends AppCompatActivity {
         array_list.add(new CoreTeamItem("Dr. A.S. Singha","Dean Student Welfare",BASE_URL+"photos/as.jpg"));
         array_list.add(new CoreTeamItem("Dr Saroj Thakur","Faculty Coordinator",BASE_URL_JSEC+"saroj.jpg"));
 
-        array_list.add(new CoreTeamItem("Abhinav Anand","Nimbus Secretary",BASE_URL_JSEC+"abhinav.jpg"));
+        array_list.add(new CoreTeamItem("Abhinav Anand","Secretary (Technical Activities)",BASE_URL_JSEC+"abhinav.jpg"));
         array_list.add(new CoreTeamItem("Pranav Bhardwaj","Club Secretary (Core)",BASE_URL_JSEC+"pranav.jpg"));
         array_list.add(new CoreTeamItem("Harsh Sharma","Club Secretary (Departmental)",BASE_URL_JSEC+"harsh.jpg"));
         array_list.add(new CoreTeamItem("Harshit Nadda","Secretary (Finance and treasury)",BASE_URL_JSEC+"harshit.jpg"));
