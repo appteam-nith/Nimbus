@@ -12,8 +12,9 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:id="@+id/leader_pic"
             android:src="@drawable/person_icon"/>

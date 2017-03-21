@@ -1,6 +1,9 @@
 package com.nith.appteam.nimbus.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.nith.appteam.nimbus.Activity.LeaderBoardActivity;
 import com.nith.appteam.nimbus.R;
 
@@ -40,6 +45,20 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
         holder.username.setText(user.getName().toString());
         holder.rollno.setText(user.getRollNo().toString());
         holder.score.setText("Score: "+Integer.toString(user.getSets().getScore()));
+        Glide.with(context).load(user.getPhoto()).into(holder.photo);
+
+        final ImageView imageView=holder.photo;
+
+        Glide.with(context).load(user.getPhoto()).asBitmap().centerCrop().into(new BitmapImageViewTarget(imageView) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                imageView.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+
         Integer prsnlscore = user.getSets().getScore();
         if(prsnlscore>=800) holder.useraward.setImageResource(R.drawable.trophy_gold);
         else if(prsnlscore>=600) holder.useraward.setImageResource(R.drawable.trophy_silver);
@@ -58,17 +77,18 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
 
     public class LeaderBoardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView username;
-        ImageView userpic;
+        ImageView photo;
         TextView rollno;
         TextView score;
         TextView sets;
         ImageView useraward;
         Context context;
+
         public LeaderBoardViewHolder(View view, ArrayList<LeaderBoardActivity.LeaderBoardUserModel> users, Context context) {
             super(view);
             view.setOnClickListener(this);
             username=(TextView)view.findViewById(R.id.leader_username);
-            //userpic = (ImageView)view.findViewById(R.id.leader_pic);
+            photo = (ImageView)view.findViewById(R.id.leader_pic);
             rollno=(TextView)view.findViewById(R.id.leader_rollno);
             score=(TextView)view.findViewById(R.id.leader_score);
             sets=(TextView)view.findViewById(R.id.leader_sets);
