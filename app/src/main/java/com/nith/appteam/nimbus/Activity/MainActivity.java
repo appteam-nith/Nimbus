@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(100,120,100,120);
+        viewPager.setPadding(100,170,100,170);
         viewPager.setPageMargin(60);
 
         clickListenersMainMenu();
