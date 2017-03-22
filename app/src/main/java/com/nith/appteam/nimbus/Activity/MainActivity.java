@@ -19,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(100,170,100,170);
-        viewPager.setPageMargin(60);
+        viewPager.setPadding(dpToPx(50),dpToPx(70),dpToPx(70),dpToPx(70));
+        viewPager.setPageMargin(dpToPx(30));
 
         clickListenersMainMenu();
 
@@ -450,7 +451,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:+91" + phone));
         startActivity(intent);
+        }
     }
 
-}
+    private int dpToPx(int dp){
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        return Math.round(dp*(displayMetrics.xdpi/DisplayMetrics.DENSITY_DEFAULT));
+    }
 }
