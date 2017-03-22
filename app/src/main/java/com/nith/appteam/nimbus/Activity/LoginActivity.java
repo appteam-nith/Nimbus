@@ -1,18 +1,13 @@
 package com.nith.appteam.nimbus.Activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 
-import static com.nith.appteam.nimbus.R.id.tvSkip;
 
 public class LoginActivity extends AppCompatActivity {
 

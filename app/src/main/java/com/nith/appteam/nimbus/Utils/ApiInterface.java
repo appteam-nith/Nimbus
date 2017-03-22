@@ -39,6 +39,8 @@ public interface ApiInterface {
 
     @GET("team")
     Call<TeamListResponse> getAllTeam();
+    @GET("team_core")
+    Call<TeamListResponse> getAllCoreTeam();
 
     @GET("workshop")
     Call<WorkshopListResponse> getAllWorkshop();
@@ -53,7 +55,7 @@ public interface ApiInterface {
     @POST("event/register/{event_id}")
     Call<EventRegisterResponse> getEventRegisterResponse(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
-    @GET("team/{id}")
+    @GET("team_95/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);
 
     @POST("register")

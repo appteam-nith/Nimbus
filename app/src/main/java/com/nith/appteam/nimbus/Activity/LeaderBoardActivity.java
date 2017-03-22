@@ -54,6 +54,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         getLeaderBoard();
+
     }
 
     public void getLeaderBoard() {
@@ -90,28 +91,30 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         @SerializedName("name")
         private String name;
-        //@SerializedName("pic_url")
-        //private String picUrl;
+
+        @SerializedName("photo")
+        private String photo;
+
         @SerializedName("roll_no")
         private String rollNo;
+
         @SerializedName("quiz")
         private Quiz sets;
 
-        public LeaderBoardUserModel(String name,/*String picUrl,*/ String rollNo, Quiz sets) {
-            //this.picUrl = picUrl;
+        public LeaderBoardUserModel(String name, String photo, String rollNo, Quiz sets) {
+            this.photo=photo;
             this.name = name;
             this.rollNo = rollNo;
             this.sets = sets;
         }
 
-        /*public String getpicUrl() {
-            return picUrl;
+        public String getPhoto() {
+            return photo;
         }
 
-        public void setpicUrl(String picUrl) {
-            this.picUrl = picUrl;
+        public void setPhoto(String photo) {
+            this.photo = photo;
         }
-        */
 
         public String getName() {
             return name;
@@ -136,12 +139,20 @@ public class LeaderBoardActivity extends AppCompatActivity {
         public void setSets(Quiz sets) {
             this.sets = sets;
         }
+
     }
 
     public class Quiz{
 
+        @SerializedName("score")
         private int score;
+        @SerializedName("sets")
         private int sets;
+
+        public Quiz(int score, int sets) {
+            this.score = score;
+            this.sets = sets;
+        }
 
         public int getScore() {
             return score;

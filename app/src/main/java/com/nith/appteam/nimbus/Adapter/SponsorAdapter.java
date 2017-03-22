@@ -41,12 +41,14 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.viewHold
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
-         Sponsor s=list.get(position);
-        if(s!=null){
-            if(s.getName()!=null&&!s.getName().isEmpty())
-                holder.textView.setText(s.getName());
-            if(s.getImg_url()!=null&&!s.getImg_url().isEmpty())
-                Glide.with(context).load(s.getImg_url()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.person_icon).into(holder.imageView);
+        if(list!=null) {
+            Sponsor s = list.get(position);
+            if (s != null) {
+                if (s.getName() != null && !s.getName().isEmpty())
+                    holder.textView.setText(s.getName());
+                if (s.getImg_url() != null && !s.getImg_url().isEmpty())
+                    Glide.with(context).load(s.getImg_url()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.person_icon).into(holder.imageView);
+            }
         }
     }
 
