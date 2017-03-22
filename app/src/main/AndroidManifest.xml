@@ -67,6 +67,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity
             android:name=".Activity.Workshops"
             android:theme="@style/AppTheme.NoActionBar">
@@ -111,7 +112,10 @@
             android:name=".Activity.LeaderBoardActivity"
             android:parentActivityName=".Activity.QuizActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.WorkshopDetail" />
+        <activity android:name=".Activity.WorkshopDetail"
+            android:parentActivityName=".Activity.Workshops"
+
+            />
 
         <service
             android:name=".Service.UploadService"
