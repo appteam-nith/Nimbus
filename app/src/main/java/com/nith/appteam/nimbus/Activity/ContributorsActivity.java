@@ -45,14 +45,14 @@ public class ContributorsActivity extends AppCompatActivity {
 
         contributorsItems.add(new contributorsItem("Suraj Negi", BASE_URL + "Akatsuki06.png",BASE_URL + "Akatsuki06"));
         contributorsItems.add(new contributorsItem("Aditya Arora", BASE_URL + "adi23arora.png",BASE_URL + "adi23arora"));
-        //contributorsItems.add(new contributorsItem("Parvesh Dhull", BASE_URL + "Parveshdhull.png", BASE_URL + "Parveshdhull"));
+        contributorsItems.add(new contributorsItem("Parvesh Dhull", BASE_URL + "Parveshdhull.png", BASE_URL + "Parveshdhull"));
         contributorsItems.add(new contributorsItem("Nitin", BASE_URL + "iamNitin16.png", BASE_URL + "iamNitin16"));
         contributorsItems.add(new contributorsItem("Jatin", BASE_URL + "Jatin0312.png", BASE_URL + "Jatin0312"));
         contributorsItems.add(new contributorsItem("Vibhor Garg", BASE_URL + "vibhorg.png", BASE_URL + "vibhorg"));
         contributorsItems.add(new contributorsItem("Kumar Shashwat", BASE_URL + "octacode.png",BASE_URL + "octacode"));
 
 
-        //contributorsItems.add(new contributorsItem("Hemant Singh ", BASE_URL + "joshafest.png", BASE_URL + "joshafest"));
+        contributorsItems.add(new contributorsItem("Hemant Singh ", BASE_URL + "joshafest.png", BASE_URL + "joshafest"));
         contributorsItems.add(new contributorsItem("Aditya Wazir", BASE_URL + "adityawazir.png",BASE_URL + "adityawazir"));
         contributorsItems.add(new contributorsItem("Bharat Shah", BASE_URL + "bharatshah1498.png",BASE_URL + "bharatshah1498"));
         contributorsItems.add(new contributorsItem("Aman Pratap Singh", BASE_URL + "mnprtpsingh.png",BASE_URL + "mnprtpsingh"));
