@@ -19,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(100,170,100,170);
-        viewPager.setPageMargin(60);
+        viewPager.setPadding(dpToPx(50),dpToPx(70),dpToPx(70),dpToPx(70));
+        viewPager.setPageMargin(dpToPx(30));
 
         clickListenersMainMenu();
 
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         return  true;
                     case R.id.action_notifications:
-                      startActivity(new Intent(MainActivity.this,NotificationActivity.class));
+                        startActivity(new Intent(MainActivity.this,NotificationActivity.class));
                         return true;
                 }
                 return false;
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         gallery_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             startActivity(new Intent(MainActivity.this,GalleryActivity.class));
+                startActivity(new Intent(MainActivity.this,GalleryActivity.class));
             }
         });
 
@@ -343,10 +344,10 @@ public class MainActivity extends AppCompatActivity {
 
                         alertDialog3.setItems(name, new DialogInterface.OnClickListener(){
                             @Override
-                           public void onClick(DialogInterface di,int i){
+                            public void onClick(DialogInterface di,int i){
 
-                               call(i);
-                           }
+                                call(i);
+                            }
                         });
 
 
@@ -446,11 +447,16 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, PERMISSIONS_REQUEST_PHONE_CALL);
         }
         else{
-        phone = number[i];
-        Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:+91" + phone));
-        startActivity(intent);
+            phone = number[i];
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:+91" + phone));
+            startActivity(intent);
+        }
+
     }
 
-}
+    private int dpToPx(int dp){
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        return Math.round(dp*(displayMetrics.xdpi/DisplayMetrics.DENSITY_DEFAULT));
+    }
 }
