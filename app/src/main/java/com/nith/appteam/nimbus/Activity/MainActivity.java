@@ -19,6 +19,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     private LinearLayout quiz_layout, gallery_layout, map_layout,  newsfeed_layout, coreteam_layout , aboutnimbus_layout , teams_layout, feedback_layout,sponsor_layout,workshop_layout,contributor_layout;
     final String number[] = {"816291592", "9882551107"};
+    final String links[] = {"https://www.facebook.com/Nit.Hamirpur.Himachal/","https://github.com/appteam-nith/Nimbus"};
     //public static int navItemIndex = 0;
     private static final int PERMISSIONS_REQUEST_PHONE_CALL = 100;
     private static String[] PERMISSIONS_PHONECALL = {android.Manifest.permission.CALL_PHONE};
@@ -310,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_aboutapp:
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                         alertDialog.setTitle("About App");
+
                         alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k17', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
                         alertDialog.setIcon(R.drawable.nimbuslogo);
                         alertDialog.show();
@@ -322,13 +326,23 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_contactus:
                         AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(MainActivity.this);
                         alertDialog2.setTitle("Contact : App Team-NITH");
-                        alertDialog2.setMessage("\nReach us at : appteam.nith@gmail.com\n\n Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n\n GitHub Organisation : appteam-nith");
+
+                        CharSequence[] contact = {"\nReach us at : appteam.nith@gmail.com"  +"\n"," Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n"," GitHub Organisation : appteam-nith"};
+                   //     alertDialog2.setMessage("\nReach us at : appteam.nith@gmail.com\n\n Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n\n GitHub Organisation : appteam-nith");
+
+                        alertDialog2.setItems(contact, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                     call_contact(which);
+                            }
+                        });
                         alertDialog2.setIcon(R.drawable.appteam);
                         alertDialog2.show();
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_reportbug:
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
+
                         String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
                         Uri uri = Uri.parse(uriText);
                         intent.setData(uri);
@@ -338,9 +352,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_emergencycontact:
                         AlertDialog.Builder alertDialog3 = new AlertDialog.Builder(MainActivity.this);
 
-                        alertDialog3.setTitle("Phone Number\n");
+                        alertDialog3.setTitle("Phone Number\n\n");
 
-                        CharSequence name[] = {"Abhinav Anand: 816291592\n","Pranav Bhardwaj: 9882551107"};
+                        CharSequence name[] = {"Abhinav Anand: 816291592","Pranav Bhardwaj: 9882551107"};
 
                         alertDialog3.setItems(name, new DialogInterface.OnClickListener(){
                             @Override
@@ -352,6 +366,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         alertDialog3.show();
+                        drawer.closeDrawers();
                         return true;
 
                     default:
@@ -361,10 +376,7 @@ public class MainActivity extends AppCompatActivity {
                 //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) {
                     menuItem.setChecked(false);
-                } else {
-                    menuItem.setChecked(true);
                 }
-                menuItem.setChecked(true);
 
                 //loadHomeFragment();
 
@@ -453,6 +465,25 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+    }
+    private void call_contact(int i){
+        String uri1;
+        if(i==0){
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com");
+            Uri uri = Uri.parse(uriText);
+            intent.setData(uri);
+            startActivity(intent);
+
+        }
+        else{
+            uri1 = links[i-1];
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(uri1));
+            startActivity(intent);
+        }
     }
 
     private int dpToPx(int dp){
