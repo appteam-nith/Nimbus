@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.nith.appteam.nimbus.Adapter.CoreTeamActivityAdapter;
+import com.nith.appteam.nimbus.Model.CoreTeam;
+import com.nith.appteam.nimbus.Model.CoreTeamResponse;
 import com.nith.appteam.nimbus.Model.TeamListResponse;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.Connection;
@@ -24,10 +28,10 @@ import retrofit2.Response;
 
 public class TeamActivity extends AppCompatActivity {
     private ViewPager viewPager,viewPager2;
-    private TeamFragmentPagerAdapter adapter,adapter2;
+    private TeamFragmentPagerAdapter adapter;
+    private CoreTeamActivityAdapter adapter2;
     private ProgressBar progressBar;
     private TextView message,textcore,textdept;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +45,10 @@ public class TeamActivity extends AppCompatActivity {
         message= (TextView) findViewById(R.id.message_textView);
         textcore=(TextView) findViewById(R.id.textcoreteam);
         textdept=(TextView) findViewById(R.id.textdeptteam);
+
+        viewPager.setPageMargin(5);
+        getAllCoreTeamList();
         getAllTeamList();
-       getAllCoreTeamList();
     }
 
     private void getAllTeamList(){
@@ -90,29 +96,25 @@ public class TeamActivity extends AppCompatActivity {
     }
     private void getAllCoreTeamList(){
         if(new Connection(this).isInternet()){
-            Call<TeamListResponse> call= Util.getRetrofitService().getAllCoreTeam();
-            call.enqueue(new Callback<TeamListResponse>() {
+            Call<CoreTeamResponse> call= Util.getRetrofitService().getAllCoreTeam();
+            call.enqueue(new Callback<CoreTeamResponse>() {
                 @Override
-                public void onResponse(Call<TeamListResponse> call, Response<TeamListResponse> response) {
+                public void onResponse(Call<CoreTeamResponse> call, Response<CoreTeamResponse> response) {
                     if(response!=null&&response.isSuccess()){
-                        ArrayList<TeamItem> list=response.body().getTeamList();
-                        adapter2=new TeamFragmentPagerAdapter(getSupportFragmentManager(),2f,list);
-
+                        ArrayList<CoreTeam> list=response.body().getCoreTeams();
+                        Log.e("TteamACtivity","CoreTeamName:"+list.get(0).getName());
+                        adapter2=new CoreTeamActivityAdapter(getSupportFragmentManager(),2f,list);
                         viewPager2.setAdapter(adapter2);
                         ShadowTransformer shadowTransformer2=new ShadowTransformer(viewPager2,adapter2);
                         viewPager2.setPageTransformer(false,shadowTransformer2);
                         viewPager2.setOffscreenPageLimit(3);
-
                         viewPager2.setVisibility(View.VISIBLE);
                         message.setVisibility(View.GONE);
-
                         textcore.setVisibility(View.VISIBLE);
                     }
-
                 }
-
                 @Override
-                public void onFailure(Call<TeamListResponse> call, Throwable t) {
+                public void onFailure(Call<CoreTeamResponse> call, Throwable t) {
                     t.printStackTrace();
 
                 }

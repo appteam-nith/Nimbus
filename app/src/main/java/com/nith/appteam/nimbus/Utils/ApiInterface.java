@@ -2,6 +2,8 @@ package com.nith.appteam.nimbus.Utils;
 
 import retrofit2.http.POST;
 import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
+import com.nith.appteam.nimbus.Model.CoreTeamEvents;
+import com.nith.appteam.nimbus.Model.CoreTeamResponse;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
 import com.nith.appteam.nimbus.Model.GalleryDetailResponse;
@@ -40,7 +42,8 @@ public interface ApiInterface {
     @GET("team")
     Call<TeamListResponse> getAllTeam();
     @GET("team_core")
-    Call<TeamListResponse> getAllCoreTeam();
+    Call<CoreTeamResponse> getAllCoreTeam();
+
 
     @GET("workshop")
     Call<WorkshopListResponse> getAllWorkshop();
@@ -55,8 +58,11 @@ public interface ApiInterface {
     @POST("event/register/{event_id}")
     Call<EventRegisterResponse> getEventRegisterResponse(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
-    @GET("team_95/{id}")
+    @GET("team/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);
+
+    @GET("team_core/{id}")
+    Call<CoreTeamEvents> getCoreTeamEvents(@Path("id") String id);
 
     @POST("register")
     @FormUrlEncoded
