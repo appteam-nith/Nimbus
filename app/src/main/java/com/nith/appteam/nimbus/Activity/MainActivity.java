@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
 
                         alertDialog3.setTitle("Phone Number\n\n");
 
-                        CharSequence name[] = {"Abhinav Anand: 816291592","Pranav Bhardwaj: 9882551107"};
+                        CharSequence name[] = {"Abhinav Anand: 9816291592","Pranav Bhardwaj: 9882551107"};
 
                         alertDialog3.setItems(name, new DialogInterface.OnClickListener(){
                             @Override
