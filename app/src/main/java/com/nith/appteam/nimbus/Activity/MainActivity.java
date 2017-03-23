@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtName, txtSubName;
     Toolbar toolbar;
     private LinearLayout quiz_layout, gallery_layout, map_layout,  newsfeed_layout, coreteam_layout , aboutnimbus_layout , teams_layout, feedback_layout,sponsor_layout,workshop_layout,contributor_layout;
-    final String number[] = {"816291592", "9882551107"};
+    final String number[] = {"9816291592", "9882551107"};
     final String links[] = {"https://www.facebook.com/Nit.Hamirpur.Himachal/","https://github.com/appteam-nith/Nimbus"};
     //public static int navItemIndex = 0;
     private static final int PERMISSIONS_REQUEST_PHONE_CALL = 100;
@@ -326,9 +329,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_contactus:
                         AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(MainActivity.this);
                         alertDialog2.setTitle("Contact : App Team-NITH");
-
-                        CharSequence[] contact = {"\nReach us at : appteam.nith@gmail.com"  +"\n"," Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n"," GitHub Organisation : appteam-nith"};
-                   //     alertDialog2.setMessage("\nReach us at : appteam.nith@gmail.com\n\n Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n\n GitHub Organisation : appteam-nith");
+                        String link1 = getString(R.string.Link1);
+                        String link2 = getString(R.string.Link2);
+                        String link3 = getString(R.string.Link3);
+                        CharSequence[] contact = { link1 +"\n"," Like our Facebook Page : \n" + link2 + "\n"," GitHub Organisation :" + link3};
 
                         alertDialog2.setItems(contact, new DialogInterface.OnClickListener() {
                             @Override
@@ -340,7 +344,7 @@ public class MainActivity extends AppCompatActivity {
                         alertDialog2.show();
                         drawer.closeDrawers();
                         return true;
-                    case R.id.nav_reportbug:
+                        case R.id.nav_reportbug:
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
 
                         String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");

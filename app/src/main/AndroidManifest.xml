@@ -136,7 +136,9 @@
         <activity android:name=".Activity.MapActivity" />
         <activity
             android:name=".Activity.QuizActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Quiz"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
@@ -166,17 +168,23 @@
         <activity
             android:name=".Activity.ContributorsActivity"
             android:parentActivityName=".Activity.MainActivity" />
-        <activity android:name=".Activity.QuizQuestionActivity">
+        <activity android:name=".Activity.QuizQuestionActivity"
+            android:label="Quiz"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-        <activity android:name=".Activity.QuizScoreActivity">
+        <activity android:name=".Activity.QuizScoreActivity"
+            android:label="Quiz"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-        <activity android:name=".Activity.InformationActivity">
+        <activity android:name=".Activity.InformationActivity"
+            android:label="Instruction"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
@@ -193,7 +201,8 @@
 
         <activity
             android:name=".Activity.WallIntroActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Wall">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />

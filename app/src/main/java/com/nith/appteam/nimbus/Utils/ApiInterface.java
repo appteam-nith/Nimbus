@@ -37,15 +37,15 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("team")
+    @GET("team_95")
     Call<TeamListResponse> getAllTeam();
-    @GET("team_core")
+    @GET("team_core_95")
     Call<TeamListResponse> getAllCoreTeam();
 
-    @GET("workshop")
+    @GET("workshop_95")
     Call<WorkshopListResponse> getAllWorkshop();
 
-    @GET("workshop/{id}")
+    @GET("workshop_95/{id}")
     Call<SingleWorkshopResponse> getSingleWorkshop(@Path("id") String id);
 
     @GET("event/{event_id}")
@@ -58,7 +58,7 @@ public interface ApiInterface {
     @GET("team_95/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);
 
-    @POST("register")
+    @POST("register_95")
     @FormUrlEncoded
     Call<FbLoginFragment.UserSentResponse> sendFbUserData(@Field("name") String name,@Field("email") String email,@Field("pic_url")String picUrl);
 
@@ -80,7 +80,7 @@ public interface ApiInterface {
     @POST("newsfeed/like/{id}")
     Call<Likecount>likecount(@Path("id") String id, @Query("student_id") String userId);
 
-    @GET("quiz/leaderboard")
+    @GET("quiz/leaderboard_95")
     Call<LeaderBoardModel> getLeaderBoard();
 
     @GET("profile/{id}")
@@ -104,6 +104,6 @@ public interface ApiInterface {
     @POST("update/rollno/{id}")
     Call<RegisterResponse> updateRollNo(@Path("id") String id,@Query("roll_no") String rollNo);
 
-    @GET("sponsor")
+    @GET("sponsor_95")
     Call<SponsorResponse> getSponsorList();
 }
