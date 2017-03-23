@@ -306,14 +306,14 @@ public class QuizQuestionActivity extends AppCompatActivity {
             builder.setMessage("Note that these questions will not appear again, so better to attempt it now. " +
                     "Do you still want to exit from quiz?");
 
-            builder.setNegativeButton("Never Mind", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dismiss();
                 }
             });
 
-            builder.setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 

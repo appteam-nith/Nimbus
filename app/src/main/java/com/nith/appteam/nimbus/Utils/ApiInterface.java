@@ -41,8 +41,12 @@ public interface ApiInterface {
 
     @GET("team")
     Call<TeamListResponse> getAllTeam();
+
+
+
     @GET("team_core")
     Call<CoreTeamResponse> getAllCoreTeam();
+
 
 
     @GET("workshop")
@@ -61,10 +65,12 @@ public interface ApiInterface {
     @GET("team/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);
 
+
     @GET("team_core/{id}")
     Call<CoreTeamEvents> getCoreTeamEvents(@Path("id") String id);
 
     @POST("register")
+
     @FormUrlEncoded
     Call<FbLoginFragment.UserSentResponse> sendFbUserData(@Field("name") String name,@Field("email") String email,@Field("pic_url")String picUrl);
 
