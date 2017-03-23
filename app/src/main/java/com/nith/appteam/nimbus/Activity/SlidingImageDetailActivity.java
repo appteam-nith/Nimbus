@@ -31,6 +31,7 @@ public class SlidingImageDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("");
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
