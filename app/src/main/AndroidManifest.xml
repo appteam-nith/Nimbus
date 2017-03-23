@@ -199,7 +199,8 @@
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
 
-        <activity android:name=".Activity.SlidingImageDetailActivity"></activity>
+        <activity android:name=".Activity.SlidingImageDetailActivity"
+            android:theme="@style/Theme.AppCompat"/>
 
     </application>
 
