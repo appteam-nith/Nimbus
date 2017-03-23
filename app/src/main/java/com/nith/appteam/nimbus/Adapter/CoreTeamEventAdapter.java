@@ -10,37 +10,35 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.nith.appteam.nimbus.Model.TeamEventList;
+import com.nith.appteam.nimbus.Model.CoreTeamEvents;
 import com.nith.appteam.nimbus.R;
 
 import java.util.ArrayList;
 
 /**
- * Created by sahil on 7/3/17.
+ * Created Nimbus by akatsuki on 22/3/17.
  */
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.viewHolder>
-
-{
+public class CoreTeamEventAdapter extends RecyclerView.Adapter<CoreTeamEventAdapter.viewHolder> {
     private Context context;
-    private ArrayList<TeamEventList.Event> list=new ArrayList<>();
-    public EventAdapter(Context context) {
+    private ArrayList<CoreTeamEvents.Event> list=new ArrayList<>();
+    public CoreTeamEventAdapter(Context context) {
         this.context = context;
     }
-    public  void refresh(ArrayList<TeamEventList.Event> list){
+    public  void refresh(ArrayList<CoreTeamEvents.Event> list){
         this.list=list;
         notifyDataSetChanged();
     }
 
     @Override
-    public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CoreTeamEventAdapter.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_team,parent,false);
-        return new  viewHolder(v);
+        return new CoreTeamEventAdapter.viewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(viewHolder holder, int position) {
-        TeamEventList.Event e=list.get(position);
+    public void onBindViewHolder(CoreTeamEventAdapter.viewHolder holder, int position) {
+        CoreTeamEvents.Event e=list.get(position);
         holder.title.setText(e.getName());
         Glide.with(context).load(e.getPhoto()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(holder.imageView);
     }
@@ -56,6 +54,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.viewHolder>
 
         public viewHolder(View itemView) {
             super(itemView);
+
             imageView= (ImageView) itemView.findViewById(R.id.image_team);
             title= (TextView) itemView.findViewById(R.id.text_name_team);
         }

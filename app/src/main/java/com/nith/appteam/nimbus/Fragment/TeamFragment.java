@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nith.appteam.nimbus.Activity.CoreTeamEventActivity;
+import com.nith.appteam.nimbus.Model.CoreTeam;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Activity.TeamEventActivity;
 import com.nith.appteam.nimbus.Utils.TeamInterface;
@@ -41,7 +44,7 @@ public class TeamFragment extends Fragment {
     private TextView teamNameTextView;
     private CardView cardview;
     private String teamId;
-
+    private boolean actCore=false;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +67,22 @@ public class TeamFragment extends Fragment {
          cardview.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 Intent i=new Intent(getActivity(),TeamEventActivity.class);
+                 Intent i;
+                 if(!actCore)i=new Intent(getActivity(),TeamEventActivity.class);
+                 else i=new Intent(getActivity(),CoreTeamEventActivity.class);
                  i.putExtra(TEAM_ID,teamId);
                  startActivity(i);
              }
          });
         return v;
+    }
+
+    public boolean isActCore() {
+        return actCore;
+    }
+
+    public void setActCore(boolean actCore) {
+        this.actCore = actCore;
     }
 
     public static TeamFragment newInstance(TeamItem teamItem) {
@@ -82,6 +95,18 @@ public class TeamFragment extends Fragment {
         return teamFragment;
     }
 
+
+    public static TeamFragment newInstance(CoreTeam teamItem) {
+        TeamFragment teamFragment = new TeamFragment();
+        Bundle b = new Bundle();
+        b.putString(TEAM_NAME, teamItem.getName());
+        b.putString(TEAM_URL, teamItem.getLogo());
+        b.putString(TEAM_ID,teamItem.getId());
+        Log.e("Teamfragement","name:"+teamItem.getName());
+        Log.e("Teamfragement","img:"+teamItem.getLogo());
+        teamFragment.setArguments(b);
+        return teamFragment;
+    }
     public CardView getCardview() {
         return cardview;
     }
