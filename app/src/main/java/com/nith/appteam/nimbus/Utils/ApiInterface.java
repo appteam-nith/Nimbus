@@ -2,6 +2,8 @@ package com.nith.appteam.nimbus.Utils;
 
 import retrofit2.http.POST;
 import com.nith.appteam.nimbus.Fragment.FbLoginFragment;
+import com.nith.appteam.nimbus.Model.CoreTeamEvents;
+import com.nith.appteam.nimbus.Model.CoreTeamResponse;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
 import com.nith.appteam.nimbus.Model.GalleryDetailResponse;
@@ -37,15 +39,20 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("team_95")
+    @GET("team")
     Call<TeamListResponse> getAllTeam();
-    @GET("team_core_95")
-    Call<TeamListResponse> getAllCoreTeam();
 
-    @GET("workshop_95")
+
+
+    @GET("team_core")
+    Call<CoreTeamResponse> getAllCoreTeam();
+
+
+
+    @GET("workshop")
     Call<WorkshopListResponse> getAllWorkshop();
 
-    @GET("workshop_95/{id}")
+    @GET("workshop/{id}")
     Call<SingleWorkshopResponse> getSingleWorkshop(@Path("id") String id);
 
     @GET("event/{event_id}")
@@ -55,10 +62,15 @@ public interface ApiInterface {
     @POST("event/register/{event_id}")
     Call<EventRegisterResponse> getEventRegisterResponse(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
-    @GET("team_95/{id}")
+    @GET("team/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);
 
-    @POST("register_95")
+
+    @GET("team_core/{id}")
+    Call<CoreTeamEvents> getCoreTeamEvents(@Path("id") String id);
+
+    @POST("register")
+
     @FormUrlEncoded
     Call<FbLoginFragment.UserSentResponse> sendFbUserData(@Field("name") String name,@Field("email") String email,@Field("pic_url")String picUrl);
 
@@ -80,7 +92,7 @@ public interface ApiInterface {
     @POST("newsfeed/like/{id}")
     Call<Likecount>likecount(@Path("id") String id, @Query("student_id") String userId);
 
-    @GET("quiz/leaderboard_95")
+    @GET("quiz/leaderboard")
     Call<LeaderBoardModel> getLeaderBoard();
 
     @GET("profile/{id}")
@@ -104,6 +116,6 @@ public interface ApiInterface {
     @POST("update/rollno/{id}")
     Call<RegisterResponse> updateRollNo(@Path("id") String id,@Query("roll_no") String rollNo);
 
-    @GET("sponsor_95")
+    @GET("sponsor")
     Call<SponsorResponse> getSponsorList();
 }

@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(dpToPx(50),dpToPx(70),dpToPx(70),dpToPx(70));
-        viewPager.setPageMargin(dpToPx(30));
+        viewPager.setPadding(100,0,100,0);
+        viewPager.setPageMargin(60);
 
         clickListenersMainMenu();
 
@@ -488,10 +488,5 @@ public class MainActivity extends AppCompatActivity {
             intent.setData(Uri.parse(uri1));
             startActivity(intent);
         }
-    }
-
-    private int dpToPx(int dp){
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
-        return Math.round(dp*(displayMetrics.xdpi/DisplayMetrics.DENSITY_DEFAULT));
     }
 }

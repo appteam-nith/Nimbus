@@ -1,9 +1,12 @@
 package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,8 +31,12 @@ public class SlidingImageDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        assert getSupportActionBar()!=null;
+
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+
         setContentView(R.layout.activity_sliding_image_detail);
         galleryImage = (ImageView)findViewById(R.id.galleryImage);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
@@ -63,6 +70,17 @@ public class SlidingImageDetailActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             noneText.setVisibility(View.GONE);
             galleryImage.setImageResource(R.drawable.workshop);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

@@ -198,6 +198,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+        <activity
+            android:name=".Activity.CoreTeamEventActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
+        </activity>
+
 
         <activity
             android:name=".Activity.WallIntroActivity"
@@ -208,7 +217,8 @@
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
 
-        <activity android:name=".Activity.SlidingImageDetailActivity"></activity>
+        <activity android:name=".Activity.SlidingImageDetailActivity"
+            android:theme="@style/Theme.AppCompat"/>
 
     </application>
 

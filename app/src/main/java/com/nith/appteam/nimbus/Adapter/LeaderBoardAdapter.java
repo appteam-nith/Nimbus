@@ -43,7 +43,6 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
         LeaderBoardActivity.LeaderBoardUserModel user=users.get(position);
 
         holder.username.setText(user.getName().toString());
-        holder.rollno.setText(user.getRollNo().toString());
         holder.score.setText("Score: "+Integer.toString(user.getSets().getScore()));
         Glide.with(context).load(user.getPhoto()).into(holder.photo);
 
@@ -78,7 +77,6 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
     public class LeaderBoardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView username;
         ImageView photo;
-        TextView rollno;
         TextView score;
         TextView sets;
         ImageView useraward;
@@ -89,7 +87,6 @@ public class LeaderBoardAdapter extends  RecyclerView.Adapter<LeaderBoardAdapter
             view.setOnClickListener(this);
             username=(TextView)view.findViewById(R.id.leader_username);
             photo = (ImageView)view.findViewById(R.id.leader_pic);
-            rollno=(TextView)view.findViewById(R.id.leader_rollno);
             score=(TextView)view.findViewById(R.id.leader_score);
             sets=(TextView)view.findViewById(R.id.leader_sets);
             useraward=(ImageView)view.findViewById(R.id.leader_award);
