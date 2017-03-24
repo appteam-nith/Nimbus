@@ -36,15 +36,12 @@ public class Notification2 extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         SharedPref pref= new SharedPref(this);
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_post_expand);
         Toolbar toolbar= (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Notifications");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
         DbHelper dbHelper = new DbHelper(this);
         title = (TextView) findViewById(R.id.not2_title);
@@ -55,7 +52,6 @@ public class Notification2 extends AppCompatActivity {
         big_picture = (ImageView) findViewById(R.id.not2_big_picture);
         String id = getIntent().getStringExtra("id");
         //String id = bundle.getString("id",null);
-
 
         Cursor cursor = dbHelper.homeposteinnerdata(id);
         cursor.moveToFirst();

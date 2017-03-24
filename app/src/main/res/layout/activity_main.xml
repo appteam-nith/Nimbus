@@ -300,7 +300,7 @@
                             <TextView
                                 android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
-                                android:text="Contributor"
+                                android:text="Contributors"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>

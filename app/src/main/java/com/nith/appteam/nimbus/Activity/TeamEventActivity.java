@@ -98,14 +98,14 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         headerTitle= (TextView) findViewById(R.id.header_title_team);
         bannerImage= (ImageView) findViewById(R.id.main_imageview_placeholder);
        logoView= (ImageView) findViewById(R.id.teamlogo);
-        Glide.with(TeamEventActivity.this).load(R.drawable.nimbuslogo).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.placeholder).into(new ImageViewTarget<Bitmap>(logoView) {
-            @Override
-            protected void setResource(Bitmap resource) {
-                RoundedBitmapDrawable drawable= RoundedBitmapDrawableFactory.create(TeamEventActivity.this.getResources(),resource);
-                drawable.setCircular(true);
-                logoView.setImageDrawable(drawable);
-            }
-        });
+//        Glide.with(TeamEventActivity.this).load(R.drawable.nimbuslogo).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.placeholder).into(new ImageViewTarget<Bitmap>(logoView) {
+//            @Override
+//            protected void setResource(Bitmap resource) {
+//                RoundedBitmapDrawable drawable= RoundedBitmapDrawableFactory.create(TeamEventActivity.this.getResources(),resource);
+//                drawable.setCircular(true);
+//                logoView.setImageDrawable(drawable);
+//            }
+//        });
 
 
         eventList= (RecyclerView) findViewById(R.id.eventList);

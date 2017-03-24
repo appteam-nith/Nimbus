@@ -1,7 +1,10 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -9,12 +12,16 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.util.Linkify;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +32,7 @@ import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
+import com.nith.appteam.nimbus.Manifest;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
 import com.nith.appteam.nimbus.Notification.NotificationActivity;
@@ -55,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtName, txtSubName;
     Toolbar toolbar;
     private LinearLayout quiz_layout, gallery_layout, map_layout,  newsfeed_layout, coreteam_layout , aboutnimbus_layout , teams_layout, feedback_layout,sponsor_layout,workshop_layout,contributor_layout;
-
+    final String number[] = {"816291592", "9882551107"};
+    final String links[] = {"https://www.facebook.com/Nit.Hamirpur.Himachal/","https://github.com/appteam-nith/Nimbus"};
     //public static int navItemIndex = 0;
+    private static final int PERMISSIONS_REQUEST_PHONE_CALL = 100;
+    private static String[] PERMISSIONS_PHONECALL = {android.Manifest.permission.CALL_PHONE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(100,170,100,170);
-        viewPager.setPageMargin(60);
+        viewPager.setPadding(dpToPx(50),dpToPx(70),dpToPx(70),dpToPx(70));
+        viewPager.setPageMargin(dpToPx(30));
 
         clickListenersMainMenu();
 
@@ -104,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         return  true;
                     case R.id.action_notifications:
-                      startActivity(new Intent(MainActivity.this,NotificationActivity.class));
+                        startActivity(new Intent(MainActivity.this,NotificationActivity.class));
                         return true;
                 }
                 return false;
@@ -155,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         gallery_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             startActivity(new Intent(MainActivity.this,GalleryActivity.class));
+                startActivity(new Intent(MainActivity.this,GalleryActivity.class));
             }
         });
 
@@ -169,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         newsfeed_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
+                startActivity(new Intent(MainActivity.this,WallIntroActivity.class));
             }
         });
 
@@ -302,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_aboutapp:
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                         alertDialog.setTitle("About App");
+
                         alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k17', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
                         alertDialog.setIcon(R.drawable.nimbuslogo);
                         alertDialog.show();
@@ -314,19 +326,49 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_contactus:
                         AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(MainActivity.this);
                         alertDialog2.setTitle("Contact : App Team-NITH");
-                        alertDialog2.setMessage("\nReach us at : appteam.nith@gmail.com\n\n Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n\n GitHub Organisation : appteam-nith");
+
+                        CharSequence[] contact = {"\nReach us at : appteam.nith@gmail.com"  +"\n"," Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n"," GitHub Organisation : appteam-nith"};
+                   //     alertDialog2.setMessage("\nReach us at : appteam.nith@gmail.com\n\n Like our Facebook Page : \n App Team @Nit.Hamirpur.Himachal \n\n GitHub Organisation : appteam-nith");
+
+                        alertDialog2.setItems(contact, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                     call_contact(which);
+                            }
+                        });
                         alertDialog2.setIcon(R.drawable.appteam);
                         alertDialog2.show();
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_reportbug:
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
+
                         String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
                         Uri uri = Uri.parse(uriText);
                         intent.setData(uri);
                         startActivity(Intent.createChooser(intent, "Send Email"));
                         drawer.closeDrawers();
                         return true;
+                    case R.id.nav_emergencycontact:
+                        AlertDialog.Builder alertDialog3 = new AlertDialog.Builder(MainActivity.this);
+
+                        alertDialog3.setTitle("Phone Number\n\n");
+
+                        CharSequence name[] = {"Abhinav Anand: 816291592","Pranav Bhardwaj: 9882551107"};
+
+                        alertDialog3.setItems(name, new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface di,int i){
+
+                                call(i);
+                            }
+                        });
+
+
+                        alertDialog3.show();
+                        drawer.closeDrawers();
+                        return true;
+
                     default:
                         //navItemIndex = 0;
                 }
@@ -334,10 +376,7 @@ public class MainActivity extends AppCompatActivity {
                 //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) {
                     menuItem.setChecked(false);
-                } else {
-                    menuItem.setChecked(true);
                 }
-                menuItem.setChecked(true);
 
                 //loadHomeFragment();
 
@@ -409,9 +448,46 @@ public class MainActivity extends AppCompatActivity {
                 t.printStackTrace();
 
             }
-        });
+        });}
 
+
+
+    private void call(int i)
+    {
+        String phone;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, PERMISSIONS_REQUEST_PHONE_CALL);
+        }
+        else{
+            phone = number[i];
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:+91" + phone));
+            startActivity(intent);
+        }
 
     }
+    private void call_contact(int i){
+        String uri1;
+        if(i==0){
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com");
+            Uri uri = Uri.parse(uriText);
+            intent.setData(uri);
+            startActivity(intent);
 
+        }
+        else{
+            uri1 = links[i-1];
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(uri1));
+            startActivity(intent);
+        }
+    }
+
+    private int dpToPx(int dp){
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        return Math.round(dp*(displayMetrics.xdpi/DisplayMetrics.DENSITY_DEFAULT));
+    }
 }

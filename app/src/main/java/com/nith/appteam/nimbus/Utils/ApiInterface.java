@@ -39,77 +39,77 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("team")
+    @GET("team_95")
     Call<TeamListResponse> getAllTeam();
-    @GET("team_core")
+    @GET("team_core_95")
     Call<CoreTeamResponse> getAllCoreTeam();
 
 
-    @GET("workshop")
+    @GET("workshop_95")
     Call<WorkshopListResponse> getAllWorkshop();
 
-    @GET("workshop/{id}")
+    @GET("workshop_95/{id}")
     Call<SingleWorkshopResponse> getSingleWorkshop(@Path("id") String id);
 
-    @GET("event/{event_id}")
+    @GET("event_95/{event_id}")
     Call<SingleWorkshopResponse> getEventDetail(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
 
-    @POST("event/register/{event_id}")
+    @POST("event/register_95/{event_id}")
     Call<EventRegisterResponse> getEventRegisterResponse(@Path("event_id") String event_id, @Query("student_id") String student_id);
 
-    @GET("team/{id}")
+    @GET("team_95/{id}")
     Call<TeamEventList> getTeamEvents(@Path("id") String id);
 
-    @GET("team_core/{id}")
+    @GET("team_core_95/{id}")
     Call<CoreTeamEvents> getCoreTeamEvents(@Path("id") String id);
 
-    @POST("register")
+    @POST("register_95")
     @FormUrlEncoded
     Call<FbLoginFragment.UserSentResponse> sendFbUserData(@Field("name") String name,@Field("email") String email,@Field("pic_url")String picUrl);
 
-    @GET("quiz/get/{id}")
+    @GET("quiz/get_95/{id}")
     Call<QuizQuestionsModel> getQuiz(@Path("id") String id);
 
-    @GET("quiz/update/{id}")
+    @GET("quiz/update_95/{id}")
     Call<UpdateScoreModel> updateScore(@Path("id") String id, @Query("score") int score);
 
     @FormUrlEncoded
-    @POST("newsfeed/post/{student_id}")
+    @POST("newsfeed/post_95/{student_id}")
     Call<UploadNewsFeedActivity.UploadResponse> uploadNews(@Field("title") String title, @Field("desc") String description, @Path("student_id") String userId, @Field("name") String userName,@Field("photo") String imageUrl);
 
 
-    @GET("newsfeed/getall/{id}")
+    @GET("newsfeed/getall_95/{id}")
     Call<NewsFeedResponse> getAllNews(@Path("id") String userId,@Query("from") int from);
 
 
-    @POST("newsfeed/like/{id}")
+    @POST("newsfeed/like_95/{id}")
     Call<Likecount>likecount(@Path("id") String id, @Query("student_id") String userId);
 
-    @GET("quiz/leaderboard")
+    @GET("quiz/leaderboard_95")
     Call<LeaderBoardModel> getLeaderBoard();
 
-    @GET("profile/{id}")
+    @GET("profile_95/{id}")
     Call<ProfileDataModel> profileBasicInfo(@Path("id") String id);
 
-    @GET("profile/event/{id}")
+    @GET("profile/event_95/{id}")
     Call<ProfileEventModel> profileEventList(@Path("id") String id);
 
-    @GET("profile/newsfeed/{student_id}")
+    @GET("profile/newsfeed_95/{student_id}")
     Call<NewsFeedResponse> getUserNews(@Path("student_id") String userId);
 
-    @GET("main/images/get")
+    @GET("main/images/get_95")
     Call<MainPagerResponse> getMainResponse();
 
-    @GET("gallery/{id}")
+    @GET("gallery_95/{id}")
     Call<GalleryDetailResponse> getGalleryResponse(@Path("id") String id);
 
-    @GET("galleryAll")
+    @GET("galleryAll_95")
     Call<GalleryResponse> getGalleryAll();
 
-    @POST("update/rollno/{id}")
+    @POST("update/rollno_95/{id}")
     Call<RegisterResponse> updateRollNo(@Path("id") String id,@Query("roll_no") String rollNo);
 
-    @GET("sponsor")
+    @GET("sponsor_95")
     Call<SponsorResponse> getSponsorList();
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:custom="http://schemas.android.com/apk/res-auto/com.nith.appteam.nimbus.CustomView.AspectRatioImageView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_gallery"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context="com.nith.appteam.nimbus.Activity.GalleryDetailActivity">
+    <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
+        custom:dominantMeasurement="width"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/galleryImage"
+        />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/none_text"
+        android:textSize="20sp"
+        android:textColor="#FFF"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:text="Please check your internet connection."/>
+</RelativeLayout>
