@@ -20,7 +20,7 @@
             android:padding="24dp">
 
             <ImageView
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:id="@+id/image_team"
                 android:layout_width="192dp"
                 android:layout_height="192dp"
@@ -37,5 +37,5 @@
                 android:textAppearance="@android:style/TextAppearance.Medium" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
-    >
+
 </android.support.v4.widget.NestedScrollView>
