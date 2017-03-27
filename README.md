@@ -30,9 +30,10 @@ Google Play link: https://play.google.com/store/apps/details?id=com.appteam.nith
 
 ## Libraries used
 - [Glide](https://github.com/bumptech/glide)
-- [Android Volley](https://github.com/mcxiaoke/android-volley)
-- [LoadToast](https://github.com/code-mc/loadtoast)
-- [Android Shape ImageView](https://github.com/siyamed/android-shape-imageview)
+- [Retrofit](https://github.com/square/retrofit)
+- [OneSignal-SDK](https://github.com/OneSignal/OneSignal-Android-SDK)
+- [Like Button](https://github.com/jd-alexander/LikeButton)
+- [Cloudinary](https://github.com/cloudinary/cloudinary_android)
 
 ## License
 This project is currently licensed under the GNU General Public License v3.  
