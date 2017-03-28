@@ -257,7 +257,7 @@
                             <TextView
                                 android:textAppearance="@android:style/TextAppearance.Medium"
                                 android:textAlignment="center"
-                                android:text="Special Event"
+                                android:text="Special Events"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>

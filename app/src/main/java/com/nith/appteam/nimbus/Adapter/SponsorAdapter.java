@@ -44,6 +44,8 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.viewHold
         if(list!=null) {
             Sponsor s = list.get(position);
             if (s != null) {
+                holder.imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                holder.coreteam.setVisibility(View.GONE);
                 if (s.getName() != null && !s.getName().isEmpty())
                     holder.textView.setText(s.getName());
                 if (s.getImg_url() != null && !s.getImg_url().isEmpty())
@@ -60,12 +62,13 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.viewHold
     public static  class  viewHolder extends RecyclerView.ViewHolder{
 
         private ImageView imageView;
-        private TextView textView;
+        private TextView textView,coreteam;
 
         public viewHolder(View itemView) {
             super(itemView);
             imageView= (ImageView) itemView.findViewById(R.id.core_team_image_view);
             textView= (TextView) itemView.findViewById(R.id.core_team_designation);
+            coreteam = (TextView) itemView.findViewById(R.id.core_team_name);
         }
     }
 }

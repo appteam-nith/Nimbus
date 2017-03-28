@@ -17,7 +17,7 @@
                 android:layout_height="400px"
                 android:src="@drawable/w1"
                 android:id="@+id/workshop_image"
-                android:scaleType="centerCrop" />
+                android:scaleType="fitXY" />
 
             <TextView
                 android:layout_width="match_parent"
