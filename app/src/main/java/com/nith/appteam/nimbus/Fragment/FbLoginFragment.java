@@ -101,6 +101,7 @@ public class FbLoginFragment extends Fragment {
                         if (object.has("name")) {
                             try {
                                 name = object.getString("name");
+                                Log.d("Login",name);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -108,14 +109,20 @@ public class FbLoginFragment extends Fragment {
                         if (object.has("email")) {
                             try {
                                 email = object.getString("email");
+                                Log.d("email",email);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
+                        else {
+                            email = " ";
+                        }
                         if (object.has("id")) {
                             try {
+
                                 String id = object.getString("id");
                                 picUrl = "https://graph.facebook.com/" + id + "/picture?width=200&height=200";
+                                Log.d("Login",picUrl);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

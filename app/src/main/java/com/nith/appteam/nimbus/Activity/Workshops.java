@@ -53,7 +53,7 @@ public class Workshops extends AppCompatActivity {
         }
 
         workshopstb = (Toolbar) findViewById(R.id.workshops_toolbar);
-        workshopstb.setTitle("Special Event");
+        workshopstb.setTitle("Special Events");
      setSupportActionBar(workshopstb);
      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

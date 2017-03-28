@@ -69,7 +69,7 @@ public class SlidingImageDetailActivity extends AppCompatActivity {
         if(getIntent().getExtras().getInt(Intent.EXTRA_TEXT)==1){
             progressBar.setVisibility(View.GONE);
             noneText.setVisibility(View.GONE);
-            galleryImage.setImageResource(R.drawable.workshop);
+            galleryImage.setImageResource(R.drawable.slideimage2);
         }
     }
 

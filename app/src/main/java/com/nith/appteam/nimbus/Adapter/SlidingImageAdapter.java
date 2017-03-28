@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nith.appteam.nimbus.Activity.SlidingImageDetailActivity;
+import com.nith.appteam.nimbus.CustomView.AspectRatioImageView;
 import com.nith.appteam.nimbus.R;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class SlidingImageAdapter extends PagerAdapter {
     //As discussed before the first two pics will not loaded from internet reason so that during poor connection. The page doesn't looks empty.
-    private int[] IMAGES = new int[]{R.drawable.logo1, R.drawable.workshop};
+    private int[] IMAGES = new int[]{R.drawable.logo1, R.drawable.slideimage2};
     private LayoutInflater inflater;
     private ArrayList<String> urlList=new ArrayList<>();
     private Context context;
@@ -53,7 +54,7 @@ public class SlidingImageAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup view, final int position) {
         View imageLayout = inflater.inflate(R.layout.sliding_image_layout, view, false);
         assert imageLayout != null;
-        final ImageView imageView = (ImageView) imageLayout
+        final AspectRatioImageView imageView = (AspectRatioImageView) imageLayout
                 .findViewById(R.id.image);
         if(position==0 || position==1)
             imageView.setImageResource(IMAGES[position]);
