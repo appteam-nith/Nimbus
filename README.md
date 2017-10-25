@@ -39,3 +39,5 @@ Google Play link: https://play.google.com/store/apps/details?id=com.appteam.nith
 
 ## License
 This project is currently licensed under the GNU General Public License v3.  
+
+#hacktoberfest
