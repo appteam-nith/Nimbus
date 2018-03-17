@@ -9,6 +9,11 @@ buildscript {
         jcenter {
             url "http://jcenter.bintray.com"
         }
+
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
@@ -33,6 +38,10 @@ allprojects {
             url "https://jitpack.io"
         }
 
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
 
 }
