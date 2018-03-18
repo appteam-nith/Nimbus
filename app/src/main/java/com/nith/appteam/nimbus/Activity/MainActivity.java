@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadNavHeader() {
-        txtName.setText("Nimbus 2k17");
+        txtName.setText("Nimbus 2k18");
         txtSubName.setText("NIT Hamirpur");
         imgNavHeaderBg.setImageResource(R.drawable.cover);
         imgProfile.setImageResource(R.drawable.nimbuslogo);
