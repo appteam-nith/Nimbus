@@ -39,8 +39,8 @@
         <activity android:name=".Activity.TeamEventActivity" />
         <activity
             android:name=".Activity.NewsFeedActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Wall">
+            android:label="Wall"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.WallIntroActivity" />
@@ -55,7 +55,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
         <activity
             android:name=".Activity.Workshops"
             android:theme="@style/AppTheme.NoActionBar">
@@ -100,10 +99,9 @@
             android:name=".Activity.LeaderBoardActivity"
             android:parentActivityName=".Activity.QuizActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.WorkshopDetail"
-            android:parentActivityName=".Activity.Workshops"
-
-            />
+        <activity
+            android:name=".Activity.WorkshopDetail"
+            android:parentActivityName=".Activity.Workshops" />
 
         <service
             android:name=".Service.UploadService"
@@ -124,9 +122,8 @@
         <activity android:name=".Activity.MapActivity" />
         <activity
             android:name=".Activity.QuizActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:label="Quiz"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
@@ -156,23 +153,23 @@
         <activity
             android:name=".Activity.ContributorsActivity"
             android:parentActivityName=".Activity.MainActivity" />
-        <activity android:name=".Activity.QuizQuestionActivity"
-            android:label="Quiz"
-            >
+        <activity
+            android:name=".Activity.QuizQuestionActivity"
+            android:label="Quiz">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-        <activity android:name=".Activity.QuizScoreActivity"
-            android:label="Quiz"
-            >
+        <activity
+            android:name=".Activity.QuizScoreActivity"
+            android:label="Quiz">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-        <activity android:name=".Activity.InformationActivity"
-            android:label="Instruction"
-            >
+        <activity
+            android:name=".Activity.InformationActivity"
+            android:label="Instruction">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
@@ -194,20 +191,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
-
         <activity
             android:name=".Activity.WallIntroActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Wall">
+            android:label="Wall"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
-
-        <activity android:name=".Activity.SlidingImageDetailActivity"
-            android:theme="@style/Theme.AppCompat"/>
-
+        <activity
+            android:name=".Activity.SlidingImageDetailActivity"
+            android:theme="@style/Theme.AppCompat" />
+        <activity android:name=".Activity.SettingsActivity"></activity>
     </application>
 
 </manifest>

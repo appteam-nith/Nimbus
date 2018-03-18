@@ -3,27 +3,41 @@
 
     <group >
         <item
-            android:id="@+id/nav_aboutapp"
-            android:title="@string/nav_aboutapp" />
+            android:id="@+id/nav_aboutnimbus"
+            android:title="@string/nav_aboutnimbus"
+            android:icon="@drawable/about"/>
 
         <item
             android:id="@+id/nav_team"
-            android:title="@string/nav_team" />
+            android:title="@string/nav_team"
+            android:icon="@drawable/contributor"/>
 
         <item
             android:id="@+id/nav_contactus"
-            android:title="@string/nav_contactus" />
+            android:title="@string/nav_contactus"
+            android:icon="@drawable/contactus"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Login"
+            android:icon="@drawable/login"/>
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/nav_settings"
+            android:icon="@drawable/settings"/>
     </group>
 
     <item android:title="Other">
         <menu>
             <item
                 android:id="@+id/nav_reportbug"
-                android:title="@string/nav_reportbug" />
+                android:title="@string/nav_reportbug"
+                android:icon="@drawable/reportbug"/>
             <item
                 android:id="@+id/nav_emergencycontact"
                 android:title="Emergency Contact"
-                />
+                android:icon="@drawable/emergencycontact"/>
 
         </menu>
     </item>

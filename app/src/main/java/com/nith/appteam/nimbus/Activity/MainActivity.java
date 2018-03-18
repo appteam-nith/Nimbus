@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadNavHeader() {
-        txtName.setText("Nimbus 2k17");
+        txtName.setText("Nimbus 2k18");
         txtSubName.setText("NIT Hamirpur");
         imgNavHeaderBg.setImageResource(R.drawable.cover);
         imgProfile.setImageResource(R.drawable.nimbuslogo);
@@ -308,18 +308,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setUpNavigationView() {
+
+        if(sharedPref.getLoginStatus()){
+            navigationView.getMenu().getItem(R.id.nav_logout).setTitle("logout");
+        }
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_aboutapp:
-                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-                        alertDialog.setTitle("About App");
-
-                        alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k17', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
-                        alertDialog.setIcon(R.drawable.nimbuslogo);
-                        alertDialog.show();
+                    case R.id.nav_aboutnimbus:
+                        startActivity(new Intent(MainActivity.this, AboutActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_team:
@@ -344,7 +344,24 @@ public class MainActivity extends AppCompatActivity {
                         alertDialog2.show();
                         drawer.closeDrawers();
                         return true;
-                        case R.id.nav_reportbug:
+
+                    case R.id.nav_settings:
+                        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
+                    case R.id.nav_logout:
+                        if(sharedPref.getLoginStatus()){
+                            sharedPref.setUserId("");
+                            sharedPref.setLoginStatus(false);
+                            sharedPref.setUserRollno("");
+                            sharedPref.setUserEmail("");
+                            sharedPref.setUserPicUrl("");
+                            sharedPref.setUserName("");
+                        }
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_reportbug:
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
 
                         String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
