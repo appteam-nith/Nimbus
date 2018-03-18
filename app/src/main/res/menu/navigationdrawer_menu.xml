@@ -3,8 +3,8 @@
 
     <group >
         <item
-            android:id="@+id/nav_aboutapp"
-            android:title="@string/nav_aboutapp" />
+            android:id="@+id/nav_aboutnimbus"
+            android:title="@string/nav_aboutnimbus" />
 
         <item
             android:id="@+id/nav_team"
@@ -13,6 +13,14 @@
         <item
             android:id="@+id/nav_contactus"
             android:title="@string/nav_contactus" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Login" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/nav_settings" />
     </group>
 
     <item android:title="Other">
