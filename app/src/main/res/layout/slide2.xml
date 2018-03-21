@@ -3,14 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:src="@drawable/quiz"
-        android:scaleType="centerCrop"
-        />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/collagenimbus" />
 
 </FrameLayout>
-
-
-
