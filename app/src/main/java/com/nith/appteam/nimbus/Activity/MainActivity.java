@@ -33,7 +33,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.facebook.login.LoginManager;
 import com.nith.appteam.nimbus.Adapter.SlidingImageAdapter;
 import com.nith.appteam.nimbus.Manifest;
 import com.nith.appteam.nimbus.Model.MainPagerResponse;
@@ -65,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtSubName;
     Toolbar toolbar;
-    private LinearLayout quiz_layout, gallery_layout, map_layout,  newsfeed_layout, coreteam_layout , aboutnimbus_layout , teams_layout, feedback_layout,sponsor_layout,workshop_layout,contributor_layout;
+    private LinearLayout quiz_layout, gallery_layout, map_layout, newsfeed_layout, coreteam_layout, aboutnimbus_layout, teams_layout, feedback_layout, sponsor_layout, workshop_layout, contributor_layout;
     final String number[] = {"9816291592", "9882551107"};
-    final String links[] = {"https://www.facebook.com/Nit.Hamirpur.Himachal/","https://github.com/appteam-nith/Nimbus"};
+    final String links[] = {"https://www.facebook.com/Nit.Hamirpur.Himachal/", "https://github.com/appteam-nith/Nimbus"};
     //public static int navItemIndex = 0;
     private static final int PERMISSIONS_REQUEST_PHONE_CALL = 100;
     private static String[] PERMISSIONS_PHONECALL = {android.Manifest.permission.CALL_PHONE};
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         sharedPref = new SharedPref(this);
         if (!sharedPref.getLoginStatus() && !sharedPref.getSkipStatus()) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            startActivity(new Intent(MainActivity.this, FirebaseLoginActivity.class));
             finish();
         }
         setContentView(R.layout.activity_main);
@@ -92,16 +91,16 @@ public class MainActivity extends AppCompatActivity {
         //Ends here
 
         //Code to deal with the ViewPager.
-        imageAdapter=new SlidingImageAdapter(MainActivity.this);
+        imageAdapter = new SlidingImageAdapter(MainActivity.this);
 
-        if(new Connection(this).isInternet()){
+        if (new Connection(this).isInternet()) {
             getPagerData();
             profileBasicInfo(sharedPref.getUserId());
         }
 
         viewPager.setAdapter(imageAdapter);
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(100,0,100,0);
+        viewPager.setPadding(100, 0, 100, 0);
         viewPager.setPageMargin(60);
 
         clickListenersMainMenu();
@@ -109,16 +108,15 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.action_leaderboard:
-                        startActivity(new Intent(MainActivity.this,LeaderBoardActivity.class));
+                        startActivity(new Intent(MainActivity.this, LeaderBoardActivity.class));
                         return true;
                     case R.id.action_profile:
-                        startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-                        return  true;
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        return true;
                     case R.id.action_notifications:
-                        startActivity(new Intent(MainActivity.this,NotificationActivity.class));
+                        startActivity(new Intent(MainActivity.this, NotificationActivity.class));
                         return true;
                 }
                 return false;
@@ -128,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void init(){
+    public void init() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -141,70 +139,70 @@ public class MainActivity extends AppCompatActivity {
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 
-        viewPager = (ViewPager)findViewById(R.id.main_view_pager);
+        viewPager = (ViewPager) findViewById(R.id.main_view_pager);
 
-        quiz_layout= (LinearLayout) findViewById(R.id.quiz_layout);
-        gallery_layout= (LinearLayout) findViewById(R.id.gallery_layout);
-        map_layout= (LinearLayout) findViewById(R.id.map_layout);
-        newsfeed_layout= (LinearLayout) findViewById(R.id.newsfeed_layout);
-        coreteam_layout= (LinearLayout) findViewById(R.id.coreteam_layout);
-        aboutnimbus_layout= (LinearLayout) findViewById(R.id.aboutnimbus_layout);
-        teams_layout= (LinearLayout) findViewById(R.id.teams_layout);
-        feedback_layout= (LinearLayout) findViewById(R.id.feedback_layout);
-        contributor_layout= (LinearLayout) findViewById(R.id.contributor_layout);
-        sponsor_layout= (LinearLayout) findViewById(R.id.sponsor_layout);
-        workshop_layout= (LinearLayout) findViewById(R.id.workshop_layout);
-        bottomNavigationView= (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        quiz_layout = (LinearLayout) findViewById(R.id.quiz_layout);
+        gallery_layout = (LinearLayout) findViewById(R.id.gallery_layout);
+        map_layout = (LinearLayout) findViewById(R.id.map_layout);
+        newsfeed_layout = (LinearLayout) findViewById(R.id.newsfeed_layout);
+        coreteam_layout = (LinearLayout) findViewById(R.id.coreteam_layout);
+        aboutnimbus_layout = (LinearLayout) findViewById(R.id.aboutnimbus_layout);
+        teams_layout = (LinearLayout) findViewById(R.id.teams_layout);
+        feedback_layout = (LinearLayout) findViewById(R.id.feedback_layout);
+        contributor_layout = (LinearLayout) findViewById(R.id.contributor_layout);
+        sponsor_layout = (LinearLayout) findViewById(R.id.sponsor_layout);
+        workshop_layout = (LinearLayout) findViewById(R.id.workshop_layout);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
     }
 
-    public void clickListenersMainMenu(){
+    public void clickListenersMainMenu() {
         quiz_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,QuizActivity.class));
+                startActivity(new Intent(MainActivity.this, QuizActivity.class));
             }
         });
 
         gallery_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,GalleryActivity.class));
+                startActivity(new Intent(MainActivity.this, GalleryActivity.class));
             }
         });
 
         map_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MapActivity.class));
+                startActivity(new Intent(MainActivity.this, MapActivity.class));
             }
         });
 
         newsfeed_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,WallIntroActivity.class));
+                startActivity(new Intent(MainActivity.this, WallIntroActivity.class));
             }
         });
 
         coreteam_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,CoreTeamActivity.class));
+                startActivity(new Intent(MainActivity.this, CoreTeamActivity.class));
             }
         });
 
         aboutnimbus_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AboutActivity.class));
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
             }
         });
 
         teams_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TeamActivity.class));
+                startActivity(new Intent(MainActivity.this, TeamActivity.class));
             }
         });
 
@@ -222,21 +220,21 @@ public class MainActivity extends AppCompatActivity {
         workshop_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Workshops.class));
+                startActivity(new Intent(MainActivity.this, Workshops.class));
             }
         });
 
         sponsor_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,SponsorActivity.class));
+                startActivity(new Intent(MainActivity.this, SponsorActivity.class));
             }
         });
 
         contributor_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ContributorsActivity.class));
+                startActivity(new Intent(MainActivity.this, ContributorsActivity.class));
             }
         });
 
@@ -272,8 +270,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(sharedPref.getSkipStatus())
-            getMenuInflater().inflate(R.menu.main_skipmenu,menu);
+        if (sharedPref.getSkipStatus())
+            getMenuInflater().inflate(R.menu.main_skipmenu, menu);
         else
             getMenuInflater().inflate(R.menu.main_rightmenu, menu);
         return super.onCreateOptionsMenu(menu);
@@ -296,8 +294,8 @@ public class MainActivity extends AppCompatActivity {
             sharedPref.setUserEmail("");
             sharedPref.setUserPicUrl("");
             sharedPref.setUserName("");
-            LoginManager.getInstance().logOut();
-            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+            // Logout
+            Intent intent = new Intent(MainActivity.this, FirebaseLoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -332,19 +330,19 @@ public class MainActivity extends AppCompatActivity {
                         String link1 = getString(R.string.Link1);
                         String link2 = getString(R.string.Link2);
                         String link3 = getString(R.string.Link3);
-                        CharSequence[] contact = { link1 +"\n"," Like our Facebook Page : \n" + link2 + "\n"," GitHub Organisation :" + link3};
+                        CharSequence[] contact = {link1 + "\n", " Like our Facebook Page : \n" + link2 + "\n", " GitHub Organisation :" + link3};
 
                         alertDialog2.setItems(contact, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                     call_contact(which);
+                                call_contact(which);
                             }
                         });
                         alertDialog2.setIcon(R.drawable.appteam);
                         alertDialog2.show();
                         drawer.closeDrawers();
                         return true;
-                        case R.id.nav_reportbug:
+                    case R.id.nav_reportbug:
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
 
                         String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
@@ -358,11 +356,11 @@ public class MainActivity extends AppCompatActivity {
 
                         alertDialog3.setTitle("Phone Number\n\n");
 
-                        CharSequence name[] = {"Abhinav Anand: 9816291592","Pranav Bhardwaj: 9882551107"};
+                        CharSequence name[] = {"Abhinav Anand: 9816291592", "Pranav Bhardwaj: 9882551107"};
 
-                        alertDialog3.setItems(name, new DialogInterface.OnClickListener(){
+                        alertDialog3.setItems(name, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface di,int i){
+                            public void onClick(DialogInterface di, int i) {
 
                                 call(i);
                             }
@@ -392,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
             }
+
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -403,14 +402,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void getPagerData(){
-        Call<MainPagerResponse> response= Util.getRetrofitService().getMainResponse();
+    private void getPagerData() {
+        Call<MainPagerResponse> response = Util.getRetrofitService().getMainResponse();
         response.enqueue(new Callback<MainPagerResponse>() {
             @Override
             public void onResponse(Call<MainPagerResponse> call, Response<MainPagerResponse> response) {
-                MainPagerResponse mainPagerResponse=response.body();
-                if(response!=null&&response.isSuccess()){
-                    ArrayList<String> list=mainPagerResponse.getImageList();
+                MainPagerResponse mainPagerResponse = response.body();
+                if (response != null && response.isSuccess()) {
+                    ArrayList<String> list = mainPagerResponse.getImageList();
                     imageAdapter.refresh(list);
                 }
             }
@@ -422,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void profileBasicInfo(String id){
+    private void profileBasicInfo(String id) {
 
         ApiInterface mAPI = Util.getRetrofitService();
         Call<ProfileDataModel> mService = mAPI.profileBasicInfo(id);
@@ -430,13 +429,13 @@ public class MainActivity extends AppCompatActivity {
         mService.enqueue(new Callback<ProfileDataModel>() {
             @Override
             public void onResponse(Call<ProfileDataModel> call, Response<ProfileDataModel> response) {
-                if(response!=null && response.isSuccess()){
-                    if(response.body().isSuccess()){
+                if (response != null && response.isSuccess()) {
+                    if (response.body().isSuccess()) {
                         ProfileDataModel model = response.body();
                         //For Testing
-                        Log.v("RESPONSE SUCCESS"," "+model.getRollno()+" "+model.getName()+" "+model.getEmail()+ " "+model.getPhoto());
+                        Log.v("RESPONSE SUCCESS", " " + model.getRollno() + " " + model.getName() + " " + model.getEmail() + " " + model.getPhoto());
 
-                        if(model!=null){
+                        if (model != null) {
 
                             sharedPref.setUserName(model.getName());
                             sharedPref.setUserEmail(model.getEmail());
@@ -452,17 +451,15 @@ public class MainActivity extends AppCompatActivity {
                 t.printStackTrace();
 
             }
-        });}
+        });
+    }
 
 
-
-    private void call(int i)
-    {
+    private void call(int i) {
         String phone;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, PERMISSIONS_REQUEST_PHONE_CALL);
-        }
-        else{
+        } else {
             phone = number[i];
             Intent intent = new Intent(Intent.ACTION_CALL);
             intent.setData(Uri.parse("tel:+91" + phone));
@@ -470,18 +467,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    private void call_contact(int i){
+
+    private void call_contact(int i) {
         String uri1;
-        if(i==0){
+        if (i == 0) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com");
             Uri uri = Uri.parse(uriText);
             intent.setData(uri);
             startActivity(intent);
 
-        }
-        else{
-            uri1 = links[i-1];
+        } else {
+            uri1 = links[i - 1];
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
