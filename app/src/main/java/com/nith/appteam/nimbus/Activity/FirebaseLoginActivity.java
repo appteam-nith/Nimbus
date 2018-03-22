@@ -78,8 +78,8 @@ public class FirebaseLoginActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Log.d("pno.: ",user.getPhoneNumber());
-                Log.d("uid: ",user.getUid());
+                Log.d("pno.: ", user.getPhoneNumber());
+                Log.d("uid: ", user.getUid());
                 saveUserLoginData(user.getPhoneNumber(), user.getUid());
             } else {
                 // Sign in failed, check response for error code
@@ -90,15 +90,14 @@ public class FirebaseLoginActivity extends AppCompatActivity {
     }
 
 
-    private void saveUserLoginData(String phone_no,String fb_id) {
+    private void saveUserLoginData(String phone_no, String fb_id) {
 
         Call<FirebaseLoginActivity.UserSentResponse> userSentResponseCall = Util.getRetrofitService().sendUserLoginData(phone_no, fb_id);
         userSentResponseCall.enqueue(new Callback<FirebaseLoginActivity.UserSentResponse>() {
             @Override
             public void onResponse(Call<FirebaseLoginActivity.UserSentResponse> call, Response<FirebaseLoginActivity.UserSentResponse> response) {
                 FirebaseLoginActivity.UserSentResponse userSentResponse = response.body();
-                if(userSentResponse!=null && response.isSuccess())
-                {
+                if (userSentResponse != null && response.isSuccess()) {
                     Log.v("ID", userSentResponse.getUserId());
                     sharedPref.setLoginStatus(true);
 //                    sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
@@ -110,39 +109,45 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
-                }
-                else
-                {
-                    Toast.makeText(FirebaseLoginActivity.this,"Check Internet connection",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(FirebaseLoginActivity.this, "Check Internet connection", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<FirebaseLoginActivity.UserSentResponse> call, Throwable t) {
-                Toast.makeText(FirebaseLoginActivity.this,"Check Internet Connection",Toast.LENGTH_LONG).show();
+                Toast.makeText(FirebaseLoginActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public class UserSentResponse{
+    public class UserSentResponse {
         @SerializedName("msg")
         private String message;
 
         @SerializedName("student_id")
         private String userId;
 
-        public UserSentResponse(String message, String userId){
+        public UserSentResponse(String message, String userId) {
             this.message = message;
             this.userId = userId;
         }
 
-        public void setMessage(String message){ this.message = message; }
+        public void setMessage(String message) {
+            this.message = message;
+        }
 
-        public String getMessage() {    return message; }
+        public String getMessage() {
+            return message;
+        }
 
-        public void setUserId(String userId){   this.userId = userId;   }
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
 
-        public String getUserId()   {   return userId;  }
+        public String getUserId() {
+            return userId;
+        }
     }
 
 
