@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.nith.appteam.nimbus">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,8 +19,11 @@
         android:icon="@drawable/nimbuslogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        tools:replace="android:supportsRtl"
         android:theme="@style/AppTheme">
+
         <meta-data
+            tools:replace="android:value"
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
         <meta-data
@@ -37,17 +41,20 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity android:name=".Activity.TeamEventActivity" />
+
         <activity
             android:name=".Activity.NewsFeedActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Wall">
+            android:label="Wall"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.WallIntroActivity" />
         </activity>
+
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/HomeTheme" />
+
         <activity
             android:name=".Activity.CoreTeamActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -63,17 +70,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity
             android:name=".Activity.AppIntro"
             android:label="@string/title_activity_appintro"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Activity.UploadNewsFeedActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateVisible|adjustResize" />
+
         <activity
             android:name=".Activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Activity.Splash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -83,6 +94,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Activity.TeamActivity"
             android:label="@string/title_activity_team"
@@ -92,18 +104,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity
             android:name=".Activity.ProfileActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/ProfileTheme" />
+
         <activity
             android:name=".Activity.LeaderBoardActivity"
             android:parentActivityName=".Activity.QuizActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.WorkshopDetail"
-            android:parentActivityName=".Activity.Workshops"
 
-            />
+        <activity
+            android:name=".Activity.WorkshopDetail"
+            android:parentActivityName=".Activity.Workshops" />
 
         <service
             android:name=".Service.UploadService"
@@ -122,15 +136,16 @@
             android:value="cloudinary://862148829278388:hJQPvA-kYbt8TRsp0bMSdqH65NE@appteamnith" />
 
         <activity android:name=".Activity.MapActivity" />
+
         <activity
             android:name=".Activity.QuizActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:label="Quiz"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity
             android:name=".Activity.AboutActivity"
             android:label="@string/title_activity_about"
@@ -139,44 +154,53 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity android:name=".Activity.GalleryDetailActivity" />
+
         <activity android:name=".Activity.GalleryActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity android:name=".Notification.NotificationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity
             android:name=".Notification.Notification2"
             android:parentActivityName=".Notification.NotificationActivity" />
+
         <activity
             android:name=".Activity.ContributorsActivity"
             android:parentActivityName=".Activity.MainActivity" />
-        <activity android:name=".Activity.QuizQuestionActivity"
-            android:label="Quiz"
-            >
+
+        <activity
+            android:name=".Activity.QuizQuestionActivity"
+            android:label="Quiz">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-        <activity android:name=".Activity.QuizScoreActivity"
-            android:label="Quiz"
-            >
+
+        <activity
+            android:name=".Activity.QuizScoreActivity"
+            android:label="Quiz">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
-        <activity android:name=".Activity.InformationActivity"
-            android:label="Instruction"
-            >
+
+        <activity
+            android:name=".Activity.InformationActivity"
+            android:label="Instruction">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.QuizActivity" />
         </activity>
+
         <activity
             android:name=".Activity.SponsorActivity"
             android:label="@string/title_activity_sponsor"
@@ -186,6 +210,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
+
         <activity
             android:name=".Activity.CoreTeamEventActivity"
             android:parentActivityName=".Activity.MainActivity"
@@ -195,18 +220,21 @@
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
 
-
         <activity
             android:name=".Activity.WallIntroActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Wall">
+            android:label="Wall"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nith.appteam.nimbus.Activity.MainActivity" />
         </activity>
 
-        <activity android:name=".Activity.SlidingImageDetailActivity"
-            android:theme="@style/Theme.AppCompat"/>
+        <activity
+            android:name=".Activity.SlidingImageDetailActivity"
+            android:theme="@style/Theme.AppCompat" />
+
+        <activity android:name=".Activity.FirebaseLoginActivity"
+            android:exported="true"/>
 
     </application>
 
