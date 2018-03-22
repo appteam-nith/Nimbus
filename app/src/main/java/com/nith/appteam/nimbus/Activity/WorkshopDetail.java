@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
+import com.nith.appteam.nimbus.Model.ProfileEdit;
 import com.nith.appteam.nimbus.Model.SingleWorkshopResponse;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
@@ -95,24 +96,37 @@ public class WorkshopDetail extends AppCompatActivity {
         registerButtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!sharedPref.getFirstTimeRollregister())
-                if(!sharedPref.getNitianStatus()&&sharedPref.getUserRollno().isEmpty()){
 
-                    if(sharedPref.getUserRollno().isEmpty()){
-                        AlertDialog d=Util.promptRollNo(WorkshopDetail.this);
-                        d.show();
-                    }
-                    else{
-                        registerRetrofit();
-                    }
+//                if(!sharedPref.getFirstTimeRollregister())
+//                if(!sharedPref.getNitianStatus()&&sharedPref.getUserRollno().isEmpty()){
+//
+//                    if(sharedPref.getUserRollno().isEmpty()){
+//                        AlertDialog d=Util.promptRollNo(WorkshopDetail.this);
+//                        d.show();
+//                    }
+//                    else{
+//                        registerRetrofit();
+//                    }
+//                }
+//                else
+//                registerRetrofit();
+//                else{
+//                    sharedPref.setFirstRollRegister(true);
+//                    registerRetrofit();
+//                }
+
+                if(!sharedPref.getLoginStatus()){
+                    startActivity(new Intent(WorkshopDetail.this,FirebaseLoginActivity.class));
                 }
-                else
+                if(!sharedPref.isDataFilled())
+                {
+                    Log.d("gg","hhh");
+                    startActivity(new Intent(WorkshopDetail.this, ProfileActivityEdit.class));
+                }
                 registerRetrofit();
-                else{
-                    sharedPref.setFirstRollRegister(true);
-                    registerRetrofit();
-                }
             }
+
+
         });
 
         student_id=sharedPref.getUserId();
@@ -123,7 +137,7 @@ public class WorkshopDetail extends AppCompatActivity {
             Snackbar.make(coordinatorLayout,"Please Login To See The Content",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(WorkshopDetail.this,LoginActivity.class));
+                    startActivity(new Intent(WorkshopDetail.this,FirebaseLoginActivity.class));
                 }
             }).show();
         }

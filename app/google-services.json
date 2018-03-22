@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "88547491108-fc5fdjqk003iqieqkemrkeugd9au44st.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nith.appteam.nimbus",
+            "certificate_hash": "4fe28cfbfe79663bb883c8078e551127999a1b8c"
+          }
+        },
+        {
           "client_id": "88547491108-rn5n9lhpmt9rootp05es7h9ou7nan1jq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

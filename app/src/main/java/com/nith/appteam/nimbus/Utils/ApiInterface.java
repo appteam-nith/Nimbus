@@ -3,6 +3,7 @@ package com.nith.appteam.nimbus.Utils;
 import retrofit2.http.POST;
 
 import com.nith.appteam.nimbus.Activity.FirebaseLoginActivity;
+import com.nith.appteam.nimbus.Activity.ProfileActivityEdit;
 import com.nith.appteam.nimbus.Model.CoreTeamEvents;
 import com.nith.appteam.nimbus.Model.CoreTeamResponse;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
@@ -118,4 +119,8 @@ public interface ApiInterface {
 
     @GET("sponsor")
     Call<SponsorResponse> getSponsorList();
+
+    @FormUrlEncoded
+    @POST("update/info/{id}")
+    Call<ProfileActivityEdit.ProfileResponse> setProfile(@Path("id") String id,@Field("name") String name, @Field("email") String email,@Field("roll_no") String roll_no, @Field("branch") String branch, @Field("year") String year);
 }

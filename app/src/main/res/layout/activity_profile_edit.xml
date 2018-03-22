@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/container_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileLabelLeft"
+                android:hint="First Name"
+                android:textColorHint="@color/md_grey_700" />
+
+            <EditText
+                android:id="@+id/firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileEditTextLeft"
+                android:maxLines="1"
+                android:textColor="@color/md_black_1000" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileLabelLeft"
+                android:layout_marginTop="10dp"
+                android:hint="Email Address"
+                android:textColorHint="@color/md_grey_700" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileEditTextLeft"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/md_black_1000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileLabelLeft"
+                android:layout_marginTop="10dp"
+                android:hint="Roll No."
+                android:textColorHint="@color/md_grey_700" />
+
+            <EditText
+                android:id="@+id/rollno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileEditTextLeft"
+                android:maxLines="1"
+                android:textColor="@color/md_black_1000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileLabelLeft"
+                android:layout_marginTop="10dp"
+                android:hint="Year"
+                android:textColorHint="@color/md_grey_700" />
+
+            <EditText
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileEditTextLeft"
+                android:textColor="@color/md_black_1000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileLabelLeft"
+                android:layout_marginTop="10dp"
+                android:hint="Branch"
+                android:textColorHint="@color/md_grey_700" />
+
+            <EditText
+                android:id="@+id/branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/profileEditTextLeft"
+                android:textColor="@color/md_black_1000" />
+
+            <Button
+                android:id="@+id/submit_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Submit" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/profile_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -18,6 +18,11 @@ public class SharedPref {
     private static  final String USER_PIC_URL="picUrl";
     private static final String NITIAN_STATUS="nitian";
     private static  final String FIRST_ROLL_REGISTER="rollRegister";
+    private static final String BRANCH = "Branch";
+    private static final String YEAR = "year";
+    private static final String IS_FILLED = "isfilled";
+
+
 
     public SharedPref(){
         this(MyApplication.getAppContext());
@@ -118,4 +123,29 @@ public class SharedPref {
     public boolean getFirstTimeRollregister(){
         return sharedPreferences.getBoolean(FIRST_ROLL_REGISTER,true);
     }
+
+    public  String getBRANCH() {
+        return sharedPreferences.getString(BRANCH,"");
+    }
+
+    public  String getYEAR() {
+        return sharedPreferences.getString(YEAR,"");
+    }
+    public void setBranch(String Branch){
+        editor.putString(BRANCH,Branch);
+        editor.commit();
+    }
+    public void setYear(String Year)
+    {
+        editor.putString(YEAR,Year);
+        editor.commit();
+    }
+    public boolean isDataFilled(){
+        return sharedPreferences.getBoolean(IS_FILLED,false);
+    }
+    public void setProfileStatus(boolean isProfIn){
+        editor.putBoolean(IS_FILLED,isProfIn);
+        editor.commit();
+    }
+
 }
