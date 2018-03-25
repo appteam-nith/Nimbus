@@ -42,7 +42,7 @@ public class contributorsAdapter extends RecyclerView.Adapter<contributorsAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.contributors_cardview,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_contributors,parent,false);
         ViewHolder view_holder = new ViewHolder(view);
         return view_holder;
     }
@@ -54,7 +54,7 @@ public class contributorsAdapter extends RecyclerView.Adapter<contributorsAdapte
         }
         if(!(contributorsItemArrayList.get(position).github_url.isEmpty())){
             final String url=(contributorsItemArrayList.get(position).github_url);
-            holder.githublink.setText(url);
+
             holder.githublink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,9 +83,9 @@ public class contributorsAdapter extends RecyclerView.Adapter<contributorsAdapte
         ImageView image_url;
         public ViewHolder(View v){
             super(v);
-            this.image_url = (ImageView)v.findViewById(R.id.imgContributor);
-            this.contributorname = (TextView)v.findViewById(R.id.contributorName);
-            this.githublink = (TextView)v.findViewById(R.id.profileLink);
+            this.image_url = (ImageView)v.findViewById(R.id.contributor_pic);
+            this.contributorname = (TextView)v.findViewById(R.id.contributor_name);
+            this.githublink = (TextView)v.findViewById(R.id.contributor_link);
         }
     }
 

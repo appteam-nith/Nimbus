@@ -43,7 +43,7 @@ import retrofit2.Response;
 
 public class WorkshopDetail extends AppCompatActivity {
 
-    public static final String ACTIVITY="activity", ID="id", WORKSHOP_NAME="wname", EVENT_NAME="ename";
+    public static final String ACTIVITY="activity",     ID="id", WORKSHOP_NAME="wname", EVENT_NAME="ename";
     public static final String WORKSHOP="workshop", EVENT="event";
     private Boolean successStatus;
     private String workshop_id, event_id, student_id, which_activity;
@@ -277,7 +277,7 @@ else {
                                 }
                             });
                         }
-                        detail_text.setText(description.replaceAll("(\\\\n\\\\n)|(\\\\n)","\n"));
+                        detail_text.setText(description.replaceAll("(\\\\n\\\\n)|(\\\\n)"," "));
                         if(registerStatus==true){
                             registerButtton.setVisibility(View.GONE);
                             reg_msg.setVisibility(View.VISIBLE);

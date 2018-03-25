@@ -2,6 +2,7 @@ package com.nith.appteam.nimbus.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -28,10 +29,6 @@ public class ContributorsActivity extends AppCompatActivity {
         rvContributors = (RecyclerView) findViewById(R.id.contributors_view);
 
         contributorsItems = new ArrayList<>();
-        contributorsItems.add(new contributorsItem("Tanuja Medisetti", BASE_URL + "TanujaMedisetti87.png" , BASE_URL + "TanujaMedisetti87"));
-        contributorsItems.add(new contributorsItem("Nishant Chaudhary", BASE_URL + "nishant23j.png", BASE_URL + "nishant23j"));
-        contributorsItems.add(new contributorsItem("Shubham Naik", BASE_URL + "nrshubham.png", BASE_URL + "nrshubham"));
-        contributorsItems.add(new contributorsItem("Ashima Anand", BASE_URL + "ashima1795.png", BASE_URL + "ashima1795"));
 
         //contributorsItems.add(new contributorsItem("", BASE_URL + ".png", BASE_URL + ""));
 
@@ -69,9 +66,8 @@ public class ContributorsActivity extends AppCompatActivity {
         setSupportActionBar(tbContributers);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        LinearLayoutManager lvmanager = new LinearLayoutManager(this);
-        lvmanager.setOrientation(LinearLayoutManager.VERTICAL);
-        rvContributors.setLayoutManager(lvmanager);
+
+        rvContributors.setLayoutManager(new GridLayoutManager(this,2));
 
     }
 }

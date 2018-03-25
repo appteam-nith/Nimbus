@@ -102,6 +102,19 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                     sharedPref.setLoginStatus(true);
 //                    sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
                     sharedPref.setUserId(userSentResponse.getUserId());
+                    if(userSentResponse.getBranch()==null || userSentResponse.getYear()==null || userSentResponse.getEmail()==null ||
+                            userSentResponse.getName()==null || userSentResponse.getRoll_no()==null) {
+                        sharedPref.setProfileStatus(false);
+                    }
+                    else
+                    {
+                        sharedPref.setBranch(userSentResponse.getBranch());
+                        sharedPref.setYear(userSentResponse.getYear());
+                        sharedPref.setUserEmail(userSentResponse.getEmail());
+                        sharedPref.setUserName(userSentResponse.getName());
+                        sharedPref.setUserRollno(userSentResponse.getRoll_no());
+                    }
+
 
                     progressBar.setVisibility(View.GONE);
 
@@ -128,25 +141,85 @@ public class FirebaseLoginActivity extends AppCompatActivity {
         @SerializedName("student_id")
         private String userId;
 
-        public UserSentResponse(String message, String userId) {
+        @SerializedName("name")
+        private String name;
+
+        @SerializedName("roll_no")
+        private String roll_no;
+
+        @SerializedName("year")
+        private String year;
+
+        @SerializedName("branch")
+        private String branch;
+
+        @SerializedName("email")
+        private String email;
+
+        public UserSentResponse(String message, String userId, String name, String roll_no, String year, String branch, String email) {
             this.message = message;
             this.userId = userId;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
+            this.name = name;
+            this.roll_no = roll_no;
+            this.year = year;
+            this.branch = branch;
+            this.email = email;
         }
 
         public String getMessage() {
             return message;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
+        public void setMessage(String message) {
+            this.message = message;
         }
 
         public String getUserId() {
             return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getRoll_no() {
+            return roll_no;
+        }
+
+        public void setRoll_no(String roll_no) {
+            this.roll_no = roll_no;
+        }
+
+        public String getYear() {
+            return year;
+        }
+
+        public void setYear(String year) {
+            this.year = year;
+        }
+
+        public String getBranch() {
+            return branch;
+        }
+
+        public void setBranch(String branch) {
+            this.branch = branch;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
         }
     }
 

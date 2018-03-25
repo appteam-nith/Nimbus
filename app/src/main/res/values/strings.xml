@@ -13,6 +13,7 @@
     <string name="dummytext">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
           </string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 
     <string name="quiz_comment">*Make sure to read all instructions before attempting the quiz</string>
     <string name="Link1">Reach us at : <a href="appteam.nith@gmail.com">appteam.nith@gmail.com</a> </string>

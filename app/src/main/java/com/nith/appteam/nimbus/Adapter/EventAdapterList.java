@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,23 +9,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nith.appteam.nimbus.Activity.RegisterEvent;
 import com.nith.appteam.nimbus.Model.TeamEventList;
 import com.nith.appteam.nimbus.R;
 
 import java.util.ArrayList;
 
 /**
- * Created by sahil on 7/3/17.
+ * Created by jatin on 25/3/18.
  */
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.viewHolder>
-{
+public class EventAdapterList extends RecyclerView.Adapter<EventAdapterList.viewHolder> {
+
     private Context context;
     private ArrayList<TeamEventList.Event> list=new ArrayList<>();
-    public EventAdapter(Context context) {
+
+    public EventAdapterList(Context context) {
         this.context = context;
+
     }
     public  void refresh(ArrayList<TeamEventList.Event> list){
         this.list=list;
@@ -33,16 +35,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.viewHolder>
 
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_team,parent,false);
-        return new  viewHolder(v);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_event,parent,false);
+        return new viewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
         TeamEventList.Event e=list.get(position);
         holder.title.setText(e.getName());
-        Glide.with(context).load(e.getPhoto()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(holder.imageView);
-
     }
 
     @Override
@@ -50,14 +50,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.viewHolder>
         return list.size();
     }
 
+
+
     public static  class  viewHolder extends RecyclerView.ViewHolder{
-        private ImageView imageView;
+
         private TextView title;
 
         public viewHolder(View itemView) {
             super(itemView);
-            imageView= (ImageView) itemView.findViewById(R.id.image_team);
-            title= (TextView) itemView.findViewById(R.id.text_name_team);
+            title= (TextView) itemView.findViewById(R.id.event1_text);
         }
     }
 }

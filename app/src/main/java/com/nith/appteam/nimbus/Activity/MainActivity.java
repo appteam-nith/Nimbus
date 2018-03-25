@@ -270,10 +270,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (sharedPref.getSkipStatus())
-            getMenuInflater().inflate(R.menu.main_skipmenu, menu);
-        else
+        if (sharedPref.getLoginStatus())
             getMenuInflater().inflate(R.menu.main_rightmenu, menu);
+        else
+            getMenuInflater().inflate(R.menu.main_skipmenu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -294,6 +294,9 @@ public class MainActivity extends AppCompatActivity {
             sharedPref.setUserEmail("");
             sharedPref.setUserPicUrl("");
             sharedPref.setUserName("");
+            sharedPref.setProfileStatus(false);
+            sharedPref.setYear("");
+            sharedPref.setBranch("");
             // Logout
             Intent intent = new Intent(MainActivity.this, FirebaseLoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

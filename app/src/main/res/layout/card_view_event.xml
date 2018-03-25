@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_event1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_margin="10dp"
+        android:minHeight="40dp"
+        android:padding="10dp"
+        app:cardElevation="14dp">
+        <TextView
+            android:id="@+id/event1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="Event 1"
+            android:textSize="21dp" />
+    </android.support.v7.widget.CardView>

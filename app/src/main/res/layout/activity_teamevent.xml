@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="RtlHardcoded"
+
     >
 <ProgressBar
     android:layout_width="wrap_content"
@@ -117,10 +118,17 @@
     android:textStyle="bold"
     android:layout_marginLeft="10dp"/>
         <android.support.v7.widget.RecyclerView
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventList2"/>
+        <android.support.v7.widget.RecyclerView
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/eventList"/>
+                android:id="@+id/eventList"
+            android:visibility="gone"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -130,11 +138,16 @@
             android:visibility="gone"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"/>
+
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/projectList"/>
+            android:layout_margin="8dp"
+            android:id="@+id/projectList"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
     </LinearLayout>
 </RelativeLayout>
 

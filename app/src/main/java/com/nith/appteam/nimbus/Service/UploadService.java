@@ -2,33 +2,23 @@ package com.nith.appteam.nimbus.Service;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.android.Utils;
 import com.cloudinary.utils.ObjectUtils;
 import com.nith.appteam.nimbus.Activity.UploadNewsFeedActivity;
 import com.nith.appteam.nimbus.Model.RegisterResponse;
-import com.nith.appteam.nimbus.Utils.MyApplication;
 import com.nith.appteam.nimbus.Utils.SharedPref;
-import com.nith.appteam.nimbus.Utils.Util;
 
-import java.io.IOException;
 import java.util.Map;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.view.View.GONE;
-
 /**
- * Created by sahil on 17/2/17.
+ * Created by aditya on 18/10/17.
  */
 
 public class UploadService extends IntentService {
@@ -42,13 +32,12 @@ public class UploadService extends IntentService {
     private static final String DESCRIPTION = "description";
     private static final String URL_IMAGE = "imageUrl";
     private static final String UPLOADING_START="start";
-    private static final  String UPLOADING_FINISH="finish";
+    private static final String UPLOADING_FINISH="finish";
     private static final String UPLOADING_ERROR="error";
     private SharedPref sharedPref;
     private static final String REGISTER_ROLL_NO="rollNoRegister";
     private static  final String ROLL_NO="rollNo";
-    private static final  String WORK="work";
-
+    private static final String WORK="work";
 
 public UploadService(){
     super("UploadService");
@@ -60,56 +49,63 @@ public UploadService(){
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        sharedPref = new SharedPref();
-        if (intent != null) {
-            if (intent.hasExtra(UPLOAD_SERVICE)) {
-                String title = "", description = "", imageUrl = "";
-                if (intent.hasExtra(TITLE)) {
-                    title = intent.getStringExtra(TITLE);
-                }
-                if (intent.hasExtra(DESCRIPTION)) {
-                    description = intent.getStringExtra(DESCRIPTION);
-                }
-                if (intent.hasExtra(URL_IMAGE)) {
-                    imageUrl = intent.getStringExtra(URL_IMAGE);
-                    Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(MyApplication.getAppContext()));
-                    try {
-                        Intent i = new Intent(UPLOADING_START);
-                        i.putExtra(WORK,"NewsFeed");
-                        sendBroadcast(i);
-                        Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName() + "" + Util.random()));
-                        upload(title, description, (String) map.get("url"));
-                        Log.d("image", (String) map.get("url"));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Intent i = new Intent();
-                        i.setAction(UPLOADING_ERROR);
-                        i.putExtra(WORK, "NewsFeed");
-                        sendBroadcast(i);
-                    }
-                }
-                else {
-                    Intent i = new Intent(UPLOADING_START);
-                    i.putExtra(WORK,"NewsFeed");
-                    sendBroadcast(i);
-                    upload(title, description,"");
-                }
-
+        sharedPref = new SharedPref(this);
+        System.out.println("jjjssasas");
+        if (intent != null) if (intent.hasExtra(UPLOAD_SERVICE)) {
+            String title = "", description = "", imageUrl = "";
+            if (intent.hasExtra(TITLE)) {
+                title = intent.getStringExtra(TITLE);
             }
-            else if(intent.hasExtra(REGISTER_ROLL_NO)){
-                 if(intent.hasExtra(ROLL_NO)){
-                     Intent i = new Intent(UPLOADING_START);
-                     i.putExtra(WORK,"Roll Number");
-                     sendBroadcast(i);
-                     registerRollNo(intent.getStringExtra(ROLL_NO),sharedPref.getUserId());
-                 }
+            if (intent.hasExtra(DESCRIPTION)) {
+                description = intent.getStringExtra(DESCRIPTION);
+            }
+            if (intent.hasExtra(URL_IMAGE)) {
+                imageUrl = intent.getStringExtra(URL_IMAGE);
+                System.out.println(imageUrl);
+                Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(getApplicationContext()));
+                System.out.println("hello");
+                try {
+                    Intent i = new Intent(UPLOADING_START);
+                    i.putExtra(WORK, "NewsFeed");
+                    sendBroadcast(i);
+                    Map map = cloudinary.uploader().upload(imageUrl.trim(), ObjectUtils.asMap("public_id", sharedPref.getUserName() + "" + com.nith.appteam.nimbus.Utils.Util.random()));
+                    String imageEncodedUrl = (String) map.get("url");
+                    if(!imageEncodedUrl.isEmpty() && imageEncodedUrl.length()>0) upload(sharedPref.getUserName(),title, description,imageEncodedUrl );
+                    else{
+                        upload(sharedPref.getUserName(),title, description, "");
+                    }
+
+                    Log.d("image", (String) map.get("url"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Intent i = new Intent();
+                    i.setAction(UPLOADING_ERROR);
+                    i.putExtra(WORK, "NewsFeed");
+                    sendBroadcast(i);
+
+                }
+            }
+            else {
+                upload(sharedPref.getUserName(),title, description, "");
+            }
+
+
+
+
+
+        } else if (intent.hasExtra(REGISTER_ROLL_NO)) {
+            if (intent.hasExtra(ROLL_NO)) {
+                Intent i = new Intent(UPLOADING_START);
+                i.putExtra(WORK, "Roll Number");
+                sendBroadcast(i);
+                registerRollNo(intent.getStringExtra(ROLL_NO), sharedPref.getUserId());
             }
         }
     }
 
-    private void upload(String title, String description, String imageUrl) {
+    private void upload(String username, String title, String description, String imageUrl) {
 
-        Call<UploadNewsFeedActivity.UploadResponse> uploadResponseCall = Util.getRetrofitService().uploadNews(title, description, sharedPref.getUserId(), sharedPref.getUserName(), imageUrl);
+        Call<UploadNewsFeedActivity.UploadResponse> uploadResponseCall = com.nith.appteam.nimbus.Utils.Util.getRetrofitService().uploadNews(title, description, sharedPref.getUserId(), sharedPref.getUserName(), imageUrl);
         uploadResponseCall.enqueue(new Callback<UploadNewsFeedActivity.UploadResponse>() {
             @Override
             public void onResponse(Call<UploadNewsFeedActivity.UploadResponse> call, Response<UploadNewsFeedActivity.UploadResponse> response) {
@@ -118,10 +114,11 @@ public UploadService(){
                 if (result != null && response.isSuccess()) {
                     if (result.getSuccess()) {
                         Intent i=new Intent(UPLOADING_FINISH);
+                        System.out.println("dsds");
                         i.putExtra(WORK,"NewsFeed");
                         sendBroadcast(i);
                     } else {
-
+                        System.out.println("ds");
                     }
                 } else {
                     if (status_code == 404) {
@@ -148,8 +145,8 @@ public UploadService(){
         });
     }
 
-    private void  registerRollNo(String rollNo,String studentId){
-        Call<RegisterResponse> call=Util.getRetrofitService().updateRollNo(studentId,rollNo);
+    private void  registerRollNo(String rollNo, String studentId){
+        Call<RegisterResponse> call= com.nith.appteam.nimbus.Utils.Util.getRetrofitService().updateRollNo(studentId,rollNo);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {

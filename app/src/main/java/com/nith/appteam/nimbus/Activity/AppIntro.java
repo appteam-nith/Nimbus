@@ -51,6 +51,9 @@ public class AppIntro extends AppCompatActivity {
         btnskip = (Button) findViewById(R.id.btn_skip);
         btnnext = (Button) findViewById(R.id.btn_next);
 
+        btnnext.setTextColor(getResources().getColor(R.color.black));
+        btnskip.setTextColor(getResources().getColor(R.color.black));
+
         layouts = new int[]{
                 R.layout.slide1,
                 R.layout.slide2,

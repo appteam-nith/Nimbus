@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#6aa3bc</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000</color>
 
+    <color name="reddishpink">#FF5252</color>
     <color name="dot_dark_screen1">#3F51B5</color>
     <color name="dot_dark_screen2">#303F9F</color>
     <color name="dot_dark_screen3">#FF4081</color>
@@ -26,4 +28,5 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
 </resources>

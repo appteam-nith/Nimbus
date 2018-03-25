@@ -26,6 +26,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.nith.appteam.nimbus.Adapter.EventAdapter;
+import com.nith.appteam.nimbus.Adapter.EventAdapterList;
 import com.nith.appteam.nimbus.Adapter.ProjectAdapter;
 import com.nith.appteam.nimbus.Fragment.TeamFragment;
 import com.nith.appteam.nimbus.Model.TeamEventList;
@@ -56,6 +57,8 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
     private ImageView bannerImage;
     private ImageView logoView;
     private RecyclerView eventList;
+    private RecyclerView eventList2;
+    private EventAdapterList ad;
     private EventAdapter adapter;
     private RecyclerView projectList;
     private ProjectAdapter projectAdapter;
@@ -97,7 +100,8 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         teamDescription= (TextView) findViewById(R.id.teamDescription);
         headerTitle= (TextView) findViewById(R.id.header_title_team);
         bannerImage= (ImageView) findViewById(R.id.main_imageview_placeholder);
-       logoView= (ImageView) findViewById(R.id.teamlogo);
+        logoView= (ImageView) findViewById(R.id.teamlogo);
+        eventList2 = (RecyclerView) findViewById(R.id.eventList2);
 //        Glide.with(TeamEventActivity.this).load(R.drawable.nimbuslogo).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.placeholder).into(new ImageViewTarget<Bitmap>(logoView) {
 //            @Override
 //            protected void setResource(Bitmap resource) {
@@ -110,7 +114,10 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
 
         eventList= (RecyclerView) findViewById(R.id.eventList);
         eventList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+        eventList2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true));
+        ad = new EventAdapterList(this);
         adapter=new EventAdapter(this);
+        eventList2.setAdapter(ad);
         eventList.setAdapter(adapter);
         eventList.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -120,11 +127,22 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
                 i.putExtra(EVENT_NAME,eventArrayList.get(position).getName());
                 i.putExtra(ID,eventArrayList.get(position).getId());
                 startActivity(i);
+
+            }
+        }));
+        eventList2.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent i=new Intent(TeamEventActivity.this,RegisterEvent.class);
+                i.putExtra(ACTIVITY,EVENT);
+                i.putExtra(EVENT_NAME,eventArrayList.get(position).getName());
+                i.putExtra(ID,eventArrayList.get(position).getId());
+                startActivity(i);
             }
         }));
 
     projectList=(RecyclerView)findViewById(R.id.projectList);
-projectList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+    projectList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
         projectAdapter=new ProjectAdapter(this);
         projectList.setAdapter(projectAdapter);
 
@@ -214,6 +232,7 @@ private void getTeamData(String  id){
                 projectArrayList.addAll(t.getProjects());
 
                 adapter.refresh(eventArrayList);
+                ad.refresh(eventArrayList);
                 projectAdapter.refresh(projectArrayList);
                 mTitle.setText(t.getName());
                 headerTitle.setText(t.getName());

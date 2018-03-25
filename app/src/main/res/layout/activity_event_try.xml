@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.nith.appteam.nimbus.Activity.EventActivityTry">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/anim_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        android:tooltipText="Team Name"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar">
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--TODO: ViewPager element[normal] will be added here-->
+        <include layout="@layout/horizontal_scrollview"/>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"/>
+
+</LinearLayout>

@@ -69,24 +69,6 @@
             android:fontFamily="sans-serif-thin"
             android:textSize="18sp"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text = "SeeMore"
-            android:id="@+id/see_more"
-            android:visibility="gone"
-            android:paddingLeft="30px"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text = "SeeLess"
-            android:id="@+id/see_less"
-            android:visibility="gone"
-            android:paddingLeft="30px"
-            />
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

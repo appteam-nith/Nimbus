@@ -22,8 +22,6 @@ public class SharedPref {
     private static final String YEAR = "year";
     private static final String IS_FILLED = "isfilled";
 
-
-
     public SharedPref(){
         this(MyApplication.getAppContext());
     }

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/new_feed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="8dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+
+                    <ImageView
+                        android:id="@+id/social"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/social" />
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="8dp"
+                        android:text="USER NAME" />
+
+
+
+                    <LinearLayout
+                        android:id="@+id/news"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/social"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toRightOf="@id/post_img"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/post_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:text="BLABLA" />
+
+                        <TextView
+                            android:id="@+id/user_msg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp" />
+                        <ImageView
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:layout_margin="8dp"
+                            android:id="@+id/post_img2"
+
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_below="@id/news"
+                        android:background="#d0d0d0" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/news"
+                        >
+
+
+                    <com.like.LikeButton
+                        android:id="@+id/lyk_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="8dp"
+                        card_view:icon_size="16dp"
+                        android:layout_below="@id/line2"
+                        android:layout_gravity="center"
+                        />
+
+                        <TextView
+                            android:id="@+id/no_of_likes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/line2"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="16dp"
+
+                            android:layout_toRightOf="@id/lyk_status"
+                            android:layout_gravity="center"
+                            android:text="15" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

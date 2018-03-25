@@ -28,7 +28,7 @@ public class WallIntroActivity extends AppCompatActivity {
 
     public void viewFeed(View view){
 
-        startActivity(new Intent(WallIntroActivity.this,NewsFeedActivity.class));
+        startActivity(new Intent(WallIntroActivity.this,NewsfeedTry.class));
 
     }
 

@@ -9,15 +9,16 @@ import android.util.Log;
 
 import com.nith.appteam.nimbus.R;
 
+
 /**
- * Created by sahil on 17/2/17.
+ * Created by aditya on 18/10/17.
  */
 
 public class UploadBroadCastReceiver extends BroadcastReceiver {
     private static final String UPLOADING_START="start";
-    private static final  String UPLOADING_FINISH="finish";
+    private static final String UPLOADING_FINISH="finish";
     private static final String UPLOADING_ERROR="error";
-    private static final  String WORK="work";
+    private static final String WORK="work";
     private static final int UPLOAD_ID=11126741;
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,6 +26,7 @@ public class UploadBroadCastReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context);
          switch (intent.getAction()){
              case UPLOADING_START:
+                 System.out.println("Please work");
                  notificationManager.cancel(UPLOAD_ID);
                  Log.d("reciever","start");
                  builder.setContentTitle("Uploading the "+intent.getStringExtra(WORK));
