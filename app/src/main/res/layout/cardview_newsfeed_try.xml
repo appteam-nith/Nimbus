@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,11 +11,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent">
 
-            >
-
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/new_feed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,9 +42,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
                         android:layout_marginLeft="8dp"
                         android:text="USER NAME" />
-
 
 
                     <LinearLayout
@@ -54,32 +53,48 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@id/social"
-                        android:layout_marginBottom="30dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
-                        android:layout_toRightOf="@id/post_img"
                         android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@id/news"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="1dp"
+                            android:background="#d0d0d0" />
 
                         <TextView
                             android:id="@+id/post_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
                             android:text="BLABLA" />
 
                         <TextView
                             android:id="@+id/user_msg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp" />
-                        <ImageView
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
-                            android:layout_margin="8dp"
-                            android:id="@+id/post_img2"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"/>
 
-                            />
+                        <ImageView
+                            android:id="@+id/post_img2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"/>
 
                     </LinearLayout>
 
@@ -87,41 +102,49 @@
                         android:id="@+id/line2"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_below="@id/news"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
-                        android:layout_below="@id/news"
                         android:background="#d0d0d0" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_below="@id/news"
-                        >
+                        android:layout_below="@id/line2">
 
 
-                    <com.like.LikeButton
-                        android:id="@+id/lyk_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginLeft="8dp"
-                        card_view:icon_size="16dp"
-                        android:layout_below="@id/line2"
-                        android:layout_gravity="center"
-                        />
+                        <com.like.LikeButton
+                            android:id="@+id/lyk_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            card_view:icon_size="16dp" />
 
                         <TextView
                             android:id="@+id/no_of_likes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/line2"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="16dp"
-
-                            android:layout_toRightOf="@id/lyk_status"
                             android:layout_gravity="center"
+                            android:layout_centerInParent="true"
+                            android:layout_toEndOf="@id/lyk_status"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="16dp"
                             android:text="15" />
-                    </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/post_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="end"
+                            android:text="date" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>

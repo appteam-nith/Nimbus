@@ -103,7 +103,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     try {
                         Date date = odFormat.parse(fd);
                         String nd = ndFormat.format(date);
-
+                        h.post_date.setText(nd);
                     }
                     catch (ParseException e){
                         Toast.makeText(MyApplication.getAppContext(),"can't fetch post date",Toast.LENGTH_SHORT).show();
@@ -203,7 +203,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView user_name, no_of_likes, user_msg,title;
+        public TextView user_name, no_of_likes, user_msg,title,post_date;
         final public ImageView post_img;
 
 
@@ -217,6 +217,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             no_of_likes = (TextView) view.findViewById(R.id.no_of_likes);
             post_img = (ImageView) view.findViewById(R.id.post_img2);
 
+            post_date = view.findViewById(R.id.post_date);
             user_msg = (TextView) view.findViewById(R.id.user_msg);
 
             lyk_status = (com.like.LikeButton) view.findViewById(R.id.lyk_status);

@@ -32,11 +32,11 @@ public class WallIntroActivity extends AppCompatActivity {
 
     }
 
-    public void uploadFeed(View v){
-
-        startActivity(new Intent(WallIntroActivity.this, UploadNewsFeedActivity.class));
-
-    }
+//    public void uploadFeed(View v){
+//
+//        startActivity(new Intent(WallIntroActivity.this, UploadNewsFeedActivity.class));
+//
+//    }
 
 
 

@@ -60,10 +60,13 @@ public class NewsFeedActivity extends AppCompatActivity implements SwipeRefreshL
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         progressBar= (ProgressBar) findViewById(R.id.progress);
         setSupportActionBar(toolbar);
-        ActionBar ab = getSupportActionBar();
+//        ActionBar ab = getSupportActionBar();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle(" ");
 
         // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         adapter = new NewsFeedAdapter(this);

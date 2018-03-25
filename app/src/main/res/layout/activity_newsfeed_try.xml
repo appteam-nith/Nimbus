@@ -3,17 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/core_try_view"
     android:background="#fff"
     android:fitsSystemWindows="true"
     tools:context="com.nith.appteam.nimbus.Activity.NewsfeedTry">
+
     <android.support.v7.widget.Toolbar
-        android:id="@+id/newsfeedtoolbar"
+        android:id="@+id/nf_toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#D0FF5252"
-        android:elevation="8dp"
+        app:title=" "
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Newsfeed"
+        android:textColor="#fff"
+        android:elevation="10dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="13dp"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -47,8 +61,10 @@
     </LinearLayout>
 
 
+
+
     <!--<include layout="@layout/cardview_newsfeed_try"-->
-        <!--android:layout_below="@id/newsfeedtoolbar"-->
+        <!--android:layout_below="@id/nf_toolbar"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:visibility="visible"-->
@@ -68,7 +84,8 @@
             android:layout_height="match_parent"
 
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/newsfeedtoolbar" />
+            android:layout_below="@id/nf_toolbar" />
+
     </android.support.v4.widget.SwipeRefreshLayout>
     <ProgressBar
         android:layout_below="@+id/recycler_view"
@@ -80,7 +97,7 @@
 
     <include
         layout="@layout/upload"
-        android:layout_below="@id/newsfeedtoolbar"
+        android:layout_below="@id/nf_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

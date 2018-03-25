@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="40dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="60dp"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -73,6 +73,7 @@
                         android:id="@+id/btn_ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
                         android:orientation="vertical">
 
@@ -93,21 +94,21 @@
                             android:onClick="viewFeed"/>
 
 
-                        <Button
-                            android:elevation="8dp"
-                            android:textColor="#fff"
-                            android:background="#b10d0c0c"
-                            android:id="@+id/upload_feed"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:paddingTop="20dp"
-                            android:paddingBottom="20dp"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginRight="40dp"
-                            android:text="UPLOAD FEED"
-                            android:textSize="18sp"
-                            android:onClick="uploadFeed"/>
+                        <!--<Button-->
+                            <!--android:elevation="8dp"-->
+                            <!--android:textColor="#fff"-->
+                            <!--android:background="#b10d0c0c"-->
+                            <!--android:id="@+id/upload_feed"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:paddingTop="20dp"-->
+                            <!--android:paddingBottom="20dp"-->
+                            <!--android:layout_marginLeft="40dp"-->
+                            <!--android:layout_marginRight="40dp"-->
+                            <!--android:text="UPLOAD FEED"-->
+                            <!--android:textSize="18sp"-->
+                            <!--android:onClick="uploadFeed"/>-->
 
 
                     </LinearLayout>

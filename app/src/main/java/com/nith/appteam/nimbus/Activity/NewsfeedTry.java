@@ -73,16 +73,18 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
         coordinatorLayout= (RelativeLayout) findViewById(R.id.core_try_view);
         swipeRefreshLayout= (SwipeRefreshLayout) findViewById(R.id.swipeRefresh_try);
         swipeRefreshLayout.setOnRefreshListener(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.newsfeedtoolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.nf_toolbar);
         progressBar= (ProgressBar) findViewById(R.id.newsfeedtry_progress);
+
         setSupportActionBar(toolbar);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.white));
+
         adapter = new NewsFeedAdapter(this);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
-        toolbar.setTitle(" ");
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -191,9 +193,21 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
                             if(!imageUrl.toString().isEmpty())
                                 i.putExtra(URL_IMAGE,imageUrl.toString());
                             startService(i);
+                            View uploaddetails = (View) findViewById(R.id.uploaddetails);
+                            uploaddetails.setVisibility(View.GONE);
 
+                            recyclerView.setVisibility(View.VISIBLE);
+                            Button uploadbutton = (Button) findViewById(R.id.uploadbutton);
+                            Button newsfeedbutton = (Button) findViewById(R.id.newsfeedbutton);
+
+                            uploadbutton.setBackground(ContextCompat.getDrawable(getApplicationContext() , R.drawable.b3));
+                            uploadbutton.setTextColor(getResources().getColor(R.color.white));
+                            newsfeedbutton.setTextColor(getResources().getColor(R.color.reddishpink));
+                            newsfeedbutton.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.b2));
                             Log.d(TAG, add.title + " " + add.detail+" "+imageUrl);
-                            finish();}
+                            getNewsFeed(1);
+
+                            }
                     } else {
                         Toast.makeText(NewsfeedTry.this, "Some Fields are still empty", Toast.LENGTH_SHORT).show();
                     }
