@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/pe_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_collapseMode="pin" />
 
     <ScrollView
+        android:layout_below="@id/pe_toolbar"
         android:id="@+id/container_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,21 +72,36 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/profileEditTextLeft"
                 android:maxLines="1"
-                android:textColor="@color/md_black_1000" />
+                android:textColor="@color/md_black_1000"
 
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/profileLabelLeft"
                 android:layout_marginTop="10dp"
                 android:hint="Year"
+
                 android:textColorHint="@color/md_grey_700" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="55dp"
+                android:entries="@array/year_arrays"
+                android:id="@+id/spinner"
+                android:layout_marginTop="10dp"
+                android:prompt="@string/year_prompt"
+                >
+
+            </Spinner>
 
             <EditText
                 android:id="@+id/year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/profileEditTextLeft"
+                android:visibility="gone"
                 android:textColor="@color/md_black_1000" />
 
             <TextView

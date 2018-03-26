@@ -102,9 +102,10 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                     sharedPref.setLoginStatus(true);
 //                    sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
                     sharedPref.setUserId(userSentResponse.getUserId());
-                    if(userSentResponse.getBranch()==null || userSentResponse.getYear()==null || userSentResponse.getEmail()==null ||
-                            userSentResponse.getName()==null || userSentResponse.getRoll_no()==null) {
+                    if(userSentResponse.getBranch().isEmpty() || userSentResponse.getYear().isEmpty() || userSentResponse.getEmail().isEmpty() ||
+                            userSentResponse.getName().isEmpty() || userSentResponse.getRoll_no().isEmpty()) {
                         sharedPref.setProfileStatus(false);
+                        Log.d("no data","hello");
                     }
                     else
                     {
@@ -113,6 +114,11 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                         sharedPref.setUserEmail(userSentResponse.getEmail());
                         sharedPref.setUserName(userSentResponse.getName());
                         sharedPref.setUserRollno(userSentResponse.getRoll_no());
+                        sharedPref.setProfileStatus(true);
+                        Log.d("aa",userSentResponse.getBranch());
+                        Log.d("bb",userSentResponse.getRoll_no());
+                        Log.d("cc",userSentResponse.getName());
+                        Log.d("dd",userSentResponse.getEmail());
                     }
 
 

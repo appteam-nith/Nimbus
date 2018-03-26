@@ -68,4 +68,16 @@
         * Exciting cash prizes for the posts with maximum likes.
     </string>
 
+
+    <string name="year_prompt">Choose a year</string>
+
+    <string-array name="year_arrays">
+        <item>1st year</item>
+        <item>2nd year</item>
+        <item>3rd year</item>
+        <item>4th year</item>
+        <item>5th year</item>
+
+    </string-array>
+
 </resources>

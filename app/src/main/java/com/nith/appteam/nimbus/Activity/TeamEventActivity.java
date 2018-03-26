@@ -89,6 +89,7 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
                 id = i.getStringExtra(TeamFragment.TEAM_ID);
                 if(new Connection(this).isInternet()){
                     getTeamData(id);
+                    Log.d("sas","sss");
                 }
 
             }
@@ -133,11 +134,12 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
         eventList2.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent i=new Intent(TeamEventActivity.this,RegisterEvent.class);
-                i.putExtra(ACTIVITY,EVENT);
-                i.putExtra(EVENT_NAME,eventArrayList.get(position).getName());
-                i.putExtra(ID,eventArrayList.get(position).getId());
-                startActivity(i);
+                Intent intent=new Intent(TeamEventActivity.this,RegisterEvent.class);
+                intent.putExtra(ACTIVITY,EVENT);
+                intent.putExtra(EVENT_NAME,eventArrayList.get(position).getName());
+                intent.putExtra(ID,eventArrayList.get(position).getId());
+                startActivity(intent);
+                finish();
             }
         }));
 

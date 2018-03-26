@@ -208,7 +208,9 @@
         <activity
             android:name=".Activity.FirebaseLoginActivity"
             android:exported="true" />
-        <activity android:name=".Activity.ProfileActivityEdit" />
+        <activity android:name=".Activity.ProfileActivityEdit"
+            android:exported="true"
+            />
         <activity
             android:name=".Activity.NewsfeedTry"
             android:exported="true"
@@ -217,8 +219,7 @@
         <activity android:name=".Activity.SponsorActivityTry" />
         <activity android:name=".Activity.EventActivityTry" />
         <activity android:name=".Activity.RegisterEvent"
-            android:parentActivityName=".Activity.TeamEventActivity"
-            >
+            android:parentActivityName=".Activity.TeamEventActivity">
 
         </activity>
     </application>

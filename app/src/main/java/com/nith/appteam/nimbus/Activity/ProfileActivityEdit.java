@@ -2,9 +2,13 @@ package com.nith.appteam.nimbus.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.annotations.SerializedName;
@@ -26,6 +30,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
     private Button submit;
     private EditText email;
     private SharedPref sharedPref;
+    private Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,25 +42,40 @@ public class ProfileActivityEdit extends AppCompatActivity {
         year = (EditText) findViewById(R.id.year);
         submit = (Button) findViewById(R.id.submit_data);
         email = (EditText) findViewById(R.id.email);
+        spinner = findViewById(R.id.spinner);
         firstName.setText(sharedPref.getUserName());
         rollNo.setText(sharedPref.getUserRollno());
         email.setText(sharedPref.getUserEmail());
         branch.setText(sharedPref.getBRANCH());
         rollNo.setText(sharedPref.getUserRollno());
-        year.setText(sharedPref.getYEAR());
+        //year.setText(sharedPref.getYEAR());
+        Log.d("year",sharedPref.getYEAR());
+        if(!sharedPref.getYEAR().isEmpty())
+            spinner.setSelection(Integer.parseInt(sharedPref.getYEAR()));
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !year.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
-                    setData();
+                if(!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
+                    if(isValidEmail(email.getText().toString())) {
+                        setData();
+                    }
+                    else
+                    {
+                        Toast.makeText(ProfileActivityEdit.this, "Enter Correct email address", Toast.LENGTH_LONG).show();
+                    }
                 }
+                else{
+                    Toast.makeText(ProfileActivityEdit.this, "Enter All Details", Toast.LENGTH_LONG).show();
+
+                }
+
             }
         });
 
     }
     public void setData(){
         ApiInterface mAPI = Util.getRetrofitService();
-        Call<ProfileResponse> mService = mAPI.setProfile(sharedPref.getUserId(), firstName.getText().toString(), email.getText().toString(), rollNo.getText().toString(), branch.getText().toString(), year.getText().toString());
+        Call<ProfileResponse> mService = mAPI.setProfile(sharedPref.getUserId(), firstName.getText().toString(), email.getText().toString(), rollNo.getText().toString(), branch.getText().toString(), String.valueOf(spinner.getSelectedItemPosition()));
         mService.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
@@ -122,10 +142,12 @@ public class ProfileActivityEdit extends AppCompatActivity {
     }
     public void setSharedPrefData() {
         sharedPref.setBranch(branch.getText().toString());
-        sharedPref.setYear(year.getText().toString());
+        sharedPref.setYear(String.valueOf(spinner.getSelectedItemPosition()));
         sharedPref.setUserRollno(rollNo.getText().toString());
         sharedPref.setUserEmail(email.getText().toString());
         sharedPref.setUserName(firstName.getText().toString());
     }
-
+    public final static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
 }

@@ -21,6 +21,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
 import com.nith.appteam.nimbus.Model.SingleWorkshopResponse;
 import com.nith.appteam.nimbus.R;
@@ -50,6 +52,7 @@ public class RegisterEvent extends AppCompatActivity {
     private TextView describe;
     private TextView title;
     private TextView reg_status;
+    private ImageView img;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private ProgressBar progressBar;
     private LinearLayout linearLayout;
@@ -72,7 +75,7 @@ public class RegisterEvent extends AppCompatActivity {
         timings = findViewById(R.id.date_time);
         describe = findViewById(R.id.describe);
         progressBar = (ProgressBar) findViewById(R.id.progress_single_workshop);
-
+        img = (ImageView) findViewById(R.id.workshop_img);
         reg_status = findViewById(R.id.reg_status);
         linearLayout = findViewById(R.id.imp);
         cardView1.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +110,7 @@ public class RegisterEvent extends AppCompatActivity {
                 if(!sharedPref.getLoginStatus()){
                     startActivity(new Intent(RegisterEvent.this,FirebaseLoginActivity.class));
                 }
-                if(!sharedPref.isDataFilled())
-                {
+                if(!sharedPref.isDataFilled()) {
                     Log.d("gg","hhh");
                     startActivity(new Intent(RegisterEvent.this, ProfileActivityEdit.class));
                 }
@@ -140,6 +142,7 @@ public class RegisterEvent extends AppCompatActivity {
                         linearLayout.setVisibility(View.VISIBLE);
                         describe.setText(model.getDesc());
                         collapsingToolbarLayout.setTitle(model.getName());
+                        Glide.with(RegisterEvent.this).load(model.getImgUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
                         if(model.getRegStatus())
                         {
                             registerButtton.setVisibility(View.GONE);
@@ -147,8 +150,10 @@ public class RegisterEvent extends AppCompatActivity {
                             reg_status.setText("User Already registered");
                             progressBar.setVisibility(View.GONE);
                         }
-                        registerButtton.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.GONE);
+                        else {
+                            registerButtton.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                     else{
                         progressBar.setVisibility(View.GONE);
