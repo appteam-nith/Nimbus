@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nimbus 2k17</string>
+    <string name="app_name">Nimbus 2k18</string>
 
     <string name="title_activity_appintro">appintro</string>
     <string name="next">Next</string>
@@ -62,7 +62,7 @@
     <string name="title_activity_sponsor">Sponsors</string>
 
     <string name="wall_info">
-        * Keep yourself updated with all the happenings of NIMBUS 2k17.\n\n
+        * Keep yourself updated with all the happenings of NIMBUS 2k18.\n\n
         * Add your Nimbus projects along with a description and image of same.\n\n
         * Add important news and announcement of various events organised during Nimbus.\n\n
         * Exciting cash prizes for the posts with maximum likes.

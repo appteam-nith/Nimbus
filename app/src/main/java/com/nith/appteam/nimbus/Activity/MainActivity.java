@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadNavHeader() {
-        txtName.setText("Nimbus 2k17");
+        txtName.setText("Nimbus 2k18");
         txtSubName.setText("NIT Hamirpur");
         imgNavHeaderBg.setImageResource(R.drawable.cover);
         imgProfile.setImageResource(R.drawable.nimbuslogo);
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                         alertDialog.setTitle("About App");
 
-                        alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k17', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
+                        alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k18', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
                         alertDialog.setIcon(R.drawable.nimbuslogo);
                         alertDialog.show();
                         drawer.closeDrawers();

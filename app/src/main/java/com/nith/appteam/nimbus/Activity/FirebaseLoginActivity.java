@@ -90,7 +90,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
     }
 
 
-    private void saveUserLoginData(String phone_no, String fb_id) {
+    private void saveUserLoginData(final String phone_no, String fb_id) {
 
         Call<FirebaseLoginActivity.UserSentResponse> userSentResponseCall = Util.getRetrofitService().sendUserLoginData(phone_no, fb_id);
         userSentResponseCall.enqueue(new Callback<FirebaseLoginActivity.UserSentResponse>() {
@@ -100,21 +100,20 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                 if (userSentResponse != null && response.isSuccess()) {
                     Log.v("ID", userSentResponse.getUserId());
                     sharedPref.setLoginStatus(true);
-//                    sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
+                    sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
                     sharedPref.setUserId(userSentResponse.getUserId());
-                    if(userSentResponse.getBranch()==null || userSentResponse.getYear()==null || userSentResponse.getEmail()==null ||
-                            userSentResponse.getName()==null || userSentResponse.getRoll_no()==null) {
+                    sharedPref.setUserPhone(phone_no);
+
+                    if (userSentResponse.getBranch() == null || userSentResponse.getYear() == null || userSentResponse.getEmail() == null ||
+                            userSentResponse.getName() == null || userSentResponse.getRoll_no() == null) {
                         sharedPref.setProfileStatus(false);
-                    }
-                    else
-                    {
+                    } else {
                         sharedPref.setBranch(userSentResponse.getBranch());
                         sharedPref.setYear(userSentResponse.getYear());
                         sharedPref.setUserEmail(userSentResponse.getEmail());
                         sharedPref.setUserName(userSentResponse.getName());
                         sharedPref.setUserRollno(userSentResponse.getRoll_no());
                     }
-
 
                     progressBar.setVisibility(View.GONE);
 

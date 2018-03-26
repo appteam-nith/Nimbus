@@ -14,6 +14,7 @@ public class SharedPref {
     private static final String IS_FIRST_TIME="isfirstTime";
     private static final  String USER_NAME="name";
     private static  final String USER_EMAIL="email";
+    private static  final String USER_PHONE="phone";
     private static  final String USER_ROLLNO="rollno";
     private static  final String USER_PIC_URL="picUrl";
     private static final String NITIAN_STATUS="nitian";
@@ -88,6 +89,14 @@ public class SharedPref {
         return sharedPreferences.getString(USER_ROLLNO,"");
     }
 
+
+    public void setUserPhone(String phone){
+        editor.putString(USER_PHONE,phone);
+        editor.commit();
+    }
+    public String getUserPhone(){
+        return sharedPreferences.getString(USER_PHONE,"");
+    }
 
     public void setUserEmail(String email){
         editor.putString(USER_EMAIL,email);

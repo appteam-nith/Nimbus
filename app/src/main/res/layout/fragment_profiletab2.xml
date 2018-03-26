@@ -16,7 +16,7 @@
             >
 
             <android.support.v7.widget.CardView
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,6 +73,38 @@
 
                         <View
                             android:id="@+id/rollnoDivider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#d2caca"
+                            android:layout_marginBottom="15dp"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/phoneLayout"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:id="@+id/phoneLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone No."
+                            android:textColor="#c7c2c2"/>
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="22dp"
+                            android:layout_marginBottom="15dp"/>
+
+                        <View
+                            android:id="@+id/phoneDivider"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="#d2caca"
