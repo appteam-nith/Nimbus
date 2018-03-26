@@ -64,7 +64,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
 
     public void onSkipClick(View v) {
         sharedPref.setSkipStatus(true);
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, HomescreenNew.class));
         finish();
     }
 
@@ -117,7 +117,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
 
                     progressBar.setVisibility(View.GONE);
 
-                    Intent intent = new Intent(FirebaseLoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(FirebaseLoginActivity.this, HomescreenNew.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();

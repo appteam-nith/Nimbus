@@ -14,6 +14,9 @@ android {
         manifestPlaceholders = [manifestApplicationId          : "${applicationId}",
                                 onesignal_app_id               : "bc7ba5e0-7da9-4655-896a-7adcc1b967c5",
                                 onesignal_google_project_number: "1049024080842"]
+        aaptOptions {
+            cruncherEnabled = false
+        }
     }
     buildTypes {
         release {
@@ -53,6 +56,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     testCompile 'junit:junit:4.12'
 }
+
 
 
 
