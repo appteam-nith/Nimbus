@@ -64,6 +64,7 @@
                 android:layout_marginLeft="@dimen/profileLabelLeft"
                 android:layout_marginTop="10dp"
                 android:hint="Roll No."
+
                 android:textColorHint="@color/md_grey_700" />
 
             <EditText

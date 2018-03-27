@@ -78,9 +78,6 @@ public class TeamEventActivity extends AppCompatActivity implements AppBarLayout
 
 
 
-//        card.setVisibility(View.GONE);
-//        eventlabel.setVisibility(View.GONE);
-//        projectslabel.setVisibility(View.GONE);
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
         Intent i = getIntent();

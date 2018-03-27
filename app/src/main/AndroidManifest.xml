@@ -22,10 +22,6 @@
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
         <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"
-            tools:replace="android:value" />
-        <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
@@ -35,10 +31,6 @@
             android:name="com.onesignal.NotificationOpened.DEFAULT"
             android:value="DISABLE" />
 
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
         <activity android:name=".Activity.TeamEventActivity" />
         <activity
             android:name=".Activity.NewsFeedActivity"
@@ -96,6 +88,7 @@
         </activity>
         <activity
             android:name=".Activity.ProfileActivity"
+            android:exported="true"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/ProfileTheme" />
         <activity
@@ -208,20 +201,25 @@
         <activity
             android:name=".Activity.FirebaseLoginActivity"
             android:exported="true" />
-        <activity android:name=".Activity.ProfileActivityEdit"
-            android:exported="true"
-            />
+        <activity
+            android:name=".Activity.ProfileActivityEdit"
+            android:exported="true" />
         <activity
             android:name=".Activity.NewsfeedTry"
             android:exported="true"
-            android:parentActivityName=".Activity.MainActivity"
-            />
+            android:parentActivityName=".Activity.MainActivity" />
         <activity android:name=".Activity.SponsorActivityTry" />
         <activity android:name=".Activity.EventActivityTry" />
-        <activity android:name=".Activity.RegisterEvent"
-            android:parentActivityName=".Activity.TeamEventActivity">
-
-        </activity>
+        <activity
+            android:name=".Activity.RegisterEvent"
+            android:parentActivityName=".Activity.TeamEventActivity" />
+        <activity android:name=".Activity.HomescreenNew" />
+        <activity
+            android:name=".Activity.FeaturedImage"
+            android:exported="true"></activity>
+        <activity android:name=".Activity.ContributorsActivityGsoc"
+            android:exported="true"
+            ></activity>
     </application>
 
 </manifest>

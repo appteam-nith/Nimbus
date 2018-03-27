@@ -56,6 +56,7 @@ public class RegisterEvent extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private ProgressBar progressBar;
     private LinearLayout linearLayout;
+    private ProgressBar progressBar_register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class RegisterEvent extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.workshop_img);
         reg_status = findViewById(R.id.reg_status);
         linearLayout = findViewById(R.id.imp);
+        progressBar_register = findViewById(R.id.er_progress);
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +116,8 @@ public class RegisterEvent extends AppCompatActivity {
                     Log.d("gg","hhh");
                     startActivity(new Intent(RegisterEvent.this, ProfileActivityEdit.class));
                 }
+                registerButtton.setVisibility(View.GONE);
+                progressBar_register.setVisibility(View.VISIBLE);
                 registerRetrofit();
             }
         });
@@ -186,7 +190,7 @@ public class RegisterEvent extends AppCompatActivity {
                 if (model != null && response.isSuccess()) {
 
 
-
+                     progressBar_register.setVisibility(View.GONE);
                     registerButtton.setVisibility(View.GONE);
                     reg_status.setVisibility(View.VISIBLE);
                     reg_status.setText(model.getMsg());
@@ -195,13 +199,13 @@ public class RegisterEvent extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterEvent.this, "Success Status is not true!!", Toast.LENGTH_SHORT).show();
                 }
-
+                progressBar_register.setVisibility(View.GONE);
 
             }
 
             @Override
             public void onFailure(Call<EventRegisterResponse> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
+                progressBar_register.setVisibility(View.GONE);
                 Toast.makeText(RegisterEvent.this,"Some error occurred!!",Toast.LENGTH_SHORT).show();
             }
         });

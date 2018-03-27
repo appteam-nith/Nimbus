@@ -28,7 +28,7 @@ public class CoreTeamActivity extends AppCompatActivity {
 
         recycler_view=(RecyclerView)findViewById(R.id.core_team_list);
         array_list=new ArrayList<>();
-        array_list.add(new CoreTeamItem("Ajay k. Sharma","Director",BASE_URL+"photos/director.jpg"));
+        array_list.add(new CoreTeamItem("Ajay K. Sharma","Director",BASE_URL+"photos/director.jpg"));
         array_list.add(new CoreTeamItem("Dr. A.S. Singha","Dean Student Welfare",BASE_URL+"photos/as.jpg"));
         array_list.add(new CoreTeamItem("Dr Saroj Thakur","Faculty Coordinator",BASE_URL_JSEC+"saroj.jpg"));
 

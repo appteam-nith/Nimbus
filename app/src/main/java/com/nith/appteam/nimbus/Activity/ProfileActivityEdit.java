@@ -31,6 +31,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
     private EditText email;
     private SharedPref sharedPref;
     private Spinner spinner;
+    Boolean flag_year = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +49,20 @@ public class ProfileActivityEdit extends AppCompatActivity {
         email.setText(sharedPref.getUserEmail());
         branch.setText(sharedPref.getBRANCH());
         rollNo.setText(sharedPref.getUserRollno());
-        //year.setText(sharedPref.getYEAR());
+        try {
+            if(!sharedPref.getYEAR().isEmpty())
+                spinner.setSelection(Integer.parseInt(sharedPref.getYEAR()));
+        } catch (Exception e) {
+                 Log.d("ss","Cant do anything ");
+        }
         Log.d("year",sharedPref.getYEAR());
-        if(!sharedPref.getYEAR().isEmpty())
-            spinner.setSelection(Integer.parseInt(sharedPref.getYEAR()));
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
                     if(isValidEmail(email.getText().toString())) {
+
                         setData();
                     }
                     else

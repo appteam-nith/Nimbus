@@ -1,4 +1,4 @@
-package com.nith.appteam.nimbus.Activity;
+    package com.nith.appteam.nimbus.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

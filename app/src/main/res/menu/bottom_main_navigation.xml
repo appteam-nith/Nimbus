@@ -7,9 +7,9 @@
         android:icon="@drawable/main_bottom_profile"/>
 
     <item
-        android:id="@+id/action_leaderboard"
-        android:title="Leaderboard"
-        android:icon="@drawable/main_bottom_leaderboard"/>
+        android:id="@+id/action_home"
+        android:title="Home"
+        android:icon="@drawable/main_bottom_home"/>
 
     <item
         android:id="@+id/action_notifications"

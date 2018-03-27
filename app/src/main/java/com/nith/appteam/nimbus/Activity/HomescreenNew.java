@@ -51,7 +51,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class HomescreenNew extends AppCompatActivity {
 
 
     private SharedPref sharedPref;
@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         sharedPref = new SharedPref(this);
         if (!sharedPref.getLoginStatus() && !sharedPref.getSkipStatus()) {
-            startActivity(new Intent(MainActivity.this, FirebaseLoginActivity.class));
+            startActivity(new Intent(HomescreenNew.this, FirebaseLoginActivity.class));
             finish();
         }
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_homescreen_new);
 
 //        initCollapsingToolbar();
         init();
@@ -91,32 +91,32 @@ public class MainActivity extends AppCompatActivity {
         //Ends here
 
         //Code to deal with the ViewPager.
-        imageAdapter = new SlidingImageAdapter(MainActivity.this);
+//        imageAdapter = new SlidingImageAdapter(HomescreenNew.this);
 
         if (new Connection(this).isInternet()) {
-            getPagerData();
+//            getPagerData();
             profileBasicInfo(sharedPref.getUserId());
         }
 
-        viewPager.setAdapter(imageAdapter);
-        viewPager.setClipToPadding(false);
-        viewPager.setPadding(100, 0, 100, 0);
-        viewPager.setPageMargin(60);
+//        viewPager.setAdapter(imageAdapter);
+//        viewPager.setClipToPadding(false);
+//        viewPager.setPadding(100, 0, 100, 0);
+//        viewPager.setPageMargin(60);
 
-        clickListenersMainMenu();
+//        clickListenersMainMenu();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        startActivity(new Intent(MainActivity.this, LeaderBoardActivity.class));
+                        //
                         return true;
                     case R.id.action_profile:
-                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        startActivity(new Intent(HomescreenNew.this, ProfileActivity.class));
                         return true;
                     case R.id.action_notifications:
-                        startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+                        startActivity(new Intent(HomescreenNew.this, NotificationActivity.class));
                         return true;
                 }
                 return false;
@@ -127,8 +127,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.home_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Nimbus 2k18");
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nvView);
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         txtSubName = (TextView) navHeader.findViewById(R.id.subname);
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
+
 
         viewPager = (ViewPager) findViewById(R.id.main_view_pager);
 
@@ -156,117 +158,143 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void clickListenersMainMenu() {
-        quiz_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, QuizActivity.class));
-            }
-        });
-
-        gallery_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GalleryActivity.class));
-            }
-        });
-
-        map_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MapActivity.class));
-            }
-        });
-
-        newsfeed_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WallIntroActivity.class));
-            }
-        });
-
-        coreteam_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CoreTeamActivity.class));
-            }
-        });
-
-        aboutnimbus_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AboutActivity.class));
-            }
-        });
-
-        teams_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TeamActivity.class));
-            }
-        });
-
-        feedback_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
-                Uri uri = Uri.parse(uriText);
-                intent.setData(uri);
-                startActivity(Intent.createChooser(intent, "Send Email"));
-            }
-        });
-
-        workshop_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Workshops.class));
-            }
-        });
-
-        sponsor_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SponsorActivity.class));
-            }
-        });
-
-        contributor_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ContributorsActivity.class));
-            }
-        });
-
-    }
-
-//    private void initCollapsingToolbar() {
-//        final CollapsingToolbarLayout collapsingToolbar =
-//                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-//        collapsingToolbar.setTitle(" ");
-//        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-//        appBarLayout.setExpanded(true);
-//
-//        // hiding & showing the title when toolbar expanded & collapsed
-//        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            boolean isShow = false;
-//            int scrollRange = -1;
-//
+//    public void clickListenersMainMenu() {
+//        quiz_layout.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                if (scrollRange == -1) {
-//                    scrollRange = appBarLayout.getTotalScrollRange();
-//                }
-//                if (scrollRange + verticalOffset == 0) {
-//                    collapsingToolbar.setTitle(getString(R.string.app_name));
-//                    isShow = true;
-//                } else if (isShow) {
-//                    collapsingToolbar.setTitle(" ");
-//                    isShow = false;
-//                }
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, QuizActivity.class));
 //            }
 //        });
+//
+//        gallery_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, GalleryActivity.class));
+//            }
+//        });
+//
+//        map_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, MapActivity.class));
+//            }
+//        });
+//
+//        newsfeed_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, WallIntroActivity.class));
+//            }
+//        });
+//
+//        coreteam_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, CoreTeamActivity.class));
+//            }
+//        });
+//
+//        aboutnimbus_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, AboutActivity.class));
+//            }
+//        });
+//
+//        teams_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, TeamActivity.class));
+//            }
+//        });
+//
+//        feedback_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_SENDTO);
+//                String uriText = "mailto:" + Uri.encode("appteam.nith@gmail.com") + "?subject=" + Uri.encode("Reporting A Bug/Feedback") + "&body=" + Uri.encode("Hello, \nI want to report a bug/give feedback corresponding to the app Nimbus App.\n.....\n\n-Your name");
+//                Uri uri = Uri.parse(uriText);
+//                intent.setData(uri);
+//                startActivity(Intent.createChooser(intent, "Send Email"));
+//            }
+//        });
+//
+//        workshop_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, Workshops.class));
+//            }
+//        });
+//
+//        sponsor_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, SponsorActivity.class));
+//            }
+//        });
+//
+//        contributor_layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomescreenNew.this, ContributorsActivity.class));
+//            }
+//        });
+//
 //    }
+
+
+    public void onClickTeams(View view) {
+        startActivity(new Intent(HomescreenNew.this, TeamActivity.class));
+    }
+
+    public void onClickCoreTeam(View view) {
+        startActivity(new Intent(HomescreenNew.this, CoreTeamActivity.class));
+    }
+
+    public void onClickNewsfeed(View view) {
+        startActivity(new Intent(HomescreenNew.this, NewsfeedTry.class));
+    }
+
+    public void onClickGallery(View view) {
+        startActivity(new Intent(HomescreenNew.this, GalleryActivity.class));
+    }
+
+    public void onClickMap(View view) {
+        startActivity(new Intent(HomescreenNew.this, MapActivity.class));
+    }
+
+    public void onClickSponsors(View view) {
+        startActivity(new Intent(HomescreenNew.this, SponsorActivity.class));
+    }
+
+
+    private void initCollapsingToolbar() {
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(" ");
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout.setExpanded(true);
+
+        // hiding & showing the title when toolbar expanded & collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle(getString(R.string.app_name));
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -280,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadNavHeader() {
         txtName.setText("Nimbus 2k18");
         txtSubName.setText("NIT Hamirpur");
-        imgNavHeaderBg.setImageResource(R.drawable.cover);
+        imgNavHeaderBg.setImageDrawable(getResources().getDrawable(R.drawable.cover));
         imgProfile.setImageResource(R.drawable.nimbuslogo);
     }
 
@@ -298,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
             sharedPref.setYear("");
             sharedPref.setBranch("");
             // Logout
-            Intent intent = new Intent(MainActivity.this, FirebaseLoginActivity.class);
+            Intent intent = new Intent(HomescreenNew.this, FirebaseLoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -309,15 +337,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setUpNavigationView() {
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_aboutapp:
-                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomescreenNew.this);
                         alertDialog.setTitle("About App");
 
                         alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k18', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
@@ -326,11 +352,11 @@ public class MainActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_team:
-                        startActivity(new Intent(MainActivity.this, ContributorsActivity.class));
+                        startActivity(new Intent(HomescreenNew.this, ContributorsActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_contactus:
-                        AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(MainActivity.this);
+                        AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(HomescreenNew.this);
                         alertDialog2.setTitle("Contact : App Team-NITH");
                         String link1 = getString(R.string.Link1);
                         String link2 = getString(R.string.Link2);
@@ -357,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_emergencycontact:
-                        AlertDialog.Builder alertDialog3 = new AlertDialog.Builder(MainActivity.this);
+                        AlertDialog.Builder alertDialog3 = new AlertDialog.Builder(HomescreenNew.this);
 
                         alertDialog3.setTitle("Phone Number\n\n");
 
@@ -390,7 +416,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(HomescreenNew.this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -407,24 +433,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void getPagerData() {
-        Call<MainPagerResponse> response = Util.getRetrofitService().getMainResponse();
-        response.enqueue(new Callback<MainPagerResponse>() {
-            @Override
-            public void onResponse(Call<MainPagerResponse> call, Response<MainPagerResponse> response) {
-                MainPagerResponse mainPagerResponse = response.body();
-                if (response != null && response.isSuccess()) {
-                    ArrayList<String> list = mainPagerResponse.getImageList();
-                    imageAdapter.refresh(list);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MainPagerResponse> call, Throwable t) {
-
-            }
-        });
-    }
+//    private void getPagerData() {
+//        Call<MainPagerResponse> response = Util.getRetrofitService().getMainResponse();
+//        response.enqueue(new Callback<MainPagerResponse>() {
+//            @Override
+//            public void onResponse(Call<MainPagerResponse> call, Response<MainPagerResponse> response) {
+//                MainPagerResponse mainPagerResponse = response.body();
+//                if (response != null && response.isSuccess()) {
+//                    ArrayList<String> list = mainPagerResponse.getImageList();
+//                    imageAdapter.refresh(list);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<MainPagerResponse> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
     private void profileBasicInfo(String id) {
 
