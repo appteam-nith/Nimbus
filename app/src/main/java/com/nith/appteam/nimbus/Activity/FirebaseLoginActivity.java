@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -32,7 +33,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private ProgressBar progressBar;
     private List<AuthUI.IdpConfig> providers;
-
+    private TextView textView;
     private SharedPref sharedPref;
 
     @Override
@@ -42,6 +43,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
 
         loginBtn = (Button) findViewById(R.id.login_btn);
         progressBar = (ProgressBar) findViewById(R.id.login_progress);
+        textView = findViewById(R.id.skip);
 
         providers = Arrays.asList(
                 new AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER).build());
@@ -59,6 +61,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                         .build(),
                 RC_SIGN_IN);
         progressBar.setVisibility(View.VISIBLE);
+        textView.setVisibility(View.GONE);
         loginBtn.setVisibility(View.GONE);
     }
 
@@ -104,34 +107,46 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                     sharedPref.setUserId(userSentResponse.getUserId());
                     sharedPref.setUserPhone(phone_no);
 
-                    if (userSentResponse.getBranch() == null || userSentResponse.getYear() == null || userSentResponse.getEmail() == null ||
-                            userSentResponse.getName() == null || userSentResponse.getRoll_no() == null) {
+                    if (userSentResponse.getBranch().isEmpty() || userSentResponse.getYear().isEmpty() || userSentResponse.getEmail().isEmpty() ||
+                            userSentResponse.getName().isEmpty() || userSentResponse.getRoll_no().isEmpty()) {
                         sharedPref.setProfileStatus(false);
-                    } else {
-                        sharedPref.setBranch(userSentResponse.getBranch());
-                        sharedPref.setYear(userSentResponse.getYear());
-                        sharedPref.setUserEmail(userSentResponse.getEmail());
-                        sharedPref.setUserName(userSentResponse.getName());
-                        sharedPref.setUserRollno(userSentResponse.getRoll_no());
+                        Log.d("no data", "hello");
                     }
+                    else {
 
-                    progressBar.setVisibility(View.GONE);
+                            sharedPref.setBranch(userSentResponse.getBranch());
+                            sharedPref.setYear(userSentResponse.getYear());
+                            sharedPref.setUserEmail(userSentResponse.getEmail());
+                            sharedPref.setUserName(userSentResponse.getName());
+                            sharedPref.setUserRollno(userSentResponse.getRoll_no());
+                            sharedPref.setProfileStatus(true);
+                            Log.d("aa", userSentResponse.getBranch());
+                            Log.d("bb", userSentResponse.getRoll_no());
+                            Log.d("cc", userSentResponse.getName());
+                            Log.d("dd", userSentResponse.getEmail());
+                        }
 
-                    Intent intent = new Intent(FirebaseLoginActivity.this, HomescreenNew.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(FirebaseLoginActivity.this, "Check Internet connection", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+
+                        Intent intent = new Intent(FirebaseLoginActivity.this, HomescreenNew.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    } else{
+                        Toast.makeText(FirebaseLoginActivity.this, "Check Internet connection", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
+
 
             @Override
             public void onFailure(Call<FirebaseLoginActivity.UserSentResponse> call, Throwable t) {
                 Toast.makeText(FirebaseLoginActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
             }
         });
+
     }
+
+
 
     public class UserSentResponse {
         @SerializedName("msg")
@@ -221,6 +236,8 @@ public class FirebaseLoginActivity extends AppCompatActivity {
             this.email = email;
         }
     }
+
+
 
 
 }

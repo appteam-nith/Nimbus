@@ -21,7 +21,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -31,6 +30,7 @@
         <meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"
             android:value="DISABLE" />
+
         <activity android:name=".Activity.TeamEventActivity" />
         <activity
             android:name=".Activity.NewsFeedActivity"
@@ -88,6 +88,7 @@
         </activity>
         <activity
             android:name=".Activity.ProfileActivity"
+            android:exported="true"
             android:parentActivityName=".Activity.MainActivity"
             android:theme="@style/ProfileTheme" />
         <activity
@@ -200,7 +201,9 @@
         <activity
             android:name=".Activity.FirebaseLoginActivity"
             android:exported="true" />
-        <activity android:name=".Activity.ProfileActivityEdit" />
+        <activity
+            android:name=".Activity.ProfileActivityEdit"
+            android:exported="true" />
         <activity
             android:name=".Activity.NewsfeedTry"
             android:exported="true"
@@ -209,8 +212,14 @@
         <activity android:name=".Activity.EventActivityTry" />
         <activity
             android:name=".Activity.RegisterEvent"
-            android:parentActivityName=".Activity.TeamEventActivity"></activity>
-        <activity android:name=".Activity.HomescreenNew"></activity>
+            android:parentActivityName=".Activity.TeamEventActivity" />
+        <activity android:name=".Activity.HomescreenNew" />
+        <activity
+            android:name=".Activity.FeaturedImage"
+            android:exported="true"></activity>
+        <activity android:name=".Activity.ContributorsActivityGsoc"
+            android:exported="true"
+            ></activity>
     </application>
 
 </manifest>

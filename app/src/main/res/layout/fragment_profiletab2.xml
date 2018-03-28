@@ -131,8 +131,20 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-        </RelativeLayout>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardview"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Edit Profile"
+                android:id="@+id/editprofile"
+                android:layout_marginBottom="15dp"
+
+                />
+        </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
 

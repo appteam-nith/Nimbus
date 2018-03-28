@@ -21,6 +21,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nith.appteam.nimbus.Model.EventRegisterResponse;
 import com.nith.appteam.nimbus.Model.SingleWorkshopResponse;
 import com.nith.appteam.nimbus.R;
@@ -50,9 +52,11 @@ public class RegisterEvent extends AppCompatActivity {
     private TextView describe;
     private TextView title;
     private TextView reg_status;
+    private ImageView img;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private ProgressBar progressBar;
     private LinearLayout linearLayout;
+    private ProgressBar progressBar_register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +76,10 @@ public class RegisterEvent extends AppCompatActivity {
         timings = findViewById(R.id.date_time);
         describe = findViewById(R.id.describe);
         progressBar = (ProgressBar) findViewById(R.id.progress_single_workshop);
-
+        img = (ImageView) findViewById(R.id.workshop_img);
         reg_status = findViewById(R.id.reg_status);
         linearLayout = findViewById(R.id.imp);
+        progressBar_register = findViewById(R.id.er_progress);
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,11 +112,12 @@ public class RegisterEvent extends AppCompatActivity {
                 if(!sharedPref.getLoginStatus()){
                     startActivity(new Intent(RegisterEvent.this,FirebaseLoginActivity.class));
                 }
-                if(!sharedPref.isDataFilled())
-                {
+                if(!sharedPref.isDataFilled()) {
                     Log.d("gg","hhh");
                     startActivity(new Intent(RegisterEvent.this, ProfileActivityEdit.class));
                 }
+                registerButtton.setVisibility(View.GONE);
+                progressBar_register.setVisibility(View.VISIBLE);
                 registerRetrofit();
             }
         });
@@ -140,6 +146,7 @@ public class RegisterEvent extends AppCompatActivity {
                         linearLayout.setVisibility(View.VISIBLE);
                         describe.setText(model.getDesc());
                         collapsingToolbarLayout.setTitle(model.getName());
+                        Glide.with(RegisterEvent.this).load(model.getImgUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
                         if(model.getRegStatus())
                         {
                             registerButtton.setVisibility(View.GONE);
@@ -147,8 +154,10 @@ public class RegisterEvent extends AppCompatActivity {
                             reg_status.setText("User Already registered");
                             progressBar.setVisibility(View.GONE);
                         }
-                        registerButtton.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.GONE);
+                        else {
+                            registerButtton.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                     else{
                         progressBar.setVisibility(View.GONE);
@@ -181,7 +190,7 @@ public class RegisterEvent extends AppCompatActivity {
                 if (model != null && response.isSuccess()) {
 
 
-
+                     progressBar_register.setVisibility(View.GONE);
                     registerButtton.setVisibility(View.GONE);
                     reg_status.setVisibility(View.VISIBLE);
                     reg_status.setText(model.getMsg());
@@ -190,13 +199,13 @@ public class RegisterEvent extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterEvent.this, "Success Status is not true!!", Toast.LENGTH_SHORT).show();
                 }
-
+                progressBar_register.setVisibility(View.GONE);
 
             }
 
             @Override
             public void onFailure(Call<EventRegisterResponse> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
+                progressBar_register.setVisibility(View.GONE);
                 Toast.makeText(RegisterEvent.this,"Some error occurred!!",Toast.LENGTH_SHORT).show();
             }
         });

@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus.Fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,7 +24,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.google.gson.annotations.SerializedName;
+import com.nith.appteam.nimbus.Activity.FirebaseLoginActivity;
 import com.nith.appteam.nimbus.Activity.ProfileActivity;
+import com.nith.appteam.nimbus.Activity.ProfileActivityEdit;
 import com.nith.appteam.nimbus.Model.ProfileDataModel;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.ApiInterface;
@@ -52,6 +56,7 @@ public class ProfileTab2 extends Fragment {
     private SharedPref sharedPref;
     private CardView cardView;
     private LinearLayout rollnoLayout;
+    private Button editProfile;
 
 
 
@@ -69,6 +74,18 @@ public class ProfileTab2 extends Fragment {
         textRollno = (TextView) view.findViewById(R.id.rollno);
         textEmail = (TextView) view.findViewById(R.id.email);
         rollnoLayout = (LinearLayout) view.findViewById(R.id.rollnoLayout);
+        editProfile = view.findViewById(R.id.editprofile);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!sharedPref.getLoginStatus()){
+                    Toast.makeText(getContext(), "Please Login to edit profile", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getContext(), FirebaseLoginActivity.class));
+                }
+                else
+                    startActivity(new Intent(getContext(),ProfileActivityEdit.class));
+            }
+        });
 
         if(savedInstanceState==null){
 

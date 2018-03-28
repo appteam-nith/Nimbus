@@ -58,7 +58,7 @@ public class ProfileTab1 extends Fragment {
         ProfileEventDataModel profileEventDataModel;
         sharedPref = new SharedPref(getContext());
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        recyclerView = (RecyclerView) view.findViewById(R.id.list1);
         progress = (ProgressBar) view.findViewById(R.id.progress);
         textView = (TextView) view.findViewById(R.id.text);
 
