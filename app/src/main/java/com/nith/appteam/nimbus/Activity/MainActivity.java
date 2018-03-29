@@ -295,8 +295,9 @@ public class MainActivity extends AppCompatActivity {
             sharedPref.setUserPicUrl("");
             sharedPref.setUserName("");
             sharedPref.setProfileStatus(false);
-            sharedPref.setYear("");
-            sharedPref.setBranch("");
+            sharedPref.setUserYearPos("");
+            sharedPref.setUserYearText("");
+            sharedPref.setUserBranch("");
             // Logout
             Intent intent = new Intent(MainActivity.this, FirebaseLoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

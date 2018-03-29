@@ -20,8 +20,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.nith.appteam.nimbus.Adapter.ProfilePagerAdapter;
-import com.nith.appteam.nimbus.Fragment.CategoryFragment2;
-import com.nith.appteam.nimbus.Fragment.FeaturedImageTab1;
 import com.nith.appteam.nimbus.Fragment.ProfileTab1;
 import com.nith.appteam.nimbus.Fragment.ProfileTab2;
 import com.nith.appteam.nimbus.Fragment.ProfileTab3;

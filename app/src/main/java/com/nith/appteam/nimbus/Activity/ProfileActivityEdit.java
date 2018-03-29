@@ -1,7 +1,9 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -31,74 +33,80 @@ public class ProfileActivityEdit extends AppCompatActivity {
     private EditText email;
     private SharedPref sharedPref;
     private Spinner spinner;
+    private Toolbar toolbar;
     Boolean flag_year = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
-        sharedPref=new SharedPref(this);
+
+        sharedPref = new SharedPref(this);
+
         firstName = (EditText) findViewById(R.id.firstname);
-        rollNo = (EditText)findViewById(R.id.rollno);
+        rollNo = (EditText) findViewById(R.id.rollno);
         branch = (EditText) findViewById(R.id.branch);
         year = (EditText) findViewById(R.id.year);
         submit = (Button) findViewById(R.id.submit_data);
         email = (EditText) findViewById(R.id.email);
-        spinner = findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        toolbar = (Toolbar) findViewById(R.id.pe_toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Edit Profile");
+
         firstName.setText(sharedPref.getUserName());
         rollNo.setText(sharedPref.getUserRollno());
         email.setText(sharedPref.getUserEmail());
-        branch.setText(sharedPref.getBRANCH());
+        branch.setText(sharedPref.getUserBranch());
         rollNo.setText(sharedPref.getUserRollno());
+
         try {
-            if(!sharedPref.getYEAR().isEmpty())
-                spinner.setSelection(Integer.parseInt(sharedPref.getYEAR()));
+            if (!sharedPref.getUserYearPos().isEmpty())
+                spinner.setSelection(Integer.parseInt(sharedPref.getUserYearPos()));
         } catch (Exception e) {
-                 Log.d("ss","Cant do anything ");
+            Log.d("ss", "Cant do anything ");
         }
-        Log.d("year",sharedPref.getYEAR());
+        Log.d("year", sharedPref.getUserYearPos());
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
-                    if(isValidEmail(email.getText().toString())) {
-
+                if (!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
+                    if (isValidEmail(email.getText().toString())) {
                         setData();
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(ProfileActivityEdit.this, "Enter Correct email address", Toast.LENGTH_LONG).show();
                     }
-                }
-                else{
+                } else {
                     Toast.makeText(ProfileActivityEdit.this, "Enter All Details", Toast.LENGTH_LONG).show();
-
                 }
 
             }
         });
 
     }
-    public void setData(){
+
+    public void setData() {
         ApiInterface mAPI = Util.getRetrofitService();
         Call<ProfileResponse> mService = mAPI.setProfile(sharedPref.getUserId(), firstName.getText().toString(), email.getText().toString(), rollNo.getText().toString(), branch.getText().toString(), String.valueOf(spinner.getSelectedItemPosition()));
         mService.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
-                if(response.isSuccess())
-                {
-                    if(response.body().isSuccess())
-                    {
+                if (response.isSuccess()) {
+                    if (response.body().isSuccess()) {
                         Toast.makeText(ProfileActivityEdit.this, "Post updated successfully", Toast.LENGTH_SHORT).show();
                         setSharedPrefData();
                         sharedPref.setProfileStatus(true);
+                        startActivity(new Intent(ProfileActivityEdit.this, ProfileActivity.class));
                         finish();
-                    }
-                    else{
+                    } else {
                         Toast.makeText(ProfileActivityEdit.this, "Try Again", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
                 Toast.makeText(ProfileActivityEdit.this, "Try Again", Toast.LENGTH_SHORT).show();
@@ -146,13 +154,16 @@ public class ProfileActivityEdit extends AppCompatActivity {
             this.error = error;
         }
     }
+
     public void setSharedPrefData() {
-        sharedPref.setBranch(branch.getText().toString());
-        sharedPref.setYear(String.valueOf(spinner.getSelectedItemPosition()));
+        sharedPref.setUserBranch(branch.getText().toString());
+        sharedPref.setUserYearPos(String.valueOf(spinner.getSelectedItemPosition()));
+        sharedPref.setUserYearText(spinner.getSelectedItem().toString());
         sharedPref.setUserRollno(rollNo.getText().toString());
         sharedPref.setUserEmail(email.getText().toString());
         sharedPref.setUserName(firstName.getText().toString());
     }
+
     public final static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }

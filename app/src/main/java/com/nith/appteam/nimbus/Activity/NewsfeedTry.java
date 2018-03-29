@@ -44,37 +44,38 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
-    private static final String FEED_LIST ="list" ;
+public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+    private static final String FEED_LIST = "list";
     private RecyclerView recyclerView;
     private NewsFeedAdapter adapter;
     private ProgressBar progressBar;
     private SwipeRefreshLayout swipeRefreshLayout;
     private boolean loading = true;
-    private int  pastVisiblesItems, visibleItemCount, totalItemCount, previousTotal = 0, visibleThreshold = 0,feedNo=1;
-    private ArrayList<NewsFeed> list=new ArrayList<>();
+    private int pastVisiblesItems, visibleItemCount, totalItemCount, previousTotal = 0, visibleThreshold = 0, feedNo = 1;
+    private ArrayList<NewsFeed> list = new ArrayList<>();
     private SharedPref pref;
     private RelativeLayout coordinatorLayout;
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final String TAG = "Upload News Feed";
     private EditorView editorView;
     private ImageView camera_image, upload_image;
-    private static final String UPLOAD_SERVICE="Upload";
-    private static final String TITLE="title";
-    private static  final String DESCRIPTION="description";
-    private static final String  URL_IMAGE="imageUrl";
-    private static final  String WORK="work";
+    private static final String UPLOAD_SERVICE = "Upload";
+    private static final String TITLE = "title";
+    private static final String DESCRIPTION = "description";
+    private static final String URL_IMAGE = "imageUrl";
+    private static final String WORK = "work";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed_try);
-        pref= new SharedPref(this);
-        recyclerView=(RecyclerView)findViewById(R.id.newsfeedtry_recycler);
-        coordinatorLayout= (RelativeLayout) findViewById(R.id.core_try_view);
-        swipeRefreshLayout= (SwipeRefreshLayout) findViewById(R.id.swipeRefresh_try);
+        pref = new SharedPref(this);
+        recyclerView = (RecyclerView) findViewById(R.id.newsfeedtry_recycler);
+        coordinatorLayout = (RelativeLayout) findViewById(R.id.core_try_view);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh_try);
         swipeRefreshLayout.setOnRefreshListener(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nf_toolbar);
-        progressBar= (ProgressBar) findViewById(R.id.newsfeedtry_progress);
+        progressBar = (ProgressBar) findViewById(R.id.newsfeedtry_progress);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -103,7 +104,7 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
                     if (!loading && (totalItemCount - visibleItemCount)
                             <= (pastVisiblesItems + visibleThreshold)) {
                         adapter.notifyItemInserted(list.size() + 1);
-                        feedNo+=10;
+                        feedNo += 10;
                         getNewsFeed(feedNo);
                         loading = true;
                     }
@@ -112,34 +113,32 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
         });
 
 
-        if(savedInstanceState==null){
-            if(pref.getUserId().isEmpty()){
+        if (savedInstanceState == null) {
+            if (pref.getUserId().isEmpty()) {
                 progressBar.setVisibility(View.GONE);
-                Snackbar.make(coordinatorLayout,"Please Login To See The Content",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
+                Snackbar.make(coordinatorLayout, "Please Login To See The Content", Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(NewsfeedTry.this,LoginActivity.class));
+                        startActivity(new Intent(NewsfeedTry.this, LoginActivity.class));
                     }
                 }).show();
-            }
-            else
-                getNewsFeed(1);}
-        else {
+            } else
+                getNewsFeed(1);
+        } else {
 
-            list=savedInstanceState.getParcelableArrayList(FEED_LIST);
-            if(list!=null){
+            list = savedInstanceState.getParcelableArrayList(FEED_LIST);
+            if (list != null) {
                 recyclerView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
                 adapter.refresh(list);
-            }
-            else {
+            } else {
                 getNewsFeed(1);
             }
         }
 
     }
-    public void upload(View view)
-    {
+
+    public void upload(View view) {
         View uploaddetails = (View) findViewById(R.id.uploaddetails);
         recyclerView.setVisibility(View.GONE);
         uploaddetails.setVisibility(View.VISIBLE);
@@ -148,10 +147,12 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
 
         Button uploadbutton = (Button) findViewById(R.id.uploadbutton);
         Button newsfeedbutton = (Button) findViewById(R.id.newsfeedbutton);
-        uploadbutton.setBackground(ContextCompat.getDrawable(this , R.drawable.b4));
-        newsfeedbutton.setBackground(ContextCompat.getDrawable(this,R.drawable.b5));
+
+        uploadbutton.setBackground(ContextCompat.getDrawable(this, R.drawable.b4));
+        newsfeedbutton.setBackground(ContextCompat.getDrawable(this, R.drawable.b5));
         newsfeedbutton.setTextColor(getResources().getColor(R.color.white));
-        uploadbutton.setTextColor(getResources().getColor(R.color.reddishpink));
+        uploadbutton.setTextColor(getResources().getColor(R.color.colorPrimary));
+
         editorView = (EditorView) findViewById(R.id.editor);
         camera_image = (ImageView) findViewById(R.id.select_image);
         upload_image = (ImageView) findViewById(R.id.upload_news);
@@ -167,31 +168,30 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
             public void onClick(View view) {
 
                 EditorView.AddTopic add = editorView.buildEditData();
-                StringBuilder imageUrl =new StringBuilder();
+                StringBuilder imageUrl = new StringBuilder();
                 if (add.title != null && add.detail != null)
                     if (!add.title.isEmpty() && !add.detail.isEmpty()) {
-                        if(!pref.getFirstTimeRollregister())
-                            if(!pref.getNitianStatus()&&pref.getUserRollno().isEmpty()){
-                                Log.d("b","b");
-                                Log.d("b",pref.getUserRollno());
-                                if(pref.getUserRollno().isEmpty()){
-                                    AlertDialog t= Util.promptRollNo(NewsfeedTry.this);
+                        if (!pref.getFirstTimeRollregister())
+                            if (!pref.getNitianStatus() && pref.getUserRollno().isEmpty()) {
+                                Log.d("b", "b");
+                                Log.d("b", pref.getUserRollno());
+                                if (pref.getUserRollno().isEmpty()) {
+                                    AlertDialog t = Util.promptRollNo(NewsfeedTry.this);
                                     t.show();
                                 }
-                            }
-                            else {
+                            } else {
                                 pref.setFirstRollRegister(true);
                             }
                         else {
-                            for(int i=0;i<add.imageUrl.size();i++)
-                                imageUrl.append(add.imageUrl.get(i)+" ");
-                            Log.d("image",imageUrl.toString());
-                            Intent i=new Intent(NewsfeedTry.this, UploadService.class);
-                            i.putExtra(UPLOAD_SERVICE,true);
-                            i.putExtra(TITLE,add.title);
-                            i.putExtra(DESCRIPTION,add.detail);
-                            if(!imageUrl.toString().isEmpty())
-                                i.putExtra(URL_IMAGE,imageUrl.toString());
+                            for (int i = 0; i < add.imageUrl.size(); i++)
+                                imageUrl.append(add.imageUrl.get(i) + " ");
+                            Log.d("image", imageUrl.toString());
+                            Intent i = new Intent(NewsfeedTry.this, UploadService.class);
+                            i.putExtra(UPLOAD_SERVICE, true);
+                            i.putExtra(TITLE, add.title);
+                            i.putExtra(DESCRIPTION, add.detail);
+                            if (!imageUrl.toString().isEmpty())
+                                i.putExtra(URL_IMAGE, imageUrl.toString());
                             startService(i);
                             View uploaddetails = (View) findViewById(R.id.uploaddetails);
                             uploaddetails.setVisibility(View.GONE);
@@ -200,14 +200,14 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
                             Button uploadbutton = (Button) findViewById(R.id.uploadbutton);
                             Button newsfeedbutton = (Button) findViewById(R.id.newsfeedbutton);
 
-                            uploadbutton.setBackground(ContextCompat.getDrawable(getApplicationContext() , R.drawable.b3));
+                            uploadbutton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.b3));
                             uploadbutton.setTextColor(getResources().getColor(R.color.white));
-                            newsfeedbutton.setTextColor(getResources().getColor(R.color.reddishpink));
-                            newsfeedbutton.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.b2));
-                            Log.d(TAG, add.title + " " + add.detail+" "+imageUrl);
+                            newsfeedbutton.setTextColor(getResources().getColor(R.color.colorPrimary));
+                            newsfeedbutton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.b2));
+                            Log.d(TAG, add.title + " " + add.detail + " " + imageUrl);
                             getNewsFeed(1);
 
-                            }
+                        }
                     } else {
                         Toast.makeText(NewsfeedTry.this, "Some Fields are still empty", Toast.LENGTH_SHORT).show();
                     }
@@ -219,9 +219,9 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
     }
 
     private void createChooser() {
-        if(ContextCompat.checkSelfPermission(NewsfeedTry.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+        if (ContextCompat.checkSelfPermission(NewsfeedTry.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
 
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 121);
             }
 
@@ -249,44 +249,43 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
 
         }
     }
-    
-    public void newsfeed(View view)
-    {
+
+    public void newsfeed(View view) {
         View uploaddetails = (View) findViewById(R.id.uploaddetails);
         uploaddetails.setVisibility(View.GONE);
 
         recyclerView.setVisibility(View.VISIBLE);
         Button uploadbutton = (Button) findViewById(R.id.uploadbutton);
         Button newsfeedbutton = (Button) findViewById(R.id.newsfeedbutton);
-        uploadbutton.setBackground(ContextCompat.getDrawable(this , R.drawable.b3));
+        uploadbutton.setBackground(ContextCompat.getDrawable(this, R.drawable.b3));
         uploadbutton.setTextColor(getResources().getColor(R.color.white));
-        newsfeedbutton.setTextColor(getResources().getColor(R.color.reddishpink));
-        newsfeedbutton.setBackground(ContextCompat.getDrawable(this,R.drawable.b2));
+        newsfeedbutton.setTextColor(getResources().getColor(R.color.colorPrimary));
+        newsfeedbutton.setBackground(ContextCompat.getDrawable(this, R.drawable.b2));
     }
 
-    public void getNewsFeed(int from)
-    {
-        if(from==1) {
+    public void getNewsFeed(int from) {
+        if (from == 1) {
             list.clear();
             adapter.refresh(list);
             recyclerView.setVisibility(View.GONE);
         }
-        Call<NewsFeedResponse> newsfeedResponse= Util.getRetrofitService().getAllNews(pref.getUserId(),from);
+
+        Call<NewsFeedResponse> newsfeedResponse = Util.getRetrofitService().getAllNews(pref.getUserId(), from);
         newsfeedResponse.enqueue(new Callback<NewsFeedResponse>() {
             @Override
             public void onResponse(Call<NewsFeedResponse> call, Response<NewsFeedResponse> response) {
-                if(swipeRefreshLayout.isRefreshing()){
+                if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
                 recyclerView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
-                if(response!=null&&response.isSuccess()){
-                    if(response.body().getFeed()!=null){
-                        if(response.body().getFeed().size()>0){
+                if (response != null && response.isSuccess()) {
+                    if (response.body().getFeed() != null) {
+                        if (response.body().getFeed().size() > 0) {
 
-                            if(list.size()!=0){
-                                list.remove(list.size()-1);
-                                adapter.refresh (list);
+                            if (list.size() != 0) {
+                                list.remove(list.size() - 1);
+                                adapter.refresh(list);
                             }
 
                             list.addAll(response.body().getFeed());
@@ -297,29 +296,27 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
 
                         }
 
-                        Log.d("rr","check");
+                        Log.d("rr", "check");
 
-                    }
-                    else {
-                        Log.d("sa","check");
+                    } else {
+                        Log.d("sa", "check");
 
-                        if(list.size()!=0){
-                            list.remove(list.size()-1);
+                        if (list.size() != 0) {
+                            list.remove(list.size() - 1);
                             adapter.refresh(list);
                         }
 
                     }
 
-                }
-                else {
+                } else {
 
-                    if(list.size()!=0){
-                        list.remove(list.size()-1);
+                    if (list.size() != 0) {
+                        list.remove(list.size() - 1);
                         adapter.refresh(list);
                     }
 
 
-                    Snackbar.make(coordinatorLayout,"Unable To load Data",Snackbar.LENGTH_INDEFINITE).setAction("Reload", new View.OnClickListener() {
+                    Snackbar.make(coordinatorLayout, "Unable To load Data", Snackbar.LENGTH_INDEFINITE).setAction("Reload", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             progressBar.setVisibility(View.VISIBLE);
@@ -331,12 +328,12 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
 
             @Override
             public void onFailure(Call<NewsFeedResponse> call, Throwable t) {
-                if(swipeRefreshLayout.isRefreshing()){
+                if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
 
-                if(list.size()!=0){
-                    list.remove(list.size()-1);
+                if (list.size() != 0) {
+                    list.remove(list.size() - 1);
                     adapter.refresh(list);
                 }
 
@@ -348,15 +345,14 @@ public class NewsfeedTry extends AppCompatActivity implements SwipeRefreshLayout
     }
 
     @Override
-    public void onRefresh()
-    {
+    public void onRefresh() {
         getNewsFeed(1);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(list!=null)
-            outState.putParcelableArrayList(FEED_LIST,list);
+        if (list != null)
+            outState.putParcelableArrayList(FEED_LIST, list);
     }
 }

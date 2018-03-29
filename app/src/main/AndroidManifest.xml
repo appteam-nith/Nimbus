@@ -203,6 +203,7 @@
             android:exported="true" />
         <activity
             android:name=".Activity.ProfileActivityEdit"
+            android:parentActivityName=".Activity.ProfileActivity"
             android:exported="true" />
         <activity
             android:name=".Activity.NewsfeedTry"
@@ -214,12 +215,7 @@
             android:name=".Activity.RegisterEvent"
             android:parentActivityName=".Activity.TeamEventActivity" />
         <activity android:name=".Activity.HomescreenNew" />
-        <activity
-            android:name=".Activity.FeaturedImage"
-            android:exported="true"></activity>
-        <activity android:name=".Activity.ContributorsActivityGsoc"
-            android:exported="true"
-            ></activity>
+
     </application>
 
 </manifest>

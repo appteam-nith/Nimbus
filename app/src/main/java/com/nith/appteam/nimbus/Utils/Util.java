@@ -34,17 +34,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class Util {
-    private static  final String ROLL_NO="rollNo";
-    private static final String REGISTER_ROLL_NO="rollNoRegister";
-    public  static ApiInterface getRetrofitService(){
+    private static final String ROLL_NO = "rollNo";
+    private static final String REGISTER_ROLL_NO = "rollNoRegister";
+
+    private static final String BASE_URL = "https://nimbusapi.herokuapp.com/api/";
+
+    public static ApiInterface getRetrofitService() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient.Builder oBuilder = new OkHttpClient.Builder();
         oBuilder.addNetworkInterceptor(loggingInterceptor);
         oBuilder.connectTimeout(15l, TimeUnit.SECONDS);
-        oBuilder.readTimeout(15l,TimeUnit.SECONDS);
-// code to add cache in retrofit
+        oBuilder.readTimeout(15l, TimeUnit.SECONDS);
 
+// code to add cache in retrofit
         /*
         oBuilder.cache(new Cache(new File(MyApplication.getAppContext().getCacheDir(),"cache"),10*1024*1024));
         oBuilder.addInterceptor(new Interceptor() {
@@ -60,7 +63,7 @@ public class Util {
         });
 
 */
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nimbusapi.herokuapp.com/api/").addConverterFactory(GsonConverterFactory.create()).
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).
                 client(oBuilder.build()).
                 build();
 
@@ -68,27 +71,27 @@ public class Util {
         return service;
     }
 
-    public static  int random(){
-        Random r=new Random();
-        return  r.nextInt(10000000);
+    public static int random() {
+        Random r = new Random();
+        return r.nextInt(10000000);
     }
-    public static AlertDialog promptRollNo(final AppCompatActivity context){
-        final SharedPref sharedPref=new SharedPref(context);
-        AlertDialog.Builder alertDialogBuilder=new AlertDialog.Builder(context);
-        LayoutInflater inflater=context.getLayoutInflater();
-        LinearLayout l= (LinearLayout) inflater.inflate(R.layout.dialog_register_rollno,null);
+
+    public static AlertDialog promptRollNo(final AppCompatActivity context) {
+        final SharedPref sharedPref = new SharedPref(context);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = context.getLayoutInflater();
+        LinearLayout l = (LinearLayout) inflater.inflate(R.layout.dialog_register_rollno, null);
         alertDialogBuilder.setView(l);
-        final CheckBox checkBox= (CheckBox) l.findViewById(R.id.checkbox_register);
-        final EditText rollNoEditText= (EditText) l.findViewById(R.id.rollno_register);
-        final EditText phoneNoEditText= (EditText) l.findViewById(R.id.phone_register);
+        final CheckBox checkBox = (CheckBox) l.findViewById(R.id.checkbox_register);
+        final EditText rollNoEditText = (EditText) l.findViewById(R.id.rollno_register);
+        final EditText phoneNoEditText = (EditText) l.findViewById(R.id.phone_register);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     rollNoEditText.setVisibility(View.VISIBLE);
                     phoneNoEditText.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     rollNoEditText.setVisibility(View.GONE);
                     phoneNoEditText.setVisibility(View.GONE);
                 }
@@ -98,15 +101,14 @@ public class Util {
         alertDialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent i=new Intent(context, UploadService.class);
-                i.putExtra(REGISTER_ROLL_NO,true);
-                i.putExtra(ROLL_NO,rollNoEditText.getText().toString());
-                if(checkBox.isChecked()){
+                Intent i = new Intent(context, UploadService.class);
+                i.putExtra(REGISTER_ROLL_NO, true);
+                i.putExtra(ROLL_NO, rollNoEditText.getText().toString());
+                if (checkBox.isChecked()) {
                     sharedPref.setNitianStatus(true);
                     sharedPref.setUserRollno(rollNoEditText.getText().toString());
                     context.startService(i);
-                }
-                else{
+                } else {
                     sharedPref.setNitianStatus(false);
                     sharedPref.setUserRollno("");
                 }
@@ -114,7 +116,7 @@ public class Util {
 
             }
         });
-         return alertDialogBuilder.create();
+        return alertDialogBuilder.create();
     }
 
 }
