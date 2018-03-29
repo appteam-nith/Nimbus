@@ -114,8 +114,9 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                     }
                     else {
 
-                            sharedPref.setBranch(userSentResponse.getBranch());
-                            sharedPref.setYear(userSentResponse.getYear());
+                            sharedPref.setUserBranch(userSentResponse.getBranch());
+                            sharedPref.setUserYearPos(userSentResponse.getYear());
+                            // sharePref.setUserYearText(userSentResponse.getYearText());
                             sharedPref.setUserEmail(userSentResponse.getEmail());
                             sharedPref.setUserName(userSentResponse.getName());
                             sharedPref.setUserRollno(userSentResponse.getRoll_no());

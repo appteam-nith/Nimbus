@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -58,30 +59,28 @@ public class ProfileActivityEdit extends AppCompatActivity {
         firstName.setText(sharedPref.getUserName());
         rollNo.setText(sharedPref.getUserRollno());
         email.setText(sharedPref.getUserEmail());
-        branch.setText(sharedPref.getBRANCH());
+        branch.setText(sharedPref.getUserBranch());
         rollNo.setText(sharedPref.getUserRollno());
 
         try {
-            if (!sharedPref.getYEAR().isEmpty())
-                spinner.setSelection(Integer.parseInt(sharedPref.getYEAR()));
+            if (!sharedPref.getUserYearPos().isEmpty())
+                spinner.setSelection(Integer.parseInt(sharedPref.getUserYearPos()));
         } catch (Exception e) {
             Log.d("ss", "Cant do anything ");
         }
-        Log.d("year", sharedPref.getYEAR());
+        Log.d("year", sharedPref.getUserYearPos());
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
                     if (isValidEmail(email.getText().toString())) {
-
                         setData();
                     } else {
                         Toast.makeText(ProfileActivityEdit.this, "Enter Correct email address", Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(ProfileActivityEdit.this, "Enter All Details", Toast.LENGTH_LONG).show();
-
                 }
 
             }
@@ -100,6 +99,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
                         Toast.makeText(ProfileActivityEdit.this, "Post updated successfully", Toast.LENGTH_SHORT).show();
                         setSharedPrefData();
                         sharedPref.setProfileStatus(true);
+                        startActivity(new Intent(ProfileActivityEdit.this, ProfileActivity.class));
                         finish();
                     } else {
                         Toast.makeText(ProfileActivityEdit.this, "Try Again", Toast.LENGTH_SHORT).show();
@@ -156,8 +156,9 @@ public class ProfileActivityEdit extends AppCompatActivity {
     }
 
     public void setSharedPrefData() {
-        sharedPref.setBranch(branch.getText().toString());
-        sharedPref.setYear(String.valueOf(spinner.getSelectedItemPosition()));
+        sharedPref.setUserBranch(branch.getText().toString());
+        sharedPref.setUserYearPos(String.valueOf(spinner.getSelectedItemPosition()));
+        sharedPref.setUserYearText(spinner.getSelectedItem().toString());
         sharedPref.setUserRollno(rollNo.getText().toString());
         sharedPref.setUserEmail(email.getText().toString());
         sharedPref.setUserName(firstName.getText().toString());
