@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group >
+    <group>
         <item
             android:id="@+id/nav_aboutapp"
             android:title="@string/nav_aboutapp" />
@@ -11,8 +11,9 @@
             android:title="@string/nav_team" />
 
         <item
-            android:id="@+id/nav_contactus"
-            android:title="@string/nav_contactus" />
+            android:id="@+id/nav_emergencycontact"
+            android:title="Emergency Contact" />
+
     </group>
 
     <item android:title="Other">
@@ -20,10 +21,10 @@
             <item
                 android:id="@+id/nav_reportbug"
                 android:title="@string/nav_reportbug" />
+
             <item
-                android:id="@+id/nav_emergencycontact"
-                android:title="Emergency Contact"
-                />
+                android:id="@+id/nav_contactus"
+                android:title="@string/nav_contactus" />
 
         </menu>
     </item>
