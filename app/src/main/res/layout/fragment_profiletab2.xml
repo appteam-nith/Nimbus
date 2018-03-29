@@ -207,6 +207,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="30dp"
                 android:background="@color/colorAccent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:textColor="#fff"
                 android:gravity="center"
                 android:text="Edit Profile" />

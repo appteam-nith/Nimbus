@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
@@ -12,8 +11,7 @@
     <RelativeLayout
         android:id="@+id/content_team"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/logoTeam"
@@ -21,71 +19,69 @@
             android:layout_height="192dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:src="@drawable/logo_b_t"
-            />
+            android:src="@drawable/logo_b_t" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_below="@+id/logoTeam"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/logoTeam"
             android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textdeptteam"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/logoTeam"
-            android:layout_marginLeft="20dp"
-            android:text="Departmental Team"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-           />
+            <TextView
+                android:id="@+id/textdeptteam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logoTeam"
+                android:layout_marginLeft="20dp"
+                android:text="Departmental Teams"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:visibility="gone" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="336dp"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/textdeptteam"
-            android:layout_marginTop="5dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingBottom="30dp"
-            android:paddingEnd="60dp"
-            android:scaleType="centerInside"
-            android:paddingLeft="60dp"
-            android:paddingRight="60dp"
-            android:paddingStart="60dp"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="336dp"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/textdeptteam"
+                android:layout_marginTop="5dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="30dp"
+                android:paddingEnd="60dp"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                android:paddingStart="60dp"
+                android:scaleType="centerInside"
 
-           />
+                />
 
-        <TextView
-            android:id="@+id/textcoreteam"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/pager"
-            android:layout_marginLeft="20dp"
-            android:text="Core Team"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-            />
+            <TextView
+                android:id="@+id/textcoreteam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pager"
+                android:layout_marginLeft="20dp"
+                android:text="Core Teams"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:visibility="gone" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager2"
-            android:layout_width="match_parent"
-            android:layout_height="336dp"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/textcoreteam"
-            android:layout_marginTop="5dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingBottom="30dp"
-            android:paddingEnd="60dp"
-            android:scaleType="centerInside"
-            android:paddingLeft="60dp"
-            android:paddingRight="60dp"
-            android:paddingStart="60dp"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager2"
+                android:layout_width="match_parent"
+                android:layout_height="336dp"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/textcoreteam"
+                android:layout_marginTop="5dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="30dp"
+                android:paddingEnd="60dp"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                android:paddingStart="60dp"
+                android:scaleType="centerInside"
 
-            />
+                />
         </LinearLayout>
 
         <ProgressBar
@@ -95,7 +91,7 @@
             android:layout_below="@+id/logoTeam"
             android:layout_centerInParent="true"
             android:layout_marginTop="50dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/message_textView"
@@ -105,8 +101,7 @@
             android:layout_below="@+id/logoTeam"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

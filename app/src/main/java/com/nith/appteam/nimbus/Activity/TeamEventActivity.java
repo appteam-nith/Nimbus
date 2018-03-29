@@ -237,7 +237,7 @@ private void getTeamData(String  id){
                 headerTitle.setText(t.getName());
                 teamDescription.setText(t.getDesc());
                 Log.d("g",t.getLogo());
-                Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(bannerImage);
+//                Glide.with(TeamEventActivity.this).load(t.getBanner()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).into(bannerImage);
                 Glide.with(TeamEventActivity.this).load(t.getLogo()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.placeholder).into(new ImageViewTarget<Bitmap>(logoView) {
                     @Override
                     protected void setResource(Bitmap resource) {

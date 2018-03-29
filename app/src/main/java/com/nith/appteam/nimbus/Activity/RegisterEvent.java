@@ -37,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterEvent extends AppCompatActivity {
-    private String name,imgUrl,description;
+    private String name, imgUrl, description;
     private Boolean registerStatus;
     private Button registerButtton;
 
@@ -57,19 +57,22 @@ public class RegisterEvent extends AppCompatActivity {
     private ProgressBar progressBar;
     private LinearLayout linearLayout;
     private ProgressBar progressBar_register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_event);
-        Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         sharedPref = new SharedPref(this);
-        coordinatorLayout= (CoordinatorLayout) findViewById(R.id.core_view);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.core_view);
         registerButtton = findViewById(R.id.register_button);
-        cardView1 = (CardView)findViewById(R.id.cardTimings);
-        cardView2 = (CardView)findViewById(R.id.desc_event);
+        cardView1 = (CardView) findViewById(R.id.cardTimings);
+        cardView2 = (CardView) findViewById(R.id.desc_event);
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         final LinearLayout time = (LinearLayout) findViewById(R.id.time_detail);
         final LinearLayout about = (LinearLayout) findViewById(R.id.event_description);
@@ -84,12 +87,12 @@ public class RegisterEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(!showCompleteTiming){
+                if (!showCompleteTiming) {
                     time.setVisibility(View.VISIBLE);
-                    showCompleteTiming=true;
-                }else{
+                    showCompleteTiming = true;
+                } else {
                     time.setVisibility(View.GONE);
-                    showCompleteTiming=false;
+                    showCompleteTiming = false;
                 }
             }
         });
@@ -97,10 +100,10 @@ public class RegisterEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(!showCompleteInfo){
+                if (!showCompleteInfo) {
                     about.setVisibility(View.VISIBLE);
                     showCompleteInfo = true;
-                }else{
+                } else {
                     about.setVisibility(View.GONE);
                     showCompleteInfo = false;
                 }
@@ -109,11 +112,11 @@ public class RegisterEvent extends AppCompatActivity {
         registerButtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!sharedPref.getLoginStatus()){
-                    startActivity(new Intent(RegisterEvent.this,FirebaseLoginActivity.class));
+                if (!sharedPref.getLoginStatus()) {
+                    startActivity(new Intent(RegisterEvent.this, FirebaseLoginActivity.class));
                 }
-                if(!sharedPref.isDataFilled()) {
-                    Log.d("gg","hhh");
+                if (!sharedPref.isDataFilled()) {
+                    Log.d("gg", "hhh");
                     startActivity(new Intent(RegisterEvent.this, ProfileActivityEdit.class));
                 }
                 registerButtton.setVisibility(View.GONE);
@@ -123,48 +126,43 @@ public class RegisterEvent extends AppCompatActivity {
         });
         getDetails();
     }
-    public void getDetails(){
-        ApiInterface apiservice= Util.getRetrofitService();
-        if(sharedPref.getUserId().isEmpty()){
+
+    public void getDetails() {
+        ApiInterface apiservice = Util.getRetrofitService();
+        if (sharedPref.getUserId().isEmpty()) {
             progressBar.setVisibility(View.GONE);
-            Snackbar.make(coordinatorLayout,"Please Login To See The Content",Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
+            Snackbar.make(coordinatorLayout, "Please Login To See The Content", Snackbar.LENGTH_INDEFINITE).setAction("Login", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(RegisterEvent.this,FirebaseLoginActivity.class));
+                    startActivity(new Intent(RegisterEvent.this, FirebaseLoginActivity.class));
                 }
             }).show();
         }
-        Call<SingleWorkshopResponse> call=apiservice.getEventDetail(getIntent().getStringExtra("id"),sharedPref.getUserId());
+        Call<SingleWorkshopResponse> call = apiservice.getEventDetail(getIntent().getStringExtra("id"), sharedPref.getUserId());
         call.enqueue(new Callback<SingleWorkshopResponse>() {
             @Override
             public void onResponse(Call<SingleWorkshopResponse> call, Response<SingleWorkshopResponse> response) {
-                if(response.isSuccess())
-                {
-                    SingleWorkshopResponse model=response.body();
-                    if(model!=null)
-                    {
+                if (response.isSuccess()) {
+                    SingleWorkshopResponse model = response.body();
+                    if (model != null) {
                         linearLayout.setVisibility(View.VISIBLE);
                         describe.setText(model.getDesc());
+                        timings.setText(model.getEventDate());
                         collapsingToolbarLayout.setTitle(model.getName());
                         Glide.with(RegisterEvent.this).load(model.getImgUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
-                        if(model.getRegStatus())
-                        {
+                        if (model.getRegStatus()) {
                             registerButtton.setVisibility(View.GONE);
                             reg_status.setVisibility(View.VISIBLE);
                             reg_status.setText("User Already registered");
                             progressBar.setVisibility(View.GONE);
-                        }
-                        else {
+                        } else {
                             registerButtton.setVisibility(View.VISIBLE);
                             progressBar.setVisibility(View.GONE);
                         }
-                    }
-                    else{
+                    } else {
                         progressBar.setVisibility(View.GONE);
                     }
-                }
-                else
-                {
+                } else {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(RegisterEvent.this, "Error please try again", Toast.LENGTH_SHORT).show();
                 }
@@ -178,10 +176,11 @@ public class RegisterEvent extends AppCompatActivity {
             }
         });
     }
-    public void registerRetrofit(){
-        ApiInterface apiservice= Util.getRetrofitService();
 
-        Call<EventRegisterResponse> call=apiservice.getEventRegisterResponse(getIntent().getStringExtra("id"),sharedPref.getUserId());
+    public void registerRetrofit() {
+        ApiInterface apiservice = Util.getRetrofitService();
+
+        Call<EventRegisterResponse> call = apiservice.getEventRegisterResponse(getIntent().getStringExtra("id"), sharedPref.getUserId());
 
         call.enqueue(new Callback<EventRegisterResponse>() {
             @Override
@@ -190,11 +189,11 @@ public class RegisterEvent extends AppCompatActivity {
                 if (model != null && response.isSuccess()) {
 
 
-                     progressBar_register.setVisibility(View.GONE);
+                    progressBar_register.setVisibility(View.GONE);
                     registerButtton.setVisibility(View.GONE);
                     reg_status.setVisibility(View.VISIBLE);
                     reg_status.setText(model.getMsg());
-                    Snackbar.make(coordinatorLayout,model.getMsg(),Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(coordinatorLayout, model.getMsg(), Snackbar.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(RegisterEvent.this, "Success Status is not true!!", Toast.LENGTH_SHORT).show();
@@ -206,7 +205,7 @@ public class RegisterEvent extends AppCompatActivity {
             @Override
             public void onFailure(Call<EventRegisterResponse> call, Throwable t) {
                 progressBar_register.setVisibility(View.GONE);
-                Toast.makeText(RegisterEvent.this,"Some error occurred!!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterEvent.this, "Some error occurred!!", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -344,12 +344,13 @@ public class HomescreenNew extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_aboutapp:
-                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomescreenNew.this);
-                        alertDialog.setTitle("About App");
-
-                        alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k18', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
-                        alertDialog.setIcon(R.drawable.nimbuslogo);
-                        alertDialog.show();
+//                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomescreenNew.this);
+//                        alertDialog.setTitle("About App");
+//
+//                        alertDialog.setMessage("\nThe Official Android App for 'Nimbus 2k18', the Annual Technical Fest of NIT Hamirpur developed by App Team-NITH\n\n");
+//                        alertDialog.setIcon(R.drawable.nimbuslogo);
+//                        alertDialog.show();
+                        startActivity(new Intent(HomescreenNew.this,AboutActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_team:
@@ -388,12 +389,11 @@ public class HomescreenNew extends AppCompatActivity {
 
                         alertDialog3.setTitle("Phone Number\n\n");
 
-                        CharSequence name[] = {"Abhinav Anand: 9816291592", "Pranav Bhardwaj: 9882551107"};
+                        CharSequence name[] = {"Sahil Garg: 9882209522", "Jatin Dogra: 8894608213"};
 
                         alertDialog3.setItems(name, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface di, int i) {
-
                                 call(i);
                             }
                         });

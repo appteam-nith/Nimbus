@@ -19,6 +19,16 @@ public class SingleWorkshopResponse {
     String desc;
     @SerializedName("register_status")
     Boolean regStatus;
+    @SerializedName("event_date")
+    String eventDate;
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
 
     public Boolean getSuccessStatus() {
         return successStatus;
