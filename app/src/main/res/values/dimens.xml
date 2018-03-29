@@ -21,7 +21,7 @@
 
 
     <!-- Profile Margins -->
-    <dimen name="profileLabelLeft">58dp</dimen>
-    <dimen name="profileEditTextLeft">55dp</dimen>
+    <dimen name="profileLabelLeft">50dp</dimen>
+    <dimen name="profileEditTextLeft">45dp</dimen>
 
 </resources>

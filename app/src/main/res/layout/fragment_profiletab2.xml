@@ -2,9 +2,9 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -12,16 +12,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.CardView
-                android:visibility="visible"
                 android:id="@+id/cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardElevation="8dp"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:visibility="visible"
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -39,21 +38,21 @@
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
                         android:text=""
-                        android:textSize="22dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:textSize="22dp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#d2caca"
-                        android:layout_marginBottom="15dp"/>
+                        android:layout_marginBottom="15dp"
+                        android:background="#d2caca" />
 
                     <LinearLayout
                         android:id="@+id/rollnoLayout"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
 
                         <TextView
@@ -61,31 +60,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Roll No."
-                            android:textColor="#c7c2c2"/>
+                            android:textColor="#c7c2c2" />
 
                         <TextView
                             android:id="@+id/rollno"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
                             android:text=""
-                            android:textSize="22dp"
-                            android:layout_marginBottom="15dp"/>
+                            android:textSize="22dp" />
 
                         <View
                             android:id="@+id/rollnoDivider"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#d2caca"
-                            android:layout_marginBottom="15dp"/>
+                            android:layout_marginBottom="15dp"
+                            android:background="#d2caca" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/phoneLayout"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
 
                         <TextView
@@ -93,22 +92,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Phone No."
-                            android:textColor="#c7c2c2"/>
+                            android:textColor="#c7c2c2" />
 
                         <TextView
                             android:id="@+id/phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
                             android:text=""
-                            android:textSize="22dp"
-                            android:layout_marginBottom="15dp"/>
+                            android:textSize="22dp" />
 
                         <View
                             android:id="@+id/phoneDivider"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#d2caca"
-                            android:layout_marginBottom="15dp"/>
+                            android:layout_marginBottom="15dp"
+                            android:background="#d2caca" />
 
 
                     </LinearLayout>
@@ -118,38 +117,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Email"
-                        android:textColor="#c7c2c2"/>
+                        android:textColor="#c7c2c2" />
 
                     <TextView
                         android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
                         android:text=""
-                        android:textSize="22dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:textSize="22dp" />
 
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <Button
+                android:id="@+id/editprofile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cardview"
                 android:layout_alignParentBottom="true"
+                android:layout_below="@id/cardview"
                 android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:text="Edit Profile"
-                android:id="@+id/editprofile"
                 android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="Edit Profile" />
 
-                />
         </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
-
-
 
 
 </LinearLayout>
