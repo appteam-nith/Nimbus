@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    android:elevation="10dp"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto/com.nith.appteam.nimbus.CustomView.AspectRatioImageView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardCornerRadius="8dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:elevation="10dp"
+    app:cardCornerRadius="8dp">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
-        android:padding="2dp"
-        android:background="@drawable/black_border"
-        android:scaleType="fitXY"
-        android:id="@+id/image_head_normal"
-        android:src="@drawable/slide_3"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="192dp"
-        custom:dominantMeasurement="width"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:background="#5000"
-        android:id="@+id/text_normal"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_alignBottom="@+id/image_head_normal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="#fff"
-        android:text="Normal View"/>
+        <com.nith.appteam.nimbus.CustomView.AspectRatioImageView
+            android:id="@+id/image_head_normal"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            android:background="@drawable/black_border"
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/slide_3"
+            custom:dominantMeasurement="width" />
 
-    <ImageView
-        android:src="@drawable/down"
-        android:id="@+id/expand"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="135dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true"
-        />
+        <TextView
+            android:id="@+id/text_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/image_head_normal"
+            android:layout_marginBottom="10dp"
+            android:background="#000"
+            android:gravity="center"
+            android:text="Normal View"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textStyle="bold"
+            android:textColor="#fff" />
+
+        <ImageView
+            android:id="@+id/expand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/image_head_normal"
+            android:layout_marginBottom="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="135dp"
+            android:src="@drawable/arrow_down" />
 
 
-
-</RelativeLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

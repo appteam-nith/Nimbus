@@ -38,7 +38,7 @@ public class AppIntro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        prefManager=new SharedPref(this);
+        prefManager = new SharedPref(this);
         if (prefManager.showIsFirstTime()) {
             launchHomeScreen();
             finish();
@@ -46,6 +46,7 @@ public class AppIntro extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.content_appintro);
+
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnskip = (Button) findViewById(R.id.btn_skip);
@@ -110,7 +111,7 @@ public class AppIntro extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setIsFirstTime();
-        startActivity(new Intent(AppIntro.this,HomescreenNew.class));
+        startActivity(new Intent(AppIntro.this, HomescreenNew.class));
         finish();
     }
 

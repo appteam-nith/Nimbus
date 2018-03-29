@@ -53,7 +53,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle("Edit Profile");
+        getSupportActionBar().setTitle("Edit Profile");
 
         firstName.setText(sharedPref.getUserName());
         rollNo.setText(sharedPref.getUserRollno());
