@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
     private SharedPref sharedPref;
     private Spinner spinner;
     private Toolbar toolbar;
+    private ProgressBar progressBar;
     Boolean flag_year = false;
 
     @Override
@@ -51,6 +53,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         spinner = (Spinner) findViewById(R.id.spinner);
         toolbar = (Toolbar) findViewById(R.id.pe_toolbar);
+        progressBar = findViewById(R.id.profile_progress);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,15 +76,19 @@ public class ProfileActivityEdit extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
-                    if (isValidEmail(email.getText().toString())) {
-                        setData();
+
+                    if (!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
+                        if (isValidEmail(email.getText().toString())) {
+                            submit.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.VISIBLE);
+                            setData();
+                        } else {
+                            Toast.makeText(ProfileActivityEdit.this, "Enter Correct email address", Toast.LENGTH_LONG).show();
+                        }
                     } else {
-                        Toast.makeText(ProfileActivityEdit.this, "Enter Correct email address", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProfileActivityEdit.this, "Enter All Details", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(ProfileActivityEdit.this, "Enter All Details", Toast.LENGTH_LONG).show();
-                }
+
 
             }
         });
@@ -104,12 +111,15 @@ public class ProfileActivityEdit extends AppCompatActivity {
                     } else {
                         Toast.makeText(ProfileActivityEdit.this, "Try Again", Toast.LENGTH_SHORT).show();
                     }
+                    progressBar.setVisibility(View.GONE);
+                    submit.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
                 Toast.makeText(ProfileActivityEdit.this, "Try Again", Toast.LENGTH_SHORT).show();
+                submit.setVisibility(View.VISIBLE);
             }
         });
     }

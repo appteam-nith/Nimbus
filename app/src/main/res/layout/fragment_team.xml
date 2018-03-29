@@ -20,12 +20,12 @@
             android:padding="24dp">
 
             <ImageView
-                android:scaleType="fitCenter"
+                android:scaleType="centerInside"
                 android:id="@+id/image_team"
                 android:layout_width="192dp"
                 android:layout_height="192dp"
                 android:layout_gravity="center"
-                android:src="@drawable/nimbuslogo" />
+                android:src="@drawable/cover" />
 
             <TextView
                 android:id="@+id/text_name_team"

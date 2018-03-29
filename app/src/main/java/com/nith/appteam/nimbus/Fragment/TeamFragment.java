@@ -44,13 +44,14 @@ public class TeamFragment extends Fragment {
     private TextView teamNameTextView;
     private CardView cardview;
     private String teamId;
-    private boolean actCore=false;
+    private boolean actCore = false;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         teamName = getArguments().getString(TEAM_NAME);
         teamPicUrl = getArguments().getString(TEAM_URL);
-        teamId=getArguments().getString(TEAM_ID);
+        teamId = getArguments().getString(TEAM_ID);
     }
 
     @Override
@@ -58,22 +59,22 @@ public class TeamFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_team, container, false);
-        cardview= (CardView) v.findViewById(R.id.cardview);
+        cardview = (CardView) v.findViewById(R.id.cardview);
         teamImageView = (ImageView) v.findViewById(R.id.image_team);
         teamNameTextView = (TextView) v.findViewById(R.id.text_name_team);
         teamNameTextView.setText(teamName);
         Glide.with(this).load(teamPicUrl).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.nimbuslogo).error(R.drawable.nimbuslogo).into(teamImageView);
-         cardview.setMaxCardElevation(cardview.getCardElevation()* TeamInterface.MAX_ELEVATION_FACTOR);
-         cardview.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent i;
-                 if(!actCore)i=new Intent(getActivity(),TeamEventActivity.class);
-                 else i=new Intent(getActivity(),CoreTeamEventActivity.class);
-                 i.putExtra(TEAM_ID,teamId);
-                 startActivity(i);
-             }
-         });
+        cardview.setMaxCardElevation(cardview.getCardElevation() * TeamInterface.MAX_ELEVATION_FACTOR);
+        cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i;
+                if (!actCore) i = new Intent(getActivity(), TeamEventActivity.class);
+                else i = new Intent(getActivity(), CoreTeamEventActivity.class);
+                i.putExtra(TEAM_ID, teamId);
+                startActivity(i);
+            }
+        });
         return v;
     }
 
@@ -90,7 +91,7 @@ public class TeamFragment extends Fragment {
         Bundle b = new Bundle();
         b.putString(TEAM_NAME, teamItem.getName());
         b.putString(TEAM_URL, teamItem.getUrl());
-        b.putString(TEAM_ID,teamItem.getId());
+        b.putString(TEAM_ID, teamItem.getId());
         teamFragment.setArguments(b);
         return teamFragment;
     }
@@ -101,12 +102,13 @@ public class TeamFragment extends Fragment {
         Bundle b = new Bundle();
         b.putString(TEAM_NAME, teamItem.getName());
         b.putString(TEAM_URL, teamItem.getLogo());
-        b.putString(TEAM_ID,teamItem.getId());
-        Log.e("Teamfragement","name:"+teamItem.getName());
-        Log.e("Teamfragement","img:"+teamItem.getLogo());
+        b.putString(TEAM_ID, teamItem.getId());
+        Log.e("Teamfragement", "name:" + teamItem.getName());
+        Log.e("Teamfragement", "img:" + teamItem.getLogo());
         teamFragment.setArguments(b);
         return teamFragment;
     }
+
     public CardView getCardview() {
         return cardview;
     }
