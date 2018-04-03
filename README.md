@@ -36,6 +36,7 @@ Google Play link: https://play.google.com/store/apps/details?id=com.appteam.nith
 - [OneSignal-SDK](https://github.com/OneSignal/OneSignal-Android-SDK)
 - [Like Button](https://github.com/jd-alexander/LikeButton)
 - [Cloudinary](https://github.com/cloudinary/cloudinary_android)
+- [Firebase-SDK](https://firebase.google.com/)
 
 ## License
 This project is currently licensed under the GNU General Public License v3.  
