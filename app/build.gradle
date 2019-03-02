@@ -54,6 +54,7 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.firebaseui:firebase-ui-auth:3.2.2'
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.android.volley:volley:1.1.1'
     testCompile 'junit:junit:4.12'
 }
 
