@@ -10,6 +10,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,8 +28,14 @@ import com.google.gson.annotations.SerializedName;
 import com.nith.appteam.nimbus.R;
 import com.nith.appteam.nimbus.Utils.SharedPref;
 import com.nith.appteam.nimbus.Utils.Util;
+import com.nith.appteam.nimbus.Utils.Volleycustom;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,13 +45,15 @@ import retrofit2.Response;
 public class FirebaseLoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 138;
-
+    private String requestBody;
     private Button loginBtn;
     private ProgressBar progressBar;
     private List<AuthUI.IdpConfig> providers;
     private TextView textView;
     private SharedPref sharedPref;
-
+    private JSONObject jsonObject1;
+    private String HashedValue;
+    private FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,10 +98,72 @@ public class FirebaseLoginActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                user = FirebaseAuth.getInstance().getCurrentUser();
                 Log.d("pno.: ", user.getPhoneNumber());
                 Log.d("uid: ", user.getUid());
-                saveUserLoginData(user.getPhoneNumber(), user.getUid());
+                final JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("mobile",user.getPhoneNumber());
+                    jsonObject.put("firebase_id",user.getUid());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+//                Volleycustom volleycustom = new Volleycustom(this);
+//                String hashed_value = volleycustom.postsimpleJsonObject(jsonObject,"https://nimbus19.herokuapp.com/auth/signup");
+//                Toast.makeText(FirebaseLoginActivity.this,hashed_value,Toast.LENGTH_SHORT).show();
+                RequestQueue queue = Volley.newRequestQueue(this);
+                requestBody = jsonObject.toString();
+                StringRequest stringRequest = new StringRequest(Request.Method.POST,"https://nimbus19.herokuapp.com/auth/signup", new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            jsonObject1 = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            HashedValue = jsonObject1.getString("authId");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(FirebaseLoginActivity.this,HashedValue,Toast.LENGTH_SHORT).show();
+                        saveUserLoginData(user.getPhoneNumber(), user.getUid(),HashedValue);
+
+
+                    }
+
+
+                }, new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("VOLLEY", error.toString());
+                    }
+                }) {
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8";
+                    }
+
+                    @Override
+                    public byte[] getBody() throws AuthFailureError {
+                        try {
+                            return requestBody == null ? null : requestBody.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException uee) {
+                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                            return null;
+                        }
+                    }
+
+                    @Override
+                    protected com.android.volley.Response<String> parseNetworkResponse(NetworkResponse response) {
+                        return super.parseNetworkResponse(response);
+                    }
+                };
+                stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                queue.add(stringRequest);
             } else {
                 // Sign in failed, check response for error code
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
@@ -93,7 +173,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
     }
 
 
-    private void saveUserLoginData(final String phone_no, String fb_id) {
+    private void saveUserLoginData(final String phone_no, String fb_id, final String hashedValue) {
 
         Call<FirebaseLoginActivity.UserSentResponse> userSentResponseCall = Util.getRetrofitService().sendUserLoginData(phone_no, fb_id);
         userSentResponseCall.enqueue(new Callback<FirebaseLoginActivity.UserSentResponse>() {
@@ -106,6 +186,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                     sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
                     sharedPref.setUserId(userSentResponse.getUserId());
                     sharedPref.setUserPhone(phone_no);
+                    sharedPref.setHashedValue(hashedValue);
 
                     if (userSentResponse.getBranch().isEmpty() || userSentResponse.getYear().isEmpty() || userSentResponse.getEmail().isEmpty() ||
                             userSentResponse.getName().isEmpty() || userSentResponse.getRoll_no().isEmpty()) {
@@ -114,29 +195,29 @@ public class FirebaseLoginActivity extends AppCompatActivity {
                     }
                     else {
 
-                            sharedPref.setUserBranch(userSentResponse.getBranch());
-                            sharedPref.setUserYearPos(userSentResponse.getYear());
-                            // sharePref.setUserYearText(userSentResponse.getYearText());
-                            sharedPref.setUserEmail(userSentResponse.getEmail());
-                            sharedPref.setUserName(userSentResponse.getName());
-                            sharedPref.setUserRollno(userSentResponse.getRoll_no());
-                            sharedPref.setProfileStatus(true);
-                            Log.d("aa", userSentResponse.getBranch());
-                            Log.d("bb", userSentResponse.getRoll_no());
-                            Log.d("cc", userSentResponse.getName());
-                            Log.d("dd", userSentResponse.getEmail());
-                        }
-
-                        progressBar.setVisibility(View.GONE);
-
-                        Intent intent = new Intent(FirebaseLoginActivity.this, HomescreenNew.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
-                    } else{
-                        Toast.makeText(FirebaseLoginActivity.this, "Check Internet connection", Toast.LENGTH_SHORT).show();
+                        sharedPref.setUserBranch(userSentResponse.getBranch());
+                        sharedPref.setUserYearPos(userSentResponse.getYear());
+                        // sharePref.setUserYearText(userSentResponse.getYearText());
+                        sharedPref.setUserEmail(userSentResponse.getEmail());
+                        sharedPref.setUserName(userSentResponse.getName());
+                        sharedPref.setUserRollno(userSentResponse.getRoll_no());
+                        sharedPref.setProfileStatus(true);
+                        Log.d("aa", userSentResponse.getBranch());
+                        Log.d("bb", userSentResponse.getRoll_no());
+                        Log.d("cc", userSentResponse.getName());
+                        Log.d("dd", userSentResponse.getEmail());
                     }
+
+                    progressBar.setVisibility(View.GONE);
+
+                    Intent intent = new Intent(FirebaseLoginActivity.this, UserInfoActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Toast.makeText(FirebaseLoginActivity.this, "Check Internet connection", Toast.LENGTH_SHORT).show();
                 }
+            }
 
 
             @Override
