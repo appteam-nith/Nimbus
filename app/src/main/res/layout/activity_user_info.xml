@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/pe_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <ScrollView
+        android:id="@+id/container_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/pe_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_title_24px"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/fname_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="50dp"
+                    android:hint="Name"
+                    android:textColorHint="@color/md_grey_700" />
+
+
+                <EditText
+                    android:id="@+id/firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fname_label"
+                    android:layout_marginLeft="45dp"
+                    android:maxLines="1"
+                    android:textColor="@color/md_black_1000" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_email_24px"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/email_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/profileLabelLeft"
+                    android:layout_marginTop="10dp"
+                    android:hint="Email Address"
+                    android:textColorHint="@color/md_grey_700" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email_label"
+                    android:layout_marginLeft="@dimen/profileEditTextLeft"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textColor="@color/md_black_1000" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_numeric_24px"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/rno_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/profileLabelLeft"
+                    android:layout_marginTop="10dp"
+                    android:hint="Roll No."
+                    android:textColorHint="@color/md_grey_700" />
+
+                <EditText
+                    android:id="@+id/rollno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rno_label"
+                    android:layout_marginLeft="@dimen/profileEditTextLeft"
+                    android:maxLines="1"
+                    android:textColor="@color/md_black_1000" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_library_24px"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/year_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/profileLabelLeft"
+                    android:layout_marginTop="10dp"
+                    android:hint="Year"
+                    android:textColorHint="@color/md_grey_700" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/year_label"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginTop="10dp"
+                    android:entries="@array/year_arrays"
+                    android:prompt="@string/year_prompt" />
+
+                <EditText
+                    android:id="@+id/year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/profileEditTextLeft"
+                    android:maxLines="1"
+                    android:textColor="@color/md_black_1000" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_school_24px"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/branch_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/profileLabelLeft"
+                    android:layout_marginTop="15dp"
+                    android:hint="Branch"
+                    android:textColorHint="@color/md_grey_700" />
+
+                <EditText
+                    android:id="@+id/branch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/branch_label"
+                    android:layout_marginLeft="@dimen/profileEditTextLeft"
+                    android:textColor="@color/md_black_1000" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/submit_data"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@color/colorAccent"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:text="Submit" />
+
+            <ProgressBar
+                android:id="@+id/profile_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

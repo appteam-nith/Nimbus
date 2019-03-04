@@ -203,8 +203,8 @@
             android:exported="true" />
         <activity
             android:name=".Activity.ProfileActivityEdit"
-            android:parentActivityName=".Activity.ProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".Activity.ProfileActivity" />
         <activity
             android:name=".Activity.NewsfeedTry"
             android:exported="true"
@@ -215,7 +215,7 @@
             android:name=".Activity.RegisterEvent"
             android:parentActivityName=".Activity.TeamEventActivity" />
         <activity android:name=".Activity.HomescreenNew" />
-
+        <activity android:name=".Activity.UserInfoActivity"></activity>
     </application>
 
 </manifest>
