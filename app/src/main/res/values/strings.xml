@@ -44,7 +44,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
-
     <string name="quiz_instruction">Please read below instruction very carefully:-\n\n
     1. This quiz is hosted by AppTeam of NIT Hamirpur.\n\n
     2. <b>Important:</b> Make sure that your device remains connected to Internet while attempting quiz.\n\n
