@@ -2,8 +2,10 @@ package com.nith.appteam.nimbus.Utils;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,10 +26,12 @@ public class Volleycustom
 
 
     private RequestQueue queue;
-    private String tobereturned="";
+    private String tobereturned;
     private JSONObject json;
+    private Activity activity;
     public Volleycustom(Activity activity) {
         queue = Volley.newRequestQueue(activity);
+        this.activity = activity;
     }
 
     public JSONObject getJsonResponse(String url, final String authid) {
@@ -63,7 +67,7 @@ public class Volleycustom
             @Override
             public void onResponse(String response) {
                 Log.i("VOLLEY", response);
-                tobereturned = response;
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -103,9 +107,54 @@ public class Volleycustom
                 return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
             }
         };
-
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
         return tobereturned;
+    }
+    String getreturn="";
+    public String postsimpleJsonObject(JSONObject jsonObject,String url){
+
+        final String requestBody = jsonObject.toString();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+//                Toast.makeText(activity,response,Toast.LENGTH_SHORT).show();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VOLLEY", error.toString());
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                return super.parseNetworkResponse(response);
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
+        return getreturn;
     }
 
 

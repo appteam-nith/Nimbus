@@ -23,7 +23,7 @@ public class SharedPref {
     private static final String YEAR_POS = "year_pos";
     private static final String YEAR_TEXT = "year_text";
     private static final String IS_FILLED = "isfilled";
-
+    private static final String HASHED_VALUE="hashedid";
     public SharedPref() {
         this(MyApplication.getAppContext());
     }
@@ -55,6 +55,13 @@ public class SharedPref {
         return sharedPreferences.getBoolean(SKIP_STATUS, false);
     }
 
+    public String getHashedValue() {
+        return HASHED_VALUE;
+    }
+    public void setHashedValue(String hashedValue){
+        editor.putString(HASHED_VALUE,hashedValue);
+        editor.commit();
+    }
     public void setUserId(String userId) {
         editor.putString(USER_ID, userId);
         editor.commit();

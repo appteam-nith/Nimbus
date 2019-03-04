@@ -77,7 +77,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    if (!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()) {
+                    if (!firstName.getText().toString().isEmpty() && !rollNo.getText().toString().isEmpty() && !branch.getText().toString().isEmpty() && !email.getText().toString().isEmpty()){
                         if (isValidEmail(email.getText().toString())) {
                             submit.setVisibility(View.GONE);
                             progressBar.setVisibility(View.VISIBLE);
@@ -122,6 +122,7 @@ public class ProfileActivityEdit extends AppCompatActivity {
                 submit.setVisibility(View.VISIBLE);
             }
         });
+
     }
 
     public class ProfileResponse {
